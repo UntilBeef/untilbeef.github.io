@@ -2,43 +2,143 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>网站整合</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         body {
-            font-family: 'Arial', sans-serif;
-            margin: 0;
-            padding: 0;
-            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
-            color: white;
-            overflow: hidden;
-            min-height: 100vh;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        .loader {
+            position: fixed;
+            width: 100vw;
+            height: 100vh;
+            background: #0f0c29;
+            z-index: 9999;
             display: flex;
             justify-content: center;
             align-items: center;
-            perspective: 1000px;
+            transition: opacity 0.5s;
+        }
+
+        .cyber-box {
+            width: 80px;
+            height: 80px;
+            position: relative;
+            transform-style: preserve-3d;
+            animation: cubeRotate 3s infinite linear;
+        }
+
+        .cyber-box div {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 255, 255, 0.2);
+            border: 3px solid #00ffff;
+            transform-style: preserve-3d;
+        }
+
+        .cyber-box div:nth-child(1) { transform: translateZ(40px); }
+        .cyber-box div:nth-child(2) { transform: translateZ(-40px); }
+        .cyber-box div:nth-child(3) { transform: rotateX(90deg) translateZ(40px); }
+        .cyber-box div:nth-child(4) { transform: rotateX(90deg) translateZ(-40px); }
+        .cyber-box div:nth-child(5) { transform: rotateY(90deg) translateZ(40px); }
+        .cyber-box div:nth-child(6) { transform: rotateY(90deg) translateZ(-40px); }
+
+        @keyframes cubeRotate {
+            0% { transform: rotateX(45deg) rotateY(45deg); }
+            100% { transform: rotateX(405deg) rotateY(765deg); }
+        }
+
+        body {
+            cursor: none;
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #0f0c29, #302b63 60%, #24243e);
+            color: white;
+            overflow: auto;
+            min-height: 100vh;
+        }
+
+        .cursor {
+            width: 20px;
+            height: 20px;
+            border: 2px solid #00ffff;
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            mix-blend-mode: difference;
+            z-index: 999;
+            transition: transform 0.2s, opacity 0.5s;
+        }
+
+        .cursor-trail {
+            position: fixed;
+            pointer-events: none;
+            width: 6px;
+            height: 6px;
+            background: #fc00ff;
+            border-radius: 50%;
+            mix-blend-mode: screen;
+        }
+
+        .grid-bg {
+            position: fixed;
+            width: 200%;
+            height: 200%;
+            background: 
+                linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px),
+                linear-gradient(180deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+            background-size: 30px 30px;
+            animation: gridMove 40s linear infinite;
+            transform: rotate(15deg);
+            z-index: 0;
+        }
+
+        @keyframes gridMove {
+            0% { transform: rotate(15deg) translate(0, 0); }
+            100% { transform: rotate(15deg) translate(-30px, -30px); }
+        }
+
+        .light-beam {
+            position: fixed;
+            width: 300%;
+            height: 100px;
+            background: linear-gradient(90deg, 
+                rgba(0,219,222,0) 0%,
+                rgba(0,219,222,0.3) 50%,
+                rgba(0,219,222,0) 100%);
+            transform: rotate(-20deg);
+            animation: beamFlow 15s infinite linear;
+            filter: blur(30px);
+            z-index: 5;
+        }
+
+        @keyframes beamFlow {
+            0% { left: -200%; }
+            100% { left: 200%; }
         }
 
         .container {
-            position: relative;
-            z-index: 10;
-            text-align: center;
-            padding: 2rem;
-            background: rgba(0, 0, 0, 0.3);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            box-shadow: 0 0 30px rgba(0, 255, 255, 0.5);
-            transform-style: preserve-3d;
-            transition: transform 0.5s;
-            max-width: 800px;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 20;
             width: 90%;
-            margin: 0 auto;
-            line-height: 1.6;
-        }
-
-        .container:hover {
-            transform: rotateY(5deg) rotateX(5deg);
+            max-width: 800px;
+            padding: 2rem;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(15px);
+            border-radius: 25px;
+            box-shadow: 0 0 50px rgba(0, 255, 255, 0.3),
+                        inset 0 0 20px rgba(0, 255, 255, 0.2);
         }
 
         h1 {
@@ -65,6 +165,13 @@
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
+            opacity: 0;
+            transform: translateY(50px);
+            animation: cardEntrance 0.8s forwards;
+        }
+
+        @keyframes cardEntrance {
+            to { opacity: 1; transform: translateY(0); }
         }
 
         li:hover {
@@ -205,6 +312,13 @@
             margin-left: 2rem;
         }
 
+        #particles-js {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            z-index: 10;
+        }
+
         @media (max-width: 768px) {
             h1 {
                 font-size: 2rem;
@@ -235,7 +349,16 @@
     </style>
 </head>
 <body>
+    <div class="loader">
+        <div class="cyber-box">
+            <div></div><div></div><div></div><div></div><div></div><div></div>
+        </div>
+    </div>
+
+    <div class="grid-bg"></div>
+    <div class="light-beam"></div>
     <div id="particles-js"></div>
+    <div class="cursor"></div>
 
     <div class="container">
         <h1>网站整合</h1>
@@ -246,7 +369,7 @@
                          class="favicon" 
                          alt="GitHub图标">
                     <div class="link-container">
-                        <a href="https://github.com" target="_blank">GitHub</a>
+                        <a href="https://bgithub.xyz" target="_blank">GitHub</a>
                         <p>一个面向开源及私有软件项目的托管平台，因为只支持 Git 作为唯一的版本库格式进行托管，故名 GitHub。</p>
                     </div>
                 </div>
@@ -267,38 +390,93 @@
         </ul>
     </div>
 
+    <audio id="hover-sound" src="data:audio/wav;base64,UklGRl9vT19XQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YU"></audio>
+
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script>
+        window.addEventListener('load', () => {
+            document.querySelector('.loader').style.opacity = '0';
+            setTimeout(() => {
+                document.querySelector('.loader').style.display = 'none';
+            }, 500);
+        });
+
+        const cursor = document.querySelector('.cursor');
+        const trails = [];
+        for (let i = 0; i < 8; i++) {
+            const trail = document.createElement('div');
+            trail.className = 'cursor-trail';
+            document.body.appendChild(trail);
+            trails.push({ el: trail, x: 0, y: 0 });
+        }
+
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+            
+            trails.forEach((trail, index) => {
+                setTimeout(() => {
+                    trail.el.style.left = (e.clientX - 3) + 'px';
+                    trail.el.style.top = (e.clientY - 3) + 'px';
+                    trail.el.style.opacity = 1 - index * 0.1;
+                    trail.el.style.transform = `scale(${1 - index * 0.1})`;
+                }, index * 50);
+            });
+        });
+
         particlesJS("particles-js", {
             particles: {
-                number: { value: 80, density: { enable: true, value_area: 800 } },
-                color: { value: "#ffffff" },
-                shape: { type: "circle" },
-                opacity: { value: 0.5, random: true },
-                size: { value: 3, random: true },
-                line_linked: { 
-                    enable: true, 
-                    distance: 150, 
-                    color: "#00ffff", 
-                    opacity: 0.4, 
-                    width: 1 
+                number: { value: 300 },
+                color: { value: ["#00ffff", "#fc00ff", "#ffffff"] },
+                shape: { type: ["circle", "edge"] },
+                opacity: { value: 0.7, random: true },
+                size: { value: 3, random: { enable: true, minimumValue: 1 } },
+                line_linked: {
+                    enable: true,
+                    distance: 150,
+                    color: "#ffffff",
+                    opacity: 0.3,
+                    width: 1.5
                 },
-                move: { 
-                    enable: true, 
-                    speed: 3, 
-                    direction: "none", 
-                    random: true, 
-                    straight: false, 
-                    out_mode: "out" 
+                move: {
+                    enable: true,
+                    speed: 6,
+                    direction: "none",
+                    random: true,
+                    straight: false,
+                    out_mode: "out",
+                    attract: { enable: true, rotateX: 1000, rotateY: 2000 }
                 }
             },
             interactivity: {
-                detect_on: "canvas",
+                detect_on: "window",
                 events: {
                     onhover: { enable: true, mode: "repulse" },
-                    onclick: { enable: true, mode: "push" }
+                    onclick: { enable: true, mode: "push" },
+                    resize: true
                 }
             }
+        });
+
+        setInterval(() => {
+            const beam = document.createElement('div');
+            beam.className = 'light-beam';
+            beam.style.top = Math.random() * 100 + '%';
+            beam.style.animationDuration = Math.random() * 10 + 10 + 's';
+            document.body.appendChild(beam);
+            setTimeout(() => beam.remove(), 15000);
+        }, 3000);
+
+        document.querySelectorAll('.container ul li').forEach((li, index) => {
+            li.style.animationDelay = index * 0.2 + 's';
+        });
+
+        document.querySelectorAll('a, .favicon').forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                const sound = document.getElementById('hover-sound');
+                sound.currentTime = 0;
+                sound.play();
+            });
         });
     </script>
 </body>
