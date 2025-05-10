@@ -86,11 +86,12 @@
             background: #fc00ff;
             border-radius: 50%;
             mix-blend-mode: screen;
+            z-index: 21;
         }
 
-        @media (pointer: coarse) {
+        @media (pointer: coarse), (hover: none) {
             .cursor, .cursor-trail {
-                display: none;
+                display: none !important;
             }
             body {
                 cursor: auto;
@@ -417,7 +418,7 @@
 
         const cursor = document.querySelector('.cursor');
         const trails = [];
-        if (!('ontouchstart' in window)) {
+        if (!window.matchMedia('(pointer: coarse), (hover: none)').matches) {
             for (let i = 0; i < 8; i++) {
                 const trail = document.createElement('div');
                 trail.className = 'cursor-trail';
