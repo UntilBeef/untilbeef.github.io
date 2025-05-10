@@ -12,18 +12,22 @@
             -moz-user-select: none;
             -ms-user-select: none;
             user-select: none;
+            min-height: 100vh;
+            position: relative;
         }
 
         .loader {
-            position: fixed;
-            width: 100vw;
-            height: 100vh;
+            position: absolute;
+            width: 100%;
+            height: 100%;
             background: #0f0c29;
             z-index: 9999;
             display: flex;
             justify-content: center;
             align-items: center;
             transition: opacity 0.5s;
+            top: 0;
+            left: 0;
         }
 
         .cyber-box {
@@ -63,7 +67,6 @@
             background: linear-gradient(135deg, #0f0c29, #302b63 60%, #24243e);
             color: white;
             overflow: auto;
-            min-height: 100vh;
         }
 
         .cursor {
@@ -136,11 +139,8 @@
         }
 
         .container {
-            position: absolute;
-            left: 50%;
-            top: 50%;
-            transform: translate(-50%, -50%);
-            z-index: 20;
+            position: relative;
+            margin: 100px auto;
             width: 90%;
             max-width: 800px;
             padding: 2rem;
@@ -149,6 +149,7 @@
             border-radius: 25px;
             box-shadow: 0 0 50px rgba(0, 255, 255, 0.3),
                         inset 0 0 20px rgba(0, 255, 255, 0.2);
+            z-index: 20;
         }
 
         h1 {
