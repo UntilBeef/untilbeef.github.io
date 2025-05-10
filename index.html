@@ -88,6 +88,15 @@
             mix-blend-mode: screen;
         }
 
+        @media (pointer: coarse) {
+            .cursor, .cursor-trail {
+                display: none;
+            }
+            body {
+                cursor: auto;
+            }
+        }
+
         .grid-bg {
             position: fixed;
             width: 200%;
@@ -394,6 +403,11 @@
 
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script>
+        document.addEventListener('contextmenu', e => e.preventDefault());
+        document.addEventListener('keydown', e => {
+            if (e.key === 'F12' || (e.ctrlKey && e.shiftKey && e.key === 'I')) e.preventDefault();
+        });
+
         window.addEventListener('load', () => {
             document.querySelector('.loader').style.opacity = '0';
             setTimeout(() => {
@@ -403,26 +417,28 @@
 
         const cursor = document.querySelector('.cursor');
         const trails = [];
-        for (let i = 0; i < 8; i++) {
-            const trail = document.createElement('div');
-            trail.className = 'cursor-trail';
-            document.body.appendChild(trail);
-            trails.push({ el: trail, x: 0, y: 0 });
-        }
+        if (!('ontouchstart' in window)) {
+            for (let i = 0; i < 8; i++) {
+                const trail = document.createElement('div');
+                trail.className = 'cursor-trail';
+                document.body.appendChild(trail);
+                trails.push({ el: trail, x: 0, y: 0 });
+            }
 
-        document.addEventListener('mousemove', (e) => {
-            cursor.style.left = e.clientX + 'px';
-            cursor.style.top = e.clientY + 'px';
-            
-            trails.forEach((trail, index) => {
-                setTimeout(() => {
-                    trail.el.style.left = (e.clientX - 3) + 'px';
-                    trail.el.style.top = (e.clientY - 3) + 'px';
-                    trail.el.style.opacity = 1 - index * 0.1;
-                    trail.el.style.transform = `scale(${1 - index * 0.1})`;
-                }, index * 50);
+            document.addEventListener('mousemove', (e) => {
+                cursor.style.left = e.clientX + 'px';
+                cursor.style.top = e.clientY + 'px';
+                
+                trails.forEach((trail, index) => {
+                    setTimeout(() => {
+                        trail.el.style.left = (e.clientX - 3) + 'px';
+                        trail.el.style.top = (e.clientY - 3) + 'px';
+                        trail.el.style.opacity = 1 - index * 0.1;
+                        trail.el.style.transform = `scale(${1 - index * 0.1})`;
+                    }, index * 50);
+                });
             });
-        });
+        }
 
         particlesJS("particles-js", {
             particles: {
