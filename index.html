@@ -17,26 +17,26 @@
         }
 
         .loader {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background: #0f0c29;
-            z-index: 9999;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            transition: opacity 0s;
-            top: 0;
-            left: 0;
-        }
+ 	   position: fixed;
+ 	   width: 100vw;
+ 	   height: 100vh;
+	    background: #0f0c29;
+	    z-index: 9999;
+	    display: flex;
+	    justify-content: center;
+	    align-items: center;
+	    transition: opacity 0.5s;
+	    top: 0;
+	    left: 0;
+	}
 
-        .cyber-box {
-            width: 80px;
-            height: 80px;
-            position: relative;
-            transform-style: preserve-3d;
-            animation: cubeRotate 3s infinite linear;
-        }
+	.cyber-box {
+	    width: 80px;
+	    height: 80px;
+	    position: relative;
+	    transform-style: preserve-3d;
+	    animation: cubeRotate 3s infinite linear;
+	}
 
         .cyber-box div {
             position: absolute;
