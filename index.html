@@ -6,7 +6,6 @@
     <title>网站整合</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        /* 全局样式 */
         body {
             font-family: 'Arial', sans-serif;
             margin: 0;
@@ -21,7 +20,6 @@
             perspective: 1000px;
         }
 
-        /* 3D 悬浮卡片效果 */
         .container {
             position: relative;
             z-index: 10;
@@ -92,7 +90,6 @@
             opacity: 0.5;
         }
 
-        /* 图标预览样式 */
         .website-preview {
             display: flex;
             align-items: center;
@@ -113,7 +110,6 @@
             flex-shrink: 0;
         }
 
-        /* 自定义分支图标 */
         .branch-icon {
             position: relative;
             overflow: visible;
@@ -152,7 +148,6 @@
             transform-origin: bottom;
         }
 
-        /* 悬停效果 */
         .website-preview:hover .favicon {
             transform: scale(1.1);
             filter: drop-shadow(0 0 8px rgba(0, 255, 255, 0.5));
@@ -206,12 +201,10 @@
             width: 100%;
         }
 
-        /* 子项样式 */
         .sub-item {
             margin-left: 2rem;
         }
 
-        /* 响应式优化 */
         @media (max-width: 768px) {
             h1 {
                 font-size: 2rem;
@@ -229,7 +222,6 @@
             .website-preview {
                 gap: 10px;
             }
-            /* 移动端分支图标调整 */
             .branch-icon::before {
                 height: 18px;
                 top: 8px;
@@ -250,7 +242,7 @@
         <ul>
             <li>
                 <div class="website-preview">
-                    <img src="https://github.com/favicon.ico" 
+                    <img src="https://bgithub.xyz/favicon.ico" 
                          class="favicon" 
                          alt="GitHub图标">
                     <div class="link-container">
