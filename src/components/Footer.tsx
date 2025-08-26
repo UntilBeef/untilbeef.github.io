@@ -14,19 +14,24 @@ export function Footer() {
             </p>
           </div>
           
-          <div className="flex items-center space-x-4">
+          <div className="flex items-center space-x-6">
             <a 
               href="https://space.bilibili.com/3546854264408363?spm_id_from=333.1007.0.0" 
               target="_blank" 
-              rel="noopener noreferrer"
-              className="flex items-center text-sm text-blue-600 dark:text-blue-400 hover:underline"
+              rel="noopener noreferrer" className="flex items-center text-sm text-blue-600 dark:text-blue-400 hover:underline transition-colors"
             >
               <i className="fa-brands fa-bilibili mr-2"></i>
-              <span>B站个人主页</span>
-            </a>
-          </div>
-        </div>
-      </div>
-    </footer>
-  );
+              <span>B站个人主页</span> </a>
+            
+             <a 
+               href="https://github.com/[your-github-username]/roblox-lua-tutorial" 
+               target="_blank" 
+               rel="noopener noreferrer"
+               className="flex items-center text-sm bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition-colors"
+             >
+               <i className="fa-brands fa-github mr-2"></i>
+               <span>查看源码</span> 
+             </a> </div>
+        </div> </div> </footer>
+);
 }
