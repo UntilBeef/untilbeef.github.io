@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roblox Studio 开发教程 | UntilBeef</title>
+    <style>
+        :root {
+            --primary: #4285F4;
+            --dark: #202124;
+            --light: #f8f9fa;
+            --accent: #EA4335;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
+        }
+        
+        body {
+            background-color: var(--dark);
+            color: var(--light);
+            line-height: 1.6;
+        }
+        
+        .hero {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            padding: 5rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1639762681057-408e52192e55?q=80&w=2232&auto=format&fit=crop') no-repeat center center/cover;
+            opacity: 0.2;
+            z-index: 0;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(to right, #4285F4, #EA4335, #FBBC05, #34A853);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-weight: 800;
+        }
+        
+        .subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+        
+        .author {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 3rem;
+        }
+        
+        .author-info {
+            text-align: left;
+        }
+        
+        .author-name {
+            font-weight: 600;
+            color: var(--primary);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .author-name:hover {
+            color: var(--accent);
+            text-decoration: underline;
+        }
+        
+        .contact {
+            background-color: rgba(66, 133, 244, 0.1);
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin: 3rem auto 0;
+            max-width: 600px;
+            border-left: 4px solid var(--accent);
+        }
+        
+        .contact-title {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: var(--accent);
+        }
+        
+        .qq {
+            font-size: 1.3rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+        
+        .empty-state {
+            padding: 4rem 2rem;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .empty-icon {
+            font-size: 5rem;
+            margin-bottom: 1rem;
+            opacity: 0.3;
+        }
+        
+        .empty-text {
+            font-size: 1.5rem;
+            opacity: 0.7;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 2rem;
+            background-color: rgba(0,0,0,0.3);
+            margin-top: 4rem;
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .subtitle {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Roblox Studio开发教程</h1>
+            <p class="subtitle">开发指南</p>
+            
+            <div class="author">
+                <div class="author-info">
+                    <p>编者和网页开发者</p>
+                    <a href="https://space.bilibili.com/3546854264408363" target="_blank" class="author-name">UntilBeef</a>
+                </div>
+            </div>
+            
+            <div class="contact">
+                <p class="contact-title">投稿</p>
+                <p class="qq">QQ: 1303537091</p>
+            </div>
+        </div>
+    </section>
+    
+    <div class="empty-state">
+        <div class="empty-icon">📄</div>
+        <p class="empty-text">暂无文档</p>
+    </div>
+</body>
+</html>
