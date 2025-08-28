@@ -112,90 +112,6 @@
             font-weight: 600;
             letter-spacing: 1px;
         }
-
-        .submit-form {
-            margin-top: 1rem;
-        }
-
-        .form-group {
-            margin-bottom: 1rem;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 0.5rem;
-            color: var(--light);
-        }
-
-        input, textarea {
-            width: 100%;
-            padding: 0.8rem;
-            border: 1px solid #555;
-            border-radius: 6px;
-            background-color: rgba(0,0,0,0.5);
-            color: var(--light);
-            font-size: 1rem;
-        }
-
-        textarea {
-            min-height: 150px;
-            resize: vertical;
-        }
-
-        button {
-            background-color: var(--accent);
-            color: white;
-            border: none;
-            padding: 0.8rem 1.5rem;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 1rem;
-            transition: background-color 0.3s ease;
-        }
-
-        button:hover {
-            background-color: #d93025;
-        }
-        
-        .email-methods {
-            background-color: rgba(0,0,0,0.3);
-            padding: 2rem;
-            border-radius: 12px;
-            margin: 3rem auto;
-            max-width: 800px;
-        }
-        
-        .email-methods h2 {
-            color: var(--primary);
-            margin-bottom: 1rem;
-            font-size: 1.8rem;
-        }
-        
-        .email-methods p {
-            margin-bottom: 1rem;
-        }
-        
-        .email-methods ul {
-            margin-left: 2rem;
-            margin-bottom: 1rem;
-        }
-        
-        .email-methods table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 1rem 0;
-        }
-        
-        .email-methods th, .email-methods td {
-            padding: 0.8rem;
-            border: 1px solid #555;
-            text-align: left;
-        }
-        
-        .email-methods th {
-            background-color: rgba(66, 133, 244, 0.2);
-            color: var(--primary);
-        }
         
         .empty-state {
             padding: 4rem 2rem;
@@ -230,14 +146,6 @@
             .subtitle {
                 font-size: 1.2rem;
             }
-            
-            .email-methods {
-                padding: 1rem;
-            }
-            
-            .email-methods table {
-                font-size: 0.9rem;
-            }
         }
     </style>
 </head>
@@ -256,51 +164,7 @@
             
             <div class="contact">
                 <p class="contact-title">投稿</p>
-                <div class="submit-form">
-                    <div class="form-group">
-                        <label for="contributor">投稿人</label>
-                        <input type="text" id="contributor" name="contributor" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="content">投稿内容</label>
-                        <textarea id="content" name="content" required></textarea>
-                    </div>
-                    <button type="button" onclick="submitForm()">提交投稿</button>
-                </div>
-            </div>
-            
-            <div class="email-methods">
-                <h2>邮件发送方法说明</h2>
-                <p>当前投稿功能使用前端邮件发送方式，以下是不同邮件发送方案的对比：</p>
-                
-                <table>
-                    <tr>
-                        <th>方式</th>
-                        <th>纯前端实现</th>
-                        <th>依赖环境</th>
-                        <th>易用性</th>
-                        <th>可靠性</th>
-                        <th>推荐指数</th>
-                    </tr>
-                    <tr>
-                        <td>当前方案（JS调用mailto）</td>
-                        <td>✅ 是</td>
-                        <td>邮件客户端</td>
-                        <td>⭐⭐⭐⭐</td>
-                        <td>⭐⭐</td>
-                        <td>⭐⭐⭐</td>
-                    </tr>
-                    <tr>
-                        <td>后端方案（nodemailer/emailjs）</td>
-                        <td>❌ 否</td>
-                        <td>Node.js+后端服务</td>
-                        <td>⭐⭐⭐</td>
-                        <td>⭐⭐⭐⭐</td>
-                        <td>⭐⭐⭐⭐</td>
-                    </tr>
-                </table>
-                
-                <p><strong>注意事项</strong>：如果您点击"提交投稿"后没有反应，请检查是否已安装邮件客户端并正确配置。您也可以手动发送邮件至 <strong>XHY20130219@163.com</strong>。</p>
+                <p class="qq">投稿QQ:1303537091</p>
             </div>
         </div>
     </section>
@@ -309,39 +173,5 @@
         <div class="empty-icon">📄</div>
         <p class="empty-text">暂无文档</p>
     </div>
-
-    <script>
-        // 增强版表单提交函数
-        function submitForm() {
-            const contributor = document.getElementById('contributor').value;
-            const content = document.getElementById('content').value;
-            
-            if (!contributor || !content) {
-                alert('请填写所有必填字段');
-                return;
-            }
-            
-            // 尝试打开邮件客户端
-            const mailtoLink = 'mailto:XHY20130219@163.com?subject=' + encodeURIComponent('投稿来自: ' + contributor) + '&body=' + encodeURIComponent('投稿人: ' + contributor + '\\n\\n投稿内容:\\n' + content);
-            
-            // 检测是否支持mailto链接
-            const testLink = document.createElement('a');
-            testLink.href = mailtoLink;
-            
-            if (typeof testLink.click === 'function') {
-                testLink.click();
-                // 添加超时检测，若5秒内无反应则提示手动发送
-                setTimeout(() => {
-                    if (confirm('未检测到邮件客户端，请手动发送邮件至XHY20130219@163.com\\n\\n是否复制邮箱地址？')) {
-                        navigator.clipboard.writeText('XHY20130219@163.com').then(() => {
-                            alert('邮箱地址已复制到剪贴板');
-                        });
-                    }
-                }, 5000);
-            } else {
-                alert('您的浏览器不支持自动发送邮件，请手动发送至XHY20130219@163.com');
-            }
-        }
-    </script>
 </body>
 </html>
