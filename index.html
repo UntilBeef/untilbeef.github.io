@@ -112,6 +112,50 @@
             font-weight: 600;
             letter-spacing: 1px;
         }
+
+        .submit-form {
+            margin-top: 1rem;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--light);
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #555;
+            border-radius: 6px;
+            background-color: rgba(0,0,0,0.5);
+            color: var(--light);
+            font-size: 1rem;
+        }
+
+        textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        button {
+            background-color: var(--accent);
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #d93025;
+        }
         
         .empty-state {
             padding: 4rem 2rem;
@@ -164,7 +208,17 @@
             
             <div class="contact">
                 <p class="contact-title">投稿</p>
-                <p class="qq">QQ: 1303537091</p>
+                <div class="submit-form">
+                    <div class="form-group">
+                        <label for="contributor">投稿人</label>
+                        <input type="text" id="contributor" name="contributor" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="content">投稿内容</label>
+                        <textarea id="content" name="content" required></textarea>
+                    </div>
+                    <button type="button" onclick="submitForm()">提交投稿</button>
+                </div>
             </div>
         </div>
     </section>
@@ -173,5 +227,23 @@
         <div class="empty-icon">📄</div>
         <p class="empty-text">暂无文档</p>
     </div>
+
+    <script>
+        function submitForm() {
+            const contributor = document.getElementById('contributor').value;
+            const content = document.getElementById('content').value;
+            
+            if (!contributor || !content) {
+                alert('请填写所有必填字段');
+                return;
+            }
+            
+            const subject = encodeURIComponent('投稿来自: ' + contributor);
+            const body = encodeURIComponent('投稿人: ' + contributor + '\\n\\n投稿内容:\\n' + content);
+            const mailtoLink = 'mailto:XHY20130219@163.com?subject=' + subject + '&body=' + body;
+            
+            window.location.href = mailtoLink;
+        }
+    </script>
 </body>
 </html>
