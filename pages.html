@@ -13,22 +13,22 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #1a1a1a;
-            color: #ffffff;
-            line-height: 1.6;
+            font-family: 'Noto Sans SC', 'Source Han Sans SC', '思源黑体', Arial, Helvetica, sans-serif;
+            background-color: #121212;
+            color: #e0e0e0;
+            line-height: 1.8;
         }
 
         header {
-            background: linear-gradient(135deg, #2c3e50, #34495e);
+            background: #1a1a1a;
             padding: 1rem 0;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            border-bottom: 1px solid #333;
         }
 
         nav {
             background: #1a1a1a;
             padding: 1rem 0;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            border-bottom: 1px solid #333;
         }
 
         .nav-container {
@@ -115,6 +115,25 @@
             margin-bottom: 0.8rem;
         }
 
+        .lang-btn {
+            padding: 0.5rem 1rem;
+            background: #34495e;
+            color: #ffffff;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .lang-btn:hover {
+            background: #3498db;
+        }
+
+        .lang-btn.active {
+            background: #3498db;
+        }
+
         .search-result-item {
             padding: 0.5rem 0;
             border-bottom: 1px solid #3a3a3a;
@@ -157,98 +176,105 @@
 
         h1 {
             font-size: 2.5rem;
-            color: #e74c3c;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            color: #e0e0e0;
+            text-shadow: none;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
         }
 
         .game-info {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 1.5rem;
-            border-radius: 8px;
-            margin: 1.5rem 0;
-            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            margin: 2rem 0;
         }
 
         .game-info p {
-            font-size: 1.1rem;
-            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            margin-bottom: 1.2rem;
         }
 
         .game-link {
             display: inline-block;
-            background: #e74c3c;
+            background: #c0392b;
             color: white;
-            padding: 0.8rem 1.5rem;
+            padding: 0.9rem 1.8rem;
             text-decoration: none;
-            border-radius: 5px;
+            border-radius: 6px;
             font-weight: bold;
             transition: all 0.3s ease;
-            margin-top: 1rem;
+            margin-top: 1.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
         .game-link:hover {
-            background: #c0392b;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            background: #a93226;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
         }
 
         main {
             max-width: 1200px;
-            margin: 2rem auto;
+            margin: 3rem auto;
             padding: 0 2rem;
         }
 
         section {
-            margin-bottom: 3rem;
+            margin-bottom: 4rem;
         }
 
         h2 {
             font-size: 2rem;
-            color: #3498db;
+            color: #e0e0e0;
             margin-bottom: 1.5rem;
             padding-bottom: 0.5rem;
-            border-bottom: 2px solid #3498db;
+            border-bottom: 1px solid #444;
+            font-weight: 600;
         }
 
         h3 {
             font-size: 1.5rem;
-            color: #2ecc71;
+            color: #e0e0e0;
             margin: 1.5rem 0 1rem;
+            font-weight: 600;
         }
 
         h4 {
             font-size: 1.2rem;
-            color: #f39c12;
+            color: #e0e0e0;
             margin: 1rem 0 0.5rem;
+            font-weight: 600;
         }
 
         .category {
-            background: #2c2c2c;
+            background: #1e1e1e;
             padding: 2rem;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            border: 1px solid #333;
+            border-radius: 0;
+            box-shadow: none;
             margin-bottom: 2rem;
         }
 
         .category-header {
             display: flex;
             align-items: center;
-            margin-bottom: 1.5rem;
+            margin-bottom: 2rem;
         }
 
         .category-header img {
-            width: 50px;
-            height: 50px;
-            margin-right: 1rem;
-            border-radius: 6px;
+            width: 60px;
+            height: 60px;
+            margin-right: 1.2rem;
+            border-radius: 8px;
         }
 
         .character {
-            background: #333;
+            background: #252525;
             padding: 1.5rem;
-            border-radius: 8px;
+            border: 1px solid #333;
+            border-radius: 0;
             margin-bottom: 1.5rem;
-            border-left: 4px solid #3498db;
+            border-left: 3px solid #555;
         }
 
         .character-header {
@@ -261,41 +287,44 @@
             width: 40px;
             height: 40px;
             margin-right: 0.8rem;
-            border-radius: 5px;
+            border-radius: 0;
         }
 
         .skill {
-            background: #3a3a3a;
-            padding: 1.2rem;
-            border-radius: 6px;
+            background: #252525;
+            padding: 1.5rem;
+            border: 1px solid #333;
+            border-radius: 0;
             margin: 1rem 0;
-            border-left: 4px solid #e74c3c;
+            border-left: 3px solid #555;
         }
 
         .skill-header {
             display: flex;
             align-items: center;
-            margin-bottom: 0.8rem;
+            margin-bottom: 1rem;
         }
 
         .skill-header img {
             width: 35px;
             height: 35px;
             margin-right: 0.6rem;
-            border-radius: 4px;
+            border-radius: 0;
         }
 
         .status {
             display: inline-block;
-            padding: 0.3rem 0.8rem;
-            border-radius: 15px;
-            font-size: 0.8rem;
-            font-weight: bold;
-            margin: 0.5rem 0;
+            padding: 0.4rem 1.2rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin: 0.8rem 0;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         .status.completed {
-            background: #27ae60;
+            background: #229954;
             color: white;
         }
 
@@ -311,25 +340,27 @@
 
         .property {
             display: flex;
-            margin: 0.5rem 0;
+            margin: 0.8rem 0;
+            line-height: 1.7;
         }
 
         .property-label {
-            font-weight: bold;
-            min-width: 80px;
-            color: #bdc3c7;
+            font-weight: 600;
+            min-width: 100px;
+            color: #95a5a6;
         }
 
         .property-value {
-            color: #ecf0f1;
+            color: #e0e0e0;
         }
 
         .note {
             background: rgba(231, 76, 60, 0.1);
-            border-left: 4px solid #e74c3c;
-            padding: 1rem;
-            margin: 1rem 0;
-            border-radius: 4px;
+            border-left: 5px solid #c0392b;
+            padding: 1.2rem;
+            margin: 1.5rem 0;
+            border-radius: 6px;
+            border: 1px solid rgba(231, 76, 60, 0.2);
         }
 
         footer {
@@ -430,9 +461,15 @@
                 <a href="robloxians.html">Robloxian</a>
                 <a href="pages.html">所有页面</a>
             </div>
-            <div class="search-container">
-                <input type="text" id="search-input" placeholder="搜索页面...">
-                <button id="search-button">搜索</button>
+            <div style="display: flex; gap: 0.5rem; align-items: center;">
+                <div class="search-container">
+                    <input type="text" id="search-input" placeholder="搜索页面...">
+                    <button id="search-button">搜索</button>
+                </div>
+                <div style="display: flex; gap: 0.5rem;">
+                    <button id="lang-zh" class="lang-btn active" data-lang="zh">中文</button>
+                    <button id="lang-en" class="lang-btn" data-lang="en">English</button>
+                </div>
             </div>
         </div>
         <div class="search-results" id="search-results"></div>
@@ -478,33 +515,216 @@
     </footer>
 
     <script>
+        // 翻译字典
+        const translations = {
+            zh: {
+                // 导航栏
+                home: '首页',
+                killers: '杀手',
+                robloxians: '罗布西亚',
+                allPages: '所有页面',
+                searchPlaceholder: '搜索页面...',
+                searchButton: '搜索',
+                
+                // 所有页面内容
+                allPagesTitle: '所有页面',
+                allPagesDesc: '以下是 Death Place Wiki 的完整页面列表，涵盖游戏的各个方面信息：',
+                homePage: '首页',
+                homePageDesc: 'Death Place Wiki 的首页，包含游戏介绍和快速链接。',
+                visitPage: '访问页面',
+                killersPage: '杀手',
+                killersPageDesc: '包含所有杀手角色的信息，包括技能、背景故事等。',
+                robloxianPage: '罗布西亚',
+                robloxianPageDesc: '包含所有 罗布西亚 角色的信息，包括技能、背景故事等。',
+                allPagesPage: '所有页面',
+                allPagesPageDesc: '显示 Death Place Wiki 的所有页面列表。',
+                
+                // 搜索结果
+                searchResults: '搜索结果：',
+                noResults: '未找到匹配的页面',
+                
+                // 页脚
+                copyright: '© 2026 Death Place Wiki. All rights reserved.'
+            },
+            en: {
+                // 导航栏
+                home: 'Home',
+                killers: 'Killers',
+                robloxians: 'Robloxian',
+                allPages: 'All Pages',
+                searchPlaceholder: 'Search pages...',
+                searchButton: 'Search',
+                
+                // 所有页面内容
+                allPagesTitle: 'All Pages',
+                allPagesDesc: 'Below is the complete list of Death Place Wiki pages, covering all aspects of the game:',
+                homePage: 'Home',
+                homePageDesc: 'The home page of Death Place Wiki, containing game introduction and quick links.',
+                visitPage: 'Visit Page',
+                killersPage: 'Killers',
+                killersPageDesc: 'Contains information about all killer characters, including skills, background stories, etc.',
+                robloxianPage: 'Robloxian',
+                robloxianPageDesc: 'Contains information about all Robloxian characters, including skills, background stories, etc.',
+                allPagesPage: 'All Pages',
+                allPagesPageDesc: 'Displays the complete list of Death Place Wiki pages.',
+                
+                // 搜索结果
+                searchResults: 'Search Results: ',
+                noResults: 'No matching pages found',
+                
+                // 页脚
+                copyright: '© 2026 Death Place Wiki. All rights reserved.'
+            }
+        };
+
         // 页面数据，用于搜索
         const pages = [
             {
-                title: '首页', 
+                title: {
+                    zh: '首页',
+                    en: 'Home'
+                }, 
                 url: 'index.html', 
-                description: 'Death Place Wiki 首页',
-                content: 'Death Place 是一款融合非对称竞技与生存元素的游戏，玩家可自由选择扮演杀手或 Robloxian 角色。杀手阵营的核心目标是消灭所有 Robloxian 角色，而 Robloxian 阵营则需通过协作生存并完成指定任务。'
+                description: {
+                    zh: 'Death Place Wiki 首页',
+                    en: 'Death Place Wiki Home'
+                },
+                content: {
+                    zh: 'Death Place 是一款融合非对称竞技与生存元素的游戏，玩家可自由选择扮演杀手或 Robloxian 角色。杀手阵营的核心目标是消灭所有 Robloxian 角色，而 Robloxian 阵营则需通过协作生存并完成指定任务。',
+                    en: 'Death Place is a game that combines asymmetric competition and survival elements, where players can freely choose to play as Killers or Robloxian characters. The Killer faction\'s core goal is to eliminate all Robloxian characters, while the Robloxian faction needs to survive and complete assigned tasks through cooperation.'
+                }
             },
             {
-                title: '杀手', 
+                title: {
+                    zh: '杀手',
+                    en: 'Killers'
+                }, 
                 url: 'killers.html', 
-                description: '杀手角色信息',
-                content: '杀手阵营是游戏中的"猎人"，拥有强大的能力和技能，目标是消灭所有Robloxian。包含 Error277 杀手角色及其技能信息，如 Slash 和 Sword Lunge 技能，以及相关开发状态。Error277 是一个具有特殊能力的杀手角色，拥有多种技能。Slash 是已开发完毕的技能，造成 20hp 伤害，冷却时间 0.6 秒。Sword Lunge 是分二阶段攻击的技能，造成 5hp+5hp+20 伤害，冷却时间 20 秒。'
+                description: {
+                    zh: '杀手角色信息',
+                    en: 'Killer Characters Information'
+                },
+                content: {
+                    zh: '杀手阵营是游戏中的"猎人"，拥有强大的能力和技能，目标是消灭所有Robloxian。包含 Error277 杀手角色及其技能信息，如 Slash 和 Sword Lunge 技能，以及相关开发状态。Error277 是一个具有特殊能力的杀手角色，拥有多种技能。Slash 是已开发完毕的技能，造成 20hp 伤害，冷却时间 0.6 秒。Sword Lunge 是分二阶段攻击的技能，造成 5hp+5hp+20 伤害，冷却时间 20 秒。',
+                    en: 'The Killer faction is the "hunters" in the game, with powerful abilities and skills, aiming to eliminate all Robloxians. Contains information about the Error277 Killer character and its skills, such as Slash and Sword Lunge skills, as well as related development status. Error277 is a Killer character with special abilities, possessing multiple skills. Slash is a completed skill that deals 20hp damage with a 0.6-second cooldown. Sword Lunge is a two-stage attack skill that deals 5hp+5hp+20 damage with a 20-second cooldown.'
+                }
             },
             {
-                title: 'Robloxian', 
+                title: {
+                    zh: '罗布西亚',
+                    en: 'Robloxian'
+                }, 
                 url: 'robloxians.html', 
-                description: 'Robloxian角色信息',
-                content: 'Robloxian 阵营是游戏中的"猎物"，通过与队友合作来生存并躲避夜晚杀手的追杀，目标是在杀手的威胁和饥饿中下生存下来。包含 Robloxian 角色 Jamie 的信息。'
+                description: {
+                    zh: '罗布西亚角色信息',
+                    en: 'Robloxian Characters Information'
+                },
+                content: {
+                    zh: '罗布西亚 阵营是游戏中的"猎物"，通过与队友合作来生存并躲避夜晚杀手的追杀，目标是在杀手的威胁和饥饿中下生存下来。包含 罗布西亚 角色 Jamie 的信息。',
+                    en: 'The Robloxian faction is the "prey" in the game, surviving through cooperation with teammates and evading the Killer\'s pursuit at night, aiming to survive under the Killer\'s threat and hunger. Contains information about the Robloxian character Jamie.'
+                }
             },
             {
-                title: '所有页面', 
+                title: {
+                    zh: '所有页面',
+                    en: 'All Pages'
+                }, 
                 url: 'pages.html', 
-                description: '所有页面列表',
-                content: '显示 Death Place Wiki 的所有页面列表，包括首页、杀手、Robloxian 和所有页面列表本身。'
+                description: {
+                    zh: '所有页面列表',
+                    en: 'All Pages List'
+                },
+                content: {
+                    zh: '显示 Death Place Wiki 的所有页面列表，包括首页、杀手、Robloxian 和所有页面列表本身。',
+                    en: 'Displays the complete list of Death Place Wiki pages, including Home, Killers, Robloxian, and the All Pages list itself.'
+                }
             }
         ];
+
+        // 语言切换功能
+        let currentLang = localStorage.getItem('lang') || 'zh';
+
+        // 设置语言
+        function setLanguage(lang) {
+            currentLang = lang;
+            localStorage.setItem('lang', lang);
+            
+            // 更新按钮状态
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            document.getElementById(`lang-${lang}`).classList.add('active');
+            
+            // 更新页面内容
+            updatePageContent();
+        }
+
+        // 更新页面内容
+        function updatePageContent() {
+            // 更新html lang属性
+            document.documentElement.lang = currentLang === 'zh' ? 'zh-CN' : 'en';
+            
+            // 更新页面标题
+            if (window.location.pathname.endsWith('killers.html')) {
+                document.title = `${translations[currentLang].killers} - Death Place Wiki`;
+            } else if (window.location.pathname.endsWith('robloxians.html')) {
+                document.title = `${translations[currentLang].robloxians} - Death Place Wiki`;
+            } else if (window.location.pathname.endsWith('pages.html')) {
+                document.title = `${translations[currentLang].allPages} - Death Place Wiki`;
+            } else {
+                document.title = 'Death Place Wiki';
+            }
+            
+            // 更新导航栏
+            document.querySelectorAll('.nav-links a')[0].textContent = translations[currentLang].home;
+            document.querySelectorAll('.nav-links a')[1].textContent = translations[currentLang].killers;
+            document.querySelectorAll('.nav-links a')[2].textContent = translations[currentLang].robloxians;
+            document.querySelectorAll('.nav-links a')[3].textContent = translations[currentLang].allPages;
+            
+            // 更新搜索框
+            document.getElementById('search-input').placeholder = translations[currentLang].searchPlaceholder;
+            document.getElementById('search-button').textContent = translations[currentLang].searchButton;
+            
+            // 更新所有页面内容
+            if (window.location.pathname.endsWith('pages.html')) {
+                document.querySelector('.category h2').textContent = translations[currentLang].allPagesTitle;
+                document.querySelector('.category p').textContent = translations[currentLang].allPagesDesc;
+                
+                // 更新页面列表
+                const pageItems = document.querySelectorAll('.page-item');
+                
+                // 更新首页条目
+                if (pageItems.length > 0) {
+                    pageItems[0].querySelector('h3').textContent = translations[currentLang].homePage;
+                    pageItems[0].querySelector('p').textContent = translations[currentLang].homePageDesc;
+                    pageItems[0].querySelector('a').textContent = translations[currentLang].visitPage;
+                }
+                
+                // 更新杀手条目
+                if (pageItems.length > 1) {
+                    pageItems[1].querySelector('h3').textContent = translations[currentLang].killersPage;
+                    pageItems[1].querySelector('p').textContent = translations[currentLang].killersPageDesc;
+                    pageItems[1].querySelector('a').textContent = translations[currentLang].visitPage;
+                }
+                
+                // 更新Robloxian条目
+                if (pageItems.length > 2) {
+                    pageItems[2].querySelector('h3').textContent = translations[currentLang].robloxianPage;
+                    pageItems[2].querySelector('p').textContent = translations[currentLang].robloxianPageDesc;
+                    pageItems[2].querySelector('a').textContent = translations[currentLang].visitPage;
+                }
+                
+                // 更新所有页面条目
+                if (pageItems.length > 3) {
+                    pageItems[3].querySelector('h3').textContent = translations[currentLang].allPagesPage;
+                    pageItems[3].querySelector('p').textContent = translations[currentLang].allPagesPageDesc;
+                    pageItems[3].querySelector('a').textContent = translations[currentLang].visitPage;
+                }
+            }
+            
+            // 更新页脚
+            document.querySelector('footer p').textContent = translations[currentLang].copyright;
+        }
 
         // 搜索功能
         const searchInput = document.getElementById('search-input');
@@ -519,23 +739,23 @@
             }
 
             const results = pages.filter(page => 
-                page.title.toLowerCase().includes(query) || 
-                page.description.toLowerCase().includes(query) ||
-                page.content.toLowerCase().includes(query)
+                page.title[currentLang].toLowerCase().includes(query) || 
+                page.description[currentLang].toLowerCase().includes(query) ||
+                page.content[currentLang].toLowerCase().includes(query)
             );
 
             if (results.length > 0) {
-                let resultsHTML = '<h4>搜索结果：</h4>';
+                let resultsHTML = `<h4>${translations[currentLang].searchResults}</h4>`;
                 results.forEach(result => {
                     resultsHTML += `<div class="search-result-item">
-                        <a href="${result.url}">${result.title}</a>
-                        <p style="font-size: 0.9rem; color: #bdc3c7; margin: 0.3rem 0 0 0;">${result.description}</p>
+                        <a href="${result.url}">${result.title[currentLang]}</a>
+                        <p style="font-size: 0.9rem; color: #bdc3c7; margin: 0.3rem 0 0 0;">${result.description[currentLang]}</p>
                     </div>`;
                 });
                 searchResults.innerHTML = resultsHTML;
                 searchResults.style.display = 'block';
             } else {
-                searchResults.innerHTML = '<h4>搜索结果：</h4><p>未找到匹配的页面</p>';
+                searchResults.innerHTML = `<h4>${translations[currentLang].searchResults}</h4><p>${translations[currentLang].noResults}</p>`;
                 searchResults.style.display = 'block';
             }
         }
@@ -556,6 +776,16 @@
                 searchResults.style.display = 'none';
             }
         });
+
+        // 语言切换按钮事件
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                setLanguage(this.getAttribute('data-lang'));
+            });
+        });
+
+        // 初始化语言
+        setLanguage(currentLang);
     </script>
 </body>
 </html>
