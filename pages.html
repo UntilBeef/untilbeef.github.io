@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Death Place Wiki</title>
+    <title>所有页面 - Death Place Wiki</title>
     <link rel="icon" href="assets/icons/wikiicon.png" type="image/png">
     <style>
         * {
@@ -333,11 +333,58 @@
         }
 
         footer {
-            background: #2c3e50;
+            background: #2c2c2c;
             text-align: center;
             padding: 1.5rem;
             margin-top: 3rem;
             color: #bdc3c7;
+        }
+
+        .pages-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .page-item {
+            background: #333;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-left: 4px solid #3498db;
+            transition: all 0.3s ease;
+        }
+
+        .page-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            background: #3a3a3a;
+        }
+
+        .page-item h3 {
+            margin: 0 0 0.5rem 0;
+            color: #3498db;
+        }
+
+        .page-item p {
+            color: #bdc3c7;
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+        }
+
+        .page-item a {
+            display: inline-block;
+            background: #3498db;
+            color: white;
+            padding: 0.5rem 1rem;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .page-item a:hover {
+            background: #2980b9;
         }
 
         @media (max-width: 768px) {
@@ -356,6 +403,10 @@
             .category {
                 padding: 1.5rem;
             }
+            
+            .pages-list {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
@@ -368,11 +419,6 @@
                     <h1 style="cursor: pointer;">Death Place Wiki</h1>
                 </div>
             </a>
-            <div class="game-info">
-                <p>欢迎来到Death Place Wiki!</p>
-                <p>这是一款非对称与生存结合的游戏</p>
-                <a href="https://www.roblox.com/share?code=97b08dc5038ca441a59d44a27432ef1a&type=ExperienceDetails&stamp=1769247243016" target="_blank" class="game-link">访问游戏</a>
-            </div>
         </div>
     </header>
 
@@ -393,22 +439,36 @@
     </nav>
 
     <main>
-        <section id="welcome">
+        <section id="all-pages">
             <div class="category">
-                <h2>欢迎来到 Death Place Wiki</h2>
-                <p>这是一个关于 Death Place 游戏的维基百科，包含游戏中的角色、技能和其他相关信息。</p>
-                <p>使用导航栏浏览不同的页面，或使用搜索功能查找特定内容。</p>
+                <h2>所有页面</h2>
+                <p>以下是 Death Place Wiki 的完整页面列表，涵盖游戏的各个方面信息：</p>
                 
-                <h3>游戏介绍</h3>
-                <p>Death Place 是一款融合非对称竞技与生存元素的游戏，玩家可自由选择扮演杀手或 Robloxian 角色。</p>
-                <p>杀手阵营的核心目标是消灭所有 Robloxian 角色，而 Robloxian 阵营则需通过协作生存并完成指定任务。</p>
-                
-                <h3>快速链接</h3>
-                <ul style="margin-left: 2rem; margin-top: 1rem;">
-                    <li><a href="killers.html" style="color: #3498db; text-decoration: none;">杀手角色</a> - 查看所有杀手角色及其技能</li>
-                    <li><a href="robloxians.html" style="color: #3498db; text-decoration: none;">Robloxian角色</a> - 查看所有Robloxian角色信息</li>
-                    <li><a href="pages.html" style="color: #3498db; text-decoration: none;">所有页面</a> - 查看所有维基页面列表</li>
-                </ul>
+                <div class="pages-list">
+                    <div class="page-item">
+                        <h3>首页</h3>
+                        <p>Death Place Wiki 的首页，包含游戏介绍和快速链接。</p>
+                        <a href="index.html">访问页面</a>
+                    </div>
+                    
+                    <div class="page-item">
+                        <h3>杀手</h3>
+                        <p>包含所有杀手角色的信息，包括技能、背景故事等。</p>
+                        <a href="killers.html">访问页面</a>
+                    </div>
+                    
+                    <div class="page-item">
+                        <h3>Robloxian</h3>
+                        <p>包含所有 Robloxian 角色的信息。</p>
+                        <a href="robloxians.html">访问页面</a>
+                    </div>
+                    
+                    <div class="page-item">
+                        <h3>所有页面</h3>
+                        <p>显示 Death Place Wiki 的所有页面列表。</p>
+                        <a href="pages.html">访问页面</a>
+                    </div>
+                </div>
             </div>
         </section>
     </main>

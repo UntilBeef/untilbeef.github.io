@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Death Place Wiki</title>
+    <title>杀手 - Death Place Wiki</title>
     <link rel="icon" href="assets/icons/wikiicon.png" type="image/png">
     <style>
         * {
@@ -333,7 +333,7 @@
         }
 
         footer {
-            background: #2c3e50;
+            background: #2c2c2c;
             text-align: center;
             padding: 1.5rem;
             margin-top: 3rem;
@@ -368,11 +368,6 @@
                     <h1 style="cursor: pointer;">Death Place Wiki</h1>
                 </div>
             </a>
-            <div class="game-info">
-                <p>欢迎来到Death Place Wiki!</p>
-                <p>这是一款非对称与生存结合的游戏</p>
-                <a href="https://www.roblox.com/share?code=97b08dc5038ca441a59d44a27432ef1a&type=ExperienceDetails&stamp=1769247243016" target="_blank" class="game-link">访问游戏</a>
-            </div>
         </div>
     </header>
 
@@ -393,22 +388,65 @@
     </nav>
 
     <main>
-        <section id="welcome">
+        <section id="killers">
             <div class="category">
-                <h2>欢迎来到 Death Place Wiki</h2>
-                <p>这是一个关于 Death Place 游戏的维基百科，包含游戏中的角色、技能和其他相关信息。</p>
-                <p>使用导航栏浏览不同的页面，或使用搜索功能查找特定内容。</p>
-                
-                <h3>游戏介绍</h3>
-                <p>Death Place 是一款融合非对称竞技与生存元素的游戏，玩家可自由选择扮演杀手或 Robloxian 角色。</p>
-                <p>杀手阵营的核心目标是消灭所有 Robloxian 角色，而 Robloxian 阵营则需通过协作生存并完成指定任务。</p>
-                
-                <h3>快速链接</h3>
-                <ul style="margin-left: 2rem; margin-top: 1rem;">
-                    <li><a href="killers.html" style="color: #3498db; text-decoration: none;">杀手角色</a> - 查看所有杀手角色及其技能</li>
-                    <li><a href="robloxians.html" style="color: #3498db; text-decoration: none;">Robloxian角色</a> - 查看所有Robloxian角色信息</li>
-                    <li><a href="pages.html" style="color: #3498db; text-decoration: none;">所有页面</a> - 查看所有维基页面列表</li>
-                </ul>
+                <div class="category-header">
+                    <img src="assets/icons/Killericon.png" alt="Killer Icon">
+                    <h2>杀手</h2>
+                </div>
+                <p>杀手阵营是游戏中的"猎人"，拥有强大的能力和技能，目标是消灭所有Robloxian。</p>
+
+                <div class="character">
+                    <h3>Error277</h3>
+                    <div class="status not-started">图标（未上传）</div>
+                    <div class="property">
+                        <span class="property-label">背景故事：</span>
+                        <span class="property-value">未上传（已编写）</span>
+                    </div>
+                    <p>“你会被277踢出！”</p>
+                    
+                    <div class="note">
+                        <strong>开发状态：</strong>Error277 设计包含 3 个技能和 1 个普通攻击，目前仅 1 个技能已开发完毕，1 个技能处于开发中，其余技能尚未完成开发。
+                    </div>
+                </div>
+
+                <div class="skill">
+                    <div class="skill-header">
+                        <img src="assets/icons/Slashicon.png" alt="Slash Icon">
+                        <h4>Slash</h4>
+                    </div>
+                    <div class="status completed">已开发完毕</div>
+                    <div class="property">
+                        <span class="property-label">伤害：</span>
+                        <span class="property-value">20hp</span>
+                    </div>
+                    <div class="property">
+                        <span class="property-label">冷却：</span>
+                        <span class="property-value">0.6</span>
+                    </div>
+                </div>
+
+                <div class="skill">
+                    <div class="skill-header">
+                        <img src="assets/icons/SwordLungeicon.png" alt="Sword Lunge Icon">
+                        <h4>Sword Lunge</h4>
+                    </div>
+                    <div class="status in-progress">未开发完毕</div>
+                    <div class="property">
+                        <span class="property-label">伤害：</span>
+                        <span class="property-value">5hp+5hp+20</span>
+                    </div>
+                    <div class="property">
+                        <span class="property-label">冷却：</span>
+                        <span class="property-value">20秒</span>
+                    </div>
+                    <p><strong>技能机制：</strong>该技能分为两个阶段进行攻击</p>
+                    <p><strong>前摇阶段：</strong>技能启动后，将有0.25秒的前摇时间，此阶段可被击晕</p>
+                    <p><strong>第一阶段：</strong>前摇结束后，Error277将挥动铁剑进行两次旋转攻击，每次造成5hp伤害，同时移速提升2.5，此阶段不可被击晕</p>
+                    <p><strong>第二阶段：</strong>第一阶段结束后，将进入0.97秒的第二阶段前摇，此阶段可被击晕</p>
+                    <p><strong>攻击释放：</strong>第二阶段前摇结束后，Error277将挥动铁剑进行强力攻击，造成20hp伤害，同时移速提升3，目标玩家将无法移动，此阶段不可被击晕</p>
+                    <p><strong>技能收尾：</strong>攻击完成后，技能进入冷却状态，Error277移速恢复正常，可被击晕</p>
+                </div>
             </div>
         </section>
     </main>
