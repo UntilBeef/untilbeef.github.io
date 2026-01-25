@@ -771,10 +771,10 @@
             
             // 更新Robloxian页面内容
             if (window.location.pathname.endsWith('robloxians.html')) {
-                document.querySelector('#robloxians h2').textContent = translations[currentLang].robloxiansTitle;
-                document.querySelector('#robloxians p:nth-of-type(1)').textContent = translations[currentLang].robloxiansDesc;
-                document.querySelector('#robloxians h3:nth-of-type(1)').textContent = translations[currentLang].jamie;
-                document.querySelector('#robloxians .character p').textContent = translations[currentLang].notCompleted;
+                document.querySelector('.category-header h2').textContent = translations[currentLang].robloxiansTitle;
+                document.querySelector('.category p:nth-of-type(1)').textContent = translations[currentLang].robloxiansDesc;
+                document.querySelector('.character h3').textContent = translations[currentLang].jamie;
+                document.querySelector('.character p').textContent = translations[currentLang].notCompleted;
             }
             
             // 更新页脚

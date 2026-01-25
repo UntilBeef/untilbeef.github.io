@@ -901,16 +901,13 @@
                     if (quickLinksUl) {
                         const quickLinksLi = quickLinksUl.querySelectorAll('li');
                         if (quickLinksLi.length > 0) {
-                            quickLinksLi[0].querySelector('a').textContent = translations[currentLang].killerRoles;
-                            quickLinksLi[0].innerHTML = quickLinksLi[0].innerHTML.replace('- 查看所有杀手角色及其技能', `- ${translations[currentLang].killerRolesDesc}`);
+                            quickLinksLi[0].innerHTML = `<a href="killers.html">${translations[currentLang].killerRoles}</a> - ${translations[currentLang].killerRolesDesc}`;
                         }
                         if (quickLinksLi.length > 1) {
-                            quickLinksLi[1].querySelector('a').textContent = translations[currentLang].robloxianRoles;
-                            quickLinksLi[1].innerHTML = quickLinksLi[1].innerHTML.replace('- 查看所有罗布西亚角色信息及其技能', `- ${translations[currentLang].robloxianRolesDesc}`);
+                            quickLinksLi[1].innerHTML = `<a href="robloxians.html">${translations[currentLang].robloxianRoles}</a> - ${translations[currentLang].robloxianRolesDesc}`;
                         }
                         if (quickLinksLi.length > 2) {
-                            quickLinksLi[2].querySelector('a').textContent = translations[currentLang].allPagesLink;
-                            quickLinksLi[2].innerHTML = quickLinksLi[2].innerHTML.replace('- 查看所有维基页面列表', `- ${translations[currentLang].allPagesLinkDesc}`);
+                            quickLinksLi[2].innerHTML = `<a href="pages.html">${translations[currentLang].allPagesLink}</a> - ${translations[currentLang].allPagesLinkDesc}`;
                         }
                     }
                 }
