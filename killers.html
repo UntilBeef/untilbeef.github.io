@@ -545,9 +545,12 @@
                     <div class="status not-started">图标（未上传）</div>
                     <div class="property">
                         <span class="property-label">背景故事：</span>
-                        <span class="property-value">未上传（已编写）</span>
                     </div>
-                    <p>“你会被277踢出！”</p>
+                    <div class="bg-story-content">
+                        <p>近年来，由于Roblox世界黑客事件率显著上升，政府首席科学家Builderman制造了Error系列机器人以解决黑客问题。Error系列包含多个型号，并非只有Error277一个。当某个地区需要援助时，政府会派遣对应型号的机器人前往处理。Error277是战斗型Error系列机器人，Builderman将每个Error系列机器人视为自己的孩子。Error277进入Death Place的时间是在与Coolkidd战斗之后。当时，由于Error277的队友前往了不同地区，他只能独自行动。又因Coolkidd的coolgui经过大量升级，Error277最终战败。就在他即将被摧毁之际，Shedletsky及其妻子BrightEyes赶到现场，政府增援也随之到达，Coolkidd及其队伍见状迅速逃离。最终，Error277被紧急修复。然而，后续有两名神秘人（政府内部人员）在无人知晓的情况下，将Error277的残躯丢弃至一处废弃地点。Error277用最后的意识环顾四周，最终倒下。整个过程被Gunour全程目睹，从Error277与Coolkidd的战斗开始到最后。Gunour出于实验目的将Error277带回修复，并注入了情感。但由于系统数据问题，Error277的记忆被篡改。</p>
+                    </div>
+                    <br>
+                    <p>“你会被[错误代码 277]踢出！”</p>
                     
                     <div class="note">
                         <strong>开发状态：</strong>Error277 设计包含 3 个技能和 1 个普通攻击，目前仅 1 个技能已开发完毕，1 个技能处于开发中，其余技能尚未完成开发。
@@ -629,7 +632,7 @@
                 killersDesc: '杀手阵营是游戏中的"猎人"，拥有强大的能力和技能，目标是消灭所有Robloxian。',
                 error277: 'Error277',
                 bgStory: '背景故事：',
-                notUploaded: '未上传（已编写）',
+                bgStoryContent: '近年来，由于Roblox世界黑客事件率显著上升，政府首席科学家Builderman制造了Error系列机器人以解决黑客问题。Error系列包含多个型号，并非只有Error277一个。当某个地区需要援助时，政府会派遣对应型号的机器人前往处理。Error277是战斗型Error系列机器人，Builderman将每个Error系列机器人视为自己的孩子。Error277进入Death Place的时间是在与Coolkidd战斗之后。当时，由于Error277的队友前往了不同地区，他只能独自行动。又因Coolkidd的coolgui经过大量升级，Error277最终战败。就在他即将被摧毁之际，Shedletsky及其妻子BrightEyes赶到现场，政府增援也随之到达，Coolkidd及其队伍见状迅速逃离。最终，Error277被紧急修复。然而，后续有两名神秘人（政府内部人员）在无人知晓的情况下，将Error277的残躯丢弃至一处废弃地点。Error277用最后的意识环顾四周，最终倒下。整个过程被Gunour全程目睹，从Error277与Coolkidd的战斗开始到最后。Gunour出于实验目的将Error277带回修复，并注入了情感。但由于系统数据问题，Error277的记忆被篡改。',
                 quote: '“你会被[错误代码 277]踢出！”',
                 devStatus: '开发状态：',
                 devStatusDesc: 'Error277 设计包含 3 个技能和 1 个普通攻击，目前仅 1 个技能已开发完毕，1 个技能处于开发中，其余技能尚未完成开发。',
@@ -683,7 +686,7 @@
                 killersDesc: 'The Killer faction is the "hunters" in the game, with powerful abilities and skills, aiming to eliminate all Robloxians.',
                 error277: 'Error277',
                 bgStory: 'Background Story: ',
-                notUploaded: 'Not uploaded (written)',
+                bgStoryContent: 'In recent years, due to the rising hacking rate in the Roblox world, the government\'s chief scientist Builderman created the "Error" series to solve hacking problems. The "Error" series consists of multiple models, not just Error277. When a location needs assistance, the government dispatches the corresponding model to handle it. Error277 is a combat-type Error series robot. Builderman treats each Error series robot as his own child. Error277 entered Death Place after fighting with Coolkidd. At that time, because Error277\'s teammates went to different areas, he had to go alone. And because Coolkidd\'s coolgui had undergone extensive upgrades, he failed. Just as he was about to be destroyed, Shedletsky and his wife BrightEyes arrived at the scene. With the government\'s reinforcements arriving, Coolkidd and his team fled immediately. In the end, Error277 was urgently repaired. But later, two mysterious people (government internal personnel) threw Error277\'s damaged body into a waste disposal site when no one was around. Error277 looked around with his last consciousness and finally collapsed. Throughout this entire process, Gunour witnessed everything, from Error277\'s battle with Coolkidd to the end. Because of this experiment, Gunour took Error277 back for repair and injected some emotions into him. Due to some system data issues, his memories were tampered with.',
                 quote: '"You will be kicked by [Error Code 277]!"',
                 devStatus: 'Development Status: ',
                 devStatusDesc: 'Error277 is designed with 3 skills and 1 normal attack. Currently, only 1 skill has been completed, 1 skill is in development, and the remaining skills have not been completed.',
@@ -888,13 +891,18 @@
                     const bgStoryProperty = characterElement.querySelector('.property');
                     if (bgStoryProperty) {
                         bgStoryProperty.querySelector('.property-label').textContent = translations[currentLang].bgStory;
-                        bgStoryProperty.querySelector('.property-value').textContent = translations[currentLang].notUploaded;
+                    }
+                    
+                    // 更新背景故事内容
+                    const bgStoryContent = characterElement.querySelector('.bg-story-content p');
+                    if (bgStoryContent) {
+                        bgStoryContent.textContent = translations[currentLang].bgStoryContent;
                     }
                     
                     // 更新引言
-                    const quoteElement = characterElement.querySelector('p');
-                    if (quoteElement) {
-                        quoteElement.textContent = translations[currentLang].quote;
+                    const quoteElements = characterElement.querySelectorAll('p');
+                    if (quoteElements.length > 1) {
+                        quoteElements[1].textContent = translations[currentLang].quote;
                     }
                     
                     // 更新开发状态说明

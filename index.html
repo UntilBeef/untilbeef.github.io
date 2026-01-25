@@ -565,7 +565,7 @@
                 <h2>重要信息</h2>
                 
                 <h3>Wiki 团队</h3>
-                <p>我们的 wiki 目前由INeedToBeef维护。</p>
+                <p>我们的 wiki 目前由<a href="https://space.bilibili.com/3546854264408363" target="_blank" style="color: #3498db; text-decoration: none;">INeedToBeef</a>维护。</p>
                 
                 <h4>开发者</h4>
                 <p><a href="https://space.bilibili.com/3546854264408363" target="_blank" style="color: #3498db; text-decoration: none;">INeedToBeef</a>、CN_wdss40、Allantqc、T</p>
@@ -621,7 +621,7 @@
                 gameDesc2: '杀手阵营的核心目标是消灭所有 Robloxian 角色，而 Robloxian 阵营则需通过协作生存。',
                 importantInfo: '重要信息',
                 wikiTeam: 'Wiki 团队',
-                wikiMaintainers: '我们的 wiki 目前由INeedToBeef维护。',
+                wikiMaintainers: '我们的 wiki 目前由<a href="https://space.bilibili.com/3546854264408363" target="_blank" style="color: #3498db; text-decoration: none;">INeedToBeef</a>维护。',
                 developers: '开发者',
                 webDeveloper: '网页开发者',
                 quickLinks: '快速链接',
@@ -662,7 +662,7 @@
                 gameDesc2: 'The Killer faction\'s core goal is to eliminate all Robloxian characters, while the Robloxian faction needs to survive through cooperation.',
                 importantInfo: 'Important Information',
                 wikiTeam: 'Wiki Team',
-                wikiMaintainers: 'Our wiki is currently maintained by INeedToBeef.',
+                wikiMaintainers: 'Our wiki is currently maintained by <a href="https://space.bilibili.com/3546854264408363" target="_blank" style="color: #3498db; text-decoration: none;">INeedToBeef</a>.',
                 developers: 'Developers',
                 webDeveloper: 'Web Developer',
                 quickLinks: 'Quick Links',
@@ -884,7 +884,8 @@
                     
                     const importantInfoP = importantInfoSection.querySelectorAll('p');
                     if (importantInfoP.length > 0) {
-                        importantInfoP[0].textContent = translations[currentLang].wikiMaintainers;
+                        // 使用innerHTML来保留链接
+                        importantInfoP[0].innerHTML = translations[currentLang].wikiMaintainers;
                     }
                     
                     const importantInfoH4 = importantInfoSection.querySelectorAll('h4');
