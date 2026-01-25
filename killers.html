@@ -41,6 +41,29 @@
             flex-wrap: wrap;
         }
 
+        .wiki-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .header-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .header-links a {
+            color: #3498db;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        .header-links a:hover {
+            text-decoration: underline;
+        }
+
         .nav-links {
             display: flex;
             gap: 1.5rem;
@@ -52,13 +75,50 @@
             text-decoration: none;
             font-weight: bold;
             padding: 0.5rem 0.8rem;
-            border-radius: 5px;
+            border-radius: 0;
+            background: transparent;
             transition: all 0.3s ease;
         }
 
         .nav-links a:hover {
             background: #3498db;
             color: #ffffff;
+        }
+
+        .wiki-navigation {
+            background: #1e1e1e;
+            padding: 1.5rem 0;
+            border-top: 1px solid #333;
+            border-bottom: 1px solid #333;
+        }
+
+        .wiki-navigation h3 {
+            margin-top: 0;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .wiki-nav-links {
+            display: flex;
+            gap: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .nav-column {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .nav-column a {
+            color: #3498db;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .nav-column a:hover {
+            color: #2980b9;
+            text-decoration: underline;
         }
 
         .search-container {
@@ -364,11 +424,36 @@
         }
 
         footer {
-            background: #2c2c2c;
+            background: #1a1a1a;
             text-align: center;
-            padding: 1.5rem;
-            margin-top: 3rem;
+            padding: 2rem;
+            margin-top: 4rem;
             color: #bdc3c7;
+            border-top: 1px solid #333;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-links {
+            margin-top: 1rem;
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: #bdc3c7;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        .footer-links a:hover {
+            color: #3498db;
+            text-decoration: underline;
         }
 
         @media (max-width: 768px) {
@@ -393,25 +478,31 @@
 <body>
     <header>
         <div class="header-content">
-            <a href="index.html" style="text-decoration: none; color: inherit;">
-                <div class="logo">
-                    <img src="assets/icons/wikiicon.png" alt="Death Place Logo" style="cursor: pointer;">
-                    <h1 style="cursor: pointer;">Death Place Wiki</h1>
+            <div class="wiki-header">
+                <a href="index.html" style="text-decoration: none; color: inherit;">
+                    <div class="logo">
+                        <img src="assets/icons/wikiicon.png" alt="Death Place Logo" style="cursor: pointer;">
+                        <h1 style="cursor: pointer;">Death Place Wiki</h1>
+                    </div>
+                </a>
+                <div class="header-links">
+                    <a href="#navigation" style="color: #3498db; text-decoration: none; margin-right: 1rem;">跳转到导航</a>
+                    <a href="#search" style="color: #3498db; text-decoration: none;">跳转到搜索</a>
                 </div>
-            </a>
+            </div>
         </div>
     </header>
 
-    <nav>
+    <nav id="navigation">
         <div class="nav-container">
             <div class="nav-links">
                 <a href="index.html">首页</a>
                 <a href="killers.html">杀手</a>
-                <a href="robloxians.html">Robloxian</a>
+                <a href="robloxians.html">罗布西亚</a>
                 <a href="pages.html">所有页面</a>
             </div>
             <div style="display: flex; gap: 0.5rem; align-items: center;">
-                <div class="search-container">
+                <div class="search-container" id="search">
                     <input type="text" id="search-input" placeholder="搜索页面...">
                     <button id="search-button">搜索</button>
                 </div>
@@ -423,6 +514,22 @@
         </div>
         <div class="search-results" id="search-results"></div>
     </nav>
+    
+    <!-- Wiki导航部分 -->
+    <div class="wiki-navigation">
+        <div class="nav-container">
+            <h3>Wiki导航</h3>
+            <div class="wiki-nav-links">
+                <div class="nav-column">
+                    <a href="killers.html">杀手</a>
+                    <a href="robloxians.html">罗布西亚</a>
+                </div>
+                <div class="nav-column">
+                    <a href="pages.html">所有页面</a>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <main>
         <section id="killers">
@@ -489,7 +596,15 @@
     </main>
 
     <footer>
-        <p>&copy; 2026 Death Place Wiki. All rights reserved.</p>
+        <div class="footer-content">
+            <p>&copy; 2026 Death Place Wiki. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="index.html">首页</a>
+                <a href="killers.html">杀手</a>
+                <a href="robloxians.html">罗布西亚</a>
+                <a href="pages.html">所有页面</a>
+            </div>
+        </div>
     </footer>
 
     <script>
@@ -504,6 +619,11 @@
                 searchPlaceholder: '搜索页面...',
                 searchButton: '搜索',
                 
+                // 页面元素
+                jumpToNavigation: '跳转到导航',
+                jumpToSearch: '跳转到搜索',
+                wikiNavigation: 'Wiki导航',
+                
                 // 杀手页面内容
                 killersTitle: '杀手',
                 killersDesc: '杀手阵营是游戏中的"猎人"，拥有强大的能力和技能，目标是消灭所有Robloxian。',
@@ -515,8 +635,8 @@
                 devStatusDesc: 'Error277 设计包含 3 个技能和 1 个普通攻击，目前仅 1 个技能已开发完毕，1 个技能处于开发中，其余技能尚未完成开发。',
                 
                 // 技能
-                slash: 'Slash',
-                swordLunge: 'Sword Lunge',
+                slash: '挥砍',
+                swordLunge: '剑击冲刺',
                 damage: '伤害：',
                 cooldown: '冷却：',
                 skillMechanism: '技能机制：',
@@ -552,6 +672,11 @@
                 allPages: 'All Pages',
                 searchPlaceholder: 'Search pages...',
                 searchButton: 'Search',
+                
+                // 页面元素
+                jumpToNavigation: 'Jump to Navigation',
+                jumpToSearch: 'Jump to Search',
+                wikiNavigation: 'Wiki Navigation',
                 
                 // 杀手页面内容
                 killersTitle: 'Killers',
@@ -608,8 +733,8 @@
                     en: 'Death Place Wiki Home'
                 },
                 content: {
-                    zh: 'Death Place 是一款融合非对称竞技与生存元素的游戏，玩家可自由选择扮演杀手或 Robloxian 角色。杀手阵营的核心目标是消灭所有 Robloxian 角色，而 Robloxian 阵营则需通过协作生存并完成指定任务。',
-                    en: 'Death Place is a game that combines asymmetric competition and survival elements, where players can freely choose to play as Killers or Robloxian characters. The Killer faction\'s core goal is to eliminate all Robloxian characters, while the Robloxian faction needs to survive and complete assigned tasks through cooperation.'
+                    zh: 'Death Place 是一款融合非对称竞技与生存元素的游戏，玩家可自由选择扮演杀手或 Robloxian 角色。杀手阵营的核心目标是消灭所有 Robloxian 角色，而 Robloxian 阵营则需通过协作生存。',
+                    en: 'Death Place is a game that combines asymmetric competition and survival elements, where players can freely choose to play as Killers or Robloxian characters. The Killer faction\'s core goal is to eliminate all Robloxian characters, while the Robloxian faction needs to survive through cooperation.'
                 }
             },
             {
@@ -703,6 +828,48 @@
             document.getElementById('search-input').placeholder = translations[currentLang].searchPlaceholder;
             document.getElementById('search-button').textContent = translations[currentLang].searchButton;
             
+            // 更新跳转到导航和跳转到搜索链接
+            const headerLinks = document.querySelectorAll('.header-links a');
+            if (headerLinks.length > 0) {
+                headerLinks[0].textContent = translations[currentLang].jumpToNavigation;
+            }
+            if (headerLinks.length > 1) {
+                headerLinks[1].textContent = translations[currentLang].jumpToSearch;
+            }
+            
+            // 更新Wiki导航标题
+            const wikiNavTitle = document.querySelector('.wiki-navigation h3');
+            if (wikiNavTitle) {
+                wikiNavTitle.textContent = translations[currentLang].wikiNavigation;
+            }
+            
+            // 更新Wiki导航链接
+            const wikiNavLinks = document.querySelectorAll('.wiki-nav-links a');
+            if (wikiNavLinks.length > 0) {
+                wikiNavLinks[0].textContent = translations[currentLang].killers;
+            }
+            if (wikiNavLinks.length > 1) {
+                wikiNavLinks[1].textContent = translations[currentLang].robloxians;
+            }
+            if (wikiNavLinks.length > 2) {
+                wikiNavLinks[2].textContent = translations[currentLang].allPages;
+            }
+            
+            // 更新页脚链接
+            const footerLinks = document.querySelectorAll('.footer-links a');
+            if (footerLinks.length > 0) {
+                footerLinks[0].textContent = translations[currentLang].home;
+            }
+            if (footerLinks.length > 1) {
+                footerLinks[1].textContent = translations[currentLang].killers;
+            }
+            if (footerLinks.length > 2) {
+                footerLinks[2].textContent = translations[currentLang].robloxians;
+            }
+            if (footerLinks.length > 3) {
+                footerLinks[3].textContent = translations[currentLang].allPages;
+            }
+            
             // 更新杀手页面内容
             if (window.location.pathname.endsWith('killers.html')) {
                 // 更新主要标题和描述
@@ -740,6 +907,12 @@
                 // 更新Slash技能
                 const slashSkill = document.querySelectorAll('.skill')[0];
                 if (slashSkill) {
+                    // 更新技能名称
+                    const slashSkillHeader = slashSkill.querySelector('.skill-header h4');
+                    if (slashSkillHeader) {
+                        slashSkillHeader.textContent = translations[currentLang].slash;
+                    }
+                    
                     // 更新状态标签
                     slashSkill.querySelector('.status.completed').textContent = translations[currentLang].completed;
                     
@@ -764,6 +937,12 @@
                 // 更新Sword Lunge技能
                 const swordLungeSkill = document.querySelectorAll('.skill')[1];
                 if (swordLungeSkill) {
+                    // 更新技能名称
+                    const swordLungeSkillHeader = swordLungeSkill.querySelector('.skill-header h4');
+                    if (swordLungeSkillHeader) {
+                        swordLungeSkillHeader.textContent = translations[currentLang].swordLunge;
+                    }
+                    
                     // 更新状态标签
                     swordLungeSkill.querySelector('.status.in-progress').textContent = translations[currentLang].inProgress;
                     
