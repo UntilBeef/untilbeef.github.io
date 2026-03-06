@@ -506,9 +506,6 @@
                     <input type="text" id="search-input" placeholder="搜索页面...">
                     <button id="search-button">搜索</button>
                 </div>
-                <a href="https://discord.gg/KuCf2vJGz" target="_blank" style="display: flex; align-items: center;">
-                    <img src="assets/icons/Discord-icon.png" alt="Discord" style="width: 32px; height: 32px; border-radius: 4px;">
-                </a>
                 <div style="display: flex; gap: 0.5rem;">
                     <button id="lang-zh" class="lang-btn active" data-lang="zh">中文</button>
                     <button id="lang-en" class="lang-btn" data-lang="en">English</button>
@@ -523,15 +520,10 @@
         <div class="nav-container">
             <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
                 <h3>Wiki导航</h3>
-                <div style="display: flex; gap: 1rem; align-items: center;">
-                    <a href="https://discord.gg/KuCf2vJGz" target="_blank" style="display: flex; align-items: center;">
-                        <img src="assets/icons/Discord-icon.png" alt="Discord" style="width: 32px; height: 32px; border-radius: 4px;">
-                    </a>
-                    <div class="wiki-nav-links" style="gap: 3rem;">
-                        <a href="killers.html">杀手</a>
-                        <a href="robloxians.html">罗布西亚</a>
-                        <a href="pages.html">所有页面</a>
-                    </div>
+                <div class="wiki-nav-links" style="gap: 3rem;">
+                    <a href="killers.html">杀手</a>
+                    <a href="robloxians.html">罗布西亚</a>
+                    <a href="pages.html">所有页面</a>
                 </div>
             </div>
         </div>
@@ -559,7 +551,7 @@
                     <p>“你会被[错误代码 277]踢出！”</p>
                     
                     <div class="note">
-                        <strong>开发状态：</strong>Error277 设计包含 3 个技能和 1 个普通攻击，目前仅 1 个技能已开发完毕，1 个技能处于开发中，其余技能尚未完成开发。
+                        <strong>开发状态：</strong>Error277 设计包含 3 个技能和 1 个普通攻击，普攻和 1、2 技能已开发完毕，3 技能未开发。
                     </div>
                 </div>
 
@@ -571,35 +563,59 @@
                     <div class="status completed">已开发完毕</div>
                     <div class="property">
                         <span class="property-label">伤害：</span>
-                        <span class="property-value">20hp</span>
+                        <span class="property-value">18-25</span>
                     </div>
                     <div class="property">
                         <span class="property-label">冷却：</span>
-                        <span class="property-value">0.6</span>
+                        <span class="property-value">1.5</span>
                     </div>
+                    <p><strong>技能机制：</strong>基础攻击，每次攻击都会在18-25里抽取一个随机数字。若越多的人获得hacked效果，则抽取到高伤害的概率越大</p>
                 </div>
 
                 <div class="skill">
                     <div class="skill-header">
-                        <img src="assets/icons/SwordLungeicon.png" alt="Sword Lunge Icon">
-                        <h4>Sword Lunge</h4>
+                        <img src="assets/icons/SwordLungeicon.png" alt="Chain Sword Dash Icon">
+                        <h4>链剑突进</h4>
                     </div>
-                    <div class="status in-progress">未开发完毕</div>
+                    <div class="status completed">已开发完毕</div>
                     <div class="property">
                         <span class="property-label">伤害：</span>
-                        <span class="property-value">5hp+5hp+20</span>
+                        <span class="property-value">5+5+20</span>
                     </div>
                     <div class="property">
                         <span class="property-label">冷却：</span>
-                        <span class="property-value">20秒</span>
+                        <span class="property-value">20</span>
                     </div>
-                    <p><strong>技能机制：</strong>该技能分为两个阶段进行攻击</p>
-                    <p><strong>前摇阶段：</strong>技能启动后，将有0.25秒的前摇时间，此阶段可被击晕</p>
-                    <p><strong>第一阶段：</strong>前摇结束后，Error277将挥动铁剑进行两次旋转攻击，每次造成5hp伤害，同时移速提升2.5，此阶段不可被击晕</p>
-                    <p><strong>第二阶段：</strong>第一阶段结束后，将进入0.97秒的第二阶段前摇，此阶段可被击晕</p>
-                    <p><strong>攻击释放：</strong>第二阶段前摇结束后，Error277将挥动铁剑进行强力攻击，造成20hp伤害，同时移速提升3，目标玩家将无法移动，此阶段不可被击晕</p>
-                    <p><strong>技能收尾：</strong>攻击完成后，技能进入冷却状态，Error277移速恢复正常，可被击晕</p>
+                    <p><strong>技能机制：</strong>Error277旋转剑到四周最后终横扫一刀，造成总计5+5+20的伤害。最后一击将受害者击飞一段距离并使受害者进入娃娃状态1.25s，旋转剑到时可防御一切幸存者给予的眩晕和伤害（最后一击横扫除外）</p>
                 </div>
+
+                <div class="skill">
+                    <div class="skill-header">
+                        <img src="assets/icons/ErrorCode277.png" alt="ERROR CODE:277 Icon">
+                        <h4>ERROR CODE:277</h4>
+                    </div>
+                    <div class="status completed">已开发完毕</div>
+                    <div class="property">
+                        <span class="property-label">冷却：</span>
+                        <span class="property-value">30</span>
+                    </div>
+                    <p><strong>技能机制：</strong>Error277调节了脚下的一些参数，使他以圆心半径100Studs范围内的全部屏幕上出现持续移动的错误弹窗（其移动模式类似屏幕障窗式移动）并获得hacked效果。越靠近Error277会使弹窗越大，移动越快。错误弹窗会在35s后自动结束。或者玩家可主动脱离圆形区域来使弹窗消除</p>
+                </div>
+
+                <div class="skill">
+                    <div class="skill-header">
+                        <img src="assets/icons/GiganticDropRate.png" alt="Gigantic Drop Rate Icon">
+                        <h4>巨大化掉包率</h4>
+                    </div>
+                    <div class="status in-progress">未开发完毕</div>
+                    <div class="property">
+                        <span class="property-label">冷却：</span>
+                        <span class="property-value">385</span>
+                    </div>
+                    <p><strong>技能机制：</strong>Error277将黑客注入过载。使所有获得hacked效果的玩家被传回到他们3s前所在的位置。传回完毕Error277在1.25s内无法攻击。同时游戏倒计时额外增加15s</p>
+                </div>
+
+
             </div>
         </section>
     </main>
@@ -641,25 +657,20 @@
                 bgStoryContent: '近年来，由于Roblox世界黑客事件率显著上升，政府首席科学家Builderman制造了Error系列机器人以解决黑客问题。Error系列包含多个型号，并非只有Error277一个。当某个地区需要援助时，政府会派遣对应型号的机器人前往处理。Error277是战斗型Error系列机器人，Builderman将每个Error系列机器人视为自己的孩子。Error277进入Death Place的时间是在与Coolkidd战斗之后。当时，由于Error277的队友前往了不同地区，他只能独自行动。又因Coolkidd的coolgui经过大量升级，Error277最终战败。就在他即将被摧毁之际，Shedletsky及其妻子BrightEyes赶到现场，政府增援也随之到达，Coolkidd及其队伍见状迅速逃离。最终，Error277被紧急修复。然而，后续有两名神秘人（政府内部人员）在无人知晓的情况下，将Error277的残躯丢弃至一处废弃地点。Error277用最后的意识环顾四周，最终倒下。整个过程被Gunour全程目睹，从Error277与Coolkidd的战斗开始到最后。Gunour出于实验目的将Error277带回修复，并注入了情感。但由于系统数据问题，Error277的记忆被篡改。',
                 quote: '“你会被[错误代码 277]踢出！”',
                 devStatus: '开发状态：',
-                devStatusDesc: 'Error277 设计包含 3 个技能和 1 个普通攻击，目前仅 1 个技能已开发完毕，1 个技能处于开发中，其余技能尚未完成开发。',
+                devStatusDesc: 'Error277 设计包含 3 个技能和 1 个普通攻击，普攻和 1、2 技能已开发完毕，3 技能未开发。',
                 
                 // 技能
                 slash: '挥砍',
-                swordLunge: '剑击冲刺',
+                errorCode277: '错误代码：277',
+                chainSwordDash: '链剑突进',
+                giganticDropRate: '巨大化掉包率',
                 damage: '伤害：',
                 cooldown: '冷却：',
                 skillMechanism: '技能机制：',
-                skillMechanismDesc: '该技能分为两个阶段进行攻击',
-                windupStage: '前摇阶段：',
-                windupStageDesc: '技能启动后，将有0.25秒的前摇时间，此阶段可被击晕',
-                skillStage1: '第一阶段：',
-                skillStage1Desc: '前摇结束后，Error277将挥动铁剑进行两次旋转攻击，每次造成5hp伤害，同时移速提升2.5，此阶段不可被击晕',
-                skillStage2: '第二阶段：',
-                skillStage2Desc: '第一阶段结束后，将进入0.97秒的第二阶段前摇，此阶段可被击晕',
-                skillRelease: '攻击释放：',
-                skillReleaseDesc: '第二阶段前摇结束后，Error277将挥动铁剑进行强力攻击，造成20hp伤害，同时移速提升3，目标玩家将无法移动，此阶段不可被击晕',
-                skillEnd: '技能收尾：',
-                skillEndDesc: '攻击完成后，技能进入冷却状态，Error277移速恢复正常，可被击晕',
+                slashDesc: '基础攻击，每次攻击都会在18-25里抽取一个随机数字。若越多的人获得hacked效果，则抽取到高伤害的概率越大',
+                errorCode277Desc: 'Error277调节了脚下的一些参数，使他以圆心半径100Studs范围内的全部屏幕上出现持续移动的错误弹窗（其移动模式类似屏幕障窗式移动）并获得hacked效果。越靠近Error277会使弹窗越大，移动越快。错误弹窗会在35s后自动结束。或者玩家可主动脱离圆形区域来使弹窗消除',
+                chainSwordDashDesc: 'Error277旋转剑到四周最后终横扫一刀，造成总计5+5+20的伤害。最后一击将受害者击飞一段距离并使受害者进入娃娃状态1.25s，旋转剑到时可防御一切幸存者给予的眩晕和伤害（最后一击横扫除外）',
+                giganticDropRateDesc: 'Error277将黑客注入过载。使所有获得hacked效果的玩家被传回到他们3s前所在的位置。传回完毕Error277在1.25s内无法攻击。同时游戏倒计时额外增加15s',
                 
                 // 状态
                 completed: '已开发完毕',
@@ -695,25 +706,20 @@
                 bgStoryContent: 'In recent years, due to the rising hacking rate in the Roblox world, the government\'s chief scientist Builderman created the "Error" series to solve hacking problems. The "Error" series consists of multiple models, not just Error277. When a location needs assistance, the government dispatches the corresponding model to handle it. Error277 is a combat-type Error series robot. Builderman treats each Error series robot as his own child. Error277 entered Death Place after fighting with Coolkidd. At that time, because Error277\'s teammates went to different areas, he had to go alone. And because Coolkidd\'s coolgui had undergone extensive upgrades, he failed. Just as he was about to be destroyed, Shedletsky and his wife BrightEyes arrived at the scene. With the government\'s reinforcements arriving, Coolkidd and his team fled immediately. In the end, Error277 was urgently repaired. But later, two mysterious people (government internal personnel) threw Error277\'s damaged body into a waste disposal site when no one was around. Error277 looked around with his last consciousness and finally collapsed. Throughout this entire process, Gunour witnessed everything, from Error277\'s battle with Coolkidd to the end. Because of this experiment, Gunour took Error277 back for repair and injected some emotions into him. Due to some system data issues, his memories were tampered with.',
                 quote: '"You will be kicked by [Error Code 277]!"',
                 devStatus: 'Development Status: ',
-                devStatusDesc: 'Error277 is designed with 3 skills and 1 normal attack. Currently, only 1 skill has been completed, 1 skill is in development, and the remaining skills have not been completed.',
+                devStatusDesc: 'Error277 is designed with 3 skills and 1 normal attack. Normal attack and skills 1-2 have been completed, skill 3 is not yet developed.',
                 
                 // 技能
                 slash: 'Slash',
-                swordLunge: 'Sword Lunge',
+                errorCode277: 'ERROR CODE:277',
+                chainSwordDash: 'Chain Sword Dash',
+                giganticDropRate: 'Gigantic Drop Rate',
                 damage: 'Damage: ',
                 cooldown: 'Cooldown: ',
                 skillMechanism: 'Skill Mechanism: ',
-                skillMechanismDesc: 'This skill consists of two stages of attack',
-                windupStage: 'Windup Stage: ',
-                windupStageDesc: 'After activating the skill, there will be a 0.25-second windup time, during which the attacker can be stunned',
-                skillStage1: 'Stage 1: ',
-                skillStage1Desc: 'After the windup ends, Error277 will swing the iron sword for two rotating attacks, each dealing 5hp damage, while increasing movement speed by 2.5. This stage cannot be stunned',
-                skillStage2: 'Stage 2: ',
-                skillStage2Desc: 'After the first stage ends, a 0.97-second windup for the second stage will begin, during which the attacker can be stunned',
-                skillRelease: 'Attack Release: ',
-                skillReleaseDesc: 'After the second stage windup ends, Error277 will swing the iron sword for a powerful attack, dealing 20hp damage, while increasing movement speed by 3. The target player will be unable to move, and this stage cannot be stunned',
-                skillEnd: 'Skill End: ',
-                skillEndDesc: 'After the attack is completed, the skill enters cooldown, Error277\'s movement speed returns to normal, and they can be stunned',
+                slashDesc: 'Basic attack, each attack will draw a random number between 18-25. The more people with hacked effect, the higher the probability of drawing high damage',
+                errorCode277Desc: 'Error277 adjusted some parameters under his feet, causing all screens within a 100Studs radius centered on him to display continuously moving error popups (their movement pattern is similar to screen window movement) and gain hacked effect. The closer to Error277, the larger the popups and the faster they move. Error popups will automatically end after 35s. Or players can actively leave the circular area to make the popups disappear',
+                chainSwordDashDesc: 'Error277 spins the sword around and finally sweeps with a single strike, dealing a total of 5+5+20 damage. The last strike will knock the victim back a distance and put the victim into doll state for 1.25s. When spinning the sword, it can block all stuns and damage from survivors (except the final sweep)',
+                giganticDropRateDesc: 'Error277 injects overload into the hack. All players with hacked effect are teleported back to their position 3s ago. After teleportation, Error277 cannot attack for 1.25s. The game countdown is also increased by an additional 15s',
                 
                 // 状态
                 completed: 'Completed',
@@ -940,34 +946,40 @@
                         const cooldownValue = slashProperties[1].querySelector('.property-value');
                         if (cooldownValue) {
                             if (currentLang === 'zh') {
-                                cooldownValue.textContent = '0.6秒';
+                                cooldownValue.textContent = '1.5秒';
                             } else {
-                                cooldownValue.textContent = '0.6s';
+                                cooldownValue.textContent = '1.5s';
                             }
                         }
                     }
+                    
+                    // 更新技能描述
+                    const slashParagraphs = slashSkill.querySelectorAll('p');
+                    if (slashParagraphs.length > 0) {
+                        slashParagraphs[0].innerHTML = `<strong>${translations[currentLang].skillMechanism}</strong>${translations[currentLang].slashDesc}`;
+                    }
                 }
                 
-                // 更新Sword Lunge技能
-                const swordLungeSkill = document.querySelectorAll('.skill')[1];
-                if (swordLungeSkill) {
+                // 更新链剑突进技能
+                const chainSwordDashSkill = document.querySelectorAll('.skill')[1];
+                if (chainSwordDashSkill) {
                     // 更新技能名称
-                    const swordLungeSkillHeader = swordLungeSkill.querySelector('.skill-header h4');
-                    if (swordLungeSkillHeader) {
-                        swordLungeSkillHeader.textContent = translations[currentLang].swordLunge;
+                    const chainSwordDashSkillHeader = chainSwordDashSkill.querySelector('.skill-header h4');
+                    if (chainSwordDashSkillHeader) {
+                        chainSwordDashSkillHeader.textContent = translations[currentLang].chainSwordDash;
                     }
                     
                     // 更新状态标签
-                    swordLungeSkill.querySelector('.status.in-progress').textContent = translations[currentLang].inProgress;
+                    chainSwordDashSkill.querySelector('.status.completed').textContent = translations[currentLang].completed;
                     
                     // 更新属性标签
-                    const swordLungeProperties = swordLungeSkill.querySelectorAll('.property');
-                    if (swordLungeProperties.length >= 2) {
-                        swordLungeProperties[0].querySelector('.property-label').textContent = translations[currentLang].damage;
-                        swordLungeProperties[1].querySelector('.property-label').textContent = translations[currentLang].cooldown;
+                    const chainSwordDashProperties = chainSwordDashSkill.querySelectorAll('.property');
+                    if (chainSwordDashProperties.length >= 2) {
+                        chainSwordDashProperties[0].querySelector('.property-label').textContent = translations[currentLang].damage;
+                        chainSwordDashProperties[1].querySelector('.property-label').textContent = translations[currentLang].cooldown;
                         
-                        // 更新冷却时间值，添加正确的单位
-                        const cooldownValue = swordLungeProperties[1].querySelector('.property-value');
+                        // 更新冷却时间值，添加单位
+                        const cooldownValue = chainSwordDashProperties[1].querySelector('.property-value');
                         if (cooldownValue) {
                             if (currentLang === 'zh') {
                                 cooldownValue.textContent = '20秒';
@@ -978,16 +990,83 @@
                     }
                     
                     // 更新技能描述
-                    const skillParagraphs = swordLungeSkill.querySelectorAll('p');
-                    if (skillParagraphs.length >= 6) {
-                        skillParagraphs[0].innerHTML = `<strong>${translations[currentLang].skillMechanism}</strong>${translations[currentLang].skillMechanismDesc}`;
-                        skillParagraphs[1].innerHTML = `<strong>${translations[currentLang].windupStage}</strong>${translations[currentLang].windupStageDesc}`;
-                        skillParagraphs[2].innerHTML = `<strong>${translations[currentLang].skillStage1}</strong>${translations[currentLang].skillStage1Desc}`;
-                        skillParagraphs[3].innerHTML = `<strong>${translations[currentLang].skillStage2}</strong>${translations[currentLang].skillStage2Desc}`;
-                        skillParagraphs[4].innerHTML = `<strong>${translations[currentLang].skillRelease}</strong>${translations[currentLang].skillReleaseDesc}`;
-                        skillParagraphs[5].innerHTML = `<strong>${translations[currentLang].skillEnd}</strong>${translations[currentLang].skillEndDesc}`;
+                    const chainSwordDashParagraphs = chainSwordDashSkill.querySelectorAll('p');
+                    if (chainSwordDashParagraphs.length > 0) {
+                        chainSwordDashParagraphs[0].innerHTML = `<strong>${translations[currentLang].skillMechanism}</strong>${translations[currentLang].chainSwordDashDesc}`;
                     }
                 }
+                
+                // 更新ERROR CODE:277技能
+                const errorCode277Skill = document.querySelectorAll('.skill')[2];
+                if (errorCode277Skill) {
+                    // 更新技能名称
+                    const errorCode277SkillHeader = errorCode277Skill.querySelector('.skill-header h4');
+                    if (errorCode277SkillHeader) {
+                        errorCode277SkillHeader.textContent = translations[currentLang].errorCode277;
+                    }
+                    
+                    // 更新状态标签
+                    errorCode277Skill.querySelector('.status.completed').textContent = translations[currentLang].completed;
+                    
+                    // 更新属性标签
+                    const errorCode277Properties = errorCode277Skill.querySelectorAll('.property');
+                    if (errorCode277Properties.length > 0) {
+                        errorCode277Properties[0].querySelector('.property-label').textContent = translations[currentLang].cooldown;
+                        
+                        // 更新冷却时间值，添加单位
+                        const cooldownValue = errorCode277Properties[0].querySelector('.property-value');
+                        if (cooldownValue) {
+                            if (currentLang === 'zh') {
+                                cooldownValue.textContent = '30秒';
+                            } else {
+                                cooldownValue.textContent = '30s';
+                            }
+                        }
+                    }
+                    
+                    // 更新技能描述
+                    const errorCode277Paragraphs = errorCode277Skill.querySelectorAll('p');
+                    if (errorCode277Paragraphs.length > 0) {
+                        errorCode277Paragraphs[0].innerHTML = `<strong>${translations[currentLang].skillMechanism}</strong>${translations[currentLang].errorCode277Desc}`;
+                    }
+                }
+                
+                // 更新巨大化掉包率技能
+                const giganticDropRateSkill = document.querySelectorAll('.skill')[3];
+                if (giganticDropRateSkill) {
+                    // 更新技能名称
+                    const giganticDropRateSkillHeader = giganticDropRateSkill.querySelector('.skill-header h4');
+                    if (giganticDropRateSkillHeader) {
+                        giganticDropRateSkillHeader.textContent = translations[currentLang].giganticDropRate;
+                    }
+                    
+                    // 更新状态标签
+                    giganticDropRateSkill.querySelector('.status.in-progress').textContent = translations[currentLang].inProgress;
+                    
+                    // 更新属性标签
+                    const giganticDropRateProperties = giganticDropRateSkill.querySelectorAll('.property');
+                    if (giganticDropRateProperties.length > 0) {
+                        giganticDropRateProperties[0].querySelector('.property-label').textContent = translations[currentLang].cooldown;
+                        
+                        // 更新冷却时间值，添加单位
+                        const cooldownValue = giganticDropRateProperties[0].querySelector('.property-value');
+                        if (cooldownValue) {
+                            if (currentLang === 'zh') {
+                                cooldownValue.textContent = '385秒';
+                            } else {
+                                cooldownValue.textContent = '385s';
+                            }
+                        }
+                    }
+                    
+                    // 更新技能描述
+                    const giganticDropRateParagraphs = giganticDropRateSkill.querySelectorAll('p');
+                    if (giganticDropRateParagraphs.length > 0) {
+                        giganticDropRateParagraphs[0].innerHTML = `<strong>${translations[currentLang].skillMechanism}</strong>${translations[currentLang].giganticDropRateDesc}`;
+                    }
+                }
+                
+
             }
             
             // 更新页脚
