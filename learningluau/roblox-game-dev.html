@@ -207,16 +207,16 @@
                 
                 <div class="concept-card">
                     <h3>1. 游戏对象（Game Objects）</h3>
-                    <p>在Roblox中，所有的游戏元素都是游戏对象（也称为实例，Instance）。游戏对象可以是角色、道具、地形、光源等。每个游戏对象都有自己的属性和方法。</p>
+                    <p>在Roblox中，所有的游戏元素都是游戏对象（也称为实例，Instance）。就像现实世界中的物体一样，游戏对象可以是角色、道具、地形、光源等。每个游戏对象都有自己的属性和方法。</p>
                     
                     <h4>1.1 常见的游戏对象类型</h4>
                     <ul>
                         <li><strong>Part</strong>：基本的3D立方体，可以用于创建地形、建筑等。</li>
-                        <li><strong>Model</strong>：用于组织多个游戏对象的容器。</li>
+                        <li><strong>Model</strong>：用于组织多个游戏对象的容器，就像一个文件夹。</li>
                         <li><strong>Humanoid</strong>：玩家角色的控制器，处理移动、跳跃等。</li>
                         <li><strong>Light</strong>：光源对象，用于照亮场景。</li>
-                        <li><strong>Camera</strong>：玩家的视角控制器。</li>
-                        <li><strong>Script</strong>：包含游戏逻辑的脚本。</li>
+                        <li><strong>Camera</strong>：玩家的视角控制器，决定玩家看到的画面。</li>
+                        <li><strong>Script</strong>：包含游戏逻辑的脚本，让游戏对象动起来。</li>
                     </ul>
                     
                     <div class="3d-model">
@@ -228,27 +228,28 @@
                     </div>
                     
                     <h4>1.2 创建和管理游戏对象</h4>
+                    <p>创建游戏对象就像在游戏中"建造"东西一样简单！</p>
                     <div class="code-example">
                         <code>
--- 创建一个新的部件
+-- 创建一个新的方块
 local part = Instance.new("Part")
-part.Name = "MyPart"
-part.Position = Vector3.new(0, 5, 0)
-part.Size = Vector3.new(2, 2, 2)
-part.BrickColor = BrickColor.new("Bright blue")
-part.Parent = workspace
+part.Name = "我的方块"
+part.Position = Vector3.new(0, 5, 0)  -- 位置（x, y, z）
+part.Size = Vector3.new(2, 2, 2)  -- 大小
+part.BrickColor = BrickColor.new("Bright blue")  -- 颜色
+part.Parent = workspace  -- 将方块放入游戏世界
 
--- 组织多个部件到一个模型中
+-- 组织多个方块到一个模型中
 local model = Instance.new("Model")
-model.Name = "MyModel"
+model.Name = "我的模型"
 
 local part1 = Instance.new("Part")
-part1.Name = "Part1"
+part1.Name = "方块1"
 part1.Position = Vector3.new(0, 5, 0)
 part1.Parent = model
 
 local part2 = Instance.new("Part")
-part2.Name = "Part2"
+part2.Name = "方块2"
 part2.Position = Vector3.new(3, 5, 0)
 part2.Parent = model
 
@@ -259,15 +260,16 @@ model.Parent = workspace
                 
                 <div class="concept-card">
                     <h3>2. 物理引擎</h3>
-                    <p>Roblox内置了强大的物理引擎，用于模拟真实世界的物理效果，如重力、碰撞、摩擦力等。</p>
+                    <p>Roblox内置了强大的物理引擎，就像现实世界的物理规则一样，它可以模拟重力、碰撞、摩擦力等效果。</p>
                     
                     <h4>2.1 物理属性</h4>
+                    <p>每个游戏对象都有一些物理属性，决定了它在游戏世界中的行为：</p>
                     <ul>
-                        <li><strong>Mass</strong>：对象的质量，影响其惯性和重力响应。</li>
-                        <li><strong>CanCollide</strong>：是否与其他对象碰撞。</li>
-                        <li><strong>Anchored</strong>：是否固定在位置，不受物理影响。</li>
-                        <li><strong>Elasticity</strong>：弹性，影响碰撞时的反弹程度。</li>
-                        <li><strong>Friction</strong>：摩擦力，影响物体滑动时的阻力。</li>
+                        <li><strong>Mass</strong>：对象的质量，影响其惯性和重力响应。质量越大，移动越困难。</li>
+                        <li><strong>CanCollide</strong>：是否与其他对象碰撞。如果设置为false，物体可以互相穿过。</li>
+                        <li><strong>Anchored</strong>：是否固定在位置，不受物理影响。固定的物体不会移动或受重力影响。</li>
+                        <li><strong>Elasticity</strong>：弹性，影响碰撞时的反弹程度。弹性越高，碰撞后反弹越厉害。</li>
+                        <li><strong>Friction</strong>：摩擦力，影响物体滑动时的阻力。摩擦力越高，物体滑动越困难。</li>
                     </ul>
                     
                     <div class="flowchart">
@@ -284,12 +286,13 @@ model.Parent = workspace
                     </div>
                     
                     <h4>2.2 物理模拟示例</h4>
+                    <p>让我们创建一个简单的物理模拟，看看物体是如何受重力影响的：</p>
                     <div class="code-example">
                         <code>
--- 创建一个受重力影响的部件
+-- 创建一个受重力影响的方块
 local fallingPart = Instance.new("Part")
-fallingPart.Name = "FallingPart"
-fallingPart.Position = Vector3.new(0, 20, 0)
+fallingPart.Name = "下落的方块"
+fallingPart.Position = Vector3.new(0, 20, 0)  -- 从高处开始
 fallingPart.Size = Vector3.new(2, 2, 2)
 fallingPart.BrickColor = BrickColor.new("Bright red")
 fallingPart.Anchored = false  -- 不固定，受重力影响
@@ -298,7 +301,7 @@ fallingPart.Parent = workspace
 
 -- 创建一个地面
 local ground = Instance.new("Part")
-ground.Name = "Ground"
+ground.Name = "地面"
 ground.Position = Vector3.new(0, 0, 0)
 ground.Size = Vector3.new(50, 1, 50)
 ground.BrickColor = BrickColor.new("Grass green")
@@ -310,26 +313,27 @@ ground.Parent = workspace
                 
                 <div class="concept-card">
                     <h3>3. 碰撞检测</h3>
-                    <p>碰撞检测是游戏开发中的重要概念，用于检测游戏对象之间的碰撞，从而触发相应的游戏逻辑。</p>
+                    <p>碰撞检测就像游戏中的"触觉"，它可以检测游戏对象之间的碰撞，从而触发相应的游戏逻辑。</p>
                     
                     <h4>3.1 碰撞事件</h4>
-                    <p>Roblox提供了多种碰撞事件，用于响应碰撞：</p>
+                    <p>Roblox提供了多种碰撞事件，用于响应不同的碰撞情况：</p>
                     <ul>
-                        <li><strong>Touched</strong>：当对象被其他对象触碰时触发。</li>
-                        <li><strong>TouchEnded</strong>：当对象不再被其他对象触碰时触发。</li>
-                        <li><strong>TouchMoved</strong>：当对象被其他对象触碰并移动时触发。</li>
+                        <li><strong>Touched</strong>：当对象被其他对象触碰时触发，就像有人碰到了你。</li>
+                        <li><strong>TouchEnded</strong>：当对象不再被其他对象触碰时触发，就像有人离开了你。</li>
+                        <li><strong>TouchMoved</strong>：当对象被其他对象触碰并移动时触发，就像有人在你身上移动。</li>
                     </ul>
                     
                     <h4>3.2 碰撞检测示例</h4>
+                    <p>让我们创建一个触发区域，当玩家进入时显示一条消息：</p>
                     <div class="code-example">
                         <code>
--- 创建一个可以检测碰撞的部件
+-- 创建一个可以检测碰撞的区域
 local trigger = Instance.new("Part")
-trigger.Name = "Trigger"
+trigger.Name = "触发区域"
 trigger.Position = Vector3.new(0, 2, 0)
 trigger.Size = Vector3.new(5, 1, 5)
 trigger.BrickColor = BrickColor.new("Bright yellow")
-trigger.Transparency = 0.5  -- 半透明
+trigger.Transparency = 0.5  -- 半透明，让玩家能看到
 trigger.CanCollide = false  -- 不碰撞，允许玩家穿过
 trigger.Anchored = true
 trigger.Parent = workspace
@@ -354,25 +358,31 @@ end)
                 
                 <div class="concept-card">
                     <h3>4. 坐标系和向量</h3>
-                    <p>在Roblox中，游戏世界使用三维坐标系，每个位置由x、y、z三个坐标组成。向量（Vector3）用于表示位置、方向和速度等。</p>
+                    <p>在Roblox中，游戏世界使用三维坐标系，就像现实世界中的空间一样，每个位置由x、y、z三个坐标组成。向量（Vector3）用于表示位置、方向和速度等。</p>
                     
                     <div class="3d-model">
                         <h4>三维坐标系</h4>
-                        <p>Roblox使用右手坐标系，x轴指向右，y轴指向上，z轴指向前。</p>
+                        <p>Roblox使用右手坐标系：</p>
+                        <ul>
+                            <li>x轴指向右</li>
+                            <li>y轴指向上</li>
+                            <li>z轴指向前</li>
+                        </ul>
                         <div style="width: 100%; height: 300px; background: #f0f0f0; border-radius: 8px; display: flex; align-items: center; justify-content: center;">
                             <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=3D%20coordinate%20system%20with%20x%2C%20y%2C%20z%20axes%20in%20Roblox%20game%20development&image_size=landscape_16_9" alt="Roblox三维坐标系" style="max-width: 100%; max-height: 100%;">
                         </div>
                     </div>
                     
                     <h4>4.1 基本向量操作</h4>
+                    <p>向量就像游戏中的"方向指示器"，可以用来表示位置、方向和速度等：</p>
                     <div class="code-example">
                         <code>
 -- 创建向量
 local position = Vector3.new(10, 5, 3)  -- x=10, y=5, z=3
-local direction = Vector3.new(1, 0, 0)  -- 沿x轴正方向
+local direction = Vector3.new(1, 0, 0)  -- 沿x轴正方向（向右）
 
 -- 向量运算
-local newPosition = position + direction  -- 位置偏移
+local newPosition = position + direction  -- 位置偏移（向右移动1单位）
 local distance = (position - Vector3.new(0, 0, 0)).Magnitude  -- 到原点的距离
 local normalizedDirection = direction.Unit  -- 归一化向量（长度为1）
 
@@ -393,18 +403,18 @@ end
                 
                 <div class="concept-card">
                     <h3>5. 游戏循环</h3>
-                    <p>游戏循环是游戏开发中的核心概念，用于持续更新游戏状态、处理用户输入、渲染画面等。</p>
+                    <p>游戏循环就像游戏的"心跳"，它持续运行，不断更新游戏状态、处理用户输入、渲染画面等，让游戏保持动态。</p>
                     
                     <div class="flowchart">
                         <h4>游戏循环流程</h4>
                         <div class="flowchart-diagram">
-                            <div class="flowchart-step">处理用户输入</div>
+                            <div class="flowchart-step">处理用户输入（如按键、鼠标点击）</div>
                             <div class="flowchart-arrow"></div>
-                            <div class="flowchart-step">更新游戏状态</div>
+                            <div class="flowchart-step">更新游戏状态（如位置、生命值）</div>
                             <div class="flowchart-arrow"></div>
-                            <div class="flowchart-step">检测碰撞</div>
+                            <div class="flowchart-step">检测碰撞（如玩家碰到敌人）</div>
                             <div class="flowchart-arrow"></div>
-                            <div class="flowchart-step">渲染画面</div>
+                            <div class="flowchart-step">渲染画面（显示游戏世界）</div>
                             <div class="flowchart-arrow"></div>
                             <div class="flowchart-step">重复循环</div>
                         </div>
@@ -417,10 +427,10 @@ end
 -- 获取RunService
 local RunService = game:GetService("RunService")
 
--- 创建游戏循环
+-- 创建游戏循环函数
 local function update(deltaTime)
     -- deltaTime是自上一帧以来的时间（秒）
-    print("帧更新，时间间隔：" .. deltaTime)
+    -- 这个函数会在每帧执行一次
     
     -- 这里可以添加游戏逻辑，如：
     -- - 更新游戏状态
