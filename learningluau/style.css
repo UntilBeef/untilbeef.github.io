@@ -89,6 +89,26 @@ main {
     background-color: #45a049;
 }
 
+.btn-group {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+@media (max-width: 768px) {
+    .btn-group {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .btn-group .btn {
+        width: 100%;
+        max-width: 200px;
+        text-align: center;
+    }
+}
+
 .features {
     background-color: white;
     padding: 40px;
