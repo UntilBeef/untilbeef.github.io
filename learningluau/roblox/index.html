@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roblox游戏开发教程 - 零基础入门</title>
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        .roblox-hero {
+            background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+        }
+        
+        .roblox-hero h2 {
+            font-size: 3em;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .roblox-hero p {
+            font-size: 1.5em;
+            margin-bottom: 40px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .course-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .course-card {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            padding: 30px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .course-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        .course-card h3 {
+            color: #4CAF50;
+            margin-bottom: 15px;
+            font-size: 1.5em;
+        }
+        
+        .course-card p {
+            margin-bottom: 20px;
+        }
+        
+        .course-card .btn {
+            display: inline-block;
+            margin-top: 10px;
+        }
+        
+        .prerequisites-roblox {
+            background: #f9f9f9;
+            padding: 40px;
+            border-radius: 8px;
+            margin-top: 40px;
+        }
+        
+        .prerequisites-roblox h3 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+        
+        .prerequisites-roblox ul {
+            list-style: disc;
+            margin-left: 20px;
+        }
+        
+        .prerequisites-roblox li {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Luau 编程语言教程</h1>
+            <nav>
+                <ul>
+                    <li><a href="../index.html">首页</a></li>
+                    <li><a href="../beginner.html">初级教程</a></li>
+                    <li><a href="../advanced.html">中级教程</a></li>
+                    <li><a href="index.html">Roblox开发</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="roblox-hero">
+            <div class="container">
+                <h2>Roblox游戏开发教程</h2>
+                <p>专为零基础学习者设计的全面、系统且深度的Roblox游戏开发学习路径</p>
+                <a href="basics.html" class="btn">开始学习</a>
+            </div>
+        </section>
+
+        <div class="container">
+            <section class="features">
+                <h3>教程特点</h3>
+                <div class="feature-grid">
+                    <div class="feature-item">
+                        <h4>零基础友好</h4>
+                        <p>从最基础的概念开始，逐步构建知识体系，适合完全没有编程经验的学习者。</p>
+                    </div>
+                    <div class="feature-item">
+                        <h4>系统全面</h4>
+                        <p>涵盖Roblox游戏开发的各个方面，从环境搭建到游戏发布的完整流程。</p>
+                    </div>
+                    <div class="feature-item">
+                        <h4>实践导向</h4>
+                        <p>通过实际项目和案例学习，确保学习者能够将理论知识应用到实际开发中。</p>
+                    </div>
+                    <div class="feature-item">
+                        <h4>深度解析</h4>
+                        <p>不仅教你如何做，更教你为什么这样做，建立扎实的基础原理理解。</p>
+                    </div>
+                    <div class="feature-item">
+                        <h4>问题解决</h4>
+                        <p>提供常见问题的解决方案，帮助学习者克服开发过程中的困难。</p>
+                    </div>
+                    <div class="feature-item">
+                        <h4>可视化教学</h4>
+                        <p>配合图表和实例演示，使抽象概念变得直观易懂。</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="prerequisites-roblox">
+                <h3>学习前提</h3>
+                <p>本教程专为零基础学习者设计，不需要任何编程或游戏开发经验。你只需要：</p>
+                <ul>
+                    <li>一台可以运行Roblox Studio的电脑</li>
+                    <li>稳定的互联网连接</li>
+                    <li>学习的热情和耐心</li>
+                    <li>对游戏开发的兴趣</li>
+                </ul>
+                <p>通过本教程的学习，你将掌握Roblox游戏开发的核心技能，能够独立完成基础游戏的设计、开发与发布。</p>
+            </section>
+
+            <section class="course-content">
+                <h3>课程内容</h3>
+                <div class="course-grid">
+                    <div class="course-card">
+                        <h3>1. 环境搭建</h3>
+                        <p>学习如何下载、安装和配置Roblox Studio，为游戏开发做好准备。</p>
+                        <a href="basics.html#setup" class="btn">开始学习</a>
+                    </div>
+                    <div class="course-card">
+                        <h3>2. Roblox Studio基础</h3>
+                        <p>熟悉Roblox Studio的界面和基本操作，了解游戏开发的工作流程。</p>
+                        <a href="basics.html#studio" class="btn">开始学习</a>
+                    </div>
+                    <div class="course-card">
+                        <h3>3. Luau脚本基础</h3>
+                        <p>学习Roblox使用的Lua变体语言Luau的基础语法和编程概念。</p>
+                        <a href="basics.html#scripting" class="btn">开始学习</a>
+                    </div>
+                    <div class="course-card">
+                        <h3>4. 游戏开发基础</h3>
+                        <p>学习游戏对象、物理引擎、碰撞检测等游戏开发的核心概念。</p>
+                        <a href="game-dev.html" class="btn">开始学习</a>
+                    </div>
+                    <div class="course-card">
+                        <h3>5. 游戏机制实现</h3>
+                        <p>学习如何实现常见的游戏机制，如移动、跳跃、收集等。</p>
+                        <a href="game-mechanics.html" class="btn">开始学习</a>
+                    </div>
+                    <div class="course-card">
+                        <h3>6. 实践项目</h3>
+                        <p>通过实际项目练习，将所学知识应用到具体的游戏开发中。</p>
+                        <a href="projects.html" class="btn">开始学习</a>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Roblox游戏开发教程</p>
+        </div>
+    </footer>
+
+    <script src="../script.js"></script>
+</body>
+</html>

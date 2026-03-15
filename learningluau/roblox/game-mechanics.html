@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roblox游戏机制实现</title>
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        .mechanic-card {
+            background: #f9f9f9;
+            padding: 30px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .mechanic-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        .mechanic-card h3 {
+            color: #4CAF50;
+            margin-bottom: 15px;
+        }
+        
+        .mechanic-card h4 {
+            color: #333;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+        
+        .code-block {
+            background: #f4f4f4;
+            padding: 20px;
+            border-radius: 4px;
+            margin: 20px 0;
+            border-left: 4px solid #4CAF50;
+        }
+        
+        .code-block code {
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 14px;
+        }
+        
+        .step-by-step {
+            background: #f0f0f0;
+            padding: 20px;
+            border-radius: 4px;
+            margin: 20px 0;
+        }
+        
+        .step-by-step h5 {
+            color: #4CAF50;
+            margin-bottom: 10px;
+        }
+        
+        .step-by-step ol {
+            margin-left: 20px;
+        }
+        
+        .step-by-step li {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Luau 编程语言教程</h1>
+            <nav>
+                <ul>
+                    <li><a href="../index.html">首页</a></li>
+                    <li><a href="../beginner.html">初级教程</a></li>
+                    <li><a href="../advanced.html">中级教程</a></li>
+                    <li><a href="index.html">Roblox开发</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <section class="tutorial-content">
+                <h2>Roblox游戏机制实现</h2>
+                <p>在本教程中，我们将学习如何实现Roblox游戏中的常见机制，如移动、跳跃、收集物品、健康系统等。这些机制是大多数Roblox游戏的基础，掌握它们将帮助你创建更加丰富和有趣的游戏。</p>
+                
+                <div class="mechanic-card">
+                    <h3>1. 基本移动和跳跃</h3>
+                    <p>Roblox默认提供了基本的移动和跳跃功能，但你也可以自定义这些行为。</p>
+                    
+                    <h4>1.1 使用默认移动系统</h4>
+                    <p>Roblox的Humanoid对象默认包含了移动和跳跃功能。当你创建一个玩家角色时，这些功能已经内置。</p>
+                    
+                    <h4>1.2 自定义移动速度和跳跃力</h4>
+                    <div class="code-block">
+                        <code>
+-- 获取玩家的Humanoid
+local Players = game:GetService("Players")
+
+Players.PlayerAdded:Connect(function(player)
+    player.CharacterAdded:Connect(function(character)
+        local humanoid = character:WaitForChild("Humanoid")
+        
+        -- 设置移动速度
+        humanoid.WalkSpeed = 16  -- 默认值为16
+        
+        -- 设置跳跃力
+        humanoid.JumpPower = 50  -- 默认值为50
+        
+        -- 禁用跳跃
+        -- humanoid.JumpEnabled = false
+    end)
+end)
+                        </code>
+                    </div>
+                </div>
+                
+                <div class="mechanic-card">
+                    <h3>2. 物品收集系统</h3>
+                    <p>物品收集是许多游戏的核心机制，玩家通过收集物品来获得分数、能力或其他奖励。</p>
+                    
+                    <div class="step-by-step">
+                        <h5>实现步骤：</h5>
+                        <ol>
+                            <li>创建一个物品模型（如金币、宝石等）</li>
+                            <li>为物品添加碰撞检测</li>
+                            <li>当玩家触碰物品时，收集物品并给予奖励</li>
+                            <li>播放收集动画和音效</li>
+                        </ol>
+                    </div>
+                    
+                    <div class="code-block">
+                        <code>
+-- 创建一个收集物品
+local function createCollectible(position)
+    local part = Instance.new("Part")
+    part.Name = "Coin"
+    part.Position = position
+    part.Size = Vector3.new(1, 1, 1)
+    part.BrickColor = BrickColor.new("Bright yellow")
+    part.Shape = Enum.PartType.Ball
+    part.CanCollide = false
+    part.Anchored = true
+    
+    -- 添加旋转动画
+    local bodyAngularVelocity = Instance.new("BodyAngularVelocity")
+    bodyAngularVelocity.AngularVelocity = Vector3.new(0, 5, 0)
+    bodyAngularVelocity.Parent = part
+    
+    part.Parent = workspace
+    
+    -- 监听碰撞事件
+    part.Touched:Connect(function(hit)
+        local character = hit.Parent
+        local humanoid = character:FindFirstChild("Humanoid")
+        
+        if humanoid then
+            local player = game:GetService("Players"):GetPlayerFromCharacter(character)
+            if player then
+                -- 给予奖励（例如增加分数）
+                if not player:FindFirstChild("leaderstats") then
+                    local leaderstats = Instance.new("Folder")
+                    leaderstats.Name = "leaderstats"
+                    leaderstats.Parent = player
+                    
+                    local score = Instance.new("IntValue")
+                    score.Name = "Score"
+                    score.Value = 0
+                    score.Parent = leaderstats
+                end
+                
+                player.leaderstats.Score.Value = player.leaderstats.Score.Value + 10
+                
+                -- 播放收集音效（如果有）
+                -- local sound = Instance.new("Sound")
+                -- sound.SoundId = "rbxassetid://123456789"  -- 替换为实际音效ID
+                -- sound.Parent = part
+                -- sound:Play()
+                
+                -- 销毁物品
+                part:Destroy()
+            end
+        end
+    end)
+    
+    return part
+end
+
+-- 创建多个收集物品
+for i = 1, 10 do
+    local x = math.random(-20, 20)
+    local y = 2
+    local z = math.random(-20, 20)
+    createCollectible(Vector3.new(x, y, z))
+end
+                        </code>
+                    </div>
+                </div>
+                
+                <div class="mechanic-card">
+                    <h3>3. 健康系统</h3>
+                    <p>健康系统是许多游戏的重要组成部分，用于跟踪玩家的生命值。</p>
+                    
+                    <div class="code-block">
+                        <code>
+-- 设置健康系统
+local Players = game:GetService("Players")
+
+Players.PlayerAdded:Connect(function(player)
+    player.CharacterAdded:Connect(function(character)
+        local humanoid = character:WaitForChild("Humanoid")
+        
+        -- 设置初始生命值
+        humanoid.MaxHealth = 100
+        humanoid.Health = 100
+        
+        -- 监听生命值变化
+        humanoid.HealthChanged:Connect(function(health)
+            print(player.Name .. " 的生命值: " .. health)
+            
+            if health <= 0 then
+                -- 玩家死亡
+                print(player.Name .. " 死亡了！")
+                -- 这里可以添加死亡处理逻辑，如重生、游戏结束等
+            end
+        end)
+        
+        -- 监听伤害事件
+        humanoid.TookDamage:Connect(function(damage)
+            print(player.Name .. " 受到了 " .. damage .. " 点伤害")
+        end)
+    end)
+end)
+
+-- 创建一个伤害区域
+local function createDamageZone(position, size, damagePerSecond)
+    local part = Instance.new("Part")
+    part.Name = "DamageZone"
+    part.Position = position
+    part.Size = size
+    part.BrickColor = BrickColor.new("Bright red")
+    part.Transparency = 0.5
+    part.CanCollide = false
+    part.Anchored = true
+    part.Parent = workspace
+    
+    -- 每秒钟对区域内的玩家造成伤害
+    while part do
+        wait(1)
+        local touchingParts = part:GetTouchingParts()
+        for _, touchingPart in pairs(touchingParts) do
+            local character = touchingPart.Parent
+            local humanoid = character:FindFirstChild("Humanoid")
+            if humanoid then
+                humanoid:TakeDamage(damagePerSecond)
+            end
+        end
+    end
+end
+
+-- 创建一个伤害区域
+createDamageZone(Vector3.new(0, 2, 0), Vector3.new(10, 1, 10), 10)
+                        </code>
+                    </div>
+                </div>
+                
+                <div class="mechanic-card">
+                    <h3>4. 简单的AI行为</h3>
+                    <p>为游戏添加AI敌人可以增加游戏的挑战性和趣味性。</p>
+                    
+                    <div class="code-block">
+                        <code>
+-- 创建一个简单的AI敌人
+local function createAIEnemy(position)
+    local model = Instance.new("Model")
+    model.Name = "AIEnemy"
+    
+    local part = Instance.new("Part")
+    part.Name = "HumanoidRootPart"
+    part.Position = position
+    part.Size = Vector3.new(2, 2, 2)
+    part.BrickColor = BrickColor.new("Bright red")
+    part.Parent = model
+    
+    local humanoid = Instance.new("Humanoid")
+    humanoid.Parent = model
+    
+    local head = Instance.new("Part")
+    head.Name = "Head"
+    head.Position = position + Vector3.new(0, 2, 0)
+    head.Size = Vector3.new(1, 1, 1)
+    head.BrickColor = BrickColor.new("Bright red")
+    head.Parent = model
+    
+    model.Parent = workspace
+    
+    -- 让AI敌人跟随玩家
+    local function followPlayer()
+        while model do
+            wait(0.1)
+            local players = game:GetService("Players"):GetPlayers()
+            if #players > 0 then
+                local closestPlayer = nil
+                local closestDistance = math.huge
+                
+                -- 找到最近的玩家
+                for _, player in pairs(players) do
+                    if player.Character and player.Character:FindFirstChild("HumanoidRootPart") then
+                        local distance = (player.Character.HumanoidRootPart.Position - part.Position).Magnitude
+                        if distance < closestDistance then
+                            closestDistance = distance
+                            closestPlayer = player
+                        end
+                    end
+                end
+                
+                -- 如果找到玩家且距离足够近，就向玩家移动
+                if closestPlayer and closestDistance < 50 then
+                    local direction = (closestPlayer.Character.HumanoidRootPart.Position - part.Position).Unit
+                    part.Position = part.Position + direction * 0.5
+                    
+                    -- 让敌人朝向玩家
+                    local lookVector = closestPlayer.Character.HumanoidRootPart.Position - part.Position
+                    lookVector = Vector3.new(lookVector.X, 0, lookVector.Z)
+                    if lookVector.Magnitude > 0 then
+                        part.CFrame = CFrame.new(part.Position, part.Position + lookVector)
+                    end
+                end
+            end
+        end
+    end
+    
+    -- 开始跟随玩家
+    spawn(followPlayer)
+    
+    return model
+end
+
+-- 创建AI敌人
+createAIEnemy(Vector3.new(10, 2, 10))
+                        </code>
+                    </div>
+                </div>
+                
+                <div class="mechanic-card">
+                    <h3>5. 简单的UI系统</h3>
+                    <p>UI系统用于向玩家显示游戏信息，如分数、生命值、任务等。</p>
+                    
+                    <div class="code-block">
+                        <code>
+-- 创建一个简单的UI
+local Players = game:GetService("Players")
+
+Players.PlayerAdded:Connect(function(player)
+    -- 等待玩家的PlayerGui加载
+    local playerGui = player:WaitForChild("PlayerGui")
+    
+    -- 创建一个ScreenGui
+    local screenGui = Instance.new("ScreenGui")
+    screenGui.Name = "GameUI"
+    screenGui.Parent = playerGui
+    
+    -- 创建一个分数显示
+    local scoreText = Instance.new("TextLabel")
+    scoreText.Name = "ScoreText"
+    scoreText.Size = UDim2.new(0, 200, 0, 50)
+    scoreText.Position = UDim2.new(0.05, 0, 0.05, 0)
+    scoreText.BackgroundColor3 = Color3.new(0, 0, 0)
+    scoreText.BackgroundTransparency = 0.5
+    scoreText.TextColor3 = Color3.new(1, 1, 1)
+    scoreText.TextSize = 20
+    scoreText.Text = "分数: 0"
+    scoreText.Parent = screenGui
+    
+    -- 创建一个生命值显示
+    local healthText = Instance.new("TextLabel")
+    healthText.Name = "HealthText"
+    healthText.Size = UDim2.new(0, 200, 0, 50)
+    healthText.Position = UDim2.new(0.05, 0, 0.15, 0)
+    healthText.BackgroundColor3 = Color3.new(0, 0, 0)
+    healthText.BackgroundTransparency = 0.5
+    healthText.TextColor3 = Color3.new(1, 1, 1)
+    healthText.TextSize = 20
+    healthText.Text = "生命值: 100"
+    healthText.Parent = screenGui
+    
+    -- 当玩家的分数变化时更新UI
+    player.CharacterAdded:Connect(function(character)
+        local humanoid = character:WaitForChild("Humanoid")
+        
+        -- 更新生命值显示
+        humanoid.HealthChanged:Connect(function(health)
+            healthText.Text = "生命值: " .. math.floor(health)
+        end)
+    end)
+    
+    -- 当分数变化时更新UI
+    player.ChildAdded:Connect(function(child)
+        if child.Name == "leaderstats" then
+            local score = child:WaitForChild("Score")
+            score.Changed:Connect(function(value)
+                scoreText.Text = "分数: " .. value
+            end)
+        end
+    end)
+end)
+                        </code>
+                    </div>
+                </div>
+                
+                <div class="exercise">
+                    <h4>练习：创建一个简单的收集游戏</h4>
+                    <p>创建一个游戏，玩家需要收集场景中的金币，同时避免接触红色的伤害区域。实现分数系统和健康系统，并在UI中显示这些信息。</p>
+                    <button class="exercise-toggle">查看答案</button>
+                    <div class="answer" style="display: none;">
+                        <div class="code-block">
+                            <code>
+-- 主游戏脚本
+local Players = game:GetService("Players")
+
+-- 创建地面
+local ground = Instance.new("Part")
+ground.Name = "Ground"
+ground.Position = Vector3.new(0, 0, 0)
+ground.Size = Vector3.new(100, 1, 100)
+ground.BrickColor = BrickColor.new("Grass green")
+ground.Anchored = true
+ground.Parent = workspace
+
+-- 创建收集物品
+local function createCollectible(position)
+    local part = Instance.new("Part")
+    part.Name = "Coin"
+    part.Position = position
+    part.Size = Vector3.new(1, 1, 1)
+    part.BrickColor = BrickColor.new("Bright yellow")
+    part.Shape = Enum.PartType.Ball
+    part.CanCollide = false
+    part.Anchored = true
+    
+    -- 添加旋转动画
+    local bodyAngularVelocity = Instance.new("BodyAngularVelocity")
+    bodyAngularVelocity.AngularVelocity = Vector3.new(0, 5, 0)
+    bodyAngularVelocity.Parent = part
+    
+    part.Parent = workspace
+    
+    -- 监听碰撞事件
+    part.Touched:Connect(function(hit)
+        local character = hit.Parent
+        local humanoid = character:FindFirstChild("Humanoid")
+        
+        if humanoid then
+            local player = Players:GetPlayerFromCharacter(character)
+            if player then
+                -- 给予奖励
+                if not player:FindFirstChild("leaderstats") then
+                    local leaderstats = Instance.new("Folder")
+                    leaderstats.Name = "leaderstats"
+                    leaderstats.Parent = player
+                    
+                    local score = Instance.new("IntValue")
+                    score.Name = "Score"
+                    score.Value = 0
+                    score.Parent = leaderstats
+                end
+                
+                player.leaderstats.Score.Value = player.leaderstats.Score.Value + 10
+                part:Destroy()
+            end
+        end
+    end)
+end
+
+-- 创建多个收集物品
+for i = 1, 20 do
+    local x = math.random(-40, 40)
+    local y = 2
+    local z = math.random(-40, 40)
+    createCollectible(Vector3.new(x, y, z))
+end
+
+-- 创建伤害区域
+local function createDamageZone(position, size, damagePerSecond)
+    local part = Instance.new("Part")
+    part.Name = "DamageZone"
+    part.Position = position
+    part.Size = size
+    part.BrickColor = BrickColor.new("Bright red")
+    part.Transparency = 0.5
+    part.CanCollide = false
+    part.Anchored = true
+    part.Parent = workspace
+    
+    -- 每秒钟对区域内的玩家造成伤害
+    while part do
+        wait(1)
+        local touchingParts = part:GetTouchingParts()
+        for _, touchingPart in pairs(touchingParts) do
+            local character = touchingPart.Parent
+            local humanoid = character:FindFirstChild("Humanoid")
+            if humanoid then
+                humanoid:TakeDamage(damagePerSecond)
+            end
+        end
+    end
+end
+
+-- 创建伤害区域
+createDamageZone(Vector3.new(0, 2, 0), Vector3.new(20, 1, 20), 10)
+
+-- 创建UI
+Players.PlayerAdded:Connect(function(player)
+    local playerGui = player:WaitForChild("PlayerGui")
+    
+    local screenGui = Instance.new("ScreenGui")
+    screenGui.Name = "GameUI"
+    screenGui.Parent = playerGui
+    
+    local scoreText = Instance.new("TextLabel")
+    scoreText.Name = "ScoreText"
+    scoreText.Size = UDim2.new(0, 200, 0, 50)
+    scoreText.Position = UDim2.new(0.05, 0, 0.05, 0)
+    scoreText.BackgroundColor3 = Color3.new(0, 0, 0)
+    scoreText.BackgroundTransparency = 0.5
+    scoreText.TextColor3 = Color3.new(1, 1, 1)
+    scoreText.TextSize = 20
+    scoreText.Text = "分数: 0"
+    scoreText.Parent = screenGui
+    
+    local healthText = Instance.new("TextLabel")
+    healthText.Name = "HealthText"
+    healthText.Size = UDim2.new(0, 200, 0, 50)
+    healthText.Position = UDim2.new(0.05, 0, 0.15, 0)
+    healthText.BackgroundColor3 = Color3.new(0, 0, 0)
+    healthText.BackgroundTransparency = 0.5
+    healthText.TextColor3 = Color3.new(1, 1, 1)
+    healthText.TextSize = 20
+    healthText.Text = "生命值: 100"
+    healthText.Parent = screenGui
+    
+    player.CharacterAdded:Connect(function(character)
+        local humanoid = character:WaitForChild("Humanoid")
+        humanoid.HealthChanged:Connect(function(health)
+            healthText.Text = "生命值: " .. math.floor(health)
+        end)
+    end)
+    
+    player.ChildAdded:Connect(function(child)
+        if child.Name == "leaderstats" then
+            local score = child:WaitForChild("Score")
+            score.Changed:Connect(function(value)
+                scoreText.Text = "分数: " .. value
+            end)
+        end
+    end)
+end)
+                            </code>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Roblox游戏开发教程</p>
+        </div>
+    </footer>
+
+    <script src="../script.js"></script>
+</body>
+</html>

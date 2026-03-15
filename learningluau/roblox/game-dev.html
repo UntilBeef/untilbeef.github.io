@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roblox游戏开发基础 - 核心概念</title>
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        .concept-card {
+            background: #f9f9f9;
+            padding: 30px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .concept-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        .concept-card h3 {
+            color: #4CAF50;
+            margin-bottom: 15px;
+        }
+        
+        .concept-card h4 {
+            color: #333;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+        
+        .code-example {
+            background: #f4f4f4;
+            padding: 20px;
+            border-radius: 4px;
+            margin: 20px 0;
+            border-left: 4px solid #4CAF50;
+        }
+        
+        .code-example code {
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Luau 编程语言教程</h1>
+            <nav>
+                <ul>
+                    <li><a href="../index.html">首页</a></li>
+                    <li><a href="../beginner.html">初级教程</a></li>
+                    <li><a href="../advanced.html">中级教程</a></li>
+                    <li><a href="index.html">Roblox开发</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <section class="tutorial-content">
+                <h2>Roblox游戏开发基础</h2>
+                <p>在本教程中，我们将学习Roblox游戏开发的核心概念，包括游戏对象、物理引擎、碰撞检测等。这些概念是构建Roblox游戏的基础，理解它们对于开发高质量的游戏至关重要。</p>
+                
+                <div class="concept-card">
+                    <h3>1. 游戏对象（Game Objects）</h3>
+                    <p>在Roblox中，所有的游戏元素都是游戏对象（也称为实例，Instance）。游戏对象可以是角色、道具、地形、光源等。每个游戏对象都有自己的属性和方法。</p>
+                    
+                    <h4>1.1 常见的游戏对象类型</h4>
+                    <ul>
+                        <li><strong>Part</strong>：基本的3D立方体，可以用于创建地形、建筑等。</li>
+                        <li><strong>Model</strong>：用于组织多个游戏对象的容器。</li>
+                        <li><strong>Humanoid</strong>：玩家角色的控制器，处理移动、跳跃等。</li>
+                        <li><strong>Light</strong>：光源对象，用于照亮场景。</li>
+                        <li><strong>Camera</strong>：玩家的视角控制器。</li>
+                        <li><strong>Script</strong>：包含游戏逻辑的脚本。</li>
+                    </ul>
+                    
+                    <h4>1.2 创建和管理游戏对象</h4>
+                    <div class="code-example">
+                        <code>
+-- 创建一个新的部件
+local part = Instance.new("Part")
+part.Name = "MyPart"
+part.Position = Vector3.new(0, 5, 0)
+part.Size = Vector3.new(2, 2, 2)
+part.BrickColor = BrickColor.new("Bright blue")
+part.Parent = workspace
+
+-- 组织多个部件到一个模型中
+local model = Instance.new("Model")
+model.Name = "MyModel"
+
+local part1 = Instance.new("Part")
+part1.Name = "Part1"
+part1.Position = Vector3.new(0, 5, 0)
+part1.Parent = model
+
+local part2 = Instance.new("Part")
+part2.Name = "Part2"
+part2.Position = Vector3.new(3, 5, 0)
+part2.Parent = model
+
+model.Parent = workspace
+                        </code>
+                    </div>
+                </div>
+                
+                <div class="concept-card">
+                    <h3>2. 物理引擎</h3>
+                    <p>Roblox内置了强大的物理引擎，用于模拟真实世界的物理效果，如重力、碰撞、摩擦力等。</p>
+                    
+                    <h4>2.1 物理属性</h4>
+                    <ul>
+                        <li><strong>Mass</strong>：对象的质量，影响其惯性和重力响应。</li>
+                        <li><strong>CanCollide</strong>：是否与其他对象碰撞。</li>
+                        <li><strong>Anchored</strong>：是否固定在位置，不受物理影响。</li>
+                        <li><strong>Elasticity</strong>：弹性，影响碰撞时的反弹程度。</li>
+                        <li><strong>Friction</strong>：摩擦力，影响物体滑动时的阻力。</li>
+                    </ul>
+                    
+                    <h4>2.2 物理模拟示例</h4>
+                    <div class="code-example">
+                        <code>
+-- 创建一个受重力影响的部件
+local fallingPart = Instance.new("Part")
+fallingPart.Name = "FallingPart"
+fallingPart.Position = Vector3.new(0, 20, 0)
+fallingPart.Size = Vector3.new(2, 2, 2)
+fallingPart.BrickColor = BrickColor.new("Bright red")
+fallingPart.Anchored = false  -- 不固定，受重力影响
+fallingPart.CanCollide = true  -- 可以碰撞
+fallingPart.Parent = workspace
+
+-- 创建一个地面
+local ground = Instance.new("Part")
+ground.Name = "Ground"
+ground.Position = Vector3.new(0, 0, 0)
+ground.Size = Vector3.new(50, 1, 50)
+ground.BrickColor = BrickColor.new("Grass green")
+ground.Anchored = true  -- 固定，不受重力影响
+ground.Parent = workspace
+                        </code>
+                    </div>
+                </div>
+                
+                <div class="concept-card">
+                    <h3>3. 碰撞检测</h3>
+                    <p>碰撞检测是游戏开发中的重要概念，用于检测游戏对象之间的碰撞，从而触发相应的游戏逻辑。</p>
+                    
+                    <h4>3.1 碰撞事件</h4>
+                    <p>Roblox提供了多种碰撞事件，用于响应碰撞：</p>
+                    <ul>
+                        <li><strong>Touched</strong>：当对象被其他对象触碰时触发。</li>
+                        <li><strong>TouchEnded</strong>：当对象不再被其他对象触碰时触发。</li>
+                        <li><strong>TouchMoved</strong>：当对象被其他对象触碰并移动时触发。</li>
+                    </ul>
+                    
+                    <h4>3.2 碰撞检测示例</h4>
+                    <div class="code-example">
+                        <code>
+-- 创建一个可以检测碰撞的部件
+local trigger = Instance.new("Part")
+trigger.Name = "Trigger"
+trigger.Position = Vector3.new(0, 2, 0)
+trigger.Size = Vector3.new(5, 1, 5)
+trigger.BrickColor = BrickColor.new("Bright yellow")
+trigger.Transparency = 0.5  -- 半透明
+trigger.CanCollide = false  -- 不碰撞，允许玩家穿过
+trigger.Anchored = true
+trigger.Parent = workspace
+
+-- 监听碰撞事件
+trigger.Touched:Connect(function(hit)
+    -- 检查碰撞的对象是否是玩家
+    local character = hit.Parent
+    local humanoid = character:FindFirstChild("Humanoid")
+    
+    if humanoid then
+        local player = game:GetService("Players"):GetPlayerFromCharacter(character)
+        if player then
+            print(player.Name .. " 进入了触发区域！")
+            -- 这里可以添加游戏逻辑，如给予奖励、触发事件等
+        end
+    end
+end)
+                        </code>
+                    </div>
+                </div>
+                
+                <div class="concept-card">
+                    <h3>4. 坐标系和向量</h3>
+                    <p>在Roblox中，游戏世界使用三维坐标系，每个位置由x、y、z三个坐标组成。向量（Vector3）用于表示位置、方向和速度等。</p>
+                    
+                    <h4>4.1 基本向量操作</h4>
+                    <div class="code-example">
+                        <code>
+-- 创建向量
+local position = Vector3.new(10, 5, 3)  -- x=10, y=5, z=3
+local direction = Vector3.new(1, 0, 0)  -- 沿x轴正方向
+
+-- 向量运算
+local newPosition = position + direction  -- 位置偏移
+local distance = (position - Vector3.new(0, 0, 0)).Magnitude  -- 到原点的距离
+local normalizedDirection = direction.Unit  -- 归一化向量（长度为1）
+
+-- 应用向量
+local part = workspace:FindFirstChild("MyPart")
+if part then
+    -- 移动部件
+    part.Position = part.Position + Vector3.new(0, 1, 0)  -- 向上移动1单位
+    
+    -- 设置部件速度（如果部件不受约束）
+    local bodyVelocity = Instance.new("BodyVelocity")
+    bodyVelocity.Velocity = Vector3.new(10, 0, 0)  -- 沿x轴以10的速度移动
+    bodyVelocity.Parent = part
+end
+                        </code>
+                    </div>
+                </div>
+                
+                <div class="concept-card">
+                    <h3>5. 游戏循环</h3>
+                    <p>游戏循环是游戏开发中的核心概念，用于持续更新游戏状态、处理用户输入、渲染画面等。</p>
+                    
+                    <h4>5.1 使用RunService</h4>
+                    <p>Roblox提供了RunService服务，用于创建游戏循环：</p>
+                    <div class="code-example">
+                        <code>
+-- 获取RunService
+local RunService = game:GetService("RunService")
+
+-- 创建游戏循环
+local function update(deltaTime)
+    -- deltaTime是自上一帧以来的时间（秒）
+    print("帧更新，时间间隔：" .. deltaTime)
+    
+    -- 这里可以添加游戏逻辑，如：
+    -- - 更新游戏状态
+    -- - 处理用户输入
+    -- - 移动物体
+    -- - 检测碰撞
+    -- - 计算AI行为
+end
+
+-- 连接到游戏循环
+RunService.Heartbeat:Connect(update)
+                        </code>
+                    </div>
+                </div>
+                
+                <div class="exercise">
+                    <h4>练习：创建一个简单的物理模拟</h4>
+                    <p>创建一个场景，包含一个地面和多个从空中落下的物体，当物体触地时改变颜色。</p>
+                    <button class="exercise-toggle">查看答案</button>
+                    <div class="answer" style="display: none;">
+                        <div class="code-example">
+                            <code>
+-- 创建地面
+local ground = Instance.new("Part")
+ground.Name = "Ground"
+ground.Position = Vector3.new(0, 0, 0)
+ground.Size = Vector3.new(50, 1, 50)
+ground.BrickColor = BrickColor.new("Grass green")
+ground.Anchored = true
+ground.Parent = workspace
+
+-- 创建多个下落的物体
+local colors = {"Bright red", "Bright blue", "Bright yellow", "Bright green"}
+
+for i = 1, 10 do
+    local part = Instance.new("Part")
+    part.Name = "FallingPart" .. i
+    part.Position = Vector3.new(
+        math.random(-20, 20),
+        math.random(10, 30),
+        math.random(-20, 20)
+    )
+    part.Size = Vector3.new(1, 1, 1)
+    part.BrickColor = BrickColor.new(colors[math.random(1, #colors)])
+    part.Anchored = false
+    part.CanCollide = true
+    part.Parent = workspace
+    
+    -- 监听碰撞事件
+    part.Touched:Connect(function(hit)
+        if hit.Name == "Ground" then
+            part.BrickColor = BrickColor.new("Black")
+            part.Anchored = true
+        end
+    end)
+end
+                            </code>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Roblox游戏开发教程</p>
+        </div>
+    </footer>
+
+    <script src="../script.js"></script>
+</body>
+</html>

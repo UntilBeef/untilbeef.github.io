@@ -1,0 +1,1085 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roblox游戏开发实践项目</title>
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        .project-card {
+            background: #f9f9f9;
+            padding: 30px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        .project-card h3 {
+            color: #4CAF50;
+            margin-bottom: 15px;
+        }
+        
+        .project-card h4 {
+            color: #333;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+        
+        .code-block {
+            background: #f4f4f4;
+            padding: 20px;
+            border-radius: 4px;
+            margin: 20px 0;
+            border-left: 4px solid #4CAF50;
+        }
+        
+        .code-block code {
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 14px;
+        }
+        
+        .project-steps {
+            background: #f0f0f0;
+            padding: 20px;
+            border-radius: 4px;
+            margin: 20px 0;
+        }
+        
+        .project-steps h5 {
+            color: #4CAF50;
+            margin-bottom: 10px;
+        }
+        
+        .project-steps ol {
+            margin-left: 20px;
+        }
+        
+        .project-steps li {
+            margin-bottom: 10px;
+        }
+        
+        .project-tips {
+            background: #e8f5e8;
+            padding: 15px;
+            border-radius: 4px;
+            margin: 15px 0;
+            border-left: 4px solid #4CAF50;
+        }
+        
+        .project-tips h5 {
+            color: #4CAF50;
+            margin-bottom: 10px;
+        }
+        
+        .project-tips ul {
+            margin-left: 20px;
+        }
+        
+        .project-tips li {
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Luau 编程语言教程</h1>
+            <nav>
+                <ul>
+                    <li><a href="../index.html">首页</a></li>
+                    <li><a href="../beginner.html">初级教程</a></li>
+                    <li><a href="../advanced.html">中级教程</a></li>
+                    <li><a href="index.html">Roblox开发</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <section class="tutorial-content">
+                <h2>Roblox游戏开发实践项目</h2>
+                <p>在本教程中，我们将通过实际项目练习，将所学知识应用到具体的游戏开发中。通过完成这些项目，你将能够巩固所学的Roblox游戏开发技能，并学会如何独立开发完整的游戏。</p>
+                
+                <div class="project-card">
+                    <h3>项目 1：简单的收集游戏</h3>
+                    <p>在这个项目中，我们将创建一个简单的收集游戏，玩家需要在规定时间内收集尽可能多的金币，同时避免接触危险区域。</p>
+                    
+                    <div class="project-steps">
+                        <h5>项目步骤：</h5>
+                        <ol>
+                            <li>创建游戏场景，包括地面、边界和危险区域</li>
+                            <li>实现金币生成和收集机制</li>
+                            <li>添加计时系统</li>
+                            <li>实现分数系统</li>
+                            <li>创建游戏UI，显示分数和剩余时间</li>
+                            <li>添加游戏结束条件和重新开始功能</li>
+                        </ol>
+                    </div>
+                    
+                    <div class="code-block">
+                        <code>
+-- 主游戏脚本
+local Players = game:GetService("Players")
+local Workspace = game:GetService("Workspace")
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+
+-- 游戏设置
+local gameDuration = 60  -- 游戏时间（秒）
+local coinCount = 30  -- 初始金币数量
+local coinValue = 10  -- 每个金币的分数
+
+-- 创建游戏场景
+local function createGameScene()
+    -- 创建地面
+    local ground = Instance.new("Part")
+    ground.Name = "Ground"
+    ground.Position = Vector3.new(0, 0, 0)
+    ground.Size = Vector3.new(100, 1, 100)
+    ground.BrickColor = BrickColor.new("Grass green")
+    ground.Anchored = true
+    ground.Parent = Workspace
+    
+    -- 创建边界
+    local boundaries = {
+        {Vector3.new(0, 5, 50), Vector3.new(100, 10, 1)},  -- 后边界
+        {Vector3.new(0, 5, -50), Vector3.new(100, 10, 1)},  -- 前边界
+        {Vector3.new(50, 5, 0), Vector3.new(1, 10, 100)},  -- 右边界
+        {Vector3.new(-50, 5, 0), Vector3.new(1, 10, 100)}  -- 左边界
+    }
+    
+    for _, boundary in pairs(boundaries) do
+        local part = Instance.new("Part")
+        part.Name = "Boundary"
+        part.Position = boundary[1]
+        part.Size = boundary[2]
+        part.BrickColor = BrickColor.new("Dark gray")
+        part.Anchored = true
+        part.Parent = Workspace
+    end
+    
+    -- 创建危险区域
+    local dangerZone = Instance.new("Part")
+    dangerZone.Name = "DangerZone"
+    dangerZone.Position = Vector3.new(0, 0.5, 0)
+    dangerZone.Size = Vector3.new(30, 1, 30)
+    dangerZone.BrickColor = BrickColor.new("Bright red")
+    dangerZone.Transparency = 0.5
+    dangerZone.CanCollide = false
+    dangerZone.Anchored = true
+    dangerZone.Parent = Workspace
+    
+    -- 为危险区域添加伤害功能
+    while dangerZone do
+        wait(1)
+        local touchingParts = dangerZone:GetTouchingParts()
+        for _, part in pairs(touchingParts) do
+            local character = part.Parent
+            local humanoid = character:FindFirstChild("Humanoid")
+            if humanoid then
+                humanoid:TakeDamage(20)
+            end
+        end
+    end
+end
+
+-- 创建金币
+local function createCoin()
+    local part = Instance.new("Part")
+    part.Name = "Coin"
+    part.Position = Vector3.new(
+        math.random(-45, 45),
+        2,
+        math.random(-45, 45)
+    )
+    part.Size = Vector3.new(1, 1, 1)
+    part.Shape = Enum.PartType.Ball
+    part.BrickColor = BrickColor.new("Bright yellow")
+    part.CanCollide = false
+    part.Anchored = true
+    
+    -- 添加旋转动画
+    local bodyAngularVelocity = Instance.new("BodyAngularVelocity")
+    bodyAngularVelocity.AngularVelocity = Vector3.new(0, 5, 0)
+    bodyAngularVelocity.Parent = part
+    
+    part.Parent = Workspace
+    
+    -- 监听碰撞事件
+    part.Touched:Connect(function(hit)
+        local character = hit.Parent
+        local humanoid = character:FindFirstChild("Humanoid")
+        if humanoid then
+            local player = Players:GetPlayerFromCharacter(character)
+            if player then
+                -- 增加分数
+                player.leaderstats.Score.Value = player.leaderstats.Score.Value + coinValue
+                -- 销毁金币
+                part:Destroy()
+                -- 生成新金币
+                createCoin()
+            end
+        end
+    end)
+end
+
+-- 初始化游戏
+local function initGame(player)
+    -- 创建 leaderstats
+    if not player:FindFirstChild("leaderstats") then
+        local leaderstats = Instance.new("Folder")
+        leaderstats.Name = "leaderstats"
+        leaderstats.Parent = player
+        
+        local score = Instance.new("IntValue")
+        score.Name = "Score"
+        score.Value = 0
+        score.Parent = leaderstats
+        
+        local timeLeft = Instance.new("IntValue")
+        timeLeft.Name = "TimeLeft"
+        timeLeft.Value = gameDuration
+        timeLeft.Parent = leaderstats
+    end
+    
+    -- 创建游戏UI
+    local playerGui = player:WaitForChild("PlayerGui")
+    
+    -- 清除旧UI
+    for _, gui in pairs(playerGui:GetChildren()) do
+        if gui:IsA("ScreenGui") then
+            gui:Destroy()
+        end
+    end
+    
+    local screenGui = Instance.new("ScreenGui")
+    screenGui.Name = "GameUI"
+    screenGui.Parent = playerGui
+    
+    -- 分数显示
+    local scoreText = Instance.new("TextLabel")
+    scoreText.Name = "ScoreText"
+    scoreText.Size = UDim2.new(0, 200, 0, 50)
+    scoreText.Position = UDim2.new(0.05, 0, 0.05, 0)
+    scoreText.BackgroundColor3 = Color3.new(0, 0, 0)
+    scoreText.BackgroundTransparency = 0.5
+    scoreText.TextColor3 = Color3.new(1, 1, 1)
+    scoreText.TextSize = 20
+    scoreText.Text = "分数: 0"
+    scoreText.Parent = screenGui
+    
+    -- 时间显示
+    local timeText = Instance.new("TextLabel")
+    timeText.Name = "TimeText"
+    timeText.Size = UDim2.new(0, 200, 0, 50)
+    timeText.Position = UDim2.new(0.8, 0, 0.05, 0)
+    timeText.BackgroundColor3 = Color3.new(0, 0, 0)
+    timeText.BackgroundTransparency = 0.5
+    timeText.TextColor3 = Color3.new(1, 1, 1)
+    timeText.TextSize = 20
+    timeText.Text = "时间: " .. gameDuration
+    timeText.Parent = screenGui
+    
+    -- 生命值显示
+    local healthText = Instance.new("TextLabel")
+    healthText.Name = "HealthText"
+    healthText.Size = UDim2.new(0, 200, 0, 50)
+    healthText.Position = UDim2.new(0.05, 0, 0.15, 0)
+    healthText.BackgroundColor3 = Color3.new(0, 0, 0)
+    healthText.BackgroundTransparency = 0.5
+    healthText.TextColor3 = Color3.new(1, 1, 1)
+    healthText.TextSize = 20
+    healthText.Text = "生命值: 100"
+    healthText.Parent = screenGui
+    
+    -- 更新UI
+    player.leaderstats.Score.Changed:Connect(function(value)
+        scoreText.Text = "分数: " .. value
+    end)
+    
+    player.leaderstats.TimeLeft.Changed:Connect(function(value)
+        timeText.Text = "时间: " .. value
+    end)
+    
+    -- 监听生命值变化
+    player.CharacterAdded:Connect(function(character)
+        local humanoid = character:WaitForChild("Humanoid")
+        humanoid.HealthChanged:Connect(function(health)
+            healthText.Text = "生命值: " .. math.floor(health)
+        end)
+    end)
+    
+    -- 开始游戏倒计时
+    local timeLeft = player.leaderstats.TimeLeft
+    while timeLeft.Value > 0 do
+        wait(1)
+        timeLeft.Value = timeLeft.Value - 1
+    end
+    
+    -- 游戏结束
+    local gameOverGui = Instance.new("ScreenGui")
+    gameOverGui.Name = "GameOverGui"
+    gameOverGui.Parent = playerGui
+    
+    local gameOverText = Instance.new("TextLabel")
+    gameOverText.Name = "GameOverText"
+    gameOverText.Size = UDim2.new(0.5, 0, 0.3, 0)
+    gameOverText.Position = UDim2.new(0.25, 0, 0.3, 0)
+    gameOverText.BackgroundColor3 = Color3.new(0, 0, 0)
+    gameOverText.BackgroundTransparency = 0.5
+    gameOverText.TextColor3 = Color3.new(1, 1, 1)
+    gameOverText.TextSize = 30
+    gameOverText.Text = "游戏结束！\n最终分数: " .. player.leaderstats.Score.Value
+    gameOverText.Parent = gameOverGui
+    
+    -- 重新开始按钮
+    local restartButton = Instance.new("TextButton")
+    restartButton.Name = "RestartButton"
+    restartButton.Size = UDim2.new(0.2, 0, 0.1, 0)
+    restartButton.Position = UDim2.new(0.4, 0, 0.7, 0)
+    restartButton.BackgroundColor3 = Color3.new(0.2, 0.6, 0.2)
+    restartButton.TextColor3 = Color3.new(1, 1, 1)
+    restartButton.TextSize = 20
+    restartButton.Text = "重新开始"
+    restartButton.Parent = gameOverGui
+    
+    restartButton.MouseButton1Click:Connect(function()
+        -- 重置游戏
+        player.leaderstats.Score.Value = 0
+        player.leaderstats.TimeLeft.Value = gameDuration
+        gameOverGui:Destroy()
+        initGame(player)
+    end)
+end
+
+-- 游戏开始
+createGameScene()
+
+-- 生成初始金币
+for i = 1, coinCount do
+    createCoin()
+end
+
+-- 监听玩家加入
+Players.PlayerAdded:Connect(function(player)
+    player.CharacterAdded:Connect(function(character)
+        -- 等待角色加载完成
+        wait(1)
+        -- 初始化游戏
+        initGame(player)
+    end)
+end)
+                        </code>
+                    </div>
+                    
+                    <div class="project-tips">
+                        <h5>项目提示：</h5>
+                        <ul>
+                            <li>可以添加音效和动画，增强游戏体验</li>
+                            <li>可以添加不同类型的金币，价值不同</li>
+                            <li>可以添加道具，如加速、无敌等</li>
+                            <li>可以添加排行榜，记录最高分</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <h3>项目 2：简单的平台跳跃游戏</h3>
+                    <p>在这个项目中，我们将创建一个平台跳跃游戏，玩家需要跳跃过各种平台，到达终点。</p>
+                    
+                    <div class="project-steps">
+                        <h5>项目步骤：</h5>
+                        <ol>
+                            <li>创建游戏场景，包括平台、起点和终点</li>
+                            <li>实现玩家移动和跳跃控制</li>
+                            <li>添加碰撞检测，确保玩家可以站在平台上</li>
+                            <li>实现游戏胜利条件</li>
+                            <li>添加游戏UI，显示剩余生命和当前关卡</li>
+                            <li>添加多个关卡，增加游戏难度</li>
+                        </ol>
+                    </div>
+                    
+                    <div class="code-block">
+                        <code>
+-- 主游戏脚本
+local Players = game:GetService("Players")
+local Workspace = game:GetService("Workspace")
+
+-- 游戏设置
+local levels = {
+    {
+        platforms = {
+            {Vector3.new(0, 0, 0), Vector3.new(20, 1, 10)},
+            {Vector3.new(15, 5, 15), Vector3.new(15, 1, 10)},
+            {Vector3.new(30, 10, 30), Vector3.new(15, 1, 10)},
+            {Vector3.new(45, 15, 45), Vector3.new(15, 1, 10)}
+        },
+        start = Vector3.new(-5, 2, -5),
+        finish = Vector3.new(60, 20, 60)
+    },
+    {
+        platforms = {
+            {Vector3.new(0, 0, 0), Vector3.new(15, 1, 10)},
+            {Vector3.new(10, 8, 15), Vector3.new(10, 1, 10)},
+            {Vector3.new(20, 16, 30), Vector3.new(10, 1, 10)},
+            {Vector3.new(30, 24, 45), Vector3.new(10, 1, 10)},
+            {Vector3.new(40, 16, 60), Vector3.new(10, 1, 10)},
+            {Vector3.new(50, 8, 75), Vector3.new(10, 1, 10)}
+        },
+        start = Vector3.new(-5, 2, -5),
+        finish = Vector3.new(60, 20, 90)
+    }
+}
+
+local currentLevel = 1
+local lives = 3
+
+-- 创建游戏场景
+local function createGameScene(level)
+    -- 清除旧场景
+    for _, child in pairs(Workspace:GetChildren()) do
+        if child.Name == "Platform" or child.Name == "Start" or child.Name == "Finish" then
+            child:Destroy()
+        end
+    end
+    
+    -- 创建平台
+    for _, platform in pairs(levels[level].platforms) do
+        local part = Instance.new("Part")
+        part.Name = "Platform"
+        part.Position = platform[1]
+        part.Size = platform[2]
+        part.BrickColor = BrickColor.new("Bright blue")
+        part.Anchored = true
+        part.Parent = Workspace
+    end
+    
+    -- 创建起点
+    local start = Instance.new("Part")
+    start.Name = "Start"
+    start.Position = levels[level].start
+    start.Size = Vector3.new(5, 1, 5)
+    start.BrickColor = BrickColor.new("Bright green")
+    start.Anchored = true
+    start.Parent = Workspace
+    
+    -- 创建终点
+    local finish = Instance.new("Part")
+    finish.Name = "Finish"
+    finish.Position = levels[level].finish
+    finish.Size = Vector3.new(5, 1, 5)
+    finish.BrickColor = BrickColor.new("Bright red")
+    finish.Anchored = true
+    finish.Parent = Workspace
+    
+    -- 为终点添加碰撞检测
+    finish.Touched:Connect(function(hit)
+        local character = hit.Parent
+        local humanoid = character:FindFirstChild("Humanoid")
+        if humanoid then
+            local player = Players:GetPlayerFromCharacter(character)
+            if player then
+                -- 关卡完成
+                if currentLevel < #levels then
+                    currentLevel = currentLevel + 1
+                    createGameScene(currentLevel)
+                    resetPlayerPosition(player)
+                else
+                    -- 游戏完成
+                    gameComplete(player)
+                end
+            end
+        end
+    end)
+end
+
+-- 重置玩家位置
+local function resetPlayerPosition(player)
+    if player.Character then
+        local humanoidRootPart = player.Character:FindFirstChild("HumanoidRootPart")
+        if humanoidRootPart then
+            humanoidRootPart.Position = levels[currentLevel].start + Vector3.new(0, 5, 0)
+        end
+    end
+end
+
+-- 游戏完成
+local function gameComplete(player)
+    local playerGui = player:WaitForChild("PlayerGui")
+    
+    local gameCompleteGui = Instance.new("ScreenGui")
+    gameCompleteGui.Name = "GameCompleteGui"
+    gameCompleteGui.Parent = playerGui
+    
+    local gameCompleteText = Instance.new("TextLabel")
+    gameCompleteText.Name = "GameCompleteText"
+    gameCompleteText.Size = UDim2.new(0.5, 0, 0.3, 0)
+    gameCompleteText.Position = UDim2.new(0.25, 0, 0.3, 0)
+    gameCompleteText.BackgroundColor3 = Color3.new(0, 0, 0)
+    gameCompleteText.BackgroundTransparency = 0.5
+    gameCompleteText.TextColor3 = Color3.new(1, 1, 1)
+    gameCompleteText.TextSize = 30
+    gameCompleteText.Text = "游戏完成！\n恭喜你通过了所有关卡！"
+    gameCompleteText.Parent = gameCompleteGui
+    
+    -- 重新开始按钮
+    local restartButton = Instance.new("TextButton")
+    restartButton.Name = "RestartButton"
+    restartButton.Size = UDim2.new(0.2, 0, 0.1, 0)
+    restartButton.Position = UDim2.new(0.4, 0, 0.7, 0)
+    restartButton.BackgroundColor3 = Color3.new(0.2, 0.6, 0.2)
+    restartButton.TextColor3 = Color3.new(1, 1, 1)
+    restartButton.TextSize = 20
+    restartButton.Text = "重新开始"
+    restartButton.Parent = gameCompleteGui
+    
+    restartButton.MouseButton1Click:Connect(function()
+        currentLevel = 1
+        lives = 3
+        gameCompleteGui:Destroy()
+        createGameScene(currentLevel)
+        resetPlayerPosition(player)
+        updateUI(player)
+    end)
+end
+
+-- 更新UI
+local function updateUI(player)
+    local playerGui = player:WaitForChild("PlayerGui")
+    
+    -- 清除旧UI
+    for _, gui in pairs(playerGui:GetChildren()) do
+        if gui.Name == "GameUI" then
+            gui:Destroy()
+        end
+    end
+    
+    local screenGui = Instance.new("ScreenGui")
+    screenGui.Name = "GameUI"
+    screenGui.Parent = playerGui
+    
+    -- 关卡显示
+    local levelText = Instance.new("TextLabel")
+    levelText.Name = "LevelText"
+    levelText.Size = UDim2.new(0, 200, 0, 50)
+    levelText.Position = UDim2.new(0.05, 0, 0.05, 0)
+    levelText.BackgroundColor3 = Color3.new(0, 0, 0)
+    levelText.BackgroundTransparency = 0.5
+    levelText.TextColor3 = Color3.new(1, 1, 1)
+    levelText.TextSize = 20
+    levelText.Text = "关卡: " .. currentLevel .. "/" .. #levels
+    levelText.Parent = screenGui
+    
+    -- 生命显示
+    local livesText = Instance.new("TextLabel")
+    livesText.Name = "LivesText"
+    livesText.Size = UDim2.new(0, 200, 0, 50)
+    livesText.Position = UDim2.new(0.8, 0, 0.05, 0)
+    livesText.BackgroundColor3 = Color3.new(0, 0, 0)
+    livesText.BackgroundTransparency = 0.5
+    livesText.TextColor3 = Color3.new(1, 1, 1)
+    livesText.TextSize = 20
+    livesText.Text = "生命: " .. lives
+    livesText.Parent = screenGui
+    
+    -- 生命值显示
+    local healthText = Instance.new("TextLabel")
+    healthText.Name = "HealthText"
+    healthText.Size = UDim2.new(0, 200, 0, 50)
+    healthText.Position = UDim2.new(0.05, 0, 0.15, 0)
+    healthText.BackgroundColor3 = Color3.new(0, 0, 0)
+    healthText.BackgroundTransparency = 0.5
+    healthText.TextColor3 = Color3.new(1, 1, 1)
+    healthText.TextSize = 20
+    healthText.Text = "生命值: 100"
+    healthText.Parent = screenGui
+    
+    -- 监听生命值变化
+    player.CharacterAdded:Connect(function(character)
+        local humanoid = character:WaitForChild("Humanoid")
+        humanoid.HealthChanged:Connect(function(health)
+            healthText.Text = "生命值: " .. math.floor(health)
+        end)
+        
+        -- 监听死亡事件
+        humanoid.Died:Connect(function()
+            lives = lives - 1
+            if lives > 0 then
+                wait(2)
+                resetPlayerPosition(player)
+                updateUI(player)
+            else
+                -- 游戏结束
+                local gameOverGui = Instance.new("ScreenGui")
+                gameOverGui.Name = "GameOverGui"
+                gameOverGui.Parent = playerGui
+                
+                local gameOverText = Instance.new("TextLabel")
+                gameOverText.Name = "GameOverText"
+                gameOverText.Size = UDim2.new(0.5, 0, 0.3, 0)
+                gameOverText.Position = UDim2.new(0.25, 0, 0.3, 0)
+                gameOverText.BackgroundColor3 = Color3.new(0, 0, 0)
+                gameOverText.BackgroundTransparency = 0.5
+                gameOverText.TextColor3 = Color3.new(1, 1, 1)
+                gameOverText.TextSize = 30
+                gameOverText.Text = "游戏结束！\n你用完了所有生命。"
+                gameOverText.Parent = gameOverGui
+                
+                -- 重新开始按钮
+                local restartButton = Instance.new("TextButton")
+                restartButton.Name = "RestartButton"
+                restartButton.Size = UDim2.new(0.2, 0, 0.1, 0)
+                restartButton.Position = UDim2.new(0.4, 0, 0.7, 0)
+                restartButton.BackgroundColor3 = Color3.new(0.2, 0.6, 0.2)
+                restartButton.TextColor3 = Color3.new(1, 1, 1)
+                restartButton.TextSize = 20
+                restartButton.Text = "重新开始"
+                restartButton.Parent = gameOverGui
+                
+                restartButton.MouseButton1Click:Connect(function()
+                    currentLevel = 1
+                    lives = 3
+                    gameOverGui:Destroy()
+                    createGameScene(currentLevel)
+                    resetPlayerPosition(player)
+                    updateUI(player)
+                end)
+            end
+        end)
+    end)
+end
+
+-- 游戏开始
+createGameScene(currentLevel)
+
+-- 监听玩家加入
+Players.PlayerAdded:Connect(function(player)
+    player.CharacterAdded:Connect(function(character)
+        -- 等待角色加载完成
+        wait(1)
+        -- 重置玩家位置
+        resetPlayerPosition(player)
+        -- 更新UI
+        updateUI(player)
+    end)
+end)
+                        </code>
+                    </div>
+                    
+                    <div class="project-tips">
+                        <h5>项目提示：</h5>
+                        <ul>
+                            <li>可以添加移动平台，增加游戏难度</li>
+                            <li>可以添加敌人和陷阱，增加游戏挑战性</li>
+                            <li>可以添加道具，如双跳、飞行等</li>
+                            <li>可以添加背景音乐和音效，增强游戏体验</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <h3>项目 3：简单的射击游戏</h3>
+                    <p>在这个项目中，我们将创建一个简单的射击游戏，玩家需要控制角色射击敌人，保护基地。</p>
+                    
+                    <div class="project-steps">
+                        <h5>项目步骤：</h5>
+                        <ol>
+                            <li>创建游戏场景，包括基地、玩家角色和敌人</li>
+                            <li>实现玩家移动和射击控制</li>
+                            <li>实现敌人生成和AI行为</li>
+                            <li>添加碰撞检测，处理子弹和敌人的碰撞</li>
+                            <li>实现基地健康系统</li>
+                            <li>添加游戏UI，显示分数、生命值和波次</li>
+                        </ol>
+                    </div>
+                    
+                    <div class="code-block">
+                        <code>
+-- 主游戏脚本
+local Players = game:GetService("Players")
+local Workspace = game:GetService("Workspace")
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+
+-- 游戏设置
+local baseHealth = 100
+local enemySpawnRate = 2  -- 每2秒生成一个敌人
+local bulletSpeed = 50
+local enemySpeed = 2
+local enemyHealth = 50
+local pointsPerEnemy = 10
+
+-- 游戏状态
+local base = nil
+local currentWave = 1
+local enemiesAlive = 0
+local maxEnemiesPerWave = 10
+
+-- 创建游戏场景
+local function createGameScene()
+    -- 创建基地
+    base = Instance.new("Part")
+    base.Name = "Base"
+    base.Position = Vector3.new(0, 0, -30)
+    base.Size = Vector3.new(20, 5, 10)
+    base.BrickColor = BrickColor.new("Bright red")
+    base.Anchored = true
+    base.Parent = Workspace
+    
+    -- 创建基地健康值
+    local baseHealthValue = Instance.new("IntValue")
+    baseHealthValue.Name = "BaseHealth"
+    baseHealthValue.Value = baseHealth
+    baseHealthValue.Parent = base
+    
+    -- 创建地面
+    local ground = Instance.new("Part")
+    ground.Name = "Ground"
+    ground.Position = Vector3.new(0, -2.5, 0)
+    ground.Size = Vector3.new(100, 5, 100)
+    ground.BrickColor = BrickColor.new("Grass green")
+    ground.Anchored = true
+    ground.Parent = Workspace
+    
+    -- 创建边界
+    local boundaries = {
+        {Vector3.new(0, 0, 50), Vector3.new(100, 10, 1)},
+        {Vector3.new(50, 0, 0), Vector3.new(1, 10, 100)},
+        {Vector3.new(-50, 0, 0), Vector3.new(1, 10, 100)}
+    }
+    
+    for _, boundary in pairs(boundaries) do
+        local part = Instance.new("Part")
+        part.Name = "Boundary"
+        part.Position = boundary[1]
+        part.Size = boundary[2]
+        part.BrickColor = BrickColor.new("Dark gray")
+        part.Anchored = true
+        part.Parent = Workspace
+    end
+end
+
+-- 创建玩家角色
+local function setupPlayer(player)
+    player.CharacterAdded:Connect(function(character)
+        local humanoid = character:WaitForChild("Humanoid")
+        local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+        
+        -- 设置初始位置
+        humanoidRootPart.Position = Vector3.new(0, 2, -20)
+        
+        -- 设置移动速度
+        humanoid.WalkSpeed = 16
+        
+        -- 创建武器
+        local tool = Instance.new("Tool")
+        tool.Name = "Gun"
+        tool.Parent = player.Backpack
+        
+        local handle = Instance.new("Part")
+        handle.Name = "Handle"
+        handle.Size = Vector3.new(2, 1, 1)
+        handle.BrickColor = BrickColor.new("Bright blue")
+        handle.Parent = tool
+        
+        -- 武器激活时
+        tool.Activated:Connect(function()
+            -- 创建子弹
+            local bullet = Instance.new("Part")
+            bullet.Name = "Bullet"
+            bullet.Size = Vector3.new(0.5, 0.5, 2)
+            bullet.BrickColor = BrickColor.new("Bright yellow")
+            bullet.CanCollide = false
+            bullet.Parent = Workspace
+            
+            -- 设置子弹位置和方向
+            local mouse = player:GetMouse()
+            local direction = (mouse.Hit.p - humanoidRootPart.Position).Unit
+            bullet.Position = humanoidRootPart.Position + direction * 3
+            
+            -- 发射子弹
+            local bodyVelocity = Instance.new("BodyVelocity")
+            bodyVelocity.Velocity = direction * bulletSpeed
+            bodyVelocity.Parent = bullet
+            
+            -- 子弹碰撞检测
+            bullet.Touched:Connect(function(hit)
+                if hit.Name == "Enemy" then
+                    -- 减少敌人生命值
+                    local enemyHealth = hit:FindFirstChild("EnemyHealth")
+                    if enemyHealth then
+                        enemyHealth.Value = enemyHealth.Value - 25
+                        if enemyHealth.Value <= 0 then
+                            -- 敌人死亡
+                            hit:Destroy()
+                            enemiesAlive = enemiesAlive - 1
+                            
+                            -- 增加分数
+                            if player:FindFirstChild("leaderstats") then
+                                player.leaderstats.Score.Value = player.leaderstats.Score.Value + pointsPerEnemy
+                            end
+                            
+                            -- 检查波次是否完成
+                            if enemiesAlive == 0 then
+                                currentWave = currentWave + 1
+                                maxEnemiesPerWave = maxEnemiesPerWave + 5
+                                startWave()
+                            end
+                        end
+                    end
+                    bullet:Destroy()
+                elseif hit.Name ~= "Base" and hit.Name ~= "Ground" and hit.Name ~= "Boundary" and not hit:IsDescendantOf(character) then
+                    bullet:Destroy()
+                end
+            end)
+            
+            -- 5秒后销毁子弹
+            wait(5)
+            if bullet then
+                bullet:Destroy()
+            end
+        end)
+    end)
+end
+
+-- 创建敌人
+local function createEnemy()
+    local enemy = Instance.new("Part")
+    enemy.Name = "Enemy"
+    enemy.Size = Vector3.new(3, 3, 3)
+    enemy.BrickColor = BrickColor.new("Bright red")
+    enemy.Position = Vector3.new(math.random(-40, 40), 2, 40)
+    enemy.Anchored = false
+    enemy.Parent = Workspace
+    
+    -- 创建敌人健康值
+    local enemyHealth = Instance.new("IntValue")
+    enemyHealth.Name = "EnemyHealth"
+    enemyHealth.Value = enemyHealth
+    enemyHealth.Parent = enemy
+    
+    -- 敌人移动
+    while enemy do
+        wait(0.1)
+        local direction = (base.Position - enemy.Position).Unit
+        enemy.Position = enemy.Position + direction * enemySpeed
+        
+        -- 检查是否到达基地
+        if (enemy.Position - base.Position).Magnitude < 5 then
+            -- 减少基地健康值
+            base.BaseHealth.Value = base.BaseHealth.Value - 10
+            enemy:Destroy()
+            enemiesAlive = enemiesAlive - 1
+            
+            -- 检查基地是否被摧毁
+            if base.BaseHealth.Value <= 0 then
+                gameOver()
+            end
+        end
+    end
+end
+
+-- 开始波次
+local function startWave()
+    enemiesAlive = maxEnemiesPerWave
+    for i = 1, maxEnemiesPerWave do
+        wait(enemySpawnRate)
+        createEnemy()
+    end
+end
+
+-- 游戏结束
+local function gameOver()
+    -- 通知所有玩家游戏结束
+    for _, player in pairs(Players:GetPlayers()) do
+        local playerGui = player:WaitForChild("PlayerGui")
+        
+        local gameOverGui = Instance.new("ScreenGui")
+        gameOverGui.Name = "GameOverGui"
+        gameOverGui.Parent = playerGui
+        
+        local gameOverText = Instance.new("TextLabel")
+        gameOverText.Name = "GameOverText"
+        gameOverText.Size = UDim2.new(0.5, 0, 0.3, 0)
+        gameOverText.Position = UDim2.new(0.25, 0, 0.3, 0)
+        gameOverText.BackgroundColor3 = Color3.new(0, 0, 0)
+        gameOverText.BackgroundTransparency = 0.5
+        gameOverText.TextColor3 = Color3.new(1, 1, 1)
+        gameOverText.TextSize = 30
+        gameOverText.Text = "游戏结束！\n基地被摧毁了。"
+        gameOverText.Parent = gameOverGui
+        
+        -- 重新开始按钮
+        local restartButton = Instance.new("TextButton")
+        restartButton.Name = "RestartButton"
+        restartButton.Size = UDim2.new(0.2, 0, 0.1, 0)
+        restartButton.Position = UDim2.new(0.4, 0, 0.7, 0)
+        restartButton.BackgroundColor3 = Color3.new(0.2, 0.6, 0.2)
+        restartButton.TextColor3 = Color3.new(1, 1, 1)
+        restartButton.TextSize = 20
+        restartButton.Text = "重新开始"
+        restartButton.Parent = gameOverGui
+        
+        restartButton.MouseButton1Click:Connect(function()
+            -- 重置游戏
+            currentWave = 1
+            maxEnemiesPerWave = 10
+            base.BaseHealth.Value = baseHealth
+            
+            -- 清除旧敌人
+            for _, enemy in pairs(Workspace:GetChildren()) do
+                if enemy.Name == "Enemy" then
+                    enemy:Destroy()
+                end
+            end
+            
+            -- 重新开始
+            gameOverGui:Destroy()
+            startWave()
+        end)
+    end
+end
+
+-- 更新UI
+local function updateUI(player)
+    local playerGui = player:WaitForChild("PlayerGui")
+    
+    -- 清除旧UI
+    for _, gui in pairs(playerGui:GetChildren()) do
+        if gui.Name == "GameUI" then
+            gui:Destroy()
+        end
+    end
+    
+    local screenGui = Instance.new("ScreenGui")
+    screenGui.Name = "GameUI"
+    screenGui.Parent = playerGui
+    
+    -- 分数显示
+    local scoreText = Instance.new("TextLabel")
+    scoreText.Name = "ScoreText"
+    scoreText.Size = UDim2.new(0, 200, 0, 50)
+    scoreText.Position = UDim2.new(0.05, 0, 0.05, 0)
+    scoreText.BackgroundColor3 = Color3.new(0, 0, 0)
+    scoreText.BackgroundTransparency = 0.5
+    scoreText.TextColor3 = Color3.new(1, 1, 1)
+    scoreText.TextSize = 20
+    scoreText.Text = "分数: 0"
+    scoreText.Parent = screenGui
+    
+    -- 波次显示
+    local waveText = Instance.new("TextLabel")
+    waveText.Name = "WaveText"
+    waveText.Size = UDim2.new(0, 200, 0, 50)
+    waveText.Position = UDim2.new(0.4, 0, 0.05, 0)
+    waveText.BackgroundColor3 = Color3.new(0, 0, 0)
+    waveText.BackgroundTransparency = 0.5
+    waveText.TextColor3 = Color3.new(1, 1, 1)
+    waveText.TextSize = 20
+    waveText.Text = "波次: " .. currentWave
+    waveText.Parent = screenGui
+    
+    -- 基地健康显示
+    local baseHealthText = Instance.new("TextLabel")
+    baseHealthText.Name = "BaseHealthText"
+    baseHealthText.Size = UDim2.new(0, 200, 0, 50)
+    baseHealthText.Position = UDim2.new(0.8, 0, 0.05, 0)
+    baseHealthText.BackgroundColor3 = Color3.new(0, 0, 0)
+    baseHealthText.BackgroundTransparency = 0.5
+    baseHealthText.TextColor3 = Color3.new(1, 1, 1)
+    baseHealthText.TextSize = 20
+    baseHealthText.Text = "基地健康: " .. base.BaseHealth.Value
+    baseHealthText.Parent = screenGui
+    
+    -- 生命值显示
+    local healthText = Instance.new("TextLabel")
+    healthText.Name = "HealthText"
+    healthText.Size = UDim2.new(0, 200, 0, 50)
+    healthText.Position = UDim2.new(0.05, 0, 0.15, 0)
+    healthText.BackgroundColor3 = Color3.new(0, 0, 0)
+    healthText.BackgroundTransparency = 0.5
+    healthText.TextColor3 = Color3.new(1, 1, 1)
+    healthText.TextSize = 20
+    healthText.Text = "生命值: 100"
+    healthText.Parent = screenGui
+    
+    -- 监听分数变化
+    if player:FindFirstChild("leaderstats") then
+        player.leaderstats.Score.Changed:Connect(function(value)
+            scoreText.Text = "分数: " .. value
+        end)
+    end
+    
+    -- 监听基地健康变化
+    base.BaseHealth.Changed:Connect(function(value)
+        baseHealthText.Text = "基地健康: " .. value
+    end)
+    
+    -- 监听波次变化
+    while true do
+        wait(1)
+        waveText.Text = "波次: " .. currentWave
+    end
+    
+    -- 监听生命值变化
+    player.CharacterAdded:Connect(function(character)
+        local humanoid = character:WaitForChild("Humanoid")
+        humanoid.HealthChanged:Connect(function(health)
+            healthText.Text = "生命值: " .. math.floor(health)
+        end)
+    end)
+end
+
+-- 初始化游戏
+local function initGame()
+    -- 创建游戏场景
+    createGameScene()
+    
+    -- 为每个玩家设置
+    for _, player in pairs(Players:GetPlayers()) do
+        setupPlayer(player)
+        updateUI(player)
+    end
+    
+    -- 监听新玩家加入
+    Players.PlayerAdded:Connect(function(player)
+        setupPlayer(player)
+        updateUI(player)
+    end)
+    
+    -- 开始第一波
+    startWave()
+end
+
+-- 游戏开始
+initGame()
+                        </code>
+                    </div>
+                    
+                    <div class="project-tips">
+                        <h5>项目提示：</h5>
+                        <ul>
+                            <li>可以添加不同类型的敌人，具有不同的速度和健康值</li>
+                            <li>可以添加不同类型的武器，具有不同的伤害和射速</li>
+                            <li>可以添加道具，如治疗包、弹药等</li>
+                            <li>可以添加升级系统，让玩家升级武器和基地</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Roblox游戏开发教程</p>
+        </div>
+    </footer>
+
+    <script src="../script.js"></script>
+</body>
+</html>

@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roblox游戏开发基础 - 零基础入门</title>
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        .section-nav {
+            background: #f9f9f9;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 40px;
+        }
+        
+        .section-nav h3 {
+            margin-bottom: 15px;
+            color: #4CAF50;
+        }
+        
+        .section-nav ul {
+            list-style: none;
+        }
+        
+        .section-nav li {
+            margin-bottom: 10px;
+        }
+        
+        .section-nav a {
+            color: #333;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .section-nav a:hover {
+            color: #4CAF50;
+        }
+        
+        .setup-step {
+            background: #f9f9f9;
+            padding: 30px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+        }
+        
+        .setup-step h4 {
+            color: #4CAF50;
+            margin-bottom: 15px;
+        }
+        
+        .setup-step img {
+            max-width: 100%;
+            border-radius: 4px;
+            margin: 20px 0;
+        }
+        
+        .studio-panel {
+            background: #f9f9f9;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        
+        .studio-panel h4 {
+            color: #4CAF50;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Luau 编程语言教程</h1>
+            <nav>
+                <ul>
+                    <li><a href="../index.html">首页</a></li>
+                    <li><a href="../beginner.html">初级教程</a></li>
+                    <li><a href="../advanced.html">中级教程</a></li>
+                    <li><a href="index.html">Roblox开发</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <section class="tutorial-content">
+                <h2>Roblox游戏开发基础</h2>
+                
+                <div class="section-nav">
+                    <h3>目录</h3>
+                    <ul>
+                        <li><a href="#setup">1. 环境搭建</a></li>
+                        <li><a href="#studio">2. Roblox Studio基础</a></li>
+                        <li><a href="#scripting">3. Luau脚本基础</a></li>
+                    </ul>
+                </div>
+
+                <!-- 环境搭建 -->
+                <div class="tutorial-section" id="setup">
+                    <h2>1. 环境搭建</h2>
+                    <p>在开始Roblox游戏开发之前，你需要下载并安装Roblox Studio。Roblox Studio是Roblox官方提供的游戏开发工具，它包含了创建、编辑和发布Roblox游戏所需的所有功能。</p>
+                    
+                    <div class="setup-step">
+                        <h4>步骤 1: 注册Roblox账号</h4>
+                        <p>如果你还没有Roblox账号，需要先注册一个。访问<a href="https://www.roblox.com/signup" target="_blank">Roblox注册页面</a>，填写必要的信息并创建账号。</p>
+                    </div>
+                    
+                    <div class="setup-step">
+                        <h4>步骤 2: 下载Roblox Studio</h4>
+                        <p>登录Roblox账号后，访问<a href="https://www.roblox.com/create" target="_blank">Roblox创建页面</a>，点击"Start Creating"按钮，系统会自动下载Roblox Studio安装程序。</p>
+                    </div>
+                    
+                    <div class="setup-step">
+                        <h4>步骤 3: 安装Roblox Studio</h4>
+                        <p>运行下载的安装程序，按照提示完成安装过程。安装完成后，Roblox Studio会自动启动。</p>
+                    </div>
+                    
+                    <div class="setup-step">
+                        <h4>步骤 4: 配置Roblox Studio</h4>
+                        <p>首次启动Roblox Studio时，你会看到一个欢迎界面。你可以选择创建一个新项目或打开现有项目。为了开始学习，建议选择"New Project"创建一个新的空白项目。</p>
+                    </div>
+                </div>
+
+                <!-- Roblox Studio基础 -->
+                <div class="tutorial-section" id="studio">
+                    <h2>2. Roblox Studio基础</h2>
+                    <p>Roblox Studio的界面由多个面板组成，每个面板都有特定的功能。了解这些面板的功能和使用方法是开始Roblox游戏开发的基础。</p>
+                    
+                    <div class="studio-panel">
+                        <h4>2.1 主界面</h4>
+                        <p>Roblox Studio的主界面包括以下几个主要部分：</p>
+                        <ul>
+                            <li><strong>菜单栏</strong>：位于顶部，包含文件、编辑、视图等菜单选项。</li>
+                            <li><strong>工具栏</strong>：位于菜单栏下方，包含常用工具按钮。</li>
+                            <li><strong>视图面板</strong>：位于中央，显示游戏场景的3D视图。</li>
+                            <li><strong>资源管理器</strong>：位于右侧，显示游戏中的所有对象和资源。</li>
+                            <li><strong>属性面板</strong>：位于右侧，显示选中对象的属性。</li>
+                            <li><strong>输出窗口</strong>：位于底部，显示脚本执行结果和错误信息。</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="studio-panel">
+                        <h4>2.2 基本操作</h4>
+                        <p>在Roblox Studio中，你可以执行以下基本操作：</p>
+                        <ul>
+                            <li><strong>选择对象</strong>：在视图面板中点击对象，或在资源管理器中选择对象。</li>
+                            <li><strong>移动对象</strong>：选中对象后，使用移动工具（快捷键：G）拖动对象。</li>
+                            <li><strong>旋转对象</strong>：选中对象后，使用旋转工具（快捷键：R）旋转对象。</li>
+                            <li><strong>缩放对象</strong>：选中对象后，使用缩放工具（快捷键：S）缩放对象。</li>
+                            <li><strong>创建对象</strong>：在资源管理器中右键点击，选择"Insert Object"，然后选择要创建的对象类型。</li>
+                            <li><strong>删除对象</strong>：选中对象后，按Delete键删除。</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="studio-panel">
+                        <h4>2.3 工作流程</h4>
+                        <p>Roblox游戏开发的基本工作流程如下：</p>
+                        <ol>
+                            <li>创建或打开一个项目。</li>
+                            <li>在场景中添加和排列对象。</li>
+                            <li>为对象添加脚本，实现游戏逻辑。</li>
+                            <li>测试游戏，确保一切正常工作。</li>
+                            <li>发布游戏，使其他玩家可以访问。</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <!-- Luau脚本基础 -->
+                <div class="tutorial-section" id="scripting">
+                    <h2>3. Luau脚本基础</h2>
+                    <p>Luau是Roblox使用的编程语言，它是Lua的一个变体，专门为Roblox游戏开发优化。在开始编写Roblox游戏脚本之前，你需要了解Luau的基本语法和编程概念。</p>
+                    
+                    <h3>3.1 脚本创建</h3>
+                    <p>在Roblox Studio中，你可以通过以下步骤创建脚本：</p>
+                    <ol>
+                        <li>在资源管理器中右键点击一个对象，选择"Insert Object"。</li>
+                        <li>在弹出的窗口中选择"Script"或"LocalScript"。</li>
+                        <li>双击创建的脚本，打开脚本编辑器。</li>
+                    </ol>
+                    <p><strong>注意：</strong>Script在服务器端运行，而LocalScript在客户端运行。</p>
+                    
+                    <h3>3.2 基本语法</h3>
+                    <div class="code-block">
+                        <code>
+-- 打印消息
+print("Hello, Roblox!")
+
+-- 变量声明
+local message = "Hello, Roblox!"
+local count = 10
+local isGameActive = true
+
+-- 条件语句
+if count > 5 then
+    print("Count is greater than 5")
+elif count == 5 then
+    print("Count is equal to 5")
+else
+    print("Count is less than 5")
+end
+
+-- 循环
+for i = 1, 5 do
+    print("Iteration " .. i)
+end
+
+-- 函数
+function greet(name)
+    return "Hello, " .. name .. "!"
+end
+
+local greeting = greet("Player")
+print(greeting)
+                        </code>
+                    </div>
+                    
+                    <h3>3.3 Roblox特有概念</h3>
+                    <p>在Roblox中，有一些特有的概念和API：</p>
+                    
+                    <h4>3.3.1 服务（Services）</h4>
+                    <p>Roblox提供了多种服务，用于访问游戏的不同功能：</p>
+                    <div class="code-block">
+                        <code>
+-- 获取服务
+local Players = game:GetService("Players")
+local Workspace = game:GetService("Workspace")
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+
+-- 使用服务
+Players.PlayerAdded:Connect(function(player)
+    print("Player joined: " .. player.Name)
+end)
+                        </code>
+                    </div>
+                    
+                    <h4>3.3.2 事件（Events）</h4>
+                    <p>Roblox使用事件系统来响应游戏中的各种情况：</p>
+                    <div class="code-block">
+                        <code>
+-- 监听玩家加入事件
+local Players = game:GetService("Players")
+
+Players.PlayerAdded:Connect(function(player)
+    print("Player joined: " .. player.Name)
+    
+    -- 监听玩家离开事件
+    player.CharacterAdded:Connect(function(character)
+        print(player.Name .. "'s character spawned")
+    end)
+end)
+                        </code>
+                    </div>
+                    
+                    <h4>3.3.3 实例（Instances）</h4>
+                    <p>Roblox中的所有对象都是实例，每个实例都有属性和方法：</p>
+                    <div class="code-block">
+                        <code>
+-- 创建一个新的部件
+local part = Instance.new("Part")
+part.Name = "MyPart"
+part.Position = Vector3.new(0, 5, 0)
+part.Size = Vector3.new(2, 2, 2)
+part.BrickColor = BrickColor.new("Bright blue")
+part.Parent = workspace
+
+-- 修改部件属性
+part.Position = Vector3.new(5, 5, 0)
+
+-- 销毁部件
+-- part:Destroy()
+                        </code>
+                    </div>
+                    
+                    <div class="exercise">
+                        <h4>练习：创建你的第一个Roblox脚本</h4>
+                        <p>创建一个脚本，当玩家加入游戏时，在聊天中显示欢迎消息。</p>
+                        <button class="exercise-toggle">查看答案</button>
+                        <div class="answer" style="display: none;">
+                            <div class="code-block">
+                                <code>
+-- 获取Players服务
+local Players = game:GetService("Players")
+
+-- 监听玩家加入事件
+Players.PlayerAdded:Connect(function(player)
+    -- 等待玩家的Character加载
+    player.CharacterAdded:Connect(function(character)
+        -- 发送欢迎消息
+        player:WaitForChild("PlayerGui")
+        local message = "欢迎来到我的游戏，" .. player.Name .. "！"
+        game:GetService("StarterGui"):SetCore("SendNotification", {
+            Title = "欢迎",
+            Text = message,
+            Duration = 5
+        })
+    end)
+end)
+                                </code>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Roblox游戏开发教程</p>
+        </div>
+    </footer>
+
+    <script src="../script.js"></script>
+</body>
+</html>
