@@ -36,24 +36,164 @@
             border-radius: 4px;
             margin: 20px 0;
             border-left: 4px solid #4CAF50;
+            position: relative;
+        }
+        
+        .code-example::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(to bottom, #4CAF50, #45a049);
         }
         
         .code-example code {
             font-family: 'Courier New', Courier, monospace;
             font-size: 14px;
         }
+        
+        .flowchart {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            margin: 30px 0;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .flowchart h4 {
+            color: #4CAF50;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .flowchart-diagram {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+        
+        .flowchart-step {
+            background: #e8f5e8;
+            padding: 15px 30px;
+            border-radius: 25px;
+            text-align: center;
+            min-width: 200px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .flowchart-arrow {
+            width: 2px;
+            height: 30px;
+            background: #4CAF50;
+            position: relative;
+        }
+        
+        .flowchart-arrow::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
+            border-top: 10px solid #4CAF50;
+        }
+        
+        .interactive-section {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 40px;
+            border-radius: 12px;
+            margin: 40px 0;
+            text-align: center;
+        }
+        
+        .interactive-section h3 {
+            color: #333;
+            margin-bottom: 30px;
+        }
+        
+        .interactive-card {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .interactive-card h4 {
+            color: #4CAF50;
+            margin-bottom: 15px;
+        }
+        
+        .interactive-card p {
+            margin-bottom: 20px;
+        }
+        
+        .exercise {
+            background: #f0f8f0;
+            padding: 30px;
+            border-radius: 8px;
+            margin: 30px 0;
+            border-left: 4px solid #4CAF50;
+        }
+        
+        .exercise h4 {
+            color: #4CAF50;
+            margin-bottom: 15px;
+        }
+        
+        .exercise-toggle {
+            background: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .exercise-toggle:hover {
+            background: #45a049;
+        }
+        
+        .answer {
+            margin-top: 20px;
+            transition: all 0.3s ease;
+        }
+        
+        .3d-model {
+            background: #f9f9f9;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            text-align: center;
+        }
+        
+        .3d-model h4 {
+            color: #4CAF50;
+            margin-bottom: 15px;
+        }
+        
+        .3d-model p {
+            margin-bottom: 15px;
+        }
     </style>
 </head>
 <body>
     <header>
         <div class="container">
-            <h1>Luau 编程语言教程</h1>
+            <h1>Roblox游戏开发教程</h1>
             <nav>
                 <ul>
                     <li><a href="index.html">首页</a></li>
-                    <li><a href="beginner.html">初级教程</a></li>
-                    <li><a href="advanced.html">中级教程</a></li>
-                    <li><a href="roblox-overview.html">Roblox开发</a></li>
+                    <li><a href="roblox-basics.html">基础教程</a></li>
+                    <li><a href="roblox-game-dev.html">游戏开发</a></li>
+                    <li><a href="roblox-projects.html">实践项目</a></li>
                 </ul>
             </nav>
         </div>
@@ -78,6 +218,14 @@
                         <li><strong>Camera</strong>：玩家的视角控制器。</li>
                         <li><strong>Script</strong>：包含游戏逻辑的脚本。</li>
                     </ul>
+                    
+                    <div class="3d-model">
+                        <h4>3D模型示意图</h4>
+                        <p>Roblox中的游戏对象是3D的，它们在三维空间中具有位置、旋转和缩放属性。</p>
+                        <div style="width: 100%; height: 300px; background: #f0f0f0; border-radius: 8px; display: flex; align-items: center; justify-content: center;">
+                            <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=3D%20model%20of%20Roblox%20game%20objects%20including%20parts%2C%20models%2C%20and%20characters&image_size=landscape_16_9" alt="Roblox 3D模型示意图" style="max-width: 100%; max-height: 100%;">
+                        </div>
+                    </div>
                     
                     <h4>1.2 创建和管理游戏对象</h4>
                     <div class="code-example">
@@ -121,6 +269,19 @@ model.Parent = workspace
                         <li><strong>Elasticity</strong>：弹性，影响碰撞时的反弹程度。</li>
                         <li><strong>Friction</strong>：摩擦力，影响物体滑动时的阻力。</li>
                     </ul>
+                    
+                    <div class="flowchart">
+                        <h4>物理引擎工作流程</h4>
+                        <div class="flowchart-diagram">
+                            <div class="flowchart-step">设置物理属性</div>
+                            <div class="flowchart-arrow"></div>
+                            <div class="flowchart-step">物理引擎计算</div>
+                            <div class="flowchart-arrow"></div>
+                            <div class="flowchart-step">应用物理效果</div>
+                            <div class="flowchart-arrow"></div>
+                            <div class="flowchart-step">更新对象状态</div>
+                        </div>
+                    </div>
                     
                     <h4>2.2 物理模拟示例</h4>
                     <div class="code-example">
@@ -195,6 +356,14 @@ end)
                     <h3>4. 坐标系和向量</h3>
                     <p>在Roblox中，游戏世界使用三维坐标系，每个位置由x、y、z三个坐标组成。向量（Vector3）用于表示位置、方向和速度等。</p>
                     
+                    <div class="3d-model">
+                        <h4>三维坐标系</h4>
+                        <p>Roblox使用右手坐标系，x轴指向右，y轴指向上，z轴指向前。</p>
+                        <div style="width: 100%; height: 300px; background: #f0f0f0; border-radius: 8px; display: flex; align-items: center; justify-content: center;">
+                            <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=3D%20coordinate%20system%20with%20x%2C%20y%2C%20z%20axes%20in%20Roblox%20game%20development&image_size=landscape_16_9" alt="Roblox三维坐标系" style="max-width: 100%; max-height: 100%;">
+                        </div>
+                    </div>
+                    
                     <h4>4.1 基本向量操作</h4>
                     <div class="code-example">
                         <code>
@@ -226,6 +395,21 @@ end
                     <h3>5. 游戏循环</h3>
                     <p>游戏循环是游戏开发中的核心概念，用于持续更新游戏状态、处理用户输入、渲染画面等。</p>
                     
+                    <div class="flowchart">
+                        <h4>游戏循环流程</h4>
+                        <div class="flowchart-diagram">
+                            <div class="flowchart-step">处理用户输入</div>
+                            <div class="flowchart-arrow"></div>
+                            <div class="flowchart-step">更新游戏状态</div>
+                            <div class="flowchart-arrow"></div>
+                            <div class="flowchart-step">检测碰撞</div>
+                            <div class="flowchart-arrow"></div>
+                            <div class="flowchart-step">渲染画面</div>
+                            <div class="flowchart-arrow"></div>
+                            <div class="flowchart-step">重复循环</div>
+                        </div>
+                    </div>
+                    
                     <h4>5.1 使用RunService</h4>
                     <p>Roblox提供了RunService服务，用于创建游戏循环：</p>
                     <div class="code-example">
@@ -249,6 +433,62 @@ end
 -- 连接到游戏循环
 RunService.Heartbeat:Connect(update)
                         </code>
+                    </div>
+                </div>
+                
+                <!-- 互动练习 -->
+                <div class="interactive-section">
+                    <h3>互动练习</h3>
+                    <div class="interactive-card">
+                        <h4>练习 1: 物理碰撞实验</h4>
+                        <p>创建一个场景，包含不同质量和弹性的物体，观察它们的碰撞效果。</p>
+                        <ol>
+                            <li>创建一个地面</li>
+                            <li>创建几个不同大小和质量的部件</li>
+                            <li>设置不同的弹性值</li>
+                            <li>从不同高度放下这些部件，观察碰撞效果</li>
+                        </ol>
+                    </div>
+                    <div class="interactive-card">
+                        <h4>练习 2: 向量操作练习</h4>
+                        <p>创建一个可以通过向量控制移动的物体。</p>
+                        <ol>
+                            <li>创建一个部件作为玩家控制的物体</li>
+                            <li>使用UserInputService监听键盘输入</li>
+                            <li>根据输入方向创建向量</li>
+                            <li>使用向量控制物体移动</li>
+                        </ol>
+                        <div class="code-example">
+                            <code>
+-- 获取UserInputService
+local UserInputService = game:GetService("UserInputService")
+
+-- 获取要移动的部件
+local part = workspace:FindFirstChild("Player")
+
+-- 移动速度
+local moveSpeed = 5
+
+-- 监听键盘输入
+UserInputService.InputBegan:Connect(function(input, gameProcessedEvent)
+    if gameProcessedEvent then return end
+    
+    if input.KeyCode == Enum.KeyCode.W then
+        -- 向前移动
+        part.Position = part.Position + Vector3.new(0, 0, moveSpeed)
+    elseif input.KeyCode == Enum.KeyCode.S then
+        -- 向后移动
+        part.Position = part.Position + Vector3.new(0, 0, -moveSpeed)
+    elseif input.KeyCode == Enum.KeyCode.A then
+        -- 向左移动
+        part.Position = part.Position + Vector3.new(-moveSpeed, 0, 0)
+    elseif input.KeyCode == Enum.KeyCode.D then
+        -- 向右移动
+        part.Position = part.Position + Vector3.new(moveSpeed, 0, 0)
+    end
+end)
+                            </code>
+                        </div>
                     </div>
                 </div>
                 
@@ -308,5 +548,20 @@ end
     </footer>
 
     <script src="script.js"></script>
+    <script>
+        // 练习答案切换
+        document.querySelectorAll('.exercise-toggle').forEach(function(button) {
+            button.addEventListener('click', function() {
+                const answer = this.nextElementSibling;
+                if (answer.style.display === 'none') {
+                    answer.style.display = 'block';
+                    this.textContent = '隐藏答案';
+                } else {
+                    answer.style.display = 'none';
+                    this.textContent = '查看答案';
+                }
+            });
+        });
+    </script>
 </body>
 </html>

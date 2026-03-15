@@ -3,33 +3,310 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Luau 编程语言教程</title>
+    <title>Roblox游戏开发教程 - 零基础入门</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+        
+        * {
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        .hero {
+            background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+            color: white;
+            padding: 120px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="1" fill="white" opacity="0.1"/></svg>');
+            animation: float 20s infinite linear;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0); }
+        }
+        
+        .hero h2 {
+            font-size: 3.5em;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            animation: fadeInUp 1s ease-out;
+        }
+        
+        .hero p {
+            font-size: 1.5em;
+            margin-bottom: 40px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            animation: fadeInUp 1s ease-out 0.3s both;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .btn {
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            transition: all 0.3s ease;
+        }
+        
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(255,255,255,0.2);
+            transition: left 0.3s ease;
+            z-index: -1;
+        }
+        
+        .btn:hover::before {
+            left: 0;
+        }
+        
+        .btn-group {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 30px;
+            animation: fadeInUp 1s ease-out 0.6s both;
+        }
+        
+        .course-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 60px;
+        }
+        
+        .course-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            padding: 35px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .course-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: linear-gradient(to bottom, #4CAF50, #45a049);
+        }
+        
+        .course-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+        
+        .course-card h3 {
+            color: #4CAF50;
+            margin-bottom: 15px;
+            font-size: 1.5em;
+            font-weight: 600;
+        }
+        
+        .course-card p {
+            margin-bottom: 20px;
+            color: #666;
+        }
+        
+        .course-card .btn {
+            display: inline-block;
+            margin-top: 10px;
+        }
+        
+        .features {
+            margin-top: 80px;
+        }
+        
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .feature-item {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+        
+        .feature-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        .feature-item h4 {
+            color: #4CAF50;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+        
+        .feature-item p {
+            color: #666;
+        }
+        
+        .interactive-section {
+            background: #f9f9f9;
+            padding: 80px 0;
+            margin-top: 80px;
+        }
+        
+        .interactive-section h3 {
+            text-align: center;
+            font-size: 2em;
+            margin-bottom: 40px;
+            color: #333;
+        }
+        
+        .interactive-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .interactive-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            padding: 30px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .interactive-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+        
+        .interactive-card h4 {
+            color: #4CAF50;
+            margin-bottom: 15px;
+            font-size: 1.2em;
+        }
+        
+        .interactive-card p {
+            margin-bottom: 20px;
+            color: #666;
+        }
+        
+        .interactive-card .btn {
+            margin-top: 10px;
+        }
+        
+        @media (max-width: 768px) {
+            .hero h2 {
+                font-size: 2.5em;
+            }
+            
+            .btn-group {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .btn-group .btn {
+                width: 100%;
+                max-width: 200px;
+                text-align: center;
+            }
+        }
+    </style>
 </head>
 <body>
     <header>
         <div class="container">
-            <h1>Luau 编程语言教程</h1>
+            <h1>Roblox游戏开发教程</h1>
             <nav>
                 <ul>
                     <li><a href="index.html">首页</a></li>
-                    <li><a href="beginner.html">初级教程</a></li>
-                    <li><a href="advanced.html">中级教程</a></li>
-                    <li><a href="roblox-overview.html">Roblox开发</a></li>
+                    <li><a href="roblox-basics.html">基础教程</a></li>
+                    <li><a href="roblox-game-dev.html">游戏开发</a></li>
+                    <li><a href="roblox-projects.html">实践项目</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
     <main>
-        <div class="container">
-            <section class="hero">
-                <h2>欢迎学习 Luau 编程语言</h2>
-                <p>这是一个特别人性化的 Luau 编程语言教程，采用手把手教学模式，帮助你从零基础开始掌握 Luau 编程技能，包括Roblox游戏开发。</p>
+        <section class="hero">
+            <div class="container">
+                <h2>欢迎学习 Roblox 游戏开发</h2>
+                <p>专为零基础学习者设计的全面、系统且深度的Roblox游戏开发学习路径，通过互动环节和图形化元素，让你轻松掌握游戏开发技能。</p>
                 <div class="btn-group">
-                    <a href="beginner.html" class="btn">开始初级教程</a>
-                    <a href="advanced.html" class="btn">开始中级教程</a>
-                    <a href="roblox-overview.html" class="btn">Roblox开发</a>
+                    <a href="roblox-basics.html" class="btn">开始学习</a>
+                    <a href="roblox-projects.html" class="btn">查看项目</a>
+                    <a href="roblox-overview.html" class="btn">教程概览</a>
+                </div>
+            </div>
+        </section>
+
+        <div class="container">
+            <section class="course-content">
+                <h3>课程内容</h3>
+                <div class="course-grid">
+                    <div class="course-card">
+                        <h3>1. 环境搭建</h3>
+                        <p>学习如何下载、安装和配置Roblox Studio，为游戏开发做好准备。</p>
+                        <a href="roblox-basics.html#setup" class="btn">开始学习</a>
+                    </div>
+                    <div class="course-card">
+                        <h3>2. Roblox Studio基础</h3>
+                        <p>熟悉Roblox Studio的界面和基本操作，了解游戏开发的工作流程。</p>
+                        <a href="roblox-basics.html#studio" class="btn">开始学习</a>
+                    </div>
+                    <div class="course-card">
+                        <h3>3. Luau脚本基础</h3>
+                        <p>学习Roblox使用的Lua变体语言Luau的基础语法和编程概念。</p>
+                        <a href="roblox-basics.html#scripting" class="btn">开始学习</a>
+                    </div>
+                    <div class="course-card">
+                        <h3>4. 游戏开发基础</h3>
+                        <p>学习游戏对象、物理引擎、碰撞检测等游戏开发的核心概念。</p>
+                        <a href="roblox-game-dev.html" class="btn">开始学习</a>
+                    </div>
+                    <div class="course-card">
+                        <h3>5. 游戏机制实现</h3>
+                        <p>学习如何实现常见的游戏机制，如移动、跳跃、收集等。</p>
+                        <a href="roblox-game-mechanics.html" class="btn">开始学习</a>
+                    </div>
+                    <div class="course-card">
+                        <h3>6. 实践项目</h3>
+                        <p>通过实际项目练习，将所学知识应用到具体的游戏开发中。</p>
+                        <a href="roblox-projects.html" class="btn">开始学习</a>
+                    </div>
                 </div>
             </section>
 
@@ -37,51 +314,119 @@
                 <h3>教程特点</h3>
                 <div class="feature-grid">
                     <div class="feature-item">
-                        <h4>详细步骤说明</h4>
-                        <p>每个知识点都有详细的步骤说明，让你轻松理解。</p>
+                        <h4>互动环节</h4>
+                        <p>设计了多个可直接操作的Roblox场景和任务，让你在实践中学习。</p>
                     </div>
                     <div class="feature-item">
-                        <h4>代码示例</h4>
-                        <p>提供丰富的代码示例，帮助你巩固所学知识。</p>
-                    </div>
-                    <div class="feature-item">
-                        <h4>实践练习</h4>
-                        <p>通过互动练习，让你在实践中掌握编程技能。</p>
-                    </div>
-                    <div class="feature-item">
-                        <h4>Roblox游戏开发</h4>
-                        <p>包含完整的Roblox游戏开发教程，从环境搭建到实践项目。</p>
+                        <h4>图形化元素</h4>
+                        <p>包含流程图、界面截图、3D模型示意图等可视化内容，帮助你直观理解。</p>
                     </div>
                     <div class="feature-item">
                         <h4>零基础友好</h4>
-                        <p>从最基础的概念开始，逐步构建知识体系。</p>
+                        <p>从最基础的概念开始，逐步构建知识体系，适合完全没有编程经验的学习者。</p>
                     </div>
                     <div class="feature-item">
                         <h4>系统全面</h4>
-                        <p>涵盖Luau编程和Roblox开发的各个方面。</p>
+                        <p>涵盖Roblox游戏开发的各个方面，从环境搭建到游戏发布的完整流程。</p>
+                    </div>
+                    <div class="feature-item">
+                        <h4>实践导向</h4>
+                        <p>通过实际项目和案例学习，确保学习者能够将理论知识应用到实际开发中。</p>
+                    </div>
+                    <div class="feature-item">
+                        <h4>深度解析</h4>
+                        <p>不仅教你如何做，更教你为什么这样做，建立扎实的基础原理理解。</p>
                     </div>
                 </div>
             </section>
 
-            <section class="prerequisites">
-                <h3>学习前提</h3>
-                <p>在开始学习中级教程之前，建议你已经掌握了 Luau 的基本语法，包括：</p>
-                <ul>
-                    <li>变量和数据类型</li>
-                    <li>基本运算符</li>
-                    <li>条件语句和循环</li>
-                    <li>函数定义和调用</li>
-                </ul>
+            <section class="interactive-section">
+                <div class="container">
+                    <h3>互动学习</h3>
+                    <div class="interactive-grid">
+                        <div class="interactive-card">
+                            <h4>Roblox场景体验</h4>
+                            <p>通过预设的Roblox场景，直接体验游戏开发的核心概念。</p>
+                            <a href="roblox-basics.html#interactive" class="btn">开始体验</a>
+                        </div>
+                        <div class="interactive-card">
+                            <h4>编程挑战</h4>
+                            <p>完成一系列编程挑战，巩固所学知识，提升编程技能。</p>
+                            <a href="roblox-game-mechanics.html#challenges" class="btn">开始挑战</a>
+                        </div>
+                        <div class="interactive-card">
+                            <h4>项目实践</h4>
+                            <p>从简单到复杂，逐步完成多个Roblox游戏开发项目。</p>
+                            <a href="roblox-projects.html" class="btn">开始实践</a>
+                        </div>
+                    </div>
+                </div>
             </section>
         </div>
     </main>
 
     <footer>
         <div class="container">
-            <p>&copy; 2026 Luau 编程语言教程</p>
+            <p>&copy; 2026 Roblox游戏开发教程</p>
         </div>
     </footer>
 
     <script src="script.js"></script>
+    <script>
+        // 页面加载完成后执行
+        document.addEventListener('DOMContentLoaded', function() {
+            // 添加滚动动画效果
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(function(entry) {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+            
+            // 观察所有需要动画的元素
+            const animateElements = document.querySelectorAll('.course-card, .feature-item, .interactive-card');
+            animateElements.forEach(function(element) {
+                element.style.opacity = '0';
+                element.style.transform = 'translateY(30px)';
+                element.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(element);
+            });
+            
+            // 添加按钮悬停效果
+            const buttons = document.querySelectorAll('.btn');
+            buttons.forEach(function(button) {
+                button.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-3px)';
+                });
+                button.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                });
+            });
+            
+            // 添加课程卡片点击效果
+            const courseCards = document.querySelectorAll('.course-card');
+            courseCards.forEach(function(card) {
+                card.addEventListener('click', function(e) {
+                    // 如果点击的是按钮，不触发卡片效果
+                    if (e.target.tagName === 'A' || e.target.tagName === 'BUTTON') {
+                        return;
+                    }
+                    
+                    // 找到卡片中的链接并点击
+                    const link = this.querySelector('a');
+                    if (link) {
+                        link.click();
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>

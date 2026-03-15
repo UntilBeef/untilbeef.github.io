@@ -41,6 +41,12 @@
             padding: 30px;
             border-radius: 8px;
             margin-bottom: 30px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .setup-step:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
         }
         
         .setup-step h4 {
@@ -52,6 +58,7 @@
             max-width: 100%;
             border-radius: 4px;
             margin: 20px 0;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
         
         .studio-panel {
@@ -59,24 +66,157 @@
             padding: 20px;
             border-radius: 8px;
             margin-bottom: 20px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .studio-panel:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
         }
         
         .studio-panel h4 {
             color: #4CAF50;
             margin-bottom: 10px;
         }
+        
+        .flowchart {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            margin: 30px 0;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .flowchart h4 {
+            color: #4CAF50;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .flowchart-diagram {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+        
+        .flowchart-step {
+            background: #e8f5e8;
+            padding: 15px 30px;
+            border-radius: 25px;
+            text-align: center;
+            min-width: 200px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .flowchart-arrow {
+            width: 2px;
+            height: 30px;
+            background: #4CAF50;
+            position: relative;
+        }
+        
+        .flowchart-arrow::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
+            border-top: 10px solid #4CAF50;
+        }
+        
+        .interactive-section {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 40px;
+            border-radius: 12px;
+            margin: 40px 0;
+            text-align: center;
+        }
+        
+        .interactive-section h3 {
+            color: #333;
+            margin-bottom: 30px;
+        }
+        
+        .interactive-card {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .interactive-card h4 {
+            color: #4CAF50;
+            margin-bottom: 15px;
+        }
+        
+        .interactive-card p {
+            margin-bottom: 20px;
+        }
+        
+        .code-block {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .code-block::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(to bottom, #4CAF50, #45a049);
+        }
+        
+        .exercise {
+            background: #f0f8f0;
+            padding: 30px;
+            border-radius: 8px;
+            margin: 30px 0;
+            border-left: 4px solid #4CAF50;
+        }
+        
+        .exercise h4 {
+            color: #4CAF50;
+            margin-bottom: 15px;
+        }
+        
+        .exercise-toggle {
+            background: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .exercise-toggle:hover {
+            background: #45a049;
+        }
+        
+        .answer {
+            margin-top: 20px;
+            transition: all 0.3s ease;
+        }
     </style>
 </head>
 <body>
     <header>
         <div class="container">
-            <h1>Luau 编程语言教程</h1>
+            <h1>Roblox游戏开发教程</h1>
             <nav>
                 <ul>
                     <li><a href="index.html">首页</a></li>
-                    <li><a href="beginner.html">初级教程</a></li>
-                    <li><a href="advanced.html">中级教程</a></li>
-                    <li><a href="roblox-overview.html">Roblox开发</a></li>
+                    <li><a href="roblox-basics.html">基础教程</a></li>
+                    <li><a href="roblox-game-dev.html">游戏开发</a></li>
+                    <li><a href="roblox-projects.html">实践项目</a></li>
                 </ul>
             </nav>
         </div>
@@ -93,6 +233,7 @@
                         <li><a href="#setup">1. 环境搭建</a></li>
                         <li><a href="#studio">2. Roblox Studio基础</a></li>
                         <li><a href="#scripting">3. Luau脚本基础</a></li>
+                        <li><a href="#interactive">4. 互动练习</a></li>
                     </ul>
                 </div>
 
@@ -104,6 +245,18 @@
                     <div class="setup-step">
                         <h4>步骤 1: 注册Roblox账号</h4>
                         <p>如果你还没有Roblox账号，需要先注册一个。访问<a href="https://www.roblox.com/signup" target="_blank">Roblox注册页面</a>，填写必要的信息并创建账号。</p>
+                        <div class="flowchart">
+                            <h4>注册流程</h4>
+                            <div class="flowchart-diagram">
+                                <div class="flowchart-step">访问注册页面</div>
+                                <div class="flowchart-arrow"></div>
+                                <div class="flowchart-step">填写基本信息</div>
+                                <div class="flowchart-arrow"></div>
+                                <div class="flowchart-step">验证邮箱</div>
+                                <div class="flowchart-arrow"></div>
+                                <div class="flowchart-step">完成注册</div>
+                            </div>
+                        </div>
                     </div>
                     
                     <div class="setup-step">
@@ -138,6 +291,20 @@
                             <li><strong>属性面板</strong>：位于右侧，显示选中对象的属性。</li>
                             <li><strong>输出窗口</strong>：位于底部，显示脚本执行结果和错误信息。</li>
                         </ul>
+                        <div class="flowchart">
+                            <h4>Roblox Studio界面布局</h4>
+                            <div class="flowchart-diagram">
+                                <div class="flowchart-step">菜单栏</div>
+                                <div class="flowchart-arrow"></div>
+                                <div class="flowchart-step">工具栏</div>
+                                <div class="flowchart-arrow"></div>
+                                <div class="flowchart-step">视图面板 (中央)</div>
+                                <div class="flowchart-arrow"></div>
+                                <div class="flowchart-step">资源管理器 & 属性面板 (右侧)</div>
+                                <div class="flowchart-arrow"></div>
+                                <div class="flowchart-step">输出窗口 (底部)</div>
+                            </div>
+                        </div>
                     </div>
                     
                     <div class="studio-panel">
@@ -301,6 +468,58 @@ end)
                         </div>
                     </div>
                 </div>
+
+                <!-- 互动练习 -->
+                <div class="tutorial-section" id="interactive">
+                    <h2>4. 互动练习</h2>
+                    <div class="interactive-section">
+                        <h3>Roblox场景体验</h3>
+                        <div class="interactive-card">
+                            <h4>练习 1: 创建你的第一个场景</h4>
+                            <p>在Roblox Studio中创建一个简单的场景，包含地面、墙壁和光源。</p>
+                            <ol>
+                                <li>打开Roblox Studio并创建一个新项目</li>
+                                <li>在场景中添加一个Part作为地面</li>
+                                <li>添加几个Part作为墙壁</li>
+                                <li>添加一个PointLight作为光源</li>
+                                <li>测试场景，确保一切正常</li>
+                            </ol>
+                        </div>
+                        <div class="interactive-card">
+                            <h4>练习 2: 添加交互元素</h4>
+                            <p>在场景中添加一个可以点击的按钮，当点击时会改变颜色。</p>
+                            <ol>
+                                <li>在场景中添加一个Part作为按钮</li>
+                                <li>为按钮添加一个ClickDetector</li>
+                                <li>创建一个脚本，当按钮被点击时改变其颜色</li>
+                                <li>测试按钮，确保点击时颜色会改变</li>
+                            </ol>
+                            <div class="code-block">
+                                <code>
+-- 获取按钮和ClickDetector
+local button = script.Parent
+local clickDetector = button:WaitForChild("ClickDetector")
+
+-- 定义颜色列表
+local colors = {
+    BrickColor.new("Bright red"),
+    BrickColor.new("Bright blue"),
+    BrickColor.new("Bright green"),
+    BrickColor.new("Bright yellow")
+}
+
+-- 监听点击事件
+clickDetector.MouseClick:Connect(function()
+    -- 随机选择一个颜色
+    local randomColor = colors[math.random(1, #colors)]
+    -- 改变按钮颜色
+    button.BrickColor = randomColor
+end)
+                                </code>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </section>
         </div>
     </main>
@@ -312,5 +531,20 @@ end)
     </footer>
 
     <script src="script.js"></script>
+    <script>
+        // 练习答案切换
+        document.querySelectorAll('.exercise-toggle').forEach(function(button) {
+            button.addEventListener('click', function() {
+                const answer = this.nextElementSibling;
+                if (answer.style.display === 'none') {
+                    answer.style.display = 'block';
+                    this.textContent = '隐藏答案';
+                } else {
+                    answer.style.display = 'none';
+                    this.textContent = '查看答案';
+                }
+            });
+        });
+    </script>
 </body>
 </html>
