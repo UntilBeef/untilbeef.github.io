@@ -31,11 +31,13 @@
         }
         
         .code-example {
-            background: #f4f4f4;
+            background-color: #1e1e1e;
             padding: 20px;
             border-radius: 4px;
             margin: 20px 0;
+            overflow-x: auto;
             border-left: 4px solid #4CAF50;
+            color: #d4d4d4;
             position: relative;
         }
         
@@ -52,6 +54,36 @@
         .code-example code {
             font-family: 'Courier New', Courier, monospace;
             font-size: 14px;
+            color: #d4d4d4;
+        }
+        
+        /* 语法高亮样式 */
+        .code-example .comment {
+            color: #6a9955;
+        }
+        
+        .code-example .keyword {
+            color: #569cd6;
+        }
+        
+        .code-example .string {
+            color: #ce9178;
+        }
+        
+        .code-example .number {
+            color: #b5cea8;
+        }
+        
+        .code-example .function {
+            color: #dcdcaa;
+        }
+        
+        .code-example .operator {
+            color: #d4d4d4;
+        }
+        
+        .code-example .variable {
+            color: #9cdcfe;
         }
         
         .flowchart {
@@ -231,29 +263,29 @@
                     <p>创建游戏对象就像在游戏中"建造"东西一样简单！</p>
                     <div class="code-example">
                         <code>
--- 创建一个新的方块
-local part = Instance.new("Part")
-part.Name = "我的方块"
-part.Position = Vector3.new(0, 5, 0)  -- 位置（x, y, z）
-part.Size = Vector3.new(2, 2, 2)  -- 大小
-part.BrickColor = BrickColor.new("Bright blue")  -- 颜色
-part.Parent = workspace  -- 将方块放入游戏世界
+<span class="comment">-- 创建一个新的方块</span>
+<span class="keyword">local</span> <span class="variable">part</span> = <span class="variable">Instance</span>.<span class="function">new</span>(<span class="string">"Part"</span>)
+<span class="variable">part</span>.<span class="variable">Name</span> = <span class="string">"我的方块"</span>
+<span class="variable">part</span>.<span class="variable">Position</span> = <span class="variable">Vector3</span>.<span class="function">new</span>(<span class="number">0</span>, <span class="number">5</span>, <span class="number">0</span>)  <span class="comment">-- 位置（x, y, z）</span>
+<span class="variable">part</span>.<span class="variable">Size</span> = <span class="variable">Vector3</span>.<span class="function">new</span>(<span class="number">2</span>, <span class="number">2</span>, <span class="number">2</span>)  <span class="comment">-- 大小</span>
+<span class="variable">part</span>.<span class="variable">BrickColor</span> = <span class="variable">BrickColor</span>.<span class="function">new</span>(<span class="string">"Bright blue"</span>)  <span class="comment">-- 颜色</span>
+<span class="variable">part</span>.<span class="variable">Parent</span> = <span class="variable">workspace</span>  <span class="comment">-- 将方块放入游戏世界</span>
 
--- 组织多个方块到一个模型中
-local model = Instance.new("Model")
-model.Name = "我的模型"
+<span class="comment">-- 组织多个方块到一个模型中</span>
+<span class="keyword">local</span> <span class="variable">model</span> = <span class="variable">Instance</span>.<span class="function">new</span>(<span class="string">"Model"</span>)
+<span class="variable">model</span>.<span class="variable">Name</span> = <span class="string">"我的模型"</span>
 
-local part1 = Instance.new("Part")
-part1.Name = "方块1"
-part1.Position = Vector3.new(0, 5, 0)
-part1.Parent = model
+<span class="keyword">local</span> <span class="variable">part1</span> = <span class="variable">Instance</span>.<span class="function">new</span>(<span class="string">"Part"</span>)
+<span class="variable">part1</span>.<span class="variable">Name</span> = <span class="string">"方块1"</span>
+<span class="variable">part1</span>.<span class="variable">Position</span> = <span class="variable">Vector3</span>.<span class="function">new</span>(<span class="number">0</span>, <span class="number">5</span>, <span class="number">0</span>)
+<span class="variable">part1</span>.<span class="variable">Parent</span> = <span class="variable">model</span>
 
-local part2 = Instance.new("Part")
-part2.Name = "方块2"
-part2.Position = Vector3.new(3, 5, 0)
-part2.Parent = model
+<span class="keyword">local</span> <span class="variable">part2</span> = <span class="variable">Instance</span>.<span class="function">new</span>(<span class="string">"Part"</span>)
+<span class="variable">part2</span>.<span class="variable">Name</span> = <span class="string">"方块2"</span>
+<span class="variable">part2</span>.<span class="variable">Position</span> = <span class="variable">Vector3</span>.<span class="function">new</span>(<span class="number">3</span>, <span class="number">5</span>, <span class="number">0</span>)
+<span class="variable">part2</span>.<span class="variable">Parent</span> = <span class="variable">model</span>
 
-model.Parent = workspace
+<span class="variable">model</span>.<span class="variable">Parent</span> = <span class="variable">workspace</span>
                         </code>
                     </div>
                 </div>
@@ -289,24 +321,24 @@ model.Parent = workspace
                     <p>让我们创建一个简单的物理模拟，看看物体是如何受重力影响的：</p>
                     <div class="code-example">
                         <code>
--- 创建一个受重力影响的方块
-local fallingPart = Instance.new("Part")
-fallingPart.Name = "下落的方块"
-fallingPart.Position = Vector3.new(0, 20, 0)  -- 从高处开始
-fallingPart.Size = Vector3.new(2, 2, 2)
-fallingPart.BrickColor = BrickColor.new("Bright red")
-fallingPart.Anchored = false  -- 不固定，受重力影响
-fallingPart.CanCollide = true  -- 可以碰撞
-fallingPart.Parent = workspace
+<span class="comment">-- 创建一个受重力影响的方块</span>
+<span class="keyword">local</span> <span class="variable">fallingPart</span> = <span class="variable">Instance</span>.<span class="function">new</span>(<span class="string">"Part"</span>)
+<span class="variable">fallingPart</span>.<span class="variable">Name</span> = <span class="string">"下落的方块"</span>
+<span class="variable">fallingPart</span>.<span class="variable">Position</span> = <span class="variable">Vector3</span>.<span class="function">new</span>(<span class="number">0</span>, <span class="number">20</span>, <span class="number">0</span>)  <span class="comment">-- 从高处开始</span>
+<span class="variable">fallingPart</span>.<span class="variable">Size</span> = <span class="variable">Vector3</span>.<span class="function">new</span>(<span class="number">2</span>, <span class="number">2</span>, <span class="number">2</span>)
+<span class="variable">fallingPart</span>.<span class="variable">BrickColor</span> = <span class="variable">BrickColor</span>.<span class="function">new</span>(<span class="string">"Bright red"</span>)
+<span class="variable">fallingPart</span>.<span class="variable">Anchored</span> = <span class="keyword">false</span>  <span class="comment">-- 不固定，受重力影响</span>
+<span class="variable">fallingPart</span>.<span class="variable">CanCollide</span> = <span class="keyword">true</span>  <span class="comment">-- 可以碰撞</span>
+<span class="variable">fallingPart</span>.<span class="variable">Parent</span> = <span class="variable">workspace</span>
 
--- 创建一个地面
-local ground = Instance.new("Part")
-ground.Name = "地面"
-ground.Position = Vector3.new(0, 0, 0)
-ground.Size = Vector3.new(50, 1, 50)
-ground.BrickColor = BrickColor.new("Grass green")
-ground.Anchored = true  -- 固定，不受重力影响
-ground.Parent = workspace
+<span class="comment">-- 创建一个地面</span>
+<span class="keyword">local</span> <span class="variable">ground</span> = <span class="variable">Instance</span>.<span class="function">new</span>(<span class="string">"Part"</span>)
+<span class="variable">ground</span>.<span class="variable">Name</span> = <span class="string">"地面"</span>
+<span class="variable">ground</span>.<span class="variable">Position</span> = <span class="variable">Vector3</span>.<span class="function">new</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>)
+<span class="variable">ground</span>.<span class="variable">Size</span> = <span class="variable">Vector3</span>.<span class="function">new</span>(<span class="number">50</span>, <span class="number">1</span>, <span class="number">50</span>)
+<span class="variable">ground</span>.<span class="variable">BrickColor</span> = <span class="variable">BrickColor</span>.<span class="function">new</span>(<span class="string">"Grass green"</span>)
+<span class="variable">ground</span>.<span class="variable">Anchored</span> = <span class="keyword">true</span>  <span class="comment">-- 固定，不受重力影响</span>
+<span class="variable">ground</span>.<span class="variable">Parent</span> = <span class="variable">workspace</span>
                         </code>
                     </div>
                 </div>
@@ -327,31 +359,31 @@ ground.Parent = workspace
                     <p>让我们创建一个触发区域，当玩家进入时显示一条消息：</p>
                     <div class="code-example">
                         <code>
--- 创建一个可以检测碰撞的区域
-local trigger = Instance.new("Part")
-trigger.Name = "触发区域"
-trigger.Position = Vector3.new(0, 2, 0)
-trigger.Size = Vector3.new(5, 1, 5)
-trigger.BrickColor = BrickColor.new("Bright yellow")
-trigger.Transparency = 0.5  -- 半透明，让玩家能看到
-trigger.CanCollide = false  -- 不碰撞，允许玩家穿过
-trigger.Anchored = true
-trigger.Parent = workspace
+<span class="comment">-- 创建一个可以检测碰撞的区域</span>
+<span class="keyword">local</span> <span class="variable">trigger</span> = <span class="variable">Instance</span>.<span class="function">new</span>(<span class="string">"Part"</span>)
+<span class="variable">trigger</span>.<span class="variable">Name</span> = <span class="string">"触发区域"</span>
+<span class="variable">trigger</span>.<span class="variable">Position</span> = <span class="variable">Vector3</span>.<span class="function">new</span>(<span class="number">0</span>, <span class="number">2</span>, <span class="number">0</span>)
+<span class="variable">trigger</span>.<span class="variable">Size</span> = <span class="variable">Vector3</span>.<span class="function">new</span>(<span class="number">5</span>, <span class="number">1</span>, <span class="number">5</span>)
+<span class="variable">trigger</span>.<span class="variable">BrickColor</span> = <span class="variable">BrickColor</span>.<span class="function">new</span>(<span class="string">"Bright yellow"</span>)
+<span class="variable">trigger</span>.<span class="variable">Transparency</span> = <span class="number">0.5</span>  <span class="comment">-- 半透明，让玩家能看到</span>
+<span class="variable">trigger</span>.<span class="variable">CanCollide</span> = <span class="keyword">false</span>  <span class="comment">-- 不碰撞，允许玩家穿过</span>
+<span class="variable">trigger</span>.<span class="variable">Anchored</span> = <span class="keyword">true</span>
+<span class="variable">trigger</span>.<span class="variable">Parent</span> = <span class="variable">workspace</span>
 
--- 监听碰撞事件
-trigger.Touched:Connect(function(hit)
-    -- 检查碰撞的对象是否是玩家
-    local character = hit.Parent
-    local humanoid = character:FindFirstChild("Humanoid")
+<span class="comment">-- 监听碰撞事件</span>
+<span class="variable">trigger</span>.<span class="variable">Touched</span>:<span class="function">Connect</span>(<span class="keyword">function</span>(<span class="variable">hit</span>)
+    <span class="comment">-- 检查碰撞的对象是否是玩家</span>
+    <span class="keyword">local</span> <span class="variable">character</span> = <span class="variable">hit</span>.<span class="variable">Parent</span>
+    <span class="keyword">local</span> <span class="variable">humanoid</span> = <span class="variable">character</span>:<span class="function">FindFirstChild</span>(<span class="string">"Humanoid"</span>)
     
-    if humanoid then
-        local player = game:GetService("Players"):GetPlayerFromCharacter(character)
-        if player then
-            print(player.Name .. " 进入了触发区域！")
-            -- 这里可以添加游戏逻辑，如给予奖励、触发事件等
-        end
-    end
-end)
+    <span class="keyword">if</span> <span class="variable">humanoid</span> <span class="keyword">then</span>
+        <span class="keyword">local</span> <span class="variable">player</span> = <span class="variable">game</span>:<span class="function">GetService</span>(<span class="string">"Players"</span>):<span class="function">GetPlayerFromCharacter</span>(<span class="variable">character</span>)
+        <span class="keyword">if</span> <span class="variable">player</span> <span class="keyword">then</span>
+            <span class="function">print</span>(<span class="variable">player</span>.<span class="variable">Name</span> <span class="operator">..</span> <span class="string">" 进入了触发区域！"</span>)
+            <span class="comment">-- 这里可以添加游戏逻辑，如给予奖励、触发事件等</span>
+        <span class="keyword">end</span>
+    <span class="keyword">end</span>
+<span class="keyword">end</span>)
                         </code>
                     </div>
                 </div>
@@ -377,26 +409,26 @@ end)
                     <p>向量就像游戏中的"方向指示器"，可以用来表示位置、方向和速度等：</p>
                     <div class="code-example">
                         <code>
--- 创建向量
-local position = Vector3.new(10, 5, 3)  -- x=10, y=5, z=3
-local direction = Vector3.new(1, 0, 0)  -- 沿x轴正方向（向右）
+<span class="comment">-- 创建向量</span>
+<span class="keyword">local</span> <span class="variable">position</span> = <span class="variable">Vector3</span>.<span class="function">new</span>(<span class="number">10</span>, <span class="number">5</span>, <span class="number">3</span>)  <span class="comment">-- x=10, y=5, z=3</span>
+<span class="keyword">local</span> <span class="variable">direction</span> = <span class="variable">Vector3</span>.<span class="function">new</span>(<span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>)  <span class="comment">-- 沿x轴正方向（向右）</span>
 
--- 向量运算
-local newPosition = position + direction  -- 位置偏移（向右移动1单位）
-local distance = (position - Vector3.new(0, 0, 0)).Magnitude  -- 到原点的距离
-local normalizedDirection = direction.Unit  -- 归一化向量（长度为1）
+<span class="comment">-- 向量运算</span>
+<span class="keyword">local</span> <span class="variable">newPosition</span> = <span class="variable">position</span> <span class="operator">+</span> <span class="variable">direction</span>  <span class="comment">-- 位置偏移（向右移动1单位）</span>
+<span class="keyword">local</span> <span class="variable">distance</span> = (<span class="variable">position</span> <span class="operator">-</span> <span class="variable">Vector3</span>.<span class="function">new</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>)).<span class="variable">Magnitude</span>  <span class="comment">-- 到原点的距离</span>
+<span class="keyword">local</span> <span class="variable">normalizedDirection</span> = <span class="variable">direction</span>.<span class="variable">Unit</span>  <span class="comment">-- 归一化向量（长度为1）</span>
 
--- 应用向量
-local part = workspace:FindFirstChild("MyPart")
-if part then
-    -- 移动部件
-    part.Position = part.Position + Vector3.new(0, 1, 0)  -- 向上移动1单位
+<span class="comment">-- 应用向量</span>
+<span class="keyword">local</span> <span class="variable">part</span> = <span class="variable">workspace</span>:<span class="function">FindFirstChild</span>(<span class="string">"MyPart"</span>)
+<span class="keyword">if</span> <span class="variable">part</span> <span class="keyword">then</span>
+    <span class="comment">-- 移动部件</span>
+    <span class="variable">part</span>.<span class="variable">Position</span> = <span class="variable">part</span>.<span class="variable">Position</span> <span class="operator">+</span> <span class="variable">Vector3</span>.<span class="function">new</span>(<span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>)  <span class="comment">-- 向上移动1单位</span>
     
-    -- 设置部件速度（如果部件不受约束）
-    local bodyVelocity = Instance.new("BodyVelocity")
-    bodyVelocity.Velocity = Vector3.new(10, 0, 0)  -- 沿x轴以10的速度移动
-    bodyVelocity.Parent = part
-end
+    <span class="comment">-- 设置部件速度（如果部件不受约束）</span>
+    <span class="keyword">local</span> <span class="variable">bodyVelocity</span> = <span class="variable">Instance</span>.<span class="function">new</span>(<span class="string">"BodyVelocity"</span>)
+    <span class="variable">bodyVelocity</span>.<span class="variable">Velocity</span> = <span class="variable">Vector3</span>.<span class="function">new</span>(<span class="number">10</span>, <span class="number">0</span>, <span class="number">0</span>)  <span class="comment">-- 沿x轴以10的速度移动</span>
+    <span class="variable">bodyVelocity</span>.<span class="variable">Parent</span> = <span class="variable">part</span>
+<span class="keyword">end</span>
                         </code>
                     </div>
                 </div>
@@ -424,24 +456,24 @@ end
                     <p>Roblox提供了RunService服务，用于创建游戏循环：</p>
                     <div class="code-example">
                         <code>
--- 获取RunService
-local RunService = game:GetService("RunService")
+<span class="comment">-- 获取RunService</span>
+<span class="keyword">local</span> <span class="variable">RunService</span> = <span class="variable">game</span>:<span class="function">GetService</span>(<span class="string">"RunService"</span>)
 
--- 创建游戏循环函数
-local function update(deltaTime)
-    -- deltaTime是自上一帧以来的时间（秒）
-    -- 这个函数会在每帧执行一次
+<span class="comment">-- 创建游戏循环函数</span>
+<span class="keyword">local</span> <span class="function">update</span> = <span class="keyword">function</span>(<span class="variable">deltaTime</span>)
+    <span class="comment">-- deltaTime是自上一帧以来的时间（秒）</span>
+    <span class="comment">-- 这个函数会在每帧执行一次</span>
     
-    -- 这里可以添加游戏逻辑，如：
-    -- - 更新游戏状态
-    -- - 处理用户输入
-    -- - 移动物体
-    -- - 检测碰撞
-    -- - 计算AI行为
-end
+    <span class="comment">-- 这里可以添加游戏逻辑，如：</span>
+    <span class="comment">-- - 更新游戏状态</span>
+    <span class="comment">-- - 处理用户输入</span>
+    <span class="comment">-- - 移动物体</span>
+    <span class="comment">-- - 检测碰撞</span>
+    <span class="comment">-- - 计算AI行为</span>
+<span class="keyword">end</span>
 
--- 连接到游戏循环
-RunService.Heartbeat:Connect(update)
+<span class="comment">-- 连接到游戏循环</span>
+<span class="variable">RunService</span>.<span class="variable">Heartbeat</span>:<span class="function">Connect</span>(<span class="variable">update</span>)
                         </code>
                     </div>
                 </div>
@@ -470,33 +502,33 @@ RunService.Heartbeat:Connect(update)
                         </ol>
                         <div class="code-example">
                             <code>
--- 获取UserInputService
-local UserInputService = game:GetService("UserInputService")
+<span class="comment">-- 获取UserInputService</span>
+<span class="keyword">local</span> <span class="variable">UserInputService</span> = <span class="variable">game</span>:<span class="function">GetService</span>(<span class="string">"UserInputService"</span>)
 
--- 获取要移动的部件
-local part = workspace:FindFirstChild("Player")
+<span class="comment">-- 获取要移动的部件</span>
+<span class="keyword">local</span> <span class="variable">part</span> = <span class="variable">workspace</span>:<span class="function">FindFirstChild</span>(<span class="string">"Player"</span>)
 
--- 移动速度
-local moveSpeed = 5
+<span class="comment">-- 移动速度</span>
+<span class="keyword">local</span> <span class="variable">moveSpeed</span> = <span class="number">5</span>
 
--- 监听键盘输入
-UserInputService.InputBegan:Connect(function(input, gameProcessedEvent)
-    if gameProcessedEvent then return end
+<span class="comment">-- 监听键盘输入</span>
+<span class="variable">UserInputService</span>.<span class="variable">InputBegan</span>:<span class="function">Connect</span>(<span class="keyword">function</span>(<span class="variable">input</span>, <span class="variable">gameProcessedEvent</span>)
+    <span class="keyword">if</span> <span class="variable">gameProcessedEvent</span> <span class="keyword">then</span> <span class="keyword">return</span> <span class="keyword">end</span>
     
-    if input.KeyCode == Enum.KeyCode.W then
-        -- 向前移动
-        part.Position = part.Position + Vector3.new(0, 0, moveSpeed)
-    elseif input.KeyCode == Enum.KeyCode.S then
-        -- 向后移动
-        part.Position = part.Position + Vector3.new(0, 0, -moveSpeed)
-    elseif input.KeyCode == Enum.KeyCode.A then
-        -- 向左移动
-        part.Position = part.Position + Vector3.new(-moveSpeed, 0, 0)
-    elseif input.KeyCode == Enum.KeyCode.D then
-        -- 向右移动
-        part.Position = part.Position + Vector3.new(moveSpeed, 0, 0)
-    end
-end)
+    <span class="keyword">if</span> <span class="variable">input</span>.<span class="variable">KeyCode</span> == <span class="variable">Enum</span>.<span class="variable">KeyCode</span>.<span class="variable">W</span> <span class="keyword">then</span>
+        <span class="comment">-- 向前移动</span>
+        <span class="variable">part</span>.<span class="variable">Position</span> = <span class="variable">part</span>.<span class="variable">Position</span> <span class="operator">+</span> <span class="variable">Vector3</span>.<span class="function">new</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="variable">moveSpeed</span>)
+    <span class="keyword">elseif</span> <span class="variable">input</span>.<span class="variable">KeyCode</span> == <span class="variable">Enum</span>.<span class="variable">KeyCode</span>.<span class="variable">S</span> <span class="keyword">then</span>
+        <span class="comment">-- 向后移动</span>
+        <span class="variable">part</span>.<span class="variable">Position</span> = <span class="variable">part</span>.<span class="variable">Position</span> <span class="operator">+</span> <span class="variable">Vector3</span>.<span class="function">new</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="operator">-</span><span class="variable">moveSpeed</span>)
+    <span class="keyword">elseif</span> <span class="variable">input</span>.<span class="variable">KeyCode</span> == <span class="variable">Enum</span>.<span class="variable">KeyCode</span>.<span class="variable">A</span> <span class="keyword">then</span>
+        <span class="comment">-- 向左移动</span>
+        <span class="variable">part</span>.<span class="variable">Position</span> = <span class="variable">part</span>.<span class="variable">Position</span> <span class="operator">+</span> <span class="variable">Vector3</span>.<span class="function">new</span>(<span class="operator">-</span><span class="variable">moveSpeed</span>, <span class="number">0</span>, <span class="number">0</span>)
+    <span class="keyword">elseif</span> <span class="variable">input</span>.<span class="variable">KeyCode</span> == <span class="variable">Enum</span>.<span class="variable">KeyCode</span>.<span class="variable">D</span> <span class="keyword">then</span>
+        <span class="comment">-- 向右移动</span>
+        <span class="variable">part</span>.<span class="variable">Position</span> = <span class="variable">part</span>.<span class="variable">Position</span> <span class="operator">+</span> <span class="variable">Vector3</span>.<span class="function">new</span>(<span class="variable">moveSpeed</span>, <span class="number">0</span>, <span class="number">0</span>)
+    <span class="keyword">end</span>
+<span class="keyword">end</span>)
                             </code>
                         </div>
                     </div>
@@ -509,40 +541,40 @@ end)
                     <div class="answer" style="display: none;">
                         <div class="code-example">
                             <code>
--- 创建地面
-local ground = Instance.new("Part")
-ground.Name = "Ground"
-ground.Position = Vector3.new(0, 0, 0)
-ground.Size = Vector3.new(50, 1, 50)
-ground.BrickColor = BrickColor.new("Grass green")
-ground.Anchored = true
-ground.Parent = workspace
+<span class="comment">-- 创建地面</span>
+<span class="keyword">local</span> <span class="variable">ground</span> = <span class="variable">Instance</span>.<span class="function">new</span>(<span class="string">"Part"</span>)
+<span class="variable">ground</span>.<span class="variable">Name</span> = <span class="string">"Ground"</span>
+<span class="variable">ground</span>.<span class="variable">Position</span> = <span class="variable">Vector3</span>.<span class="function">new</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>)
+<span class="variable">ground</span>.<span class="variable">Size</span> = <span class="variable">Vector3</span>.<span class="function">new</span>(<span class="number">50</span>, <span class="number">1</span>, <span class="number">50</span>)
+<span class="variable">ground</span>.<span class="variable">BrickColor</span> = <span class="variable">BrickColor</span>.<span class="function">new</span>(<span class="string">"Grass green"</span>)
+<span class="variable">ground</span>.<span class="variable">Anchored</span> = <span class="keyword">true</span>
+<span class="variable">ground</span>.<span class="variable">Parent</span> = <span class="variable">workspace</span>
 
--- 创建多个下落的物体
-local colors = {"Bright red", "Bright blue", "Bright yellow", "Bright green"}
+<span class="comment">-- 创建多个下落的物体</span>
+<span class="keyword">local</span> <span class="variable">colors</span> = {<span class="string">"Bright red"</span>, <span class="string">"Bright blue"</span>, <span class="string">"Bright yellow"</span>, <span class="string">"Bright green"</span>}
 
-for i = 1, 10 do
-    local part = Instance.new("Part")
-    part.Name = "FallingPart" .. i
-    part.Position = Vector3.new(
-        math.random(-20, 20),
-        math.random(10, 30),
-        math.random(-20, 20)
+<span class="keyword">for</span> <span class="variable">i</span> = <span class="number">1</span>, <span class="number">10</span> <span class="keyword">do</span>
+    <span class="keyword">local</span> <span class="variable">part</span> = <span class="variable">Instance</span>.<span class="function">new</span>(<span class="string">"Part"</span>)
+    <span class="variable">part</span>.<span class="variable">Name</span> = <span class="string">"FallingPart"</span> <span class="operator">..</span> <span class="variable">i</span>
+    <span class="variable">part</span>.<span class="variable">Position</span> = <span class="variable">Vector3</span>.<span class="function">new</span>(
+        <span class="variable">math</span>.<span class="function">random</span>(<span class="operator">-</span><span class="number">20</span>, <span class="number">20</span>),
+        <span class="variable">math</span>.<span class="function">random</span>(<span class="number">10</span>, <span class="number">30</span>),
+        <span class="variable">math</span>.<span class="function">random</span>(<span class="operator">-</span><span class="number">20</span>, <span class="number">20</span>)
     )
-    part.Size = Vector3.new(1, 1, 1)
-    part.BrickColor = BrickColor.new(colors[math.random(1, #colors)])
-    part.Anchored = false
-    part.CanCollide = true
-    part.Parent = workspace
+    <span class="variable">part</span>.<span class="variable">Size</span> = <span class="variable">Vector3</span>.<span class="function">new</span>(<span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>)
+    <span class="variable">part</span>.<span class="variable">BrickColor</span> = <span class="variable">BrickColor</span>.<span class="function">new</span>(<span class="variable">colors</span>[<span class="variable">math</span>.<span class="function">random</span>(<span class="number">1</span>, <span class="operator">#</span><span class="variable">colors</span>)])
+    <span class="variable">part</span>.<span class="variable">Anchored</span> = <span class="keyword">false</span>
+    <span class="variable">part</span>.<span class="variable">CanCollide</span> = <span class="keyword">true</span>
+    <span class="variable">part</span>.<span class="variable">Parent</span> = <span class="variable">workspace</span>
     
-    -- 监听碰撞事件
-    part.Touched:Connect(function(hit)
-        if hit.Name == "Ground" then
-            part.BrickColor = BrickColor.new("Black")
-            part.Anchored = true
-        end
-    end)
-end
+    <span class="comment">-- 监听碰撞事件</span>
+    <span class="variable">part</span>.<span class="variable">Touched</span>:<span class="function">Connect</span>(<span class="keyword">function</span>(<span class="variable">hit</span>)
+        <span class="keyword">if</span> <span class="variable">hit</span>.<span class="variable">Name</span> == <span class="string">"Ground"</span> <span class="keyword">then</span>
+            <span class="variable">part</span>.<span class="variable">BrickColor</span> = <span class="variable">BrickColor</span>.<span class="function">new</span>(<span class="string">"Black"</span>)
+            <span class="variable">part</span>.<span class="variable">Anchored</span> = <span class="keyword">true</span>
+        <span class="keyword">end</span>
+    <span class="keyword">end</span>)
+<span class="keyword">end</span>
                             </code>
                         </div>
                     </div>

@@ -358,35 +358,35 @@
                     <p>让我们来学习一些最基本的Luau语法，就像学习一门新语言的入门词汇一样：</p>
                     <div class="code-block">
                         <code>
--- 打印消息（在输出窗口显示文字）
-print("你好，Roblox！")
+<span class="comment">-- 打印消息（在输出窗口显示文字）</span>
+<span class="function">print</span>(<span class="string">"你好，Roblox！"</span>)
 
--- 变量声明（存储数据的容器）
-local message = "你好，Roblox！"
-local count = 10
-local isGameActive = true
+<span class="comment">-- 变量声明（存储数据的容器）</span>
+<span class="keyword">local</span> <span class="variable">message</span> = <span class="string">"你好，Roblox！"</span>
+<span class="keyword">local</span> <span class="variable">count</span> = <span class="number">10</span>
+<span class="keyword">local</span> <span class="variable">isGameActive</span> = <span class="keyword">true</span>
 
--- 条件语句（根据条件做不同的事情）
-if count > 5 then
-    print("数字大于5")
-elif count == 5 then
-    print("数字等于5")
-else
-    print("数字小于5")
-end
+<span class="comment">-- 条件语句（根据条件做不同的事情）</span>
+<span class="keyword">if</span> <span class="variable">count</span> <span class="operator">></span> <span class="number">5</span> <span class="keyword">then</span>
+    <span class="function">print</span>(<span class="string">"数字大于5"</span>)
+<span class="keyword">elif</span> <span class="variable">count</span> <span class="operator">==</span> <span class="number">5</span> <span class="keyword">then</span>
+    <span class="function">print</span>(<span class="string">"数字等于5"</span>)
+<span class="keyword">else</span>
+    <span class="function">print</span>(<span class="string">"数字小于5"</span>)
+<span class="keyword">end</span>
 
--- 循环（重复做某件事）
-for i = 1, 5 do
-    print("第" .. i .. "次循环")
-end
+<span class="comment">-- 循环（重复做某件事）</span>
+<span class="keyword">for</span> <span class="variable">i</span> = <span class="number">1</span>, <span class="number">5</span> <span class="keyword">do</span>
+    <span class="function">print</span>(<span class="string">"第"</span> <span class="operator">..</span> <span class="variable">i</span> <span class="operator">..</span> <span class="string">"次循环"</span>)
+<span class="keyword">end</span>
 
--- 函数（可重用的代码块）
-function greet(name)
-    return "你好，" .. name .. "！"
-end
+<span class="comment">-- 函数（可重用的代码块）</span>
+<span class="keyword">function</span> <span class="function">greet</span>(<span class="variable">name</span>)
+    <span class="keyword">return</span> <span class="string">"你好，"</span> <span class="operator">..</span> <span class="variable">name</span> <span class="operator">..</span> <span class="string">"！"</span>
+<span class="keyword">end</span>
 
-local greeting = greet("玩家")
-print(greeting)
+<span class="keyword">local</span> <span class="variable">greeting</span> = <span class="function">greet</span>(<span class="string">"玩家"</span>)
+<span class="function">print</span>(<span class="variable">greeting</span>)
                         </code>
                     </div>
                     
@@ -397,14 +397,14 @@ print(greeting)
                     <p>服务就像游戏中的各种功能部门，负责不同的任务：</p>
                     <div class="code-block">
                         <code>
--- 获取服务
-local Players = game:GetService("Players")  -- 玩家服务，管理所有玩家
-local Workspace = game:GetService("Workspace")  -- 工作区，存放游戏场景
+<span class="comment">-- 获取服务</span>
+<span class="keyword">local</span> <span class="variable">Players</span> = <span class="variable">game</span>:<span class="function">GetService</span>(<span class="string">"Players"</span>)  <span class="comment">-- 玩家服务，管理所有玩家</span>
+<span class="keyword">local</span> <span class="variable">Workspace</span> = <span class="variable">game</span>:<span class="function">GetService</span>(<span class="string">"Workspace"</span>)  <span class="comment">-- 工作区，存放游戏场景</span>
 
--- 使用服务（当玩家加入时显示消息）
-Players.PlayerAdded:Connect(function(player)
-    print("玩家加入了：" .. player.Name)
-end)
+<span class="comment">-- 使用服务（当玩家加入时显示消息）</span>
+<span class="variable">Players</span>.<span class="variable">PlayerAdded</span>:<span class="function">Connect</span>(<span class="keyword">function</span>(<span class="variable">player</span>)
+    <span class="function">print</span>(<span class="string">"玩家加入了："</span> <span class="operator">..</span> <span class="variable">player</span>.<span class="variable">Name</span>)
+<span class="keyword">end</span>)
                         </code>
                     </div>
                     
@@ -412,17 +412,17 @@ end)
                     <p>事件就像游戏中的触发器，当某些事情发生时，就会触发相应的代码：</p>
                     <div class="code-block">
                         <code>
--- 监听玩家加入事件
-local Players = game:GetService("Players")
+<span class="comment">-- 监听玩家加入事件</span>
+<span class="keyword">local</span> <span class="variable">Players</span> = <span class="variable">game</span>:<span class="function">GetService</span>(<span class="string">"Players"</span>)
 
-Players.PlayerAdded:Connect(function(player)
-    print("玩家加入了：" .. player.Name)
+<span class="variable">Players</span>.<span class="variable">PlayerAdded</span>:<span class="function">Connect</span>(<span class="keyword">function</span>(<span class="variable">player</span>)
+    <span class="function">print</span>(<span class="string">"玩家加入了："</span> <span class="operator">..</span> <span class="variable">player</span>.<span class="variable">Name</span>)
     
-    -- 监听玩家角色生成事件
-    player.CharacterAdded:Connect(function(character)
-        print(player.Name .. "的角色生成了")
-    end)
-end)
+    <span class="comment">-- 监听玩家角色生成事件</span>
+    <span class="variable">player</span>.<span class="variable">CharacterAdded</span>:<span class="function">Connect</span>(<span class="keyword">function</span>(<span class="variable">character</span>)
+        <span class="function">print</span>(<span class="variable">player</span>.<span class="variable">Name</span> <span class="operator">..</span> <span class="string">"的角色生成了"</span>)
+    <span class="keyword">end</span>)
+<span class="keyword">end</span>)
                         </code>
                     </div>
                     
@@ -430,19 +430,19 @@ end)
                     <p>实例是Roblox中所有对象的统称，比如方块、玩家、道具等：</p>
                     <div class="code-block">
                         <code>
--- 创建一个新的方块
-local part = Instance.new("Part")
-part.Name = "我的方块"
-part.Position = Vector3.new(0, 5, 0)  -- 位置（x, y, z）
-part.Size = Vector3.new(2, 2, 2)  -- 大小
-part.BrickColor = BrickColor.new("Bright blue")  -- 颜色
-part.Parent = workspace  -- 将方块放入工作区
+<span class="comment">-- 创建一个新的方块</span>
+<span class="keyword">local</span> <span class="variable">part</span> = <span class="variable">Instance</span>.<span class="function">new</span>(<span class="string">"Part"</span>)
+<span class="variable">part</span>.<span class="variable">Name</span> = <span class="string">"我的方块"</span>
+<span class="variable">part</span>.<span class="variable">Position</span> = <span class="variable">Vector3</span>.<span class="function">new</span>(<span class="number">0</span>, <span class="number">5</span>, <span class="number">0</span>)  <span class="comment">-- 位置（x, y, z）</span>
+<span class="variable">part</span>.<span class="variable">Size</span> = <span class="variable">Vector3</span>.<span class="function">new</span>(<span class="number">2</span>, <span class="number">2</span>, <span class="number">2</span>)  <span class="comment">-- 大小</span>
+<span class="variable">part</span>.<span class="variable">BrickColor</span> = <span class="variable">BrickColor</span>.<span class="function">new</span>(<span class="string">"Bright blue"</span>)  <span class="comment">-- 颜色</span>
+<span class="variable">part</span>.<span class="variable">Parent</span> = <span class="variable">workspace</span>  <span class="comment">-- 将方块放入工作区</span>
 
--- 修改方块属性
-part.Position = Vector3.new(5, 5, 0)  -- 移动方块
+<span class="comment">-- 修改方块属性</span>
+<span class="variable">part</span>.<span class="variable">Position</span> = <span class="variable">Vector3</span>.<span class="function">new</span>(<span class="number">5</span>, <span class="number">5</span>, <span class="number">0</span>)  <span class="comment">-- 移动方块</span>
 
--- 销毁方块
--- part:Destroy()
+<span class="comment">-- 销毁方块</span>
+<span class="comment">-- part:Destroy()</span>
                         </code>
                     </div>
                     
@@ -453,22 +453,22 @@ part.Position = Vector3.new(5, 5, 0)  -- 移动方块
                         <div class="answer" style="display: none;">
                             <div class="code-block">
                                 <code>
--- 获取Players服务
-local Players = game:GetService("Players")
+<span class="comment">-- 获取Players服务</span>
+<span class="keyword">local</span> <span class="variable">Players</span> = <span class="variable">game</span>:<span class="function">GetService</span>(<span class="string">"Players"</span>)
 
--- 监听玩家加入事件
-Players.PlayerAdded:Connect(function(player)
-    -- 等待玩家的角色加载
-    player.CharacterAdded:Connect(function(character)
-        -- 发送欢迎消息
-        local message = "欢迎来到我的游戏，" .. player.Name .. "！"
-        game:GetService("StarterGui"):SetCore("SendNotification", {
-            Title = "欢迎",
-            Text = message,
-            Duration = 5  -- 消息显示5秒
+<span class="comment">-- 监听玩家加入事件</span>
+<span class="variable">Players</span>.<span class="variable">PlayerAdded</span>:<span class="function">Connect</span>(<span class="keyword">function</span>(<span class="variable">player</span>)
+    <span class="comment">-- 等待玩家的角色加载</span>
+    <span class="variable">player</span>.<span class="variable">CharacterAdded</span>:<span class="function">Connect</span>(<span class="keyword">function</span>(<span class="variable">character</span>)
+        <span class="comment">-- 发送欢迎消息</span>
+        <span class="keyword">local</span> <span class="variable">message</span> = <span class="string">"欢迎来到我的游戏，"</span> <span class="operator">..</span> <span class="variable">player</span>.<span class="variable">Name</span> <span class="operator">..</span> <span class="string">"！"</span>
+        <span class="variable">game</span>:<span class="function">GetService</span>(<span class="string">"StarterGui"</span>):<span class="function">SetCore</span>(<span class="string">"SendNotification"</span>, {
+            <span class="variable">Title</span> = <span class="string">"欢迎"</span>,
+            <span class="variable">Text</span> = <span class="variable">message</span>,
+            <span class="variable">Duration</span> = <span class="number">5</span>  <span class="comment">-- 消息显示5秒</span>
         })
-    end)
-end)
+    <span class="keyword">end</span>)
+<span class="keyword">end</span>)
                                 </code>
                             </div>
                         </div>
@@ -508,25 +508,25 @@ end)
                             </ol>
                             <div class="code-block">
                                 <code>
--- 获取按钮和点击检测器
-local button = script.Parent
-local clickDetector = button:WaitForChild("ClickDetector")
+<span class="comment">-- 获取按钮和点击检测器</span>
+<span class="keyword">local</span> <span class="variable">button</span> = <span class="variable">script</span>.<span class="variable">Parent</span>
+<span class="keyword">local</span> <span class="variable">clickDetector</span> = <span class="variable">button</span>:<span class="function">WaitForChild</span>(<span class="string">"ClickDetector"</span>)
 
--- 定义颜色列表
-local colors = {
-    BrickColor.new("Bright red"),
-    BrickColor.new("Bright blue"),
-    BrickColor.new("Bright green"),
-    BrickColor.new("Bright yellow")
+<span class="comment">-- 定义颜色列表</span>
+<span class="keyword">local</span> <span class="variable">colors</span> = {
+    <span class="variable">BrickColor</span>.<span class="function">new</span>(<span class="string">"Bright red"</span>),
+    <span class="variable">BrickColor</span>.<span class="function">new</span>(<span class="string">"Bright blue"</span>),
+    <span class="variable">BrickColor</span>.<span class="function">new</span>(<span class="string">"Bright green"</span>),
+    <span class="variable">BrickColor</span>.<span class="function">new</span>(<span class="string">"Bright yellow"</span>)
 }
 
--- 当按钮被点击时
-clickDetector.MouseClick:Connect(function()
-    -- 随机选择一个颜色
-    local randomColor = colors[math.random(1, #colors)]
-    -- 改变按钮颜色
-    button.BrickColor = randomColor
-end)
+<span class="comment">-- 当按钮被点击时</span>
+<span class="variable">clickDetector</span>.<span class="variable">MouseClick</span>:<span class="function">Connect</span>(<span class="keyword">function</span>()
+    <span class="comment">-- 随机选择一个颜色</span>
+    <span class="keyword">local</span> <span class="variable">randomColor</span> = <span class="variable">colors</span>[<span class="variable">math</span>.<span class="function">random</span>(<span class="number">1</span>, <span class="operator">#</span><span class="variable">colors</span>)]
+    <span class="comment">-- 改变按钮颜色</span>
+    <span class="variable">button</span>.<span class="variable">BrickColor</span> = <span class="variable">randomColor</span>
+<span class="keyword">end</span>)
                                 </code>
                             </div>
                             <p>6. 点击顶部的"Play"按钮，测试你的按钮！点击它，看看颜色是否会改变。</p>

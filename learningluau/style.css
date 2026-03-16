@@ -188,17 +188,48 @@ main {
 }
 
 .code-block {
-    background-color: #f4f4f4;
+    background-color: #1e1e1e;
     padding: 20px;
     border-radius: 4px;
     margin: 20px 0;
     overflow-x: auto;
     border-left: 4px solid #4CAF50;
+    color: #d4d4d4;
 }
 
 .code-block code {
     font-family: 'Courier New', Courier, monospace;
     font-size: 14px;
+    color: #d4d4d4;
+}
+
+/* 语法高亮样式 */
+.code-block .comment {
+    color: #6a9955;
+}
+
+.code-block .keyword {
+    color: #569cd6;
+}
+
+.code-block .string {
+    color: #ce9178;
+}
+
+.code-block .number {
+    color: #b5cea8;
+}
+
+.code-block .function {
+    color: #dcdcaa;
+}
+
+.code-block .operator {
+    color: #d4d4d4;
+}
+
+.code-block .variable {
+    color: #9cdcfe;
 }
 
 .exercise {

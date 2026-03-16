@@ -31,16 +31,48 @@
         }
         
         .code-block {
-            background: #f4f4f4;
+            background-color: #1e1e1e;
             padding: 20px;
             border-radius: 4px;
             margin: 20px 0;
+            overflow-x: auto;
             border-left: 4px solid #4CAF50;
+            color: #d4d4d4;
         }
         
         .code-block code {
             font-family: 'Courier New', Courier, monospace;
             font-size: 14px;
+            color: #d4d4d4;
+        }
+        
+        /* 语法高亮样式 */
+        .code-block .comment {
+            color: #6a9955;
+        }
+        
+        .code-block .keyword {
+            color: #569cd6;
+        }
+        
+        .code-block .string {
+            color: #ce9178;
+        }
+        
+        .code-block .number {
+            color: #b5cea8;
+        }
+        
+        .code-block .function {
+            color: #dcdcaa;
+        }
+        
+        .code-block .operator {
+            color: #d4d4d4;
+        }
+        
+        .code-block .variable {
+            color: #9cdcfe;
         }
         
         .step-by-step {
@@ -95,23 +127,23 @@
                     <h4>1.2 自定义移动速度和跳跃力</h4>
                     <div class="code-block">
                         <code>
--- 获取玩家的Humanoid
-local Players = game:GetService("Players")
+<span class="comment">-- 获取玩家的Humanoid</span>
+<span class="keyword">local</span> <span class="variable">Players</span> = <span class="variable">game</span>:<span class="function">GetService</span>(<span class="string">"Players"</span>)
 
-Players.PlayerAdded:Connect(function(player)
-    player.CharacterAdded:Connect(function(character)
-        local humanoid = character:WaitForChild("Humanoid")
+<span class="variable">Players</span>.<span class="variable">PlayerAdded</span>:<span class="function">Connect</span>(<span class="keyword">function</span>(<span class="variable">player</span>)
+    <span class="variable">player</span>.<span class="variable">CharacterAdded</span>:<span class="function">Connect</span>(<span class="keyword">function</span>(<span class="variable">character</span>)
+        <span class="keyword">local</span> <span class="variable">humanoid</span> = <span class="variable">character</span>:<span class="function">WaitForChild</span>(<span class="string">"Humanoid"</span>)
         
-        -- 设置移动速度
-        humanoid.WalkSpeed = 16  -- 默认值为16
+        <span class="comment">-- 设置移动速度</span>
+        <span class="variable">humanoid</span>.<span class="variable">WalkSpeed</span> = <span class="number">16</span>  <span class="comment">-- 默认值为16</span>
         
-        -- 设置跳跃力
-        humanoid.JumpPower = 50  -- 默认值为50
+        <span class="comment">-- 设置跳跃力</span>
+        <span class="variable">humanoid</span>.<span class="variable">JumpPower</span> = <span class="number">50</span>  <span class="comment">-- 默认值为50</span>
         
-        -- 禁用跳跃
-        -- humanoid.JumpEnabled = false
-    end)
-end)
+        <span class="comment">-- 禁用跳跃</span>
+        <span class="comment">-- humanoid.JumpEnabled = false</span>
+    <span class="keyword">end</span>)
+<span class="keyword">end</span>)
                         </code>
                     </div>
                 </div>
@@ -132,68 +164,68 @@ end)
                     
                     <div class="code-block">
                         <code>
--- 创建一个收集物品
-local function createCollectible(position)
-    local part = Instance.new("Part")
-    part.Name = "Coin"
-    part.Position = position
-    part.Size = Vector3.new(1, 1, 1)
-    part.BrickColor = BrickColor.new("Bright yellow")
-    part.Shape = Enum.PartType.Ball
-    part.CanCollide = false
-    part.Anchored = true
+<span class="comment">-- 创建一个收集物品</span>
+<span class="keyword">local</span> <span class="function">createCollectible</span> = <span class="keyword">function</span>(<span class="variable">position</span>)
+    <span class="keyword">local</span> <span class="variable">part</span> = <span class="variable">Instance</span>.<span class="function">new</span>(<span class="string">"Part"</span>)
+    <span class="variable">part</span>.<span class="variable">Name</span> = <span class="string">"Coin"</span>
+    <span class="variable">part</span>.<span class="variable">Position</span> = <span class="variable">position</span>
+    <span class="variable">part</span>.<span class="variable">Size</span> = <span class="variable">Vector3</span>.<span class="function">new</span>(<span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>)
+    <span class="variable">part</span>.<span class="variable">BrickColor</span> = <span class="variable">BrickColor</span>.<span class="function">new</span>(<span class="string">"Bright yellow"</span>)
+    <span class="variable">part</span>.<span class="variable">Shape</span> = <span class="variable">Enum</span>.<span class="variable">PartType</span>.<span class="variable">Ball</span>
+    <span class="variable">part</span>.<span class="variable">CanCollide</span> = <span class="keyword">false</span>
+    <span class="variable">part</span>.<span class="variable">Anchored</span> = <span class="keyword">true</span>
     
-    -- 添加旋转动画
-    local bodyAngularVelocity = Instance.new("BodyAngularVelocity")
-    bodyAngularVelocity.AngularVelocity = Vector3.new(0, 5, 0)
-    bodyAngularVelocity.Parent = part
+    <span class="comment">-- 添加旋转动画</span>
+    <span class="keyword">local</span> <span class="variable">bodyAngularVelocity</span> = <span class="variable">Instance</span>.<span class="function">new</span>(<span class="string">"BodyAngularVelocity"</span>)
+    <span class="variable">bodyAngularVelocity</span>.<span class="variable">AngularVelocity</span> = <span class="variable">Vector3</span>.<span class="function">new</span>(<span class="number">0</span>, <span class="number">5</span>, <span class="number">0</span>)
+    <span class="variable">bodyAngularVelocity</span>.<span class="variable">Parent</span> = <span class="variable">part</span>
     
-    part.Parent = workspace
+    <span class="variable">part</span>.<span class="variable">Parent</span> = <span class="variable">workspace</span>
     
-    -- 监听碰撞事件
-    part.Touched:Connect(function(hit)
-        local character = hit.Parent
-        local humanoid = character:FindFirstChild("Humanoid")
+    <span class="comment">-- 监听碰撞事件</span>
+    <span class="variable">part</span>.<span class="variable">Touched</span>:<span class="function">Connect</span>(<span class="keyword">function</span>(<span class="variable">hit</span>)
+        <span class="keyword">local</span> <span class="variable">character</span> = <span class="variable">hit</span>.<span class="variable">Parent</span>
+        <span class="keyword">local</span> <span class="variable">humanoid</span> = <span class="variable">character</span>:<span class="function">FindFirstChild</span>(<span class="string">"Humanoid"</span>)
         
-        if humanoid then
-            local player = game:GetService("Players"):GetPlayerFromCharacter(character)
-            if player then
-                -- 给予奖励（例如增加分数）
-                if not player:FindFirstChild("leaderstats") then
-                    local leaderstats = Instance.new("Folder")
-                    leaderstats.Name = "leaderstats"
-                    leaderstats.Parent = player
+        <span class="keyword">if</span> <span class="variable">humanoid</span> <span class="keyword">then</span>
+            <span class="keyword">local</span> <span class="variable">player</span> = <span class="variable">game</span>:<span class="function">GetService</span>(<span class="string">"Players"</span>):<span class="function">GetPlayerFromCharacter</span>(<span class="variable">character</span>)
+            <span class="keyword">if</span> <span class="variable">player</span> <span class="keyword">then</span>
+                <span class="comment">-- 给予奖励（例如增加分数）</span>
+                <span class="keyword">if</span> <span class="keyword">not</span> <span class="variable">player</span>:<span class="function">FindFirstChild</span>(<span class="string">"leaderstats"</span>) <span class="keyword">then</span>
+                    <span class="keyword">local</span> <span class="variable">leaderstats</span> = <span class="variable">Instance</span>.<span class="function">new</span>(<span class="string">"Folder"</span>)
+                    <span class="variable">leaderstats</span>.<span class="variable">Name</span> = <span class="string">"leaderstats"</span>
+                    <span class="variable">leaderstats</span>.<span class="variable">Parent</span> = <span class="variable">player</span>
                     
-                    local score = Instance.new("IntValue")
-                    score.Name = "Score"
-                    score.Value = 0
-                    score.Parent = leaderstats
-                end
+                    <span class="keyword">local</span> <span class="variable">score</span> = <span class="variable">Instance</span>.<span class="function">new</span>(<span class="string">"IntValue"</span>)
+                    <span class="variable">score</span>.<span class="variable">Name</span> = <span class="string">"Score"</span>
+                    <span class="variable">score</span>.<span class="variable">Value</span> = <span class="number">0</span>
+                    <span class="variable">score</span>.<span class="variable">Parent</span> = <span class="variable">leaderstats</span>
+                <span class="keyword">end</span>
                 
-                player.leaderstats.Score.Value = player.leaderstats.Score.Value + 10
+                <span class="variable">player</span>.<span class="variable">leaderstats</span>.<span class="variable">Score</span>.<span class="variable">Value</span> = <span class="variable">player</span>.<span class="variable">leaderstats</span>.<span class="variable">Score</span>.<span class="variable">Value</span> <span class="operator">+</span> <span class="number">10</span>
                 
-                -- 播放收集音效（如果有）
-                -- local sound = Instance.new("Sound")
-                -- sound.SoundId = "rbxassetid://123456789"  -- 替换为实际音效ID
-                -- sound.Parent = part
-                -- sound:Play()
+                <span class="comment">-- 播放收集音效（如果有）</span>
+                <span class="comment">-- local sound = Instance.new("Sound")</span>
+                <span class="comment">-- sound.SoundId = "rbxassetid://123456789"  -- 替换为实际音效ID</span>
+                <span class="comment">-- sound.Parent = part</span>
+                <span class="comment">-- sound:Play()</span>
                 
-                -- 销毁物品
-                part:Destroy()
-            end
-        end
-    end)
+                <span class="comment">-- 销毁物品</span>
+                <span class="variable">part</span>:<span class="function">Destroy</span>()
+            <span class="keyword">end</span>
+        <span class="keyword">end</span>
+    <span class="keyword">end</span>)
     
-    return part
-end
+    <span class="keyword">return</span> <span class="variable">part</span>
+<span class="keyword">end</span>
 
--- 创建多个收集物品
-for i = 1, 10 do
-    local x = math.random(-20, 20)
-    local y = 2
-    local z = math.random(-20, 20)
-    createCollectible(Vector3.new(x, y, z))
-end
+<span class="comment">-- 创建多个收集物品</span>
+<span class="keyword">for</span> <span class="variable">i</span> = <span class="number">1</span>, <span class="number">10</span> <span class="keyword">do</span>
+    <span class="keyword">local</span> <span class="variable">x</span> = <span class="variable">math</span>.<span class="function">random</span>(<span class="operator">-</span><span class="number">20</span>, <span class="number">20</span>)
+    <span class="keyword">local</span> <span class="variable">y</span> = <span class="number">2</span>
+    <span class="keyword">local</span> <span class="variable">z</span> = <span class="variable">math</span>.<span class="function">random</span>(<span class="operator">-</span><span class="number">20</span>, <span class="number">20</span>)
+    <span class="function">createCollectible</span>(<span class="variable">Vector3</span>.<span class="function">new</span>(<span class="variable">x</span>, <span class="variable">y</span>, <span class="variable">z</span>))
+<span class="keyword">end</span>
                         </code>
                     </div>
                 </div>
@@ -204,63 +236,63 @@ end
                     
                     <div class="code-block">
                         <code>
--- 设置健康系统
-local Players = game:GetService("Players")
+<span class="comment">-- 设置健康系统</span>
+<span class="keyword">local</span> <span class="variable">Players</span> = <span class="variable">game</span>:<span class="function">GetService</span>(<span class="string">"Players"</span>)
 
-Players.PlayerAdded:Connect(function(player)
-    player.CharacterAdded:Connect(function(character)
-        local humanoid = character:WaitForChild("Humanoid")
+<span class="variable">Players</span>.<span class="variable">PlayerAdded</span>:<span class="function">Connect</span>(<span class="keyword">function</span>(<span class="variable">player</span>)
+    <span class="variable">player</span>.<span class="variable">CharacterAdded</span>:<span class="function">Connect</span>(<span class="keyword">function</span>(<span class="variable">character</span>)
+        <span class="keyword">local</span> <span class="variable">humanoid</span> = <span class="variable">character</span>:<span class="function">WaitForChild</span>(<span class="string">"Humanoid"</span>)
         
-        -- 设置初始生命值
-        humanoid.MaxHealth = 100
-        humanoid.Health = 100
+        <span class="comment">-- 设置初始生命值</span>
+        <span class="variable">humanoid</span>.<span class="variable">MaxHealth</span> = <span class="number">100</span>
+        <span class="variable">humanoid</span>.<span class="variable">Health</span> = <span class="number">100</span>
         
-        -- 监听生命值变化
-        humanoid.HealthChanged:Connect(function(health)
-            print(player.Name .. " 的生命值: " .. health)
+        <span class="comment">-- 监听生命值变化</span>
+        <span class="variable">humanoid</span>.<span class="variable">HealthChanged</span>:<span class="function">Connect</span>(<span class="keyword">function</span>(<span class="variable">health</span>)
+            <span class="function">print</span>(<span class="variable">player</span>.<span class="variable">Name</span> <span class="operator">..</span> <span class="string">" 的生命值: "</span> <span class="operator">..</span> <span class="variable">health</span>)
             
-            if health <= 0 then
-                -- 玩家死亡
-                print(player.Name .. " 死亡了！")
-                -- 这里可以添加死亡处理逻辑，如重生、游戏结束等
-            end
-        end)
+            <span class="keyword">if</span> <span class="variable">health</span> <span class="operator"><=</span> <span class="number">0</span> <span class="keyword">then</span>
+                <span class="comment">-- 玩家死亡</span>
+                <span class="function">print</span>(<span class="variable">player</span>.<span class="variable">Name</span> <span class="operator">..</span> <span class="string">" 死亡了！"</span>)
+                <span class="comment">-- 这里可以添加死亡处理逻辑，如重生、游戏结束等</span>
+            <span class="keyword">end</span>
+        <span class="keyword">end</span>)
         
-        -- 监听伤害事件
-        humanoid.TookDamage:Connect(function(damage)
-            print(player.Name .. " 受到了 " .. damage .. " 点伤害")
-        end)
-    end)
-end)
+        <span class="comment">-- 监听伤害事件</span>
+        <span class="variable">humanoid</span>.<span class="variable">TookDamage</span>:<span class="function">Connect</span>(<span class="keyword">function</span>(<span class="variable">damage</span>)
+            <span class="function">print</span>(<span class="variable">player</span>.<span class="variable">Name</span> <span class="operator">..</span> <span class="string">" 受到了 "</span> <span class="operator">..</span> <span class="variable">damage</span> <span class="operator">..</span> <span class="string">" 点伤害"</span>)
+        <span class="keyword">end</span>)
+    <span class="keyword">end</span>)
+<span class="keyword">end</span>)
 
--- 创建一个伤害区域
-local function createDamageZone(position, size, damagePerSecond)
-    local part = Instance.new("Part")
-    part.Name = "DamageZone"
-    part.Position = position
-    part.Size = size
-    part.BrickColor = BrickColor.new("Bright red")
-    part.Transparency = 0.5
-    part.CanCollide = false
-    part.Anchored = true
-    part.Parent = workspace
+<span class="comment">-- 创建一个伤害区域</span>
+<span class="keyword">local</span> <span class="function">createDamageZone</span> = <span class="keyword">function</span>(<span class="variable">position</span>, <span class="variable">size</span>, <span class="variable">damagePerSecond</span>)
+    <span class="keyword">local</span> <span class="variable">part</span> = <span class="variable">Instance</span>.<span class="function">new</span>(<span class="string">"Part"</span>)
+    <span class="variable">part</span>.<span class="variable">Name</span> = <span class="string">"DamageZone"</span>
+    <span class="variable">part</span>.<span class="variable">Position</span> = <span class="variable">position</span>
+    <span class="variable">part</span>.<span class="variable">Size</span> = <span class="variable">size</span>
+    <span class="variable">part</span>.<span class="variable">BrickColor</span> = <span class="variable">BrickColor</span>.<span class="function">new</span>(<span class="string">"Bright red"</span>)
+    <span class="variable">part</span>.<span class="variable">Transparency</span> = <span class="number">0.5</span>
+    <span class="variable">part</span>.<span class="variable">CanCollide</span> = <span class="keyword">false</span>
+    <span class="variable">part</span>.<span class="variable">Anchored</span> = <span class="keyword">true</span>
+    <span class="variable">part</span>.<span class="variable">Parent</span> = <span class="variable">workspace</span>
     
-    -- 每秒钟对区域内的玩家造成伤害
-    while part do
-        wait(1)
-        local touchingParts = part:GetTouchingParts()
-        for _, touchingPart in pairs(touchingParts) do
-            local character = touchingPart.Parent
-            local humanoid = character:FindFirstChild("Humanoid")
-            if humanoid then
-                humanoid:TakeDamage(damagePerSecond)
-            end
-        end
-    end
-end
+    <span class="comment">-- 每秒钟对区域内的玩家造成伤害</span>
+    <span class="keyword">while</span> <span class="variable">part</span> <span class="keyword">do</span>
+        <span class="function">wait</span>(<span class="number">1</span>)
+        <span class="keyword">local</span> <span class="variable">touchingParts</span> = <span class="variable">part</span>:<span class="function">GetTouchingParts</span>()
+        <span class="keyword">for</span> <span class="operator">_</span>, <span class="variable">touchingPart</span> <span class="keyword">in</span> <span class="function">pairs</span>(<span class="variable">touchingParts</span>) <span class="keyword">do</span>
+            <span class="keyword">local</span> <span class="variable">character</span> = <span class="variable">touchingPart</span>.<span class="variable">Parent</span>
+            <span class="keyword">local</span> <span class="variable">humanoid</span> = <span class="variable">character</span>:<span class="function">FindFirstChild</span>(<span class="string">"Humanoid"</span>)
+            <span class="keyword">if</span> <span class="variable">humanoid</span> <span class="keyword">then</span>
+                <span class="variable">humanoid</span>:<span class="function">TakeDamage</span>(<span class="variable">damagePerSecond</span>)
+            <span class="keyword">end</span>
+        <span class="keyword">end</span>
+    <span class="keyword">end</span>
+<span class="keyword">end</span>
 
--- 创建一个伤害区域
-createDamageZone(Vector3.new(0, 2, 0), Vector3.new(10, 1, 10), 10)
+<span class="comment">-- 创建一个伤害区域</span>
+<span class="function">createDamageZone</span>(<span class="variable">Vector3</span>.<span class="function">new</span>(<span class="number">0</span>, <span class="number">2</span>, <span class="number">0</span>), <span class="variable">Vector3</span>.<span class="function">new</span>(<span class="number">10</span>, <span class="number">1</span>, <span class="number">10</span>), <span class="number">10</span>)
                         </code>
                     </div>
                 </div>
@@ -271,74 +303,74 @@ createDamageZone(Vector3.new(0, 2, 0), Vector3.new(10, 1, 10), 10)
                     
                     <div class="code-block">
                         <code>
--- 创建一个简单的AI敌人
-local function createAIEnemy(position)
-    local model = Instance.new("Model")
-    model.Name = "AIEnemy"
+<span class="comment">-- 创建一个简单的AI敌人</span>
+<span class="keyword">local</span> <span class="function">createAIEnemy</span> = <span class="keyword">function</span>(<span class="variable">position</span>)
+    <span class="keyword">local</span> <span class="variable">model</span> = <span class="variable">Instance</span>.<span class="function">new</span>(<span class="string">"Model"</span>)
+    <span class="variable">model</span>.<span class="variable">Name</span> = <span class="string">"AIEnemy"</span>
     
-    local part = Instance.new("Part")
-    part.Name = "HumanoidRootPart"
-    part.Position = position
-    part.Size = Vector3.new(2, 2, 2)
-    part.BrickColor = BrickColor.new("Bright red")
-    part.Parent = model
+    <span class="keyword">local</span> <span class="variable">part</span> = <span class="variable">Instance</span>.<span class="function">new</span>(<span class="string">"Part"</span>)
+    <span class="variable">part</span>.<span class="variable">Name</span> = <span class="string">"HumanoidRootPart"</span>
+    <span class="variable">part</span>.<span class="variable">Position</span> = <span class="variable">position</span>
+    <span class="variable">part</span>.<span class="variable">Size</span> = <span class="variable">Vector3</span>.<span class="function">new</span>(<span class="number">2</span>, <span class="number">2</span>, <span class="number">2</span>)
+    <span class="variable">part</span>.<span class="variable">BrickColor</span> = <span class="variable">BrickColor</span>.<span class="function">new</span>(<span class="string">"Bright red"</span>)
+    <span class="variable">part</span>.<span class="variable">Parent</span> = <span class="variable">model</span>
     
-    local humanoid = Instance.new("Humanoid")
-    humanoid.Parent = model
+    <span class="keyword">local</span> <span class="variable">humanoid</span> = <span class="variable">Instance</span>.<span class="function">new</span>(<span class="string">"Humanoid"</span>)
+    <span class="variable">humanoid</span>.<span class="variable">Parent</span> = <span class="variable">model</span>
     
-    local head = Instance.new("Part")
-    head.Name = "Head"
-    head.Position = position + Vector3.new(0, 2, 0)
-    head.Size = Vector3.new(1, 1, 1)
-    head.BrickColor = BrickColor.new("Bright red")
-    head.Parent = model
+    <span class="keyword">local</span> <span class="variable">head</span> = <span class="variable">Instance</span>.<span class="function">new</span>(<span class="string">"Part"</span>)
+    <span class="variable">head</span>.<span class="variable">Name</span> = <span class="string">"Head"</span>
+    <span class="variable">head</span>.<span class="variable">Position</span> = <span class="variable">position</span> <span class="operator">+</span> <span class="variable">Vector3</span>.<span class="function">new</span>(<span class="number">0</span>, <span class="number">2</span>, <span class="number">0</span>)
+    <span class="variable">head</span>.<span class="variable">Size</span> = <span class="variable">Vector3</span>.<span class="function">new</span>(<span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>)
+    <span class="variable">head</span>.<span class="variable">BrickColor</span> = <span class="variable">BrickColor</span>.<span class="function">new</span>(<span class="string">"Bright red"</span>)
+    <span class="variable">head</span>.<span class="variable">Parent</span> = <span class="variable">model</span>
     
-    model.Parent = workspace
+    <span class="variable">model</span>.<span class="variable">Parent</span> = <span class="variable">workspace</span>
     
-    -- 让AI敌人跟随玩家
-    local function followPlayer()
-        while model do
-            wait(0.1)
-            local players = game:GetService("Players"):GetPlayers()
-            if #players > 0 then
-                local closestPlayer = nil
-                local closestDistance = math.huge
+    <span class="comment">-- 让AI敌人跟随玩家</span>
+    <span class="keyword">local</span> <span class="function">followPlayer</span> = <span class="keyword">function</span>()
+        <span class="keyword">while</span> <span class="variable">model</span> <span class="keyword">do</span>
+            <span class="function">wait</span>(<span class="number">0.1</span>)
+            <span class="keyword">local</span> <span class="variable">players</span> = <span class="variable">game</span>:<span class="function">GetService</span>(<span class="string">"Players"</span>):<span class="function">GetPlayers</span>()
+            <span class="keyword">if</span> <span class="operator">#</span><span class="variable">players</span> <span class="operator">></span> <span class="number">0</span> <span class="keyword">then</span>
+                <span class="keyword">local</span> <span class="variable">closestPlayer</span> = <span class="keyword">nil</span>
+                <span class="keyword">local</span> <span class="variable">closestDistance</span> = <span class="variable">math</span>.<span class="variable">huge</span>
                 
-                -- 找到最近的玩家
-                for _, player in pairs(players) do
-                    if player.Character and player.Character:FindFirstChild("HumanoidRootPart") then
-                        local distance = (player.Character.HumanoidRootPart.Position - part.Position).Magnitude
-                        if distance < closestDistance then
-                            closestDistance = distance
-                            closestPlayer = player
-                        end
-                    end
-                end
+                <span class="comment">-- 找到最近的玩家</span>
+                <span class="keyword">for</span> <span class="operator">_</span>, <span class="variable">player</span> <span class="keyword">in</span> <span class="function">pairs</span>(<span class="variable">players</span>) <span class="keyword">do</span>
+                    <span class="keyword">if</span> <span class="variable">player</span>.<span class="variable">Character</span> <span class="keyword">and</span> <span class="variable">player</span>.<span class="variable">Character</span>:<span class="function">FindFirstChild</span>(<span class="string">"HumanoidRootPart"</span>) <span class="keyword">then</span>
+                        <span class="keyword">local</span> <span class="variable">distance</span> = (<span class="variable">player</span>.<span class="variable">Character</span>.<span class="variable">HumanoidRootPart</span>.<span class="variable">Position</span> <span class="operator">-</span> <span class="variable">part</span>.<span class="variable">Position</span>).<span class="variable">Magnitude</span>
+                        <span class="keyword">if</span> <span class="variable">distance</span> <span class="operator"><</span> <span class="variable">closestDistance</span> <span class="keyword">then</span>
+                            <span class="variable">closestDistance</span> = <span class="variable">distance</span>
+                            <span class="variable">closestPlayer</span> = <span class="variable">player</span>
+                        <span class="keyword">end</span>
+                    <span class="keyword">end</span>
+                <span class="keyword">end</span>
                 
-                -- 如果找到玩家且距离足够近，就向玩家移动
-                if closestPlayer and closestDistance < 50 then
-                    local direction = (closestPlayer.Character.HumanoidRootPart.Position - part.Position).Unit
-                    part.Position = part.Position + direction * 0.5
+                <span class="comment">-- 如果找到玩家且距离足够近，就向玩家移动</span>
+                <span class="keyword">if</span> <span class="variable">closestPlayer</span> <span class="keyword">and</span> <span class="variable">closestDistance</span> <span class="operator"><</span> <span class="number">50</span> <span class="keyword">then</span>
+                    <span class="keyword">local</span> <span class="variable">direction</span> = (<span class="variable">closestPlayer</span>.<span class="variable">Character</span>.<span class="variable">HumanoidRootPart</span>.<span class="variable">Position</span> <span class="operator">-</span> <span class="variable">part</span>.<span class="variable">Position</span>).<span class="variable">Unit</span>
+                    <span class="variable">part</span>.<span class="variable">Position</span> = <span class="variable">part</span>.<span class="variable">Position</span> <span class="operator">+</span> <span class="variable">direction</span> <span class="operator">*</span> <span class="number">0.5</span>
                     
-                    -- 让敌人朝向玩家
-                    local lookVector = closestPlayer.Character.HumanoidRootPart.Position - part.Position
-                    lookVector = Vector3.new(lookVector.X, 0, lookVector.Z)
-                    if lookVector.Magnitude > 0 then
-                        part.CFrame = CFrame.new(part.Position, part.Position + lookVector)
-                    end
-                end
-            end
-        end
-    end
+                    <span class="comment">-- 让敌人朝向玩家</span>
+                    <span class="keyword">local</span> <span class="variable">lookVector</span> = <span class="variable">closestPlayer</span>.<span class="variable">Character</span>.<span class="variable">HumanoidRootPart</span>.<span class="variable">Position</span> <span class="operator">-</span> <span class="variable">part</span>.<span class="variable">Position</span>
+                    <span class="variable">lookVector</span> = <span class="variable">Vector3</span>.<span class="function">new</span>(<span class="variable">lookVector</span>.<span class="variable">X</span>, <span class="number">0</span>, <span class="variable">lookVector</span>.<span class="variable">Z</span>)
+                    <span class="keyword">if</span> <span class="variable">lookVector</span>.<span class="variable">Magnitude</span> <span class="operator">></span> <span class="number">0</span> <span class="keyword">then</span>
+                        <span class="variable">part</span>.<span class="variable">CFrame</span> = <span class="variable">CFrame</span>.<span class="function">new</span>(<span class="variable">part</span>.<span class="variable">Position</span>, <span class="variable">part</span>.<span class="variable">Position</span> <span class="operator">+</span> <span class="variable">lookVector</span>)
+                    <span class="keyword">end</span>
+                <span class="keyword">end</span>
+            <span class="keyword">end</span>
+        <span class="keyword">end</span>
+    <span class="keyword">end</span>
     
-    -- 开始跟随玩家
-    spawn(followPlayer)
+    <span class="comment">-- 开始跟随玩家</span>
+    <span class="function">spawn</span>(<span class="variable">followPlayer</span>)
     
-    return model
-end
+    <span class="keyword">return</span> <span class="variable">model</span>
+<span class="keyword">end</span>
 
--- 创建AI敌人
-createAIEnemy(Vector3.new(10, 2, 10))
+<span class="comment">-- 创建AI敌人</span>
+<span class="function">createAIEnemy</span>(<span class="variable">Vector3</span>.<span class="function">new</span>(<span class="number">10</span>, <span class="number">2</span>, <span class="number">10</span>))
                         </code>
                     </div>
                 </div>
@@ -349,62 +381,62 @@ createAIEnemy(Vector3.new(10, 2, 10))
                     
                     <div class="code-block">
                         <code>
--- 创建一个简单的UI
-local Players = game:GetService("Players")
+<span class="comment">-- 创建一个简单的UI</span>
+<span class="keyword">local</span> <span class="variable">Players</span> = <span class="variable">game</span>:<span class="function">GetService</span>(<span class="string">"Players"</span>)
 
-Players.PlayerAdded:Connect(function(player)
-    -- 等待玩家的PlayerGui加载
-    local playerGui = player:WaitForChild("PlayerGui")
+<span class="variable">Players</span>.<span class="variable">PlayerAdded</span>:<span class="function">Connect</span>(<span class="keyword">function</span>(<span class="variable">player</span>)
+    <span class="comment">-- 等待玩家的PlayerGui加载</span>
+    <span class="keyword">local</span> <span class="variable">playerGui</span> = <span class="variable">player</span>:<span class="function">WaitForChild</span>(<span class="string">"PlayerGui"</span>)
     
-    -- 创建一个ScreenGui
-    local screenGui = Instance.new("ScreenGui")
-    screenGui.Name = "GameUI"
-    screenGui.Parent = playerGui
+    <span class="comment">-- 创建一个ScreenGui</span>
+    <span class="keyword">local</span> <span class="variable">screenGui</span> = <span class="variable">Instance</span>.<span class="function">new</span>(<span class="string">"ScreenGui"</span>)
+    <span class="variable">screenGui</span>.<span class="variable">Name</span> = <span class="string">"GameUI"</span>
+    <span class="variable">screenGui</span>.<span class="variable">Parent</span> = <span class="variable">playerGui</span>
     
-    -- 创建一个分数显示
-    local scoreText = Instance.new("TextLabel")
-    scoreText.Name = "ScoreText"
-    scoreText.Size = UDim2.new(0, 200, 0, 50)
-    scoreText.Position = UDim2.new(0.05, 0, 0.05, 0)
-    scoreText.BackgroundColor3 = Color3.new(0, 0, 0)
-    scoreText.BackgroundTransparency = 0.5
-    scoreText.TextColor3 = Color3.new(1, 1, 1)
-    scoreText.TextSize = 20
-    scoreText.Text = "分数: 0"
-    scoreText.Parent = screenGui
+    <span class="comment">-- 创建一个分数显示</span>
+    <span class="keyword">local</span> <span class="variable">scoreText</span> = <span class="variable">Instance</span>.<span class="function">new</span>(<span class="string">"TextLabel"</span>)
+    <span class="variable">scoreText</span>.<span class="variable">Name</span> = <span class="string">"ScoreText"</span>
+    <span class="variable">scoreText</span>.<span class="variable">Size</span> = <span class="variable">UDim2</span>.<span class="function">new</span>(<span class="number">0</span>, <span class="number">200</span>, <span class="number">0</span>, <span class="number">50</span>)
+    <span class="variable">scoreText</span>.<span class="variable">Position</span> = <span class="variable">UDim2</span>.<span class="function">new</span>(<span class="number">0.05</span>, <span class="number">0</span>, <span class="number">0.05</span>, <span class="number">0</span>)
+    <span class="variable">scoreText</span>.<span class="variable">BackgroundColor3</span> = <span class="variable">Color3</span>.<span class="function">new</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>)
+    <span class="variable">scoreText</span>.<span class="variable">BackgroundTransparency</span> = <span class="number">0.5</span>
+    <span class="variable">scoreText</span>.<span class="variable">TextColor3</span> = <span class="variable">Color3</span>.<span class="function">new</span>(<span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>)
+    <span class="variable">scoreText</span>.<span class="variable">TextSize</span> = <span class="number">20</span>
+    <span class="variable">scoreText</span>.<span class="variable">Text</span> = <span class="string">"分数: 0"</span>
+    <span class="variable">scoreText</span>.<span class="variable">Parent</span> = <span class="variable">screenGui</span>
     
-    -- 创建一个生命值显示
-    local healthText = Instance.new("TextLabel")
-    healthText.Name = "HealthText"
-    healthText.Size = UDim2.new(0, 200, 0, 50)
-    healthText.Position = UDim2.new(0.05, 0, 0.15, 0)
-    healthText.BackgroundColor3 = Color3.new(0, 0, 0)
-    healthText.BackgroundTransparency = 0.5
-    healthText.TextColor3 = Color3.new(1, 1, 1)
-    healthText.TextSize = 20
-    healthText.Text = "生命值: 100"
-    healthText.Parent = screenGui
+    <span class="comment">-- 创建一个生命值显示</span>
+    <span class="keyword">local</span> <span class="variable">healthText</span> = <span class="variable">Instance</span>.<span class="function">new</span>(<span class="string">"TextLabel"</span>)
+    <span class="variable">healthText</span>.<span class="variable">Name</span> = <span class="string">"HealthText"</span>
+    <span class="variable">healthText</span>.<span class="variable">Size</span> = <span class="variable">UDim2</span>.<span class="function">new</span>(<span class="number">0</span>, <span class="number">200</span>, <span class="number">0</span>, <span class="number">50</span>)
+    <span class="variable">healthText</span>.<span class="variable">Position</span> = <span class="variable">UDim2</span>.<span class="function">new</span>(<span class="number">0.05</span>, <span class="number">0</span>, <span class="number">0.15</span>, <span class="number">0</span>)
+    <span class="variable">healthText</span>.<span class="variable">BackgroundColor3</span> = <span class="variable">Color3</span>.<span class="function">new</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>)
+    <span class="variable">healthText</span>.<span class="variable">BackgroundTransparency</span> = <span class="number">0.5</span>
+    <span class="variable">healthText</span>.<span class="variable">TextColor3</span> = <span class="variable">Color3</span>.<span class="function">new</span>(<span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>)
+    <span class="variable">healthText</span>.<span class="variable">TextSize</span> = <span class="number">20</span>
+    <span class="variable">healthText</span>.<span class="variable">Text</span> = <span class="string">"生命值: 100"</span>
+    <span class="variable">healthText</span>.<span class="variable">Parent</span> = <span class="variable">screenGui</span>
     
-    -- 当玩家的分数变化时更新UI
-    player.CharacterAdded:Connect(function(character)
-        local humanoid = character:WaitForChild("Humanoid")
+    <span class="comment">-- 当玩家的分数变化时更新UI</span>
+    <span class="variable">player</span>.<span class="variable">CharacterAdded</span>:<span class="function">Connect</span>(<span class="keyword">function</span>(<span class="variable">character</span>)
+        <span class="keyword">local</span> <span class="variable">humanoid</span> = <span class="variable">character</span>:<span class="function">WaitForChild</span>(<span class="string">"Humanoid"</span>)
         
-        -- 更新生命值显示
-        humanoid.HealthChanged:Connect(function(health)
-            healthText.Text = "生命值: " .. math.floor(health)
-        end)
-    end)
+        <span class="comment">-- 更新生命值显示</span>
+        <span class="variable">humanoid</span>.<span class="variable">HealthChanged</span>:<span class="function">Connect</span>(<span class="keyword">function</span>(<span class="variable">health</span>)
+            <span class="variable">healthText</span>.<span class="variable">Text</span> = <span class="string">"生命值: "</span> <span class="operator">..</span> <span class="variable">math</span>.<span class="function">floor</span>(<span class="variable">health</span>)
+        <span class="keyword">end</span>)
+    <span class="keyword">end</span>)
     
-    -- 当分数变化时更新UI
-    player.ChildAdded:Connect(function(child)
-        if child.Name == "leaderstats" then
-            local score = child:WaitForChild("Score")
-            score.Changed:Connect(function(value)
-                scoreText.Text = "分数: " .. value
-            end)
-        end
-    end)
-end)
+    <span class="comment">-- 当分数变化时更新UI</span>
+    <span class="variable">player</span>.<span class="variable">ChildAdded</span>:<span class="function">Connect</span>(<span class="keyword">function</span>(<span class="variable">child</span>)
+        <span class="keyword">if</span> <span class="variable">child</span>.<span class="variable">Name</span> == <span class="string">"leaderstats"</span> <span class="keyword">then</span>
+            <span class="keyword">local</span> <span class="variable">score</span> = <span class="variable">child</span>:<span class="function">WaitForChild</span>(<span class="string">"Score"</span>)
+            <span class="variable">score</span>.<span class="variable">Changed</span>:<span class="function">Connect</span>(<span class="keyword">function</span>(<span class="variable">value</span>)
+                <span class="variable">scoreText</span>.<span class="variable">Text</span> = <span class="string">"分数: "</span> <span class="operator">..</span> <span class="variable">value</span>
+            <span class="keyword">end</span>)
+        <span class="keyword">end</span>
+    <span class="keyword">end</span>)
+<span class="keyword">end</span>)
                         </code>
                     </div>
                 </div>
@@ -416,146 +448,146 @@ end)
                     <div class="answer" style="display: none;">
                         <div class="code-block">
                             <code>
--- 主游戏脚本
-local Players = game:GetService("Players")
+<span class="comment">-- 主游戏脚本</span>
+<span class="keyword">local</span> <span class="variable">Players</span> = <span class="variable">game</span>:<span class="function">GetService</span>(<span class="string">"Players"</span>)
 
--- 创建地面
-local ground = Instance.new("Part")
-ground.Name = "Ground"
-ground.Position = Vector3.new(0, 0, 0)
-ground.Size = Vector3.new(100, 1, 100)
-ground.BrickColor = BrickColor.new("Grass green")
-ground.Anchored = true
-ground.Parent = workspace
+<span class="comment">-- 创建地面</span>
+<span class="keyword">local</span> <span class="variable">ground</span> = <span class="variable">Instance</span>.<span class="function">new</span>(<span class="string">"Part"</span>)
+<span class="variable">ground</span>.<span class="variable">Name</span> = <span class="string">"Ground"</span>
+<span class="variable">ground</span>.<span class="variable">Position</span> = <span class="variable">Vector3</span>.<span class="function">new</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>)
+<span class="variable">ground</span>.<span class="variable">Size</span> = <span class="variable">Vector3</span>.<span class="function">new</span>(<span class="number">100</span>, <span class="number">1</span>, <span class="number">100</span>)
+<span class="variable">ground</span>.<span class="variable">BrickColor</span> = <span class="variable">BrickColor</span>.<span class="function">new</span>(<span class="string">"Grass green"</span>)
+<span class="variable">ground</span>.<span class="variable">Anchored</span> = <span class="keyword">true</span>
+<span class="variable">ground</span>.<span class="variable">Parent</span> = <span class="variable">workspace</span>
 
--- 创建收集物品
-local function createCollectible(position)
-    local part = Instance.new("Part")
-    part.Name = "Coin"
-    part.Position = position
-    part.Size = Vector3.new(1, 1, 1)
-    part.BrickColor = BrickColor.new("Bright yellow")
-    part.Shape = Enum.PartType.Ball
-    part.CanCollide = false
-    part.Anchored = true
+<span class="comment">-- 创建收集物品</span>
+<span class="keyword">local</span> <span class="function">createCollectible</span> = <span class="keyword">function</span>(<span class="variable">position</span>)
+    <span class="keyword">local</span> <span class="variable">part</span> = <span class="variable">Instance</span>.<span class="function">new</span>(<span class="string">"Part"</span>)
+    <span class="variable">part</span>.<span class="variable">Name</span> = <span class="string">"Coin"</span>
+    <span class="variable">part</span>.<span class="variable">Position</span> = <span class="variable">position</span>
+    <span class="variable">part</span>.<span class="variable">Size</span> = <span class="variable">Vector3</span>.<span class="function">new</span>(<span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>)
+    <span class="variable">part</span>.<span class="variable">BrickColor</span> = <span class="variable">BrickColor</span>.<span class="function">new</span>(<span class="string">"Bright yellow"</span>)
+    <span class="variable">part</span>.<span class="variable">Shape</span> = <span class="variable">Enum</span>.<span class="variable">PartType</span>.<span class="variable">Ball</span>
+    <span class="variable">part</span>.<span class="variable">CanCollide</span> = <span class="keyword">false</span>
+    <span class="variable">part</span>.<span class="variable">Anchored</span> = <span class="keyword">true</span>
     
-    -- 添加旋转动画
-    local bodyAngularVelocity = Instance.new("BodyAngularVelocity")
-    bodyAngularVelocity.AngularVelocity = Vector3.new(0, 5, 0)
-    bodyAngularVelocity.Parent = part
+    <span class="comment">-- 添加旋转动画</span>
+    <span class="keyword">local</span> <span class="variable">bodyAngularVelocity</span> = <span class="variable">Instance</span>.<span class="function">new</span>(<span class="string">"BodyAngularVelocity"</span>)
+    <span class="variable">bodyAngularVelocity</span>.<span class="variable">AngularVelocity</span> = <span class="variable">Vector3</span>.<span class="function">new</span>(<span class="number">0</span>, <span class="number">5</span>, <span class="number">0</span>)
+    <span class="variable">bodyAngularVelocity</span>.<span class="variable">Parent</span> = <span class="variable">part</span>
     
-    part.Parent = workspace
+    <span class="variable">part</span>.<span class="variable">Parent</span> = <span class="variable">workspace</span>
     
-    -- 监听碰撞事件
-    part.Touched:Connect(function(hit)
-        local character = hit.Parent
-        local humanoid = character:FindFirstChild("Humanoid")
+    <span class="comment">-- 监听碰撞事件</span>
+    <span class="variable">part</span>.<span class="variable">Touched</span>:<span class="function">Connect</span>(<span class="keyword">function</span>(<span class="variable">hit</span>)
+        <span class="keyword">local</span> <span class="variable">character</span> = <span class="variable">hit</span>.<span class="variable">Parent</span>
+        <span class="keyword">local</span> <span class="variable">humanoid</span> = <span class="variable">character</span>:<span class="function">FindFirstChild</span>(<span class="string">"Humanoid"</span>)
         
-        if humanoid then
-            local player = Players:GetPlayerFromCharacter(character)
-            if player then
-                -- 给予奖励
-                if not player:FindFirstChild("leaderstats") then
-                    local leaderstats = Instance.new("Folder")
-                    leaderstats.Name = "leaderstats"
-                    leaderstats.Parent = player
+        <span class="keyword">if</span> <span class="variable">humanoid</span> <span class="keyword">then</span>
+            <span class="keyword">local</span> <span class="variable">player</span> = <span class="variable">Players</span>:<span class="function">GetPlayerFromCharacter</span>(<span class="variable">character</span>)
+            <span class="keyword">if</span> <span class="variable">player</span> <span class="keyword">then</span>
+                <span class="comment">-- 给予奖励</span>
+                <span class="keyword">if</span> <span class="keyword">not</span> <span class="variable">player</span>:<span class="function">FindFirstChild</span>(<span class="string">"leaderstats"</span>) <span class="keyword">then</span>
+                    <span class="keyword">local</span> <span class="variable">leaderstats</span> = <span class="variable">Instance</span>.<span class="function">new</span>(<span class="string">"Folder"</span>)
+                    <span class="variable">leaderstats</span>.<span class="variable">Name</span> = <span class="string">"leaderstats"</span>
+                    <span class="variable">leaderstats</span>.<span class="variable">Parent</span> = <span class="variable">player</span>
                     
-                    local score = Instance.new("IntValue")
-                    score.Name = "Score"
-                    score.Value = 0
-                    score.Parent = leaderstats
-                end
+                    <span class="keyword">local</span> <span class="variable">score</span> = <span class="variable">Instance</span>.<span class="function">new</span>(<span class="string">"IntValue"</span>)
+                    <span class="variable">score</span>.<span class="variable">Name</span> = <span class="string">"Score"</span>
+                    <span class="variable">score</span>.<span class="variable">Value</span> = <span class="number">0</span>
+                    <span class="variable">score</span>.<span class="variable">Parent</span> = <span class="variable">leaderstats</span>
+                <span class="keyword">end</span>
                 
-                player.leaderstats.Score.Value = player.leaderstats.Score.Value + 10
-                part:Destroy()
-            end
-        end
-    end)
-end
+                <span class="variable">player</span>.<span class="variable">leaderstats</span>.<span class="variable">Score</span>.<span class="variable">Value</span> = <span class="variable">player</span>.<span class="variable">leaderstats</span>.<span class="variable">Score</span>.<span class="variable">Value</span> <span class="operator">+</span> <span class="number">10</span>
+                <span class="variable">part</span>:<span class="function">Destroy</span>()
+            <span class="keyword">end</span>
+        <span class="keyword">end</span>
+    <span class="keyword">end</span>)
+<span class="keyword">end</span>
 
--- 创建多个收集物品
-for i = 1, 20 do
-    local x = math.random(-40, 40)
-    local y = 2
-    local z = math.random(-40, 40)
-    createCollectible(Vector3.new(x, y, z))
-end
+<span class="comment">-- 创建多个收集物品</span>
+<span class="keyword">for</span> <span class="variable">i</span> = <span class="number">1</span>, <span class="number">20</span> <span class="keyword">do</span>
+    <span class="keyword">local</span> <span class="variable">x</span> = <span class="variable">math</span>.<span class="function">random</span>(<span class="operator">-</span><span class="number">40</span>, <span class="number">40</span>)
+    <span class="keyword">local</span> <span class="variable">y</span> = <span class="number">2</span>
+    <span class="keyword">local</span> <span class="variable">z</span> = <span class="variable">math</span>.<span class="function">random</span>(<span class="operator">-</span><span class="number">40</span>, <span class="number">40</span>)
+    <span class="function">createCollectible</span>(<span class="variable">Vector3</span>.<span class="function">new</span>(<span class="variable">x</span>, <span class="variable">y</span>, <span class="variable">z</span>))
+<span class="keyword">end</span>
 
--- 创建伤害区域
-local function createDamageZone(position, size, damagePerSecond)
-    local part = Instance.new("Part")
-    part.Name = "DamageZone"
-    part.Position = position
-    part.Size = size
-    part.BrickColor = BrickColor.new("Bright red")
-    part.Transparency = 0.5
-    part.CanCollide = false
-    part.Anchored = true
-    part.Parent = workspace
+<span class="comment">-- 创建伤害区域</span>
+<span class="keyword">local</span> <span class="function">createDamageZone</span> = <span class="keyword">function</span>(<span class="variable">position</span>, <span class="variable">size</span>, <span class="variable">damagePerSecond</span>)
+    <span class="keyword">local</span> <span class="variable">part</span> = <span class="variable">Instance</span>.<span class="function">new</span>(<span class="string">"Part"</span>)
+    <span class="variable">part</span>.<span class="variable">Name</span> = <span class="string">"DamageZone"</span>
+    <span class="variable">part</span>.<span class="variable">Position</span> = <span class="variable">position</span>
+    <span class="variable">part</span>.<span class="variable">Size</span> = <span class="variable">size</span>
+    <span class="variable">part</span>.<span class="variable">BrickColor</span> = <span class="variable">BrickColor</span>.<span class="function">new</span>(<span class="string">"Bright red"</span>)
+    <span class="variable">part</span>.<span class="variable">Transparency</span> = <span class="number">0.5</span>
+    <span class="variable">part</span>.<span class="variable">CanCollide</span> = <span class="keyword">false</span>
+    <span class="variable">part</span>.<span class="variable">Anchored</span> = <span class="keyword">true</span>
+    <span class="variable">part</span>.<span class="variable">Parent</span> = <span class="variable">workspace</span>
     
-    -- 每秒钟对区域内的玩家造成伤害
-    while part do
-        wait(1)
-        local touchingParts = part:GetTouchingParts()
-        for _, touchingPart in pairs(touchingParts) do
-            local character = touchingPart.Parent
-            local humanoid = character:FindFirstChild("Humanoid")
-            if humanoid then
-                humanoid:TakeDamage(damagePerSecond)
-            end
-        end
-    end
-end
+    <span class="comment">-- 每秒钟对区域内的玩家造成伤害</span>
+    <span class="keyword">while</span> <span class="variable">part</span> <span class="keyword">do</span>
+        <span class="function">wait</span>(<span class="number">1</span>)
+        <span class="keyword">local</span> <span class="variable">touchingParts</span> = <span class="variable">part</span>:<span class="function">GetTouchingParts</span>()
+        <span class="keyword">for</span> <span class="operator">_</span>, <span class="variable">touchingPart</span> <span class="keyword">in</span> <span class="function">pairs</span>(<span class="variable">touchingParts</span>) <span class="keyword">do</span>
+            <span class="keyword">local</span> <span class="variable">character</span> = <span class="variable">touchingPart</span>.<span class="variable">Parent</span>
+            <span class="keyword">local</span> <span class="variable">humanoid</span> = <span class="variable">character</span>:<span class="function">FindFirstChild</span>(<span class="string">"Humanoid"</span>)
+            <span class="keyword">if</span> <span class="variable">humanoid</span> <span class="keyword">then</span>
+                <span class="variable">humanoid</span>:<span class="function">TakeDamage</span>(<span class="variable">damagePerSecond</span>)
+            <span class="keyword">end</span>
+        <span class="keyword">end</span>
+    <span class="keyword">end</span>
+<span class="keyword">end</span>
 
--- 创建伤害区域
-createDamageZone(Vector3.new(0, 2, 0), Vector3.new(20, 1, 20), 10)
+<span class="comment">-- 创建伤害区域</span>
+<span class="function">createDamageZone</span>(<span class="variable">Vector3</span>.<span class="function">new</span>(<span class="number">0</span>, <span class="number">2</span>, <span class="number">0</span>), <span class="variable">Vector3</span>.<span class="function">new</span>(<span class="number">20</span>, <span class="number">1</span>, <span class="number">20</span>), <span class="number">10</span>)
 
--- 创建UI
-Players.PlayerAdded:Connect(function(player)
-    local playerGui = player:WaitForChild("PlayerGui")
+<span class="comment">-- 创建UI</span>
+<span class="variable">Players</span>.<span class="variable">PlayerAdded</span>:<span class="function">Connect</span>(<span class="keyword">function</span>(<span class="variable">player</span>)
+    <span class="keyword">local</span> <span class="variable">playerGui</span> = <span class="variable">player</span>:<span class="function">WaitForChild</span>(<span class="string">"PlayerGui"</span>)
     
-    local screenGui = Instance.new("ScreenGui")
-    screenGui.Name = "GameUI"
-    screenGui.Parent = playerGui
+    <span class="keyword">local</span> <span class="variable">screenGui</span> = <span class="variable">Instance</span>.<span class="function">new</span>(<span class="string">"ScreenGui"</span>)
+    <span class="variable">screenGui</span>.<span class="variable">Name</span> = <span class="string">"GameUI"</span>
+    <span class="variable">screenGui</span>.<span class="variable">Parent</span> = <span class="variable">playerGui</span>
     
-    local scoreText = Instance.new("TextLabel")
-    scoreText.Name = "ScoreText"
-    scoreText.Size = UDim2.new(0, 200, 0, 50)
-    scoreText.Position = UDim2.new(0.05, 0, 0.05, 0)
-    scoreText.BackgroundColor3 = Color3.new(0, 0, 0)
-    scoreText.BackgroundTransparency = 0.5
-    scoreText.TextColor3 = Color3.new(1, 1, 1)
-    scoreText.TextSize = 20
-    scoreText.Text = "分数: 0"
-    scoreText.Parent = screenGui
+    <span class="keyword">local</span> <span class="variable">scoreText</span> = <span class="variable">Instance</span>.<span class="function">new</span>(<span class="string">"TextLabel"</span>)
+    <span class="variable">scoreText</span>.<span class="variable">Name</span> = <span class="string">"ScoreText"</span>
+    <span class="variable">scoreText</span>.<span class="variable">Size</span> = <span class="variable">UDim2</span>.<span class="function">new</span>(<span class="number">0</span>, <span class="number">200</span>, <span class="number">0</span>, <span class="number">50</span>)
+    <span class="variable">scoreText</span>.<span class="variable">Position</span> = <span class="variable">UDim2</span>.<span class="function">new</span>(<span class="number">0.05</span>, <span class="number">0</span>, <span class="number">0.05</span>, <span class="number">0</span>)
+    <span class="variable">scoreText</span>.<span class="variable">BackgroundColor3</span> = <span class="variable">Color3</span>.<span class="function">new</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>)
+    <span class="variable">scoreText</span>.<span class="variable">BackgroundTransparency</span> = <span class="number">0.5</span>
+    <span class="variable">scoreText</span>.<span class="variable">TextColor3</span> = <span class="variable">Color3</span>.<span class="function">new</span>(<span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>)
+    <span class="variable">scoreText</span>.<span class="variable">TextSize</span> = <span class="number">20</span>
+    <span class="variable">scoreText</span>.<span class="variable">Text</span> = <span class="string">"分数: 0"</span>
+    <span class="variable">scoreText</span>.<span class="variable">Parent</span> = <span class="variable">screenGui</span>
     
-    local healthText = Instance.new("TextLabel")
-    healthText.Name = "HealthText"
-    healthText.Size = UDim2.new(0, 200, 0, 50)
-    healthText.Position = UDim2.new(0.05, 0, 0.15, 0)
-    healthText.BackgroundColor3 = Color3.new(0, 0, 0)
-    healthText.BackgroundTransparency = 0.5
-    healthText.TextColor3 = Color3.new(1, 1, 1)
-    healthText.TextSize = 20
-    healthText.Text = "生命值: 100"
-    healthText.Parent = screenGui
+    <span class="keyword">local</span> <span class="variable">healthText</span> = <span class="variable">Instance</span>.<span class="function">new</span>(<span class="string">"TextLabel"</span>)
+    <span class="variable">healthText</span>.<span class="variable">Name</span> = <span class="string">"HealthText"</span>
+    <span class="variable">healthText</span>.<span class="variable">Size</span> = <span class="variable">UDim2</span>.<span class="function">new</span>(<span class="number">0</span>, <span class="number">200</span>, <span class="number">0</span>, <span class="number">50</span>)
+    <span class="variable">healthText</span>.<span class="variable">Position</span> = <span class="variable">UDim2</span>.<span class="function">new</span>(<span class="number">0.05</span>, <span class="number">0</span>, <span class="number">0.15</span>, <span class="number">0</span>)
+    <span class="variable">healthText</span>.<span class="variable">BackgroundColor3</span> = <span class="variable">Color3</span>.<span class="function">new</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>)
+    <span class="variable">healthText</span>.<span class="variable">BackgroundTransparency</span> = <span class="number">0.5</span>
+    <span class="variable">healthText</span>.<span class="variable">TextColor3</span> = <span class="variable">Color3</span>.<span class="function">new</span>(<span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>)
+    <span class="variable">healthText</span>.<span class="variable">TextSize</span> = <span class="number">20</span>
+    <span class="variable">healthText</span>.<span class="variable">Text</span> = <span class="string">"生命值: 100"</span>
+    <span class="variable">healthText</span>.<span class="variable">Parent</span> = <span class="variable">screenGui</span>
     
-    player.CharacterAdded:Connect(function(character)
-        local humanoid = character:WaitForChild("Humanoid")
-        humanoid.HealthChanged:Connect(function(health)
-            healthText.Text = "生命值: " .. math.floor(health)
-        end)
-    end)
+    <span class="variable">player</span>.<span class="variable">CharacterAdded</span>:<span class="function">Connect</span>(<span class="keyword">function</span>(<span class="variable">character</span>)
+        <span class="keyword">local</span> <span class="variable">humanoid</span> = <span class="variable">character</span>:<span class="function">WaitForChild</span>(<span class="string">"Humanoid"</span>)
+        <span class="variable">humanoid</span>.<span class="variable">HealthChanged</span>:<span class="function">Connect</span>(<span class="keyword">function</span>(<span class="variable">health</span>)
+            <span class="variable">healthText</span>.<span class="variable">Text</span> = <span class="string">"生命值: "</span> <span class="operator">..</span> <span class="variable">math</span>.<span class="function">floor</span>(<span class="variable">health</span>)
+        <span class="keyword">end</span>)
+    <span class="keyword">end</span>)
     
-    player.ChildAdded:Connect(function(child)
-        if child.Name == "leaderstats" then
-            local score = child:WaitForChild("Score")
-            score.Changed:Connect(function(value)
-                scoreText.Text = "分数: " .. value
-            end)
-        end
-    end)
-end)
+    <span class="variable">player</span>.<span class="variable">ChildAdded</span>:<span class="function">Connect</span>(<span class="keyword">function</span>(<span class="variable">child</span>)
+        <span class="keyword">if</span> <span class="variable">child</span>.<span class="variable">Name</span> == <span class="string">"leaderstats"</span> <span class="keyword">then</span>
+            <span class="keyword">local</span> <span class="variable">score</span> = <span class="variable">child</span>:<span class="function">WaitForChild</span>(<span class="string">"Score"</span>)
+            <span class="variable">score</span>.<span class="variable">Changed</span>:<span class="function">Connect</span>(<span class="keyword">function</span>(<span class="variable">value</span>)
+                <span class="variable">scoreText</span>.<span class="variable">Text</span> = <span class="string">"分数: "</span> <span class="operator">..</span> <span class="variable">value</span>
+            <span class="keyword">end</span>)
+        <span class="keyword">end</span>
+    <span class="keyword">end</span>)
+<span class="keyword">end</span>)
                             </code>
                         </div>
                     </div>
