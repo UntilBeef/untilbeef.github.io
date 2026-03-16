@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roblox游戏开发教程 - 零基础入门</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* 全局样式 */
+        :root {
+            --roblox-red: #ff4500;
+            --roblox-white: #ffffff;
+            --roblox-gray: #f0f0f0;
+            --roblox-dark-gray: #333333;
+            --roblox-light-gray: #e0e0e0;
+            --roblox-green: #4CAF50;
+            --roblox-blue: #0074e0;
+        }
+        
+        /* 卡片式布局 */
+        .card {
+            background: var(--roblox-white);
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            padding: 24px;
+            margin-bottom: 24px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+        }
+        
+        /* 章节标题 */
+        .section-title {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: var(--roblox-red);
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid var(--roblox-red);
+        }
+        
+        .section-title i {
+            font-size: 24px;
+        }
+        
+        /* 步骤卡片 */
+        .step-card {
+            background: var(--roblox-gray);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 16px;
+            border-left: 4px solid var(--roblox-blue);
+            transition: all 0.3s ease;
+        }
+        
+        .step-card h4 {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--roblox-dark-gray);
+            margin-bottom: 12px;
+            cursor: pointer;
+            user-select: none;
+        }
+        
+        .step-card h4:hover {
+            color: var(--roblox-red);
+        }
+        
+        .step-card h4::after {
+            content: '▼';
+            margin-left: auto;
+            font-size: 12px;
+            transition: transform 0.3s ease;
+        }
+        
+        .step-card.collapsed h4::after {
+            transform: rotate(-90deg);
+        }
+        
+        .step-content {
+            max-height: 1000px;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+        
+        .step-card.collapsed .step-content {
+            max-height: 0;
+            margin: 0;
+            padding: 0;
+        }
+        
+        /* 代码块 */
+        .code-block {
+            background-color: #1e1e1e;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            overflow-x: auto;
+            border-left: 4px solid var(--roblox-green);
+            color: #d4d4d4;
+            position: relative;
+        }
+        
+        .code-block code {
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 14px;
+            color: #d4d4d4;
+        }
+        
+        /* 语法高亮 */
+        .code-block .comment { color: #6a9955; }
+        .code-block .keyword { color: #569cd6; }
+        .code-block .string { color: #ce9178; }
+        .code-block .number { color: #b5cea8; }
+        .code-block .function { color: #dcdcaa; }
+        .code-block .operator { color: #d4d4d4; }
+        .code-block .variable { color: #9cdcfe; }
+        
+        /* 互动练习 */
+        .exercise {
+            background: var(--roblox-light-gray);
+            border-radius: 8px;
+            padding: 24px;
+            margin: 24px 0;
+            border-left: 4px solid var(--roblox-green);
+        }
+        
+        .exercise h4 {
+            color: var(--roblox-green);
+            margin-bottom: 16px;
+        }
+        
+        /* 切换按钮 */
+        .toggle-btn {
+            background: var(--roblox-blue);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.3s;
+            font-size: 14px;
+            font-weight: bold;
+        }
+        
+        .toggle-btn:hover {
+            background: #005bb5;
+        }
+        
+        /* 答案区域 */
+        .answer {
+            margin-top: 16px;
+            padding: 16px;
+            background: var(--roblox-white);
+            border-radius: 4px;
+            border: 1px solid var(--roblox-light-gray);
+            transition: all 0.3s ease;
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .container {
+                padding: 16px;
+            }
+            
+            .card {
+                padding: 16px;
+            }
+            
+            .section-title {
+                font-size: 20px;
+            }
+        }
+        
+        /* 导航栏 */
+        .nav-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 24px;
+            border-bottom: 1px solid var(--roblox-light-gray);
+            padding-bottom: 12px;
+        }
+        
+        .nav-tab {
+            padding: 10px 16px;
+            background: var(--roblox-gray);
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: bold;
+            color: var(--roblox-dark-gray);
+        }
+        
+        .nav-tab:hover {
+            background: var(--roblox-light-gray);
+        }
+        
+        .nav-tab.active {
+            background: var(--roblox-red);
+            color: white;
+        }
+        
+        /* 内容区域 */
+        .content-section {
+            display: none;
+        }
+        
+        .content-section.active {
+            display: block;
+        }
+        
+        /* 图标样式 */
+        .icon {
+            font-size: 20px;
+            margin-right: 8px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Roblox游戏开发教程</h1>
+            <nav>
+                <ul>
+                    <li><a href="index.html">首页</a></li>
+                    <li><a href="roblox-tutorial.html">基础教程</a></li>
+                    <li><a href="roblox-game-dev.html">游戏开发</a></li>
+                    <li><a href="roblox-projects.html">实践项目</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <section class="tutorial-content">
+                <h2 style="color: var(--roblox-red); margin-bottom: 32px;">Roblox游戏开发基础 - 零基础入门</h2>
+                
+                <!-- 导航标签 -->
+                <div class="nav-tabs">
+                    <div class="nav-tab active" data-tab="setup">
+                        <span class="icon">📥</span> 环境搭建
+                    </div>
+                    <div class="nav-tab" data-tab="studio">
+                        <span class="icon">🎨</span> Roblox Studio基础
+                    </div>
+                    <div class="nav-tab" data-tab="scripting">
+                        <span class="icon">💻</span> Luau脚本基础
+                    </div>
+                    <div class="nav-tab" data-tab="interactive">
+                        <span class="icon">🎮</span> 互动练习
+                    </div>
+                </div>
+
+                <!-- 环境搭建 -->
+                <div class="content-section active" id="setup">
+                    <div class="card">
+                        <div class="section-title">
+                            <span class="icon">📥</span>
+                            <h2>1. 环境搭建</h2>
+                        </div>
+                        <p>在开始Roblox游戏开发之前，你需要下载并安装Roblox Studio。这是Roblox官方提供的免费游戏开发工具，非常容易使用！</p>
+                        
+                        <div class="step-card">
+                            <h4>
+                                <span class="icon">👤</span>
+                                步骤 1: 注册Roblox账号
+                            </h4>
+                            <div class="step-content">
+                                <p>如果你还没有Roblox账号，需要先注册一个。这就像注册其他网站一样简单！</p>
+                                <ol>
+                                    <li>访问 <a href="https://www.roblox.com/signup" target="_blank">Roblox注册页面</a></li>
+                                    <li>填写你的生日、用户名和密码</li>
+                                    <li>选择一个性别（可选）</li>
+                                    <li>点击"Sign Up"按钮完成注册</li>
+                                </ol>
+                            </div>
+                        </div>
+                        
+                        <div class="step-card">
+                            <h4>
+                                <span class="icon">⬇️</span>
+                                步骤 2: 下载Roblox Studio
+                            </h4>
+                            <div class="step-content">
+                                <p>登录Roblox账号后，访问 <a href="https://www.roblox.com/create" target="_blank">Roblox创建页面</a>，点击"Start Creating"按钮，系统会自动下载Roblox Studio安装程序。</p>
+                            </div>
+                        </div>
+                        
+                        <div class="step-card">
+                            <h4>
+                                <span class="icon">🔧</span>
+                                步骤 3: 安装Roblox Studio
+                            </h4>
+                            <div class="step-content">
+                                <p>运行下载的安装程序，按照提示点击"Next"或"下一步"，直到安装完成。安装完成后，Roblox Studio会自动启动。</p>
+                            </div>
+                        </div>
+                        
+                        <div class="step-card">
+                            <h4>
+                                <span class="icon">🚀</span>
+                                步骤 4: 配置Roblox Studio
+                            </h4>
+                            <div class="step-content">
+                                <p>首次启动Roblox Studio时，你会看到一个欢迎界面。选择"New Project"创建一个新的空白项目，就可以开始你的游戏开发之旅了！</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Roblox Studio基础 -->
+                <div class="content-section" id="studio">
+                    <div class="card">
+                        <div class="section-title">
+                            <span class="icon">🎨</span>
+                            <h2>2. Roblox Studio基础</h2>
+                        </div>
+                        <p>Roblox Studio的界面非常直观，就像一个3D版的绘画软件！让我们来认识一下它的各个部分。</p>
+                        
+                        <div class="step-card">
+                            <h4>
+                                <span class="icon">🖥️</span>
+                                2.1 主界面
+                            </h4>
+                            <div class="step-content">
+                                <p>Roblox Studio的主界面由几个主要部分组成：</p>
+                                <ul>
+                                    <li><strong>菜单栏</strong>：位于顶部，包含文件、编辑、视图等选项，就像大多数软件一样。</li>
+                                    <li><strong>工具栏</strong>：位于菜单栏下方，有一些常用的工具按钮，比如保存、撤销、重做等。</li>
+                                    <li><strong>视图面板</strong>：位于中央，这是你看到游戏场景的地方，你可以在这里移动、旋转和缩放视角。</li>
+                                    <li><strong>资源管理器</strong>：位于右侧，显示游戏中的所有对象，就像文件夹一样。</li>
+                                    <li><strong>属性面板</strong>：位于右侧，当你选中一个对象时，这里会显示它的属性，比如颜色、大小、位置等。</li>
+                                    <li><strong>输出窗口</strong>：位于底部，显示一些信息和错误提示。</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="step-card">
+                            <h4>
+                                <span class="icon">👆</span>
+                                2.2 基本操作
+                            </h4>
+                            <div class="step-content">
+                                <p>在Roblox Studio中，你可以执行以下基本操作：</p>
+                                <ul>
+                                    <li><strong>选择对象</strong>：在视图面板中点击对象，或在资源管理器中点击对象名称。</li>
+                                    <li><strong>移动对象</strong>：选中对象后，点击并拖动对象，或者使用移动工具（快捷键：G）。</li>
+                                    <li><strong>旋转对象</strong>：选中对象后，使用旋转工具（快捷键：R）旋转对象。</li>
+                                    <li><strong>缩放对象</strong>：选中对象后，使用缩放工具（快捷键：S）调整对象大小。</li>
+                                    <li><strong>创建对象</strong>：在资源管理器中右键点击，选择"Insert Object"，然后选择你想要的对象类型。</li>
+                                    <li><strong>删除对象</strong>：选中对象后，按Delete键删除。</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="step-card">
+                            <h4>
+                                <span class="icon">🔄</span>
+                                2.3 工作流程
+                            </h4>
+                            <div class="step-content">
+                                <p>Roblox游戏开发的基本工作流程非常简单：</p>
+                                <ol>
+                                    <li><strong>创建项目</strong>：打开Roblox Studio，点击"New Project"创建一个新的空白项目。</li>
+                                    <li><strong>构建场景</strong>：在场景中添加和排列对象，比如地面、墙壁、道具等。</li>
+                                    <li><strong>添加脚本</strong>：为对象添加脚本，让它们动起来，实现游戏逻辑。</li>
+                                    <li><strong>测试游戏</strong>：点击"Play"按钮，测试游戏是否正常工作。</li>
+                                    <li><strong>发布游戏</strong>：当你满意时，点击"Publish"按钮，让其他玩家可以玩你的游戏！</li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Luau脚本基础 -->
+                <div class="content-section" id="scripting">
+                    <div class="card">
+                        <div class="section-title">
+                            <span class="icon">💻</span>
+                            <h2>3. Luau脚本基础</h2>
+                        </div>
+                        <p>Luau是Roblox使用的编程语言，它非常简单易学，就像写日记一样！通过脚本，你可以让游戏中的对象动起来，实现各种有趣的功能。</p>
+                        
+                        <div class="step-card">
+                            <h4>
+                                <span class="icon">📝</span>
+                                3.1 脚本创建
+                            </h4>
+                            <div class="step-content">
+                                <p>在Roblox Studio中，创建脚本非常简单：</p>
+                                <ol>
+                                    <li>在资源管理器中找到你想要添加脚本的对象，右键点击它。</li>
+                                    <li>选择"Insert Object"（插入对象）。</li>
+                                    <li>在弹出的窗口中选择"Script"（脚本）。</li>
+                                    <li>双击创建的脚本，打开脚本编辑器。</li>
+                                </ol>
+                                <p><strong>小贴士：</strong>Script在服务器端运行，影响所有玩家；LocalScript在客户端运行，只影响当前玩家。</p>
+                            </div>
+                        </div>
+                        
+                        <div class="step-card">
+                            <h4>
+                                <span class="icon">📚</span>
+                                3.2 基本语法
+                            </h4>
+                            <div class="step-content">
+                                <p>让我们来学习一些最基本的Luau语法，就像学习一门新语言的入门词汇一样：</p>
+                                <div class="code-block">
+                                    <code>
+<span class="comment">-- 打印消息（在输出窗口显示文字）</span>
+<span class="function">print</span>(<span class="string">"你好，Roblox！"</span>)
+
+<span class="comment">-- 变量声明（存储数据的容器）</span>
+<span class="keyword">local</span> <span class="variable">message</span> = <span class="string">"你好，Roblox！"</span>
+<span class="keyword">local</span> <span class="variable">count</span> = <span class="number">10</span>
+<span class="keyword">local</span> <span class="variable">isGameActive</span> = <span class="keyword">true</span>
+
+<span class="comment">-- 条件语句（根据条件做不同的事情）</span>
+<span class="keyword">if</span> <span class="variable">count</span> <span class="operator">></span> <span class="number">5</span> <span class="keyword">then</span>
+    <span class="function">print</span>(<span class="string">"数字大于5"</span>)
+<span class="keyword">elif</span> <span class="variable">count</span> <span class="operator">==</span> <span class="number">5</span> <span class="keyword">then</span>
+    <span class="function">print</span>(<span class="string">"数字等于5"</span>)
+<span class="keyword">else</span>
+    <span class="function">print</span>(<span class="string">"数字小于5"</span>)
+<span class="keyword">end</span>
+
+<span class="comment">-- 循环（重复做某件事）</span>
+<span class="keyword">for</span> <span class="variable">i</span> = <span class="number">1</span>, <span class="number">5</span> <span class="keyword">do</span>
+    <span class="function">print</span>(<span class="string">"第"</span> <span class="operator">..</span> <span class="variable">i</span> <span class="operator">..</span> <span class="string">"次循环"</span>)
+<span class="keyword">end</span>
+
+<span class="comment">-- 函数（可重用的代码块）</span>
+<span class="keyword">function</span> <span class="function">greet</span>(<span class="variable">name</span>)
+    <span class="keyword">return</span> <span class="string">"你好，"</span> <span class="operator">..</span> <span class="variable">name</span> <span class="operator">..</span> <span class="string">"！"</span>
+<span class="keyword">end</span>
+
+<span class="keyword">local</span> <span class="variable">greeting</span> = <span class="function">greet</span>(<span class="string">"玩家"</span>)
+<span class="function">print</span>(<span class="variable">greeting</span>)
+                                    </code>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="step-card">
+                            <h4>
+                                <span class="icon">🎮</span>
+                                3.3 Roblox特有概念
+                            </h4>
+                            <div class="step-content">
+                                <p>在Roblox中，有一些特殊的概念，让你可以控制游戏的各种功能：</p>
+                                
+                                <h5 style="margin-top: 16px; color: var(--roblox-blue);">3.3.1 服务（Services）</h5>
+                                <p>服务就像游戏中的各种功能部门，负责不同的任务：</p>
+                                <div class="code-block">
+                                    <code>
+<span class="comment">-- 获取服务</span>
+<span class="keyword">local</span> <span class="variable">Players</span> = <span class="variable">game</span>:<span class="function">GetService</span>(<span class="string">"Players"</span>)  <span class="comment">-- 玩家服务，管理所有玩家</span>
+<span class="keyword">local</span> <span class="variable">Workspace</span> = <span class="variable">game</span>:<span class="function">GetService</span>(<span class="string">"Workspace"</span>)  <span class="comment">-- 工作区，存放游戏场景</span>
+
+<span class="comment">-- 使用服务（当玩家加入时显示消息）</span>
+<span class="variable">Players</span>.<span class="variable">PlayerAdded</span>:<span class="function">Connect</span>(<span class="keyword">function</span>(<span class="variable">player</span>)
+    <span class="function">print</span>(<span class="string">"玩家加入了："</span> <span class="operator">..</span> <span class="variable">player</span>.<span class="variable">Name</span>)
+<span class="keyword">end</span>)
+                                    </code>
+                                </div>
+                                
+                                <h5 style="margin-top: 16px; color: var(--roblox-blue);">3.3.2 事件（Events）</h5>
+                                <p>事件就像游戏中的触发器，当某些事情发生时，就会触发相应的代码：</p>
+                                <div class="code-block">
+                                    <code>
+<span class="comment">-- 监听玩家加入事件</span>
+<span class="keyword">local</span> <span class="variable">Players</span> = <span class="variable">game</span>:<span class="function">GetService</span>(<span class="string">"Players"</span>)
+
+<span class="variable">Players</span>.<span class="variable">PlayerAdded</span>:<span class="function">Connect</span>(<span class="keyword">function</span>(<span class="variable">player</span>)
+    <span class="function">print</span>(<span class="string">"玩家加入了："</span> <span class="operator">..</span> <span class="variable">player</span>.<span class="variable">Name</span>)
+    
+    <span class="comment">-- 监听玩家角色生成事件</span>
+    <span class="variable">player</span>.<span class="variable">CharacterAdded</span>:<span class="function">Connect</span>(<span class="keyword">function</span>(<span class="variable">character</span>)
+        <span class="function">print</span>(<span class="variable">player</span>.<span class="variable">Name</span> <span class="operator">..</span> <span class="string">"的角色生成了"</span>)
+    <span class="keyword">end</span>)
+<span class="keyword">end</span>)
+                                    </code>
+                                </div>
+                                
+                                <h5 style="margin-top: 16px; color: var(--roblox-blue);">3.3.3 实例（Instances）</h5>
+                                <p>实例是Roblox中所有对象的统称，比如方块、玩家、道具等：</p>
+                                <div class="code-block">
+                                    <code>
+<span class="comment">-- 创建一个新的方块</span>
+<span class="keyword">local</span> <span class="variable">part</span> = <span class="variable">Instance</span>.<span class="function">new</span>(<span class="string">"Part"</span>)
+<span class="variable">part</span>.<span class="variable">Name</span> = <span class="string">"我的方块"</span>
+<span class="variable">part</span>.<span class="variable">Position</span> = <span class="variable">Vector3</span>.<span class="function">new</span>(<span class="number">0</span>, <span class="number">5</span>, <span class="number">0</span>)  <span class="comment">-- 位置（x, y, z）</span>
+<span class="variable">part</span>.<span class="variable">Size</span> = <span class="variable">Vector3</span>.<span class="function">new</span>(<span class="number">2</span>, <span class="number">2</span>, <span class="number">2</span>)  <span class="comment">-- 大小</span>
+<span class="variable">part</span>.<span class="variable">BrickColor</span> = <span class="variable">BrickColor</span>.<span class="function">new</span>(<span class="string">"Bright blue"</span>)  <span class="comment">-- 颜色</span>
+<span class="variable">part</span>.<span class="variable">Parent</span> = <span class="variable">workspace</span>  <span class="comment">-- 将方块放入工作区</span>
+
+<span class="comment">-- 修改方块属性</span>
+<span class="variable">part</span>.<span class="variable">Position</span> = <span class="variable">Vector3</span>.<span class="function">new</span>(<span class="number">5</span>, <span class="number">5</span>, <span class="number">0</span>)  <span class="comment">-- 移动方块</span>
+
+<span class="comment">-- 销毁方块</span>
+<span class="comment">-- part:Destroy()</span>
+                                    </code>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="exercise">
+                            <h4>
+                                <span class="icon">📝</span>
+                                练习：创建你的第一个Roblox脚本
+                            </h4>
+                            <p>创建一个脚本，当玩家加入游戏时，显示欢迎消息。</p>
+                            <button class="toggle-btn" onclick="toggleAnswer('answer1')">查看答案</button>
+                            <div id="answer1" class="answer" style="display: none;">
+                                <div class="code-block">
+                                    <code>
+<span class="comment">-- 获取Players服务</span>
+<span class="keyword">local</span> <span class="variable">Players</span> = <span class="variable">game</span>:<span class="function">GetService</span>(<span class="string">"Players"</span>)
+
+<span class="comment">-- 监听玩家加入事件</span>
+<span class="variable">Players</span>.<span class="variable">PlayerAdded</span>:<span class="function">Connect</span>(<span class="keyword">function</span>(<span class="variable">player</span>)
+    <span class="comment">-- 等待玩家的角色加载</span>
+    <span class="variable">player</span>.<span class="variable">CharacterAdded</span>:<span class="function">Connect</span>(<span class="keyword">function</span>(<span class="variable">character</span>)
+        <span class="comment">-- 发送欢迎消息</span>
+        <span class="keyword">local</span> <span class="variable">message</span> = <span class="string">"欢迎来到我的游戏，"</span> <span class="operator">..</span> <span class="variable">player</span>.<span class="variable">Name</span> <span class="operator">..</span> <span class="string">"！"</span>
+        <span class="variable">game</span>:<span class="function">GetService</span>(<span class="string">"StarterGui"</span>):<span class="function">SetCore</span>(<span class="string">"SendNotification"</span>, {
+            <span class="variable">Title</span> = <span class="string">"欢迎"</span>,
+            <span class="variable">Text</span> = <span class="variable">message</span>,
+            <span class="variable">Duration</span> = <span class="number">5</span>  <span class="comment">-- 消息显示5秒</span>
+        })
+    <span class="keyword">end</span>)
+<span class="keyword">end</span>)
+                                    </code>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 互动练习 -->
+                <div class="content-section" id="interactive">
+                    <div class="card">
+                        <div class="section-title">
+                            <span class="icon">🎮</span>
+                            <h2>4. 互动练习</h2>
+                        </div>
+                        <p>现在让我们动手实践一下，创建你的第一个Roblox场景！</p>
+                        
+                        <div class="step-card">
+                            <h4>
+                                <span class="icon">🏠</span>
+                                练习 1: 创建你的第一个场景
+                            </h4>
+                            <div class="step-content">
+                                <p>让我们创建一个简单的房间，包含地面、墙壁和光源。</p>
+                                <ol>
+                                    <li>打开Roblox Studio，点击"New Project"创建一个新的空白项目。</li>
+                                    <li>在资源管理器中右键点击"Workspace"，选择"Insert Object" → "Part"，创建一个方块作为地面。</li>
+                                    <li>在属性面板中，将方块的Size设置为(20, 1, 20)，Position设置为(0, 0, 0)，BrickColor设置为"Grass green"。</li>
+                                    <li>重复步骤2和3，创建4个方块作为墙壁，分别放在地面的四周。</li>
+                                    <li>在资源管理器中右键点击"Workspace"，选择"Insert Object" → "PointLight"，创建一个光源。</li>
+                                    <li>在属性面板中，将光源的Position设置为(0, 10, 0)，Brightness设置为2。</li>
+                                    <li>点击顶部的"Play"按钮，测试你的场景！</li>
+                                </ol>
+                            </div>
+                        </div>
+                        
+                        <div class="step-card">
+                            <h4>
+                                <span class="icon">🔘</span>
+                                练习 2: 添加交互元素
+                            </h4>
+                            <div class="step-content">
+                                <p>让我们创建一个可以点击的按钮，当点击时会改变颜色。</p>
+                                <ol>
+                                    <li>在场景中创建一个新的方块，作为按钮。</li>
+                                    <li>在属性面板中，将方块的Size设置为(3, 1, 3)，Position设置为(0, 1, 0)，BrickColor设置为"Bright blue"。</li>
+                                    <li>右键点击按钮方块，选择"Insert Object" → "ClickDetector"，添加点击检测器。</li>
+                                    <li>右键点击按钮方块，选择"Insert Object" → "Script"，添加一个脚本。</li>
+                                    <li>双击脚本，将下面的代码复制粘贴进去：</li>
+                                </ol>
+                                <div class="code-block">
+                                    <code>
+<span class="comment">-- 获取按钮和点击检测器</span>
+<span class="keyword">local</span> <span class="variable">button</span> = <span class="variable">script</span>.<span class="variable">Parent</span>
+<span class="keyword">local</span> <span class="variable">clickDetector</span> = <span class="variable">button</span>:<span class="function">WaitForChild</span>(<span class="string">"ClickDetector"</span>)
+
+<span class="comment">-- 定义颜色列表</span>
+<span class="keyword">local</span> <span class="variable">colors</span> = {
+    <span class="variable">BrickColor</span>.<span class="function">new</span>(<span class="string">"Bright red"</span>),
+    <span class="variable">BrickColor</span>.<span class="function">new</span>(<span class="string">"Bright blue"</span>),
+    <span class="variable">BrickColor</span>.<span class="function">new</span>(<span class="string">"Bright green"</span>),
+    <span class="variable">BrickColor</span>.<span class="function">new</span>(<span class="string">"Bright yellow"</span>)
+}
+
+<span class="comment">-- 当按钮被点击时</span>
+<span class="variable">clickDetector</span>.<span class="variable">MouseClick</span>:<span class="function">Connect</span>(<span class="keyword">function</span>()
+    <span class="comment">-- 随机选择一个颜色</span>
+    <span class="keyword">local</span> <span class="variable">randomColor</span> = <span class="variable">colors</span>[<span class="variable">math</span>.<span class="function">random</span>(<span class="number">1</span>, <span class="operator">#</span><span class="variable">colors</span>)]
+    <span class="comment">-- 改变按钮颜色</span>
+    <span class="variable">button</span>.<span class="variable">BrickColor</span> = <span class="variable">randomColor</span>
+<span class="keyword">end</span>)
+                                    </code>
+                                </div>
+                                <p>6. 点击顶部的"Play"按钮，测试你的按钮！点击它，看看颜色是否会改变。</p>
+                            </div>
+                        </div>
+                        
+                        <div class="step-card">
+                            <h4>
+                                <span class="icon">🌟</span>
+                                练习 3: 创建一个简单的游戏机制
+                            </h4>
+                            <div class="step-content">
+                                <p>让我们创建一个简单的收集游戏机制，当玩家触碰金币时，金币会消失并增加分数。</p>
+                                <ol>
+                                    <li>在场景中创建一个新的方块，作为金币。</li>
+                                    <li>在属性面板中，将方块的Size设置为(1, 1, 1)，Position设置为(0, 2, 0)，BrickColor设置为"Bright yellow"。</li>
+                                    <li>右键点击金币方块，选择"Insert Object" → "Script"，添加一个脚本。</li>
+                                    <li>双击脚本，将下面的代码复制粘贴进去：</li>
+                                </ol>
+                                <div class="code-block">
+                                    <code>
+<span class="comment">-- 获取金币</span>
+<span class="keyword">local</span> <span class="variable">coin</span> = <span class="variable">script</span>.<span class="variable">Parent</span>
+
+<span class="comment">-- 当金币被触碰时</span>
+<span class="variable">coin</span>.<span class="variable">Touched</span>:<span class="function">Connect</span>(<span class="keyword">function</span>(<span class="variable">hit</span>)
+    <span class="comment">-- 检查触碰的对象是否是玩家</span>
+    <span class="keyword">local</span> <span class="variable">character</span> = <span class="variable">hit</span>.<span class="variable">Parent</span>
+    <span class="keyword">local</span> <span class="variable">humanoid</span> = <span class="variable">character</span>:<span class="function">FindFirstChild</span>(<span class="string">"Humanoid"</span>)
+    
+    <span class="keyword">if</span> <span class="variable">humanoid</span> <span class="keyword">then</span>
+        <span class="comment">-- 获取玩家</span>
+        <span class="keyword">local</span> <span class="variable">player</span> = <span class="variable">game</span>:<span class="function">GetService</span>(<span class="string">"Players"</span>):<span class="function">GetPlayerFromCharacter</span>(<span class="variable">character</span>)
+        
+        <span class="keyword">if</span> <span class="variable">player</span> <span class="keyword">then</span>
+            <span class="comment">-- 增加分数（如果没有分数，创建一个）</span>
+            <span class="keyword">if</span> <span class="keyword">not</span> <span class="variable">player</span>:<span class="function">FindFirstChild</span>(<span class="string">"leaderstats"</span>) <span class="keyword">then</span>
+                <span class="keyword">local</span> <span class="variable">leaderstats</span> = <span class="variable">Instance</span>.<span class="function">new</span>(<span class="string">"Folder"</span>)
+                <span class="variable">leaderstats</span>.<span class="variable">Name</span> = <span class="string">"leaderstats"</span>
+                <span class="variable">leaderstats</span>.<span class="variable">Parent</span> = <span class="variable">player</span>
+                
+                <span class="keyword">local</span> <span class="variable">score</span> = <span class="variable">Instance</span>.<span class="function">new</span>(<span class="string">"IntValue"</span>)
+                <span class="variable">score</span>.<span class="variable">Name</span> = <span class="string">"Score"</span>
+                <span class="variable">score</span>.<span class="variable">Value</span> = <span class="number">0</span>
+                <span class="variable">score</span>.<span class="variable">Parent</span> = <span class="variable">leaderstats</span>
+            <span class="keyword">end</span>
+            
+            <span class="comment">-- 增加分数</span>
+            <span class="variable">player</span>.<span class="variable">leaderstats</span>.<span class="variable">Score</span>.<span class="variable">Value</span> = <span class="variable">player</span>.<span class="variable">leaderstats</span>.<span class="variable">Score</span>.<span class="variable">Value</span> <span class="operator">+</span> <span class="number">10</span>
+            
+            <span class="comment">-- 销毁金币</span>
+            <span class="variable">coin</span>:<span class="function">Destroy</span>()
+        <span class="keyword">end</span>
+    <span class="keyword">end</span>
+<span class="keyword">end</span>)
+                                    </code>
+                                </div>
+                                <p>5. 点击顶部的"Play"按钮，测试你的金币！触碰它，看看分数是否会增加。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Roblox游戏开发教程</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // 标签切换
+        document.querySelectorAll('.nav-tab').forEach(tab => {
+            tab.addEventListener('click', function() {
+                // 移除所有标签的active类
+                document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+                // 添加当前标签的active类
+                this.classList.add('active');
+                
+                // 隐藏所有内容区域
+                document.querySelectorAll('.content-section').forEach(section => section.classList.remove('active'));
+                // 显示对应的内容区域
+                const tabId = this.getAttribute('data-tab');
+                document.getElementById(tabId).classList.add('active');
+            });
+        });
+        
+        // 答案切换
+        function toggleAnswer(id) {
+            const answer = document.getElementById(id);
+            if (answer.style.display === 'none') {
+                answer.style.display = 'block';
+            } else {
+                answer.style.display = 'none';
+            }
+        }
+        
+        // 步骤卡片展开/收起
+        document.querySelectorAll('.step-card h4').forEach(heading => {
+            heading.addEventListener('click', function() {
+                const stepCard = this.parentElement;
+                stepCard.classList.toggle('collapsed');
+            });
+        });
+    </script>
+</body>
+</html>
