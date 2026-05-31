@@ -18,14 +18,19 @@
                 <li><a href="mechanics.html">游戏机制</a></li>
                 <li><a href="survivors.html" class="active">幸存者攻略</a></li>
                 <li><a href="killers.html">杀手攻略</a></li>
-                <li><a href="advanced-guide.html">进阶教程</a></li>
+                <li><a href="marathon-guide.html">马拉松长跑</a></li>
+                <li><a href="team-combat-guide.html">团队打团</a></li>
+                <li><a href="killer-counter-guide.html">杀手反制</a></li>
             </ul>
         </div>
     </nav>
     <main class="main-content page-survivors">
         <section class="page-header">
             <h1>幸存者攻略大全</h1>
-            <p>掌握每个角色的技能与玩法技巧</p>
+            <p>当前共12名可玩幸存者（截至v4.1.6）| 按职业分为：哨兵、辅助、生存专家</p>
+            <div class="status-notice">
+                <strong>重要说明：</strong>以下角色均为当前公开服务器可玩角色。VIP专属角色（如Noob:The World、SWAT Officer等）仅在私服+V.I.P通行证中可用。废弃角色（如Cerulean）和候选角色（如Azure）不在本攻略范围内。
+            </div>
         </section>
 
         <section class="class-intro">
@@ -33,22 +38,146 @@
             <div class="class-grid">
                 <div class="class-card sentinel">
                     <h3>🛡️ 哨兵（Sentinels）</h3>
-                    <p>坦克型角色，擅长正面与杀手对抗，具有较高的生存能力。适合新手玩家。</p>
+                    <p>主动出击型角色，拥有眩晕、伤害等战斗技能，可打断杀手追击。代表：Shedletsky、Guest 1337、Jane Doe、Two Time、Chance。</p>
                 </div>
                 <div class="class-card support">
                     <h3>💚 辅助（Supports）</h3>
-                    <p>为团队提供治疗和增益效果，是团队存活的核心。需要良好的位置感。</p>
+                    <p>团队保护核心，通过治疗、护盾、建筑等延长队友存活。代表：Elliot、Builderman、Dusekkar、Taph。</p>
                 </div>
                 <div class="class-card survivalist">
                     <h3>🏃 生存专家（Survivalists）</h3>
-                    <p>擅长逃跑和规避，拥有出色的机动性技能。适合有经验的玩家。</p>
+                    <p>擅长自我规避与机动，靠个人能力拖延时间。代表：Noob、007n7、Veeronica。</p>
                 </div>
             </div>
         </section>
 
+        <!-- ========== 哨兵角色 ========== -->
         <section class="character-section">
-            <h2>🛡️ 哨兵角色</h2>
+            <h2>🛡️ 哨兵角色（5名）</h2>
 
+            <!-- Shedletsky -->
+            <div class="character-card" id="shedletsky">
+                <div class="char-header">
+                    <h3>Shedletsky - 鸡王</h3>
+                    <span class="char-cost">免费</span>
+                    <span class="char-difficulty">难度: ★★☆☆☆</span>
+                </div>
+                <div class="char-body">
+                    <p class="char-desc">前Roblox创意总监，挥舞传奇Linked Sword眩晕杀手。基础生命值100，适合新手入门。</p>
+                    <div class="char-stats">
+                        <table class="data-table">
+                            <tr><td>生命值</td><td>100</td></tr>
+                            <tr><td>耐力</td><td>100</td></tr>
+                            <tr><td>跑步速度</td><td>26</td></tr>
+                        </table>
+                    </div>
+                    <div class="char-abilities">
+                        <h4>技能详解</h4>
+                        <div class="ability">
+                            <h5>Slash（挥剑）- 冷却40秒 / 眩晕3秒 / 伤害30</h5>
+                            <p>拔出SFOTH剑向前挥砍，命中后眩晕杀手3秒，自身获得0.575秒抗性II（减少40%伤害）。释放时减速75%持续1.575秒。</p>
+                        </div>
+                        <div class="ability">
+                            <h5>Fried Chicken（炸鸡）</h5>
+                            <p>食用炸鸡恢复15HP，之后5秒持续恢复25HP（受到伤害则取消）。</p>
+                        </div>
+                    </div>
+                    <div class="char-tips">
+                        <h4>💡 实战技巧</h4>
+                        <ul>
+                            <li><strong>马拉松策略：</strong>每40秒有一次眩晕机会，利用掩体躲避后回身Slash打断追击</li>
+                            <li><strong>团队配合：</strong>当队友被追时，主动上前Slash杀手，3秒眩晕足够队友脱离危险</li>
+                            <li><strong>耐力管理：</strong>Slash命中后不要贪刀，立刻利用3秒窗口拉开距离恢复耐力</li>
+                            <li><strong>炸鸡时机：</strong>在安全角落使用，5秒持续治疗期间避免暴露</li>
+                            <li>与1x1x1x1有LMS特殊剧情（Shedletsky的黑暗面）</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Guest 1337 -->
+            <div class="character-card" id="guest-1337">
+                <div class="char-header">
+                    <h3>Guest 1337 - 游客1337</h3>
+                    <span class="char-cost">游戏内购买</span>
+                    <span class="char-difficulty">难度: ★★★☆☆</span>
+                </div>
+                <div class="char-body">
+                    <p class="char-desc">经典哨兵角色，拥有格挡、冲锋和拳击技能，能有效保护队友。</p>
+                    <div class="char-abilities">
+                        <h4>技能详解</h4>
+                        <div class="ability">
+                            <h5>Block（格挡）</h5>
+                            <p>举起盾牌格挡杀手攻击，减少伤害。</p>
+                        </div>
+                        <div class="ability">
+                            <h5>Charge（冲锋）</h5>
+                            <p>向前冲锋击退杀手，可打断追击。</p>
+                        </div>
+                        <div class="ability">
+                            <h5>Punch（拳击）</h5>
+                            <p>近战拳击伤害，可眩晕杀手。</p>
+                        </div>
+                    </div>
+                    <div class="char-tips">
+                        <h4>💡 实战技巧</h4>
+                        <ul>
+                            <li><strong>马拉松策略：</strong>Charge可强制中断杀手追击节奏，配合Block抵挡关键一击</li>
+                            <li><strong>团队配合：</strong>作为团队前排，主动拦截杀手，给队友创造做目标时间</li>
+                            <li>Charge有水平锁定特性（不像Veeronica的Bumper），适合在楼梯/坡道地形使用</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Jane Doe -->
+            <div class="character-card" id="jane-doe">
+                <div class="char-header">
+                    <h3>Jane Doe - 简·多</h3>
+                    <span class="char-cost">完成任务解锁</span>
+                    <span class="char-difficulty">难度: ★★★☆☆</span>
+                </div>
+                <div class="char-body">
+                    <p class="char-desc">前Roblox测试员，使用水晶投掷和斧头攻击杀手。生命值仅60但输出能力强。v4.0.0加入。</p>
+                    <div class="char-stats">
+                        <table class="data-table">
+                            <tr><td>生命值</td><td>60</td></tr>
+                            <tr><td>耐力</td><td>100</td></tr>
+                        </table>
+                    </div>
+                    <div class="char-abilities">
+                        <h4>技能详解</h4>
+                        <div class="ability">
+                            <h5>被动：Digital Footprint（数字足迹）</h5>
+                            <p>可以看到杀手留下的脚印轨迹，提前预判杀手位置。</p>
+                        </div>
+                        <div class="ability">
+                            <h5>被动：Shatterpoint（碎裂点）</h5>
+                            <p>通过命中杀手或队友积累Shatterpoint能量，增强斧头威力。</p>
+                        </div>
+                        <div class="ability">
+                            <h5>Crystal Pitch（水晶投掷）- 冷却16秒</h5>
+                            <p>投掷水晶，命中杀手后施加Resonance（共鸣）效果，可叠加至III级。110码外命中可叠加两层。命中队友则给予Purified I（净化）3秒。命中后暴露自身位置给杀手3秒。</p>
+                        </div>
+                        <div class="ability">
+                            <h5>Hatchet（斧头）</h5>
+                            <p>使用斧头攻击，可眩晕杀手并自我治疗。Shatterpoint等级越高伤害越高。</p>
+                        </div>
+                    </div>
+                    <div class="char-tips">
+                        <h4>💡 实战技巧</h4>
+                        <ul>
+                            <li><strong>马拉松策略：</strong>16秒短冷却的水晶是持续骚扰的核心，远距离投掷可叠加2层Resonance</li>
+                            <li><strong>团队配合：</strong>队友被追时投掷水晶施加Resonance，然后Hatchet眩晕创造逃生窗口</li>
+                            <li>注意：生命值仅60，被杀手近身后非常脆弱，需保持距离</li>
+                            <li>水晶命中队友可给予Purified效果，可用来清除队友的负面状态</li>
+                            <li>与John Doe有LMS特殊剧情（1分40秒，特殊音乐）</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Two Time -->
             <div class="character-card" id="two-time">
                 <div class="char-header">
                     <h3>Two Time - 双生</h3>
@@ -56,38 +185,26 @@
                     <span class="char-difficulty">难度: ★★★★☆</span>
                 </div>
                 <div class="char-body">
-                    <p class="char-desc">一个脆弱的狂热信徒，拥有可怕的秘密。通过风险和牺牲可以获得第二次生命。</p>
+                    <p class="char-desc">脆弱的狂热信徒，拥有第二次生命机制。通过背刺杀手积累Oblation能量实现复活。v2.3.0重做后变为哨兵。</p>
                     <div class="char-stats">
                         <table class="data-table">
-                            <tr><td>生命值</td><td>80（第一生命）/ 40（第二生命）/ 110（LMS满祭）</td></tr>
+                            <tr><td>生命值</td><td>80（第一生命）/ 40（第二生命）</td></tr>
                             <tr><td>耐力</td><td>100</td></tr>
-                            <tr><td>行走速度</td><td>12</td></tr>
-                            <tr><td>跑步速度</td><td>26</td></tr>
                         </table>
                     </div>
                     <div class="char-abilities">
                         <h4>技能详解</h4>
                         <div class="ability">
                             <h5>被动：Oblation（献祭）</h5>
-                            <p>屏幕右侧有一个祭献条，充满后获得第二次生命。只能通过伤害杀手来填充：</p>
-                            <ul>
-                                <li>正面刺击：填充 37%</li>
-                                <li>背面刺击：填充 56%</li>
-                            </ul>
-                            <p>进入第二生命时：恢复40%耐力、清除所有状态效果、2秒无敌、6秒加速II、12秒虚弱V</p>
+                            <p>刺击杀手积累Oblation条（正面37%/背面56%），充满后可在死亡时复活。</p>
                         </div>
                         <div class="ability">
-                            <h5>主动：Sacrificial Dagger（祭献匕首）</h5>
-                            <p>冷却时间：30秒。0.3秒前摇后向前刺击，获得0.7秒抗性I。</p>
-                            <ul>
-                                <li>正面命中：10伤害，治疗10HP，杀手减速II+无助I（1秒）</li>
-                                <li>背面命中：20伤害，眩晕杀手3.5秒，治疗20HP</li>
-                                <li>蹲伏使用：快速突刺，前摇减少但后摇增加</li>
-                            </ul>
+                            <h5>Sacrificial Dagger（祭献匕首）- 冷却30秒</h5>
+                            <p>0.3秒前摇后刺击。正面：10伤害+治疗10HP+杀手减速II/无助I（1秒）。背面：20伤害+眩晕3.5秒+治疗20HP。蹲伏使用：突刺前摇更短但后摇更大。</p>
                         </div>
                         <div class="ability">
-                            <h5>Crouch（蹲伏）</h5>
-                            <p>进入蹲伏状态，移动更隐蔽。</p>
+                            <h5>Crouch（蹲伏）- 持续15秒</h5>
+                            <p>进入蹲伏状态，移动更安静，蹲伏中突刺有特殊效果。</p>
                         </div>
                         <div class="ability">
                             <h5>Ritual（仪式）</h5>
@@ -97,121 +214,347 @@
                     <div class="char-tips">
                         <h4>💡 实战技巧</h4>
                         <ul>
-                            <li>优先尝试背面刺击，收益是正面的1.5倍</li>
-                            <li>利用蹲伏状态接近杀手背后</li>
-                            <li>仪式点放在安全且容易到达的位置</li>
-                            <li>第二生命时血量减半，需要更加谨慎</li>
-                            <li>利用正面刺击的减速效果为队友创造机会</li>
-                            <li>不要贪刀，命中后立刻逃跑</li>
+                            <li><strong>马拉松策略：</strong>利用蹲伏+绕背尝试眩晕杀手，命中后立即拉开距离。两次成功背刺即可获得复活资格</li>
+                            <li><strong>团队配合：</strong>当队友吸引杀手注意时，从背后突刺获得最大收益</li>
+                            <li>第二生命时HP减半至40且受到Weakness V（额外100%伤害），极其脆弱</li>
+                            <li>复活时获得2秒无敌+Speed II（6秒）+40%耐力恢复</li>
+                            <li>LMS时满Oblation可获得110HP</li>
+                            <li>注意：突刺对召唤物和免疫眩晕的杀手无效</li>
                         </ul>
                     </div>
                 </div>
             </div>
 
-            <div class="character-card" id="shedletsky">
+            <!-- Chance -->
+            <div class="character-card" id="chance">
                 <div class="char-header">
-                    <h3>Shedletsky - 鸡王</h3>
-                    <span class="char-type">哨兵</span>
+                    <h3>Chance - 运气</h3>
+                    <span class="char-cost">777$</span>
+                    <span class="char-difficulty">难度: 🎰🎰🎰</span>
                 </div>
                 <div class="char-body">
-                    <p class="char-desc">强大的哨兵角色，擅长与杀手正面交锋，拥有出色的防御能力。</p>
+                    <p class="char-desc">赌博型哨兵，生命值为58-120随机值。核心玩法围绕掷硬币和火枪，高风险高回报。v1.0.0加入。</p>
+                    <div class="char-stats">
+                        <table class="data-table">
+                            <tr><td>生命值</td><td>58-120（随机）/ 55-120（Reroll后）</td></tr>
+                            <tr><td>耐力</td><td>100</td></tr>
+                            <tr><td>跑步速度</td><td>26</td></tr>
+                        </table>
+                    </div>
                     <div class="char-abilities">
-                        <h4>技能特点</h4>
-                        <ul>
-                            <li>拥有较高的基础生命值</li>
-                            <li>技能偏向控制和防御</li>
-                            <li>适合保护队友和牵制杀手</li>
-                        </ul>
+                        <h4>技能详解</h4>
+                        <div class="ability">
+                            <h5>被动：Unpredictable Fate（不可预测的命运）</h5>
+                            <p>开局时Max HP随机设置为70-90之间的值。生命值完全取决于运气。</p>
+                        </div>
+                        <div class="ability">
+                            <h5>Coin Flip（掷硬币）- 冷却1.75秒</h5>
+                            <p>掷硬币：正面（Heads）为所有其他技能获得1次充能；反面（Tails）获得Weakness效果15秒（每次反面叠加+1级，无上限）。每次连续反面后，正面概率+2.5%（掷出正面后重置）。高风险核心技能。</p>
+                        </div>
+                        <div class="ability">
+                            <h5>One Shot（一击）- 冷却45秒</h5>
+                            <p>使用火枪射击。结果随机：25%枪支爆炸（对自身造成25伤害+25击退）、25%无事发生、50%成功射击。成功射击眩晕杀手（距离越近眩晕越久，2-4秒）+击退5码。2次充能时成功率+20%，3次充能时再+20%。v4.0.0更新：爆炸会在Chance周围生成6×6×6hitbox眩晕杀手5秒。每多一个Chance在场，成功率-5%。注意：爆炸伤害随Weakness叠加会致命！</p>
+                        </div>
+                        <div class="ability">
+                            <h5>Reroll（重掷）</h5>
+                            <p>重新随机化生命值（55-120范围）。1次充能：无加成；2次充能：生命值+5%；3次充能：生命值+10%。曾可重掷耐力（已移除）。</p>
+                        </div>
+                        <div class="ability">
+                            <h5>Hat Fix（帽子调整）- 冷却60秒</h5>
+                            <p>调整帽子位置，可清除Weakness效果。曾属于Builderman（开发阶段）。</p>
+                        </div>
                     </div>
                     <div class="char-tips">
                         <h4>💡 实战技巧</h4>
                         <ul>
-                            <li>利用高生命值优势与杀手周旋</li>
-                            <li>在队友被追击时主动吸引杀手注意力</li>
-                            <li>合理使用防御技能减少伤害</li>
-                            <li>不要单独行动太远离队友</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <div class="character-card" id="c00lkidd-survivor">
-                <div class="char-header">
-                    <h3>C00lkidd - 冷酷小子</h3>
-                    <span class="char-type">哨兵</span>
-                </div>
-                <div class="char-body">
-                    <p class="char-desc">神秘的幸存者角色，拥有独特的技能组合。</p>
-                    <div class="char-tips">
-                        <h4>💡 实战技巧</h4>
-                        <ul>
-                            <li>熟悉角色技能冷却时间</li>
-                            <li>利用技能创造逃跑机会</li>
-                            <li>与队友配合最大化技能效果</li>
+                            <li><strong>马拉松策略：</strong>被追时连续掷硬币，正面获得充能后使用One Shot眩晕杀手创造逃生窗口。注意Weakness叠加会让自己极度脆弱</li>
+                            <li><strong>团队配合：</strong>当队友被追时，使用正面充能的One Shot射击杀手，2-4秒眩晕+击退5码可打断追击</li>
+                            <li><strong>风险管理：</strong>Weakness无上限叠加，One Shot爆炸伤害随之增加，可能直接自杀（成就"Murphy's Law"）</li>
+                            <li><strong>硬币概率：</strong>连续反面后正面概率递增（+2.5%/次），可战略性地"存"反面来增加下一次正面概率</li>
+                            <li><strong>爆炸眩晕：</strong>v4.0.0后爆炸6×6×6范围可眩晕杀手5秒，即使自伤也能创造团队逃生窗口</li>
+                            <li><strong>Hat Fix时机：</strong>Weakness叠加过高时使用，清除负面状态。60秒冷却需谨慎</li>
+                            <li><strong>距离技巧：</strong>One Shot近战眩晕更久（4秒），远距离仅2秒。接近杀手射击收益更高</li>
+                            <li>与Jane Doe有互动插画（Jane绘制），lore中与iTrapped和Mafioso有关联</li>
                         </ul>
                     </div>
                 </div>
             </div>
         </section>
 
+        <!-- ========== 辅助角色 ========== -->
         <section class="character-section">
-            <h2>💚 辅助角色</h2>
+            <h2>💚 辅助角色（4名）</h2>
 
-            <div class="character-card" id="developer">
+            <!-- Elliot -->
+            <div class="character-card" id="elliot">
                 <div class="char-header">
-                    <h3>Developer - 开发者</h3>
-                    <span class="char-type">辅助</span>
+                    <h3>Elliot - 披萨小弟</h3>
+                    <span class="char-cost">免费</span>
+                    <span class="char-difficulty">难度: ★★☆☆☆</span>
                 </div>
                 <div class="char-body">
-                    <p class="char-desc">为团队提供治疗和支援的辅助角色。</p>
+                    <p class="char-desc">Builder Brothers Pizza的员工，通过投掷披萨治疗队友。生命值80，是团队的续航核心。</p>
+                    <div class="char-abilities">
+                        <h4>技能详解</h4>
+                        <div class="ability">
+                            <h5>被动：Order Up!（订单完成！）</h5>
+                            <p>每完成一个目标，治疗量+4HP（最多+20）。</p>
+                        </div>
+                        <div class="ability">
+                            <h5>被动：Deliverer's Resolve（送货决心）</h5>
+                            <p>受伤队友会显示轮廓，便于定位救援。</p>
+                        </div>
+                        <div class="ability">
+                            <h5>Pizza Throw（投掷披萨）- 冷却45秒</h5>
+                            <p>投掷披萨，命中队友立即恢复5HP，之后5秒持续恢复20HP。200码内队友高亮显示披萨位置。披萨存在25秒。无法治疗自己。多个Elliot同时存在时治疗量递减（每个减少12%，最低80%）。</p>
+                        </div>
+                        <div class="ability">
+                            <h5>Rush Hour（高峰时段）- 冷却40秒</h5>
+                            <p>获得加速效果，快速移动救援。初始拥有1次充能。</p>
+                        </div>
+                    </div>
                     <div class="char-tips">
                         <h4>💡 实战技巧</h4>
                         <ul>
-                            <li>优先保证自身安全再进行救援</li>
-                            <li>时刻关注队友的生命状态</li>
-                            <li>治疗技能不要浪费，选择合适的时机</li>
-                            <li>避免被杀手单独发现</li>
+                            <li><strong>马拉松策略：</strong>提前在被追队友的路线上放置披萨，队友拾取后获得持续治疗</li>
+                            <li><strong>团队配合：</strong>作为主要治疗者，优先关注血量低的队友。利用Rush Hour快速赶到危险区域</li>
+                            <li>每完成一个目标，披萨治疗从25HP提升至45HP，后期非常强大</li>
+                            <li>不要试图治疗自己，披萨对投掷者无效</li>
+                            <li>多个Elliot存在时治疗量大幅衰减，建议队伍只选1个</li>
                         </ul>
                     </div>
                 </div>
             </div>
 
+            <!-- Builderman -->
+            <div class="character-card" id="builderman">
+                <div class="char-header">
+                    <h3>Builderman - 建筑大师</h3>
+                    <span class="char-cost">游戏内购买</span>
+                    <span class="char-difficulty">难度: ★★★☆☆</span>
+                </div>
+                <div class="char-body">
+                    <p class="char-desc">重型建设辅助，可放置哨戒炮和补给站。拥有全游戏最强的区域控制能力，但自身缺乏追逐辅助能力。</p>
+                    <div class="char-abilities">
+                        <h4>技能详解</h4>
+                        <div class="ability">
+                            <h5>被动：建筑限制</h5>
+                            <p>了解建筑范围和禁止建造区域。补给站的禁止建造范围比哨戒炮小。</p>
+                        </div>
+                        <div class="ability">
+                            <h5>Sentry Construction（建造哨戒炮）</h5>
+                            <p>放置自动攻击杀手的哨戒炮。可向下射击，延长存活时间。建筑轮廓会向所有幸存者暴露位置。</p>
+                        </div>
+                        <div class="ability">
+                            <h5>Dispenser Construction（建造补给站）</h5>
+                            <p>放置治疗装置，快速治疗轻伤，长期治疗重伤。补给站轮廓显示距离更远。</p>
+                        </div>
+                    </div>
+                    <div class="char-tips">
+                        <h4>💡 实战技巧</h4>
+                        <ul>
+                            <li><strong>马拉松策略：</strong>Builderman没有直接追逐辅助技能，需要掌握耐力管理和追逐路线来延长存活</li>
+                            <li><strong>团队配合：</strong>将哨戒炮放在角落/死角但能覆盖常见追逐区域。补给站放在隐蔽且多出口的位置</li>
+                            <li>先放补给站再放哨戒炮（补给站禁止建造范围更小，方便"筑巢"）</li>
+                            <li>与Taph有极佳协同：炸弹暂时中断杀手拆除哨戒炮，建筑分散注意力使绊线更有效</li>
+                            <li>"建筑格挡"：极高端技巧，在C00lkidd/Noli冲刺时放置建筑吸收伤害，取消杀手技能</li>
+                            <li>可以同时放置建筑+做目标（放置动画期间与目标互动），节省时间</li>
+                            <li>注意：Builderman无法自疗，被追时极度依赖走位</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dusekkar -->
             <div class="character-card" id="dusekkar">
                 <div class="char-header">
                     <h3>Dusekkar - 杜塞卡尔</h3>
-                    <span class="char-type">辅助</span>
+                    <span class="char-cost">游戏内购买</span>
+                    <span class="char-difficulty">难度: ★★★☆☆</span>
                 </div>
                 <div class="char-body">
-                    <p class="char-desc">强大的辅助角色，可以为队友提供护盾和保护。</p>
+                    <p class="char-desc">魔法辅助，可为队友施加护盾和等离子光束，是团队的魔法守护者。</p>
+                    <div class="char-abilities">
+                        <h4>技能详解</h4>
+                        <div class="ability">
+                            <h5>Spawn Protection（重生护盾）</h5>
+                            <p>为队友施加魔法护盾，吸收伤害。</p>
+                        </div>
+                        <div class="ability">
+                            <h5>Plasma Beam（等离子光束）</h5>
+                            <p>释放等离子光束攻击杀手，造成伤害和干扰。</p>
+                        </div>
+                    </div>
                     <div class="char-tips">
                         <h4>💡 实战技巧</h4>
                         <ul>
-                            <li>护盾技能可以保护正在做目标的队友</li>
-                            <li>在杀手追击时及时为队友提供保护</li>
-                            <li>合理利用隐身效果转移位置</li>
+                            <li><strong>马拉松策略：</strong>护盾可保护正在做目标的队友，等离子光束干扰杀手追击</li>
+                            <li><strong>团队配合：</strong>作为主要护盾提供者，优先保护做目标的队友。Slasher的Raging Pace可无效化Plasma Beam效果</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Taph -->
+            <div class="character-card" id="taph">
+                <div class="char-header">
+                    <h3>Taph - 陷阱师</h3>
+                    <span class="char-cost">游戏内购买</span>
+                    <span class="char-difficulty">难度: ★★★★☆</span>
+                </div>
+                <div class="char-body">
+                    <p class="char-desc">支援/伏击型角色，通过绊线和地雷控制区域，擅长伏击和拖延。</p>
+                    <div class="char-abilities">
+                        <h4>技能详解</h4>
+                        <div class="ability">
+                            <h5>Tripwire（绊线）</h5>
+                            <p>在关键位置设置绊线，触发后干扰杀手。</p>
+                        </div>
+                        <div class="ability">
+                            <h5>Subspace Tripmine（亚空间地雷）</h5>
+                            <p>放置地雷，爆炸后对杀手造成无助效果。</p>
+                        </div>
+                    </div>
+                    <div class="char-tips">
+                        <h4>💡 实战技巧</h4>
+                        <ul>
+                            <li><strong>马拉松策略：</strong>在追逐路线上预设绊线，杀手触发后被短暂打断</li>
+                            <li><strong>团队配合：</strong>与Builderman协同极佳。地雷的Helpless效果可被Slasher的Raging Pace无效化</li>
+                            <li>绊线触发后会被消耗，需要合理规划位置</li>
+                            <li>适合在狭窄通道和门口设置陷阱</li>
                         </ul>
                     </div>
                 </div>
             </div>
         </section>
 
+        <!-- ========== 生存专家角色 ========== -->
         <section class="character-section">
-            <h2>🏃 生存专家角色</h2>
+            <h2>🏃 生存专家角色（3名）</h2>
 
-            <div class="character-card" id="guest1337">
+            <!-- Noob -->
+            <div class="character-card" id="noob">
                 <div class="char-header">
-                    <h3>Guest 1337 - 游客1337</h3>
-                    <span class="char-type">生存专家</span>
+                    <h3>Noob - 菜鸟</h3>
+                    <span class="char-cost">免费</span>
+                    <span class="char-difficulty">难度: ★★★☆☆</span>
                 </div>
                 <div class="char-body">
-                    <p class="char-desc">经典的生存专家，拥有出色的机动性和逃跑能力。</p>
+                    <p class="char-desc">经典Roblox菜鸟形象，通过食物道具实现自我规避。三个起始角色之一，适合新手学习基础玩法。</p>
+                    <div class="char-stats">
+                        <table class="data-table">
+                            <tr><td>生命值</td><td>100</td></tr>
+                            <tr><td>耐力</td><td>100</td></tr>
+                            <tr><td>跑步速度</td><td>26</td></tr>
+                        </table>
+                    </div>
+                    <div class="char-abilities">
+                        <h4>技能详解</h4>
+                        <div class="ability">
+                            <h5>Bloxy Cola（可乐）- 冷却50秒</h5>
+                            <p>饮用后获得Speed I（加速10%）持续10秒。饮用期间减速10%且无法冲刺。可清除已有的Slowness效果。饮用距离超过140码可获得3$、12XP、0.25Malice奖励。</p>
+                        </div>
+                        <div class="ability">
+                            <h5>Slateskin Potion（石板皮肤药水）</h5>
+                            <p>获得过量生命值+Slateskin III效果。v4.0.0更新后速度惩罚从40%降至20%。受到过量伤害时获得Speed II（2秒）。v4.0.0更新后Slateskin可免疫Corruption效果。</p>
+                        </div>
+                        <div class="ability">
+                            <h5>Ghostburger（幽灵汉堡）</h5>
+                            <p>获得Invisibility IV（隐身）持续10秒。冷却45秒。可用于躲避杀手或清除被追踪状态。</p>
+                        </div>
+                    </div>
                     <div class="char-tips">
                         <h4>💡 实战技巧</h4>
                         <ul>
-                            <li>利用高机动性快速完成地图目标</li>
-                            <li>保持移动，不要在一个地方停留太久</li>
-                            <li>利用地形优势进行追逐</li>
-                            <li>在耐力耗尽前找到安全区域</li>
+                            <li><strong>马拉松策略：</strong>被追时先喝可乐获得加速拉开距离，杀手靠近时用幽灵汉堡隐身切断追踪</li>
+                            <li><strong>团队配合：</strong>Slateskin可吸收伤害保护自己做目标，但无法治疗其他Noob</li>
+                            <li>可乐可清除Slowness效果，对Guest 666等减速流杀手非常有效</li>
+                            <li>幽灵汉堡的隐身可躲避杀手NPC和光环读取效果</li>
+                            <li>Slateskin激活期间可承受更多伤害，适合在被追前预先使用</li>
+                            <li>与Guest 666有LMS特殊剧情（曾经是好朋友）</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 007n7 -->
+            <div class="character-card" id="n7">
+                <div class="char-header">
+                    <h3>007n7 - 黑客人</h3>
+                    <span class="char-cost">游戏内购买</span>
+                    <span class="char-difficulty">难度: ★★★★☆</span>
+                </div>
+                <div class="char-body">
+                    <p class="char-desc">黑客型生存专家，利用克隆体和c00lgui干扰杀手，擅长扰乱战局。</p>
+                    <div class="char-abilities">
+                        <h4>技能详解</h4>
+                        <div class="ability">
+                            <h5>Clone（克隆体）</h5>
+                            <p>创造克隆体迷惑杀手，阻挡杀手视线和技能。</p>
+                        </div>
+                        <div class="ability">
+                            <h5>c00lgui</h5>
+                            <p>黑客技能，可干扰杀手或创造逃生机会。</p>
+                        </div>
+                        <div class="ability">
+                            <h5>Inject（注射）</h5>
+                            <p>注射药物获得临时增益。</p>
+                        </div>
+                    </div>
+                    <div class="char-tips">
+                        <h4>💡 实战技巧</h4>
+                        <ul>
+                            <li><strong>马拉松策略：</strong>克隆体可阻挡杀手路径，注意Slasher的Behead可穿透克隆体</li>
+                            <li><strong>团队配合：</strong>用克隆体为队友创造逃生窗口，分散杀手注意力</li>
+                            <li>注意：无法从Elliot的披萨中获得治疗（被加入黑名单）</li>
+                            <li>克隆体"格挡"：放置克隆体吸收杀手冲刺技能</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Veeronica -->
+            <div class="character-card" id="veeronica">
+                <div class="char-header">
+                    <h3>Veeronica - 滑板手</h3>
+                    <span class="char-cost">游戏内购买</span>
+                    <span class="char-difficulty">难度: ★★★★★</span>
+                </div>
+                <div class="char-body">
+                    <p class="char-desc">高难度生存专家，通过涂鸦和滑板进行高机动性操作。无法接受其他治疗者的治疗，需要自己管理电池。</p>
+                    <div class="char-abilities">
+                        <h4>技能详解</h4>
+                        <div class="ability">
+                            <h5>VANDALISM（涂鸦）</h5>
+                            <p>在地图上放置涂鸦，作为Sk8的基础和团队导航标记。</p>
+                        </div>
+                        <div class="ability">
+                            <h5>Sk8（滑板）</h5>
+                            <p>在涂鸦上滑行，可通过技巧获得电池和移动优势。包含三种模式：</p>
+                            <ul>
+                                <li><strong>Bumper（碰撞）：</strong>击退杀手，类似Guest 1337的Charge但冷却更短。可造成抗性II和速度II（4秒）。无水平锁定，可在楼梯边缘改变方向</li>
+                                <li><strong>Phase（穿透）：</strong>穿透杀手，获得抗性II+速度II持续4秒。可假装Bumper然后Phase骗过杀手</li>
+                                <li><strong>Mobile（移动）：</strong>快速穿越地图放置涂鸦。连续3个技巧可恢复5%电池</li>
+                            </ul>
+                        </div>
+                        <div class="ability">
+                            <h5>ACTIVATE BATTERY（激活电池）</h5>
+                            <p>消耗电池自我治疗。受到任何伤害（包括状态效果）会打破电池并进入冷却。电池获取方式：做目标32%、Bumper15%、Phase10%、每3个技巧5%。</p>
+                        </div>
+                    </div>
+                    <div class="char-tips">
+                        <h4>💡 实战技巧</h4>
+                        <ul>
+                            <li><strong>马拉松策略：</strong>在追逐路线预先放置涂鸦，被追时在涂鸦间滑行。利用Phase穿透杀手获得4秒速度+抗性窗口</li>
+                            <li><strong>团队配合：</strong>涂鸦可帮助队友导航。Bumper可干扰正在追队友的杀手</li>
+                            <li>滑板可在空中进行技巧，利用隐形墙和杀手墙体延长空中技巧</li>
+                            <li>撞车后不要浪费耐力冲刺，等Slowness结束后再跑</li>
+                            <li>使用shift-lock视角更好控制复杂技巧</li>
+                            <li>不要在低耐力时使用Bumper，注意周围环境</li>
+                            <li>电池未满且杀手可一击必杀时，可用少量电池微量回血来多承受一击</li>
+                            <li><strong>注意：</strong>Veeronica无法接受Elliot/Builderman的治疗！</li>
+                            <li>Slasher的Gashing Wound可在Veeronica使用Phase/Bumper时预判时机命中</li>
+                            <li>Slasher的Behead可锁定Veeronica的滑板动作造成Gashing Wound</li>
                         </ul>
                     </div>
                 </div>
@@ -226,18 +569,7 @@
                     <li>始终注意杀手的位置，学会听心跳声判断距离</li>
                     <li>不要贪做目标，杀手靠近时立刻逃跑</li>
                     <li>利用地图上的障碍物和复杂地形摆脱追击</li>
-                    <li>与队友保持适当距离，分散行动降低被团灭风险</li>
                     <li>合理利用蹲伏降低被发现的概率</li>
-                </ul>
-            </div>
-            <div class="tips-card">
-                <h3>团队合作技巧</h3>
-                <ul>
-                    <li>与队友沟通杀手位置和行动</li>
-                    <li>分工完成不同的地图目标</li>
-                    <li>队友被追击时，可以做目标或干扰杀手来分散注意力</li>
-                    <li>辅助角色优先保护做目标的队友</li>
-                    <li>不要扎堆，避免被杀手一网打尽</li>
                 </ul>
             </div>
             <div class="tips-card">
@@ -246,8 +578,17 @@
                     <li>转弯后短暂停顿恢复耐力</li>
                     <li>利用掩体阻断杀手视线后恢复耐力</li>
                     <li>不要等到耐力耗尽才停下，保持至少20%的储备</li>
-                    <li>熟悉地图，规划最短逃跑路线</li>
-                    <li>在安全区域使用步行保存耐力</li>
+                    <li>杀手距离85码内（最快路径120码内）才会消耗耐力冲刺</li>
+                    <li>冲刺每秒消耗10耐力，停止后每秒恢复20耐力，耐力耗尽后锁定恢复2秒</li>
+                </ul>
+            </div>
+            <div class="tips-card">
+                <h3>目标系统</h3>
+                <ul>
+                    <li>5个发电机，每个完成4个小游戏，每个小游戏减少3秒，总共60秒</li>
+                    <li>每个发电机奖励5$、15EXP、0.5Malice</li>
+                    <li>完成所有目标总共减少1分钟倒计时</li>
+                    <li>Builderman可同时放置建筑+做目标节省时间</li>
                 </ul>
             </div>
         </section>

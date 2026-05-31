@@ -18,223 +18,485 @@
                 <li><a href="mechanics.html">游戏机制</a></li>
                 <li><a href="survivors.html">幸存者攻略</a></li>
                 <li><a href="killers.html" class="active">杀手攻略</a></li>
-                <li><a href="advanced-guide.html">进阶教程</a></li>
+                <li><a href="marathon-guide.html">马拉松长跑</a></li>
+                <li><a href="team-combat-guide.html">团队打团</a></li>
+                <li><a href="killer-counter-guide.html">杀手反制</a></li>
             </ul>
         </div>
     </nav>
     <main class="main-content page-killers">
         <section class="page-header">
             <h1>杀手攻略大全</h1>
-            <p>掌握每个杀手的技能与猎杀策略</p>
+            <p>当前共7名可玩杀手（截至v4.1.6）| VIP专属角色不在此列</p>
+            <div class="status-notice">
+                <strong>重要说明：</strong>以下角色均为当前公开服务器可玩杀手。VIP专属角色（如Friday The 13th Slasher、BRIMSTONE、Horse等）仅在私服+V.I.P通行证中可用。废弃角色（如2011x、Bear、The Bomber等）和候选角色不在此列。
+            </div>
         </section>
 
         <section class="killer-intro">
-            <h2>杀手基础玩法</h2>
+            <h2>杀手核心机制</h2>
             <div class="tips-card">
-                <h3>杀手核心目标</h3>
-                <p>作为杀手，你的目标是猎杀所有幸存者。需要掌握：</p>
+                <h3>基本目标</h3>
+                <p>杀手的目标是在回合时间结束前击杀所有幸存者。击杀一名幸存者增加40秒回合时间。幸存者完成所有目标减少60秒。</p>
+                <h3>耐力优势</h3>
                 <ul>
-                    <li>追踪技巧：利用血迹、声音和视野线索找到幸存者</li>
-                    <li>追击策略：合理使用技能和耐力追捕目标</li>
-                    <li>心理博弈：预测幸存者的逃跑路线</li>
-                    <li>目标控制：在幸存者完成地图目标前拦截他们</li>
+                    <li>杀手冲刺消耗9.5/秒（幸存者10/秒）</li>
+                    <li>杀手耐力恢复21/秒（幸存者20/秒）</li>
+                    <li>杀手仅在距离幸存者85码内（最快路径120码内）才消耗耐力</li>
+                </ul>
+                <h3>回合时间</h3>
+                <ul>
+                    <li>≤4人：3分钟 | 5人：3分30秒 | ≥6人：4分钟</li>
+                    <li>Last Man Standing：最后幸存者自动触发，1分14秒（有关系角色1分30秒/1分40秒）</li>
                 </ul>
             </div>
         </section>
 
         <section class="killer-section">
-            <h2>🔪 杀手角色详解</h2>
+            <h2>🔪 杀手角色详解（7名）</h2>
 
+            <!-- Slasher -->
             <div class="killer-card" id="slasher">
                 <div class="killer-header">
                     <h3>Slasher - 砍杀者</h3>
-                    <span class="killer-type">基础杀手</span>
+                    <span class="killer-type">基础杀手 | 难度: ★★☆☆☆</span>
                 </div>
                 <div class="killer-body">
-                    <p class="killer-desc">经典的近战杀手，拥有强大的追击能力和流血效果。</p>
+                    <p class="killer-desc">初始杀手，近战为基础，拥有流血、斩首和狂暴步伐等技能。适合新手学习杀手基础玩法。</p>
                     <div class="killer-abilities">
                         <h4>技能详解</h4>
                         <div class="ability">
                             <h5>被动：流血效果（Bleeding）</h5>
-                            <p>被Slasher击中的幸存者会持续流血，留下血迹供追踪。同时Slasher拥有较小的恐怖范围，更容易隐蔽接近。</p>
+                            <p>被击中后持续流血留下血迹。流血效果可叠加，等待叠加后再追击可最大化追踪效果。较小的恐怖范围可隐蔽接近。</p>
                         </div>
                         <div class="ability">
                             <h5>Behead（斩首）</h5>
-                            <p>强力的近战攻击技能，可以对幸存者造成大量伤害。</p>
+                            <p>强力斩击，可穿透007n7的克隆体。可锁定幸存者技能动作（如Noob喝可乐、Veeronica滑板）造成Gashing Wound。确认击杀时使用最高效（绕过击杀动画）。</p>
                         </div>
                         <div class="ability">
                             <h5>Gashing Wound（裂伤）</h5>
-                            <p>造成深度伤口，使幸存者持续受到伤害并降低移动速度。</p>
+                            <p>惩罚性技能，针对幸存者失误（如技能落空、耐力耗尽）造成大量伤害。可利用小恐怖范围突袭做目标的幸存者。</p>
                         </div>
                         <div class="ability">
                             <h5>Raging Pace（狂暴步伐）</h5>
-                            <p>提升移动速度，快速追击逃跑的幸存者。</p>
+                            <p>核心追击技能，获得耐力优势。在74耐力时使用Slash取消可保留比90耐力取消多16耐力。可无效化：Dusekkar的Plasma Beam、Taph的绊线/地雷、Guest 1337的Charge、Veeronica的Bumper。</p>
                         </div>
                     </div>
                     <div class="killer-tips">
-                        <h4>💡 杀手实战技巧</h4>
+                        <h4>💡 实战技巧</h4>
                         <ul>
-                            <li>利用血迹追踪逃跑的幸存者</li>
-                            <li>较小的恐怖范围是优势，可以更接近目标而不被发现</li>
-                            <li>穿透克隆体等技能可以处理群体幸存者</li>
-                            <li>注意耐力管理，不要在一次追击中耗尽所有耐力</li>
-                            <li>利用裂伤效果迫使幸存者停下来治疗</li>
-                            <li>狂暴步伐用于关键追击，不要随意使用</li>
+                            <li>不要滥用Behead， spam额外大斩是反效果且有害的</li>
+                            <li>Raging Parry：预判/反应Sentinel眩晕技能使用Raging Pace，可选择任意方式惩罚</li>
+                            <li>Raging Behead比普通Behead更有用（有耐力优势+更高伤害）</li>
+                            <li>Raging Pace的Slash冲刺撞墙可滑行更远</li>
+                            <li>利用Raging Pace的Slash在74耐力取消，避免90耐力后的耐力抽取</li>
+                            <li>不要用Raging Pace定位幸存者，用耐力条距离提示更好</li>
                         </ul>
                     </div>
                 </div>
             </div>
 
+            <!-- Guest 666 -->
             <div class="killer-card" id="guest-666">
                 <div class="killer-header">
                     <h3>Guest 666 - 游客666</h3>
                     <span class="killer-type">恶魔杀手</span>
                 </div>
                 <div class="killer-body">
-                    <p class="killer-desc">强大的恶魔杀手，擅长通过出血效果滚雪球式扩大优势。</p>
+                    <p class="killer-desc">强大的恶魔杀手，通过出血效果滚雪球式扩大优势，擅长追踪和持久战。</p>
                     <div class="killer-abilities">
                         <h4>技能详解</h4>
                         <div class="ability">
-                            <h5>被动：Manic Fixation（狂热专注）</h5>
-                            <p>对受伤的幸存者有特殊的追踪能力，更容易锁定目标。</p>
-                        </div>
-                        <div class="ability">
-                            <h5>被动：Hellforged Will（地狱意志）</h5>
-                            <p>强大的意志力，在某些条件下获得强化效果。</p>
-                        </div>
-                        <div class="ability">
                             <h5>Eviscerate（剖腹）</h5>
-                            <p>强力的近战攻击，造成大量伤害和出血效果。</p>
-                        </div>
-                        <div class="ability">
-                            <h5>Demonic Pursuit（恶魔追击）</h5>
-                            <p>提升追击能力，快速接近目标。</p>
-                        </div>
-                        <div class="ability">
-                            <h5>Infernal Cry（地狱之吼）</h5>
-                            <p>范围效果技能，影响附近的幸存者。</p>
+                            <p>强力近战攻击，造成大量伤害和出血效果。</p>
                         </div>
                         <div class="ability">
                             <h5>Blood Rush（血液奔涌）</h5>
-                            <p>快速冲向目标，用于远距离突袭。</p>
+                            <p>快速冲向目标，用于远距离突袭和追踪定位。</p>
                         </div>
                         <div class="ability">
                             <h5>Blood Hunt（血腥狩猎）</h5>
-                            <p>追踪技能，可以感知附近受伤的幸存者位置。</p>
+                            <p>追踪技能，可感知附近受伤的幸存者位置。</p>
                         </div>
                     </div>
                     <div class="killer-tips">
-                        <h4>💡 杀手实战技巧</h4>
+                        <h4>💡 实战技巧</h4>
                         <ul>
-                            <li>第一人称视角使用体验更佳，更容易瞄准</li>
-                            <li>利用Blood Rush进行追踪和定位</li>
+                            <li>第一人称视角使用体验更佳</li>
                             <li>优先打伤一个幸存者，然后用被动追踪滚雪球</li>
-                            <li>Blood Hunt可以找出隐藏的幸存者</li>
+                            <li>Blood Rush用于追踪和定位</li>
+                            <li>Blood Hunt可找出隐藏的幸存者</li>
                             <li>出血效果是核心，确保持续造成伤害</li>
-                            <li>利用恶魔追击快速接近逃跑的目标</li>
+                            <li>与Noob有LMS特殊剧情（曾经是好朋友）</li>
                         </ul>
                     </div>
                 </div>
             </div>
 
-            <div class="killer-card" id="c00lkidd-killer">
+            <!-- C00lkidd -->
+            <div class="killer-card" id="c00lkidd">
                 <div class="killer-header">
-                    <h3>C00lkidd - 冷酷小子</h3>
-                    <span class="killer-type">黑客杀手</span>
+                    <h3>c00lkidd - 冷酷小子</h3>
+                    <span class="killer-type">Rushdown杀手 | 价格: 900$ | 难度: ★★★☆☆</span>
                 </div>
                 <div class="killer-body">
-                    <p class="killer-desc">拥有黑客能力的杀手，可以操控地图和干扰幸存者。</p>
+                    <p class="killer-desc">007n7的养子，team c00lkidd团队领袖。红色类人生物，擅长快速击杀和快速移动。通过Walkspeed Override和Pizza Delivery分割战场，限制幸存者逃生路线。基于Roblox黑客团队"team c00lkidd"。v1.0.0加入。</p>
+                    <div class="killer-stats">
+                        <table class="data-table">
+                            <tr><td>生命值</td><td>800</td></tr>
+                            <tr><td>耐力</td><td>110</td></tr>
+                            <tr><td>跑步速度</td><td>28</td></tr>
+                            <tr><td>步行速度</td><td>7.75</td></tr>
+                            <tr><td>恐怖范围</td><td>60码</td></tr>
+                        </table>
+                    </div>
+                    <div class="killer-abilities">
+                        <h4>技能详解</h4>
+                        <div class="ability">
+                            <h5>Punch（拳击）- 冷却2秒 / 伤害26.5HP / 前摇0.1秒</h5>
+                            <p>基础近战攻击。杀手中最短的M1前摇（0.1秒）。攻击范围5码，滞留0.3秒。</p>
+                        </div>
+                        <div class="ability">
+                            <h5>Corrupt Nature（腐蚀天性）</h5>
+                            <p>投掷腐蚀球，命中后施加Slowness I持续4秒。v1.1.0更新后end lag从2秒降至1秒。可穿透障碍物。用于远距离压制和分割幸存者。成就"One Stone"：一次命中2+幸存者。</p>
+                        </div>
+                        <div class="ability">
+                            <h5>Walkspeed Override（速度覆盖）</h5>
+                            <p>核心冲刺技能。前摇0.5秒，冲刺速度90，持续1.34秒。命中造成32伤害+20击退+重Slowness 0.25秒。命中后获得免疫眩晕（ slash动画期间+1.5秒）。撞墙end lag减少15%。v3.2.2更新后：最近幸存者不在70码内时Pizza Delivery bot速度提升至19.5。可被Builderman建筑格挡。</p>
+                        </div>
+                        <div class="ability">
+                            <h5>Pizza Delivery（披萨配送）</h5>
+                            <p>召唤小弟（minion）追踪幸存者。基础伤害15HP，Burning持续3秒。小弟移动速度14。成就"You're Fired"：让Pizza Delivery小弟击杀Elliot。与Elliot/Builder Family关系恶劣（曾破坏Pizza Place）。v3.5.3更新后：Walkspeed Override可穿透Taph陷阱。</p>
+                        </div>
+                    </div>
                     <div class="killer-tips">
-                        <h4>💡 杀手实战技巧</h4>
+                        <h4>💡 实战技巧</h4>
                         <ul>
-                            <li>利用黑客技能干扰幸存者做目标</li>
-                            <li>封锁逃生路线迫使幸存者走入陷阱</li>
-                            <li>利用隐身或传送技能突袭幸存者</li>
-                            <li>控制地图关键位置</li>
+                            <li><strong>马拉松策略：</strong>用Corrupt Nature远距离投掷施加Slowness，迫使幸存者减速。Walkspeed Override用于快速接近，但需注意Builderman建筑格挡</li>
+                            <li><strong>分割战场：</strong>Pizza Delivery小弟追踪幸存者，迫使目标分散。用Corrupt Nature封锁逃生路线</li>
+                            <li><strong>反马拉松：</strong>Walkspeed Override命中后获得1.5秒眩晕免疫，可无视Sentinel的打断技能</li>
+                            <li>007n7特殊击杀动画：007n7会抱住c00lkidd的手臂而非推开，c00lkidd温柔放下而非扔出</li>
+                            <li>与007n7有LMS特殊剧情"PLEAD"（c00lkidd喊"FATHER!"）</li>
+                            <li>惧怕John Doe（认为他是威胁，不想与他一起玩）</li>
+                            <li>将Sentinels视为"cheaters"不让玩得开心</li>
                         </ul>
                     </div>
                 </div>
             </div>
 
+            <!-- John Doe -->
             <div class="killer-card" id="john-doe">
                 <div class="killer-header">
                     <h3>John Doe - 约翰·多</h3>
-                    <span class="killer-type">黑暗杀手</span>
+                    <span class="killer-type">策略/陷阱杀手 | 价格: 1,000$ | 难度: ★★★★★</span>
                 </div>
                 <div class="killer-body">
-                    <p class="killer-desc">神秘的黑暗杀手，拥有腐蚀能量和尖刺陷阱。</p>
+                    <p class="killer-desc">前Roblox员工，被寄生代码腐蚀后变成 unstoppable force。擅长设置陷阱、召唤墙壁逼退幸存者，留下腐蚀痕迹伤害追踪。Jane Doe的丈夫，与Jane有LMS特殊剧情。基于Roblox都市传说"John Doe账户"。v1.0.0加入。</p>
+                    <div class="killer-stats">
+                        <table class="data-table">
+                            <tr><td>生命值</td><td>1500</td></tr>
+                            <tr><td>耐力</td><td>110</td></tr>
+                            <tr><td>跑步速度</td><td>27.25</td></tr>
+                            <tr><td>步行速度</td><td>9</td></tr>
+                            <tr><td>恐怖范围</td><td>60码</td></tr>
+                        </table>
+                    </div>
                     <div class="killer-abilities">
-                        <h4>技能特点</h4>
-                        <ul>
-                            <li>可以放置腐蚀能量尖刺作为陷阱</li>
-                            <li>尖刺可以阻挡幸存者逃跑路线</li>
-                            <li>强大的范围控制能力</li>
-                        </ul>
+                        <h4>技能详解</h4>
+                        <div class="ability">
+                            <h5>被动：Natural Malevolence（天生恶意）</h5>
+                            <p>每走一步留下腐蚀痕迹，幸存者踩上获得Corrupted II持续3秒。用于追踪和区域控制。</p>
+                        </div>
+                        <div class="ability">
+                            <h5>被动：Unstoppable（势不可挡）</h5>
+                            <p>被眩晕时获得Speed I持续2.5秒（每个额外Sentinel在场+1秒）。v4.0.0更新：被中断的技能冷却减少50%。仅当Corrupt Energy或404 ERROR前摇被眩晕打断时触发。</p>
+                        </div>
+                        <div class="ability">
+                            <h5>Slash（挥砍）- 冷却1.75秒 / 伤害28HP / 前摇0.4秒</h5>
+                            <p>用爪子挥砍。攻击范围7.5码，滞留0.25秒。</p>
+                        </div>
+                        <div class="ability">
+                            <h5>Corrupt Energy（腐蚀能量）- 冷却18秒</h5>
+                            <p>召唤27个尖刺从地面突出。每个尖刺造成12伤害，最多命中4次。尖刺停留12秒。命中幸存者获得Speed I持续7秒+高亮2.5秒。成就"Vlad the Impaler"：用尖刺击杀幸存者。v3.1.0更新：站在尖刺上获得Corruption I持续5秒。v3.5.3更新：尖刺不再respawn玩家，可穿墙。幸存者无法攀爬尖刺。</p>
+                        </div>
+                        <div class="ability">
+                            <h5>Digital Footprint（数字足迹）- 冷却3秒</h5>
+                            <p>放置 puddle（水坑），放置时间3.5秒。触发后：John Doe获得Speed III持续10秒，幸存者获得Slowness II+Corrupted I持续5秒。 puddle存在165秒（无限寿命）。最多存在5个 puddle。 puddle对John Doe高亮显示。v3.5.3更新： puddle声音范围从20码增至90码。 puddle堆叠计数器显示在技能图标上方。</p>
+                        </div>
+                        <div class="ability">
+                            <h5>404 ERROR（404错误）</h5>
+                            <p>生成墙壁封锁区域。前摇减少15%。声音可在200码半径内听到。幸存者 aura 暴露6秒。用于分割战场和封锁逃生路线。</p>
+                        </div>
                     </div>
                     <div class="killer-tips">
-                        <h4>💡 杀手实战技巧</h4>
+                        <h4>💡 实战技巧</h4>
                         <ul>
-                            <li>在狭窄通道放置尖刺限制幸存者移动</li>
-                            <li>利用尖刺封锁窗户和门</li>
-                            <li>结合追击技能将幸存者逼入尖刺陷阱</li>
-                            <li>注意Two Time曾可以利用尖刺空隙逃脱（已被修复）</li>
+                            <li><strong>马拉松策略：</strong>用Digital Footprint puddle在追逐路线上放置，触发后获得Speed III快速追击+Slowness II减速幸存者</li>
+                            <li><strong>陷阱控制：</strong>Corrupt Energy尖刺封锁窗户/门/狭窄通道。尖刺存在12秒足够完成追击</li>
+                            <li><strong>分割战场：</strong>404 ERROR墙壁将幸存者逼入死角，配合尖刺和 puddle完成击杀</li>
+                            <li><strong>反打团：</strong> puddle最多5个，覆盖关键区域。Unstoppable被动让John Doe在被眩晕后反而获得Speed优势</li>
+                            <li>3月18日特殊事件：John Doe价格降至318$（原1000$），获得大幅增强（v3.6.5曾短暂增强但已回退）</li>
+                            <li>与Jane Doe有LMS特殊剧情"YOU AND I"（1分40秒，带歌词）</li>
+                            <li>曾有用404 ERROR墙壁bug被Two Time利用（已修复）</li>
                         </ul>
                     </div>
                 </div>
             </div>
 
+            <!-- Noli -->
             <div class="killer-card" id="noli">
                 <div class="killer-header">
                     <h3>Noli - 诺利</h3>
-                    <span class="killer-type">暗影杀手</span>
+                    <span class="killer-type">伏击杀手 | 价格: 1,100$ | 难度: ★★★★★</span>
                 </div>
                 <div class="killer-body">
-                    <p class="killer-desc">暗影中的杀手，擅长潜行和突袭。</p>
+                    <p class="killer-desc">古老强大的黑客，总是想成为节目明星。操纵周围的一切，将Forsaken视为自己的舞台。通过Void Rush和Nova无情追击，利用Hallucinations迷惑幸存者。基于Roblox都市传说"noli账户"。v3.0.0加入。</p>
+                    <div class="killer-stats">
+                        <table class="data-table">
+                            <tr><td>生命值</td><td>1111</td></tr>
+                            <tr><td>耐力</td><td>110</td></tr>
+                            <tr><td>跑步速度</td><td>27.5</td></tr>
+                            <tr><td>步行速度</td><td>8</td></tr>
+                            <tr><td>恐怖范围</td><td>80码</td></tr>
+                        </table>
+                    </div>
+                    <div class="killer-abilities">
+                        <h4>技能详解</h4>
+                        <div class="ability">
+                            <h5>被动：Hallucinations（幻觉）</h5>
+                            <p>Noli的多个技能会施加Hallucination。任何等级的Hallucination都会向Noli暴露幸存者aura。效果随等级增强，最高Hallucination III。III级时会出现Noli的幻象攻击你——不要看它！被Noli命中会清除所有Hallucination堆叠。</p>
+                        </div>
+                        <div class="ability">
+                            <h5>被动：Prankster（恶作剧者）</h5>
+                            <p>Noli可以生成假目标（假发电机、假补给站、假力场）迷惑幸存者。完成假发电机有视觉提示。</p>
+                        </div>
+                        <div class="ability">
+                            <h5>Stab（刺击）- 冷却1.8秒 / 伤害25HP / 前摇0.35秒</h5>
+                            <p>使用暗影触须向前刺击。攻击范围8码，滞留0.25秒。v3.1.3更新：hitbox向前移动1码但随后移除。v3.4.0更新：基础范围+0.5码。</p>
+                        </div>
+                        <div class="ability">
+                            <h5>Void Rush（虚空冲刺）</h5>
+                            <p>核心追击技能。初始转向1.5秒，转向倍数6.6。rerush窗口2秒。命中造成链式伤害（每链+3.5伤害）。v3.0.1更新：不再被Taph陷阱阻挡（但Builderman建筑仍可阻挡）。v3.6.2更新：rerush免疫Guest 1337的Charge的Helpless效果。v3.4.0更新：回合开始时10秒冷却。可被Builderman建筑格挡。</p>
+                        </div>
+                        <div class="ability">
+                            <h5>Nova（新星）</h5>
+                            <p>投掷新星星体，爆炸范围26码（球形hitbox）。施加Slowness（随距离衰减）。v3.0.1更新：拉力增强。v3.1.3更新：爆炸hitbox从圆形改为球形增加半径。Slowness随距离爆炸中心远近而变化。</p>
+                        </div>
+                        <div class="ability">
+                            <h5>Observant（观察者）</h5>
+                            <p>追踪技能，可感知幸存者位置。可传送至目标。用于定位和突袭。v3.4.0更新：回合开始时有初始冷却。</p>
+                        </div>
+                    </div>
                     <div class="killer-tips">
-                        <h4>💡 杀手实战技巧</h4>
+                        <h4>💡 实战技巧</h4>
                         <ul>
-                            <li>利用潜行能力接近幸存者而不被发现</li>
-                            <li>在幸存者做目标时发动突袭</li>
-                            <li>利用黑暗区域隐藏自己的位置</li>
-                            <li>突然出现在幸存者面前造成心理恐惧</li>
+                            <li><strong>马拉松策略：</strong>Void Rush用于快速接近，链式追击多个幸存者。Hallucination暴露幸存者aura，无法隐藏</li>
+                            <li><strong>迷惑战术：</strong>假发电机/假建筑让幸存者浪费时间和技能。Prankster被动是心理战核心</li>
+                            <li><strong>反打团：</strong>Nova大范围爆炸（26码）可同时命中多个幸存者+施加Slowness。Hallucination III的幻象可打断幸存者动作</li>
+                            <li><strong>反马拉松：</strong>Void Rush rerush窗口2秒，可连续追击。Hallucination让幸存者无法利用掩体恢复耐力</li>
+                            <li>成就"I KNEW THAT DOOR HAD A LOCK ON IT!"：让Sentinel试图眩晕幻觉</li>
+                            <li>成就"Happy Feet"：一次Void Rush命中5+幸存者</li>
+                            <li>成就"Tragic Accident"：Guest 1337的Charge与Void Rush相撞</li>
+                            <li>Void Rush撞墙end lag在v3.0.3.1改进，更宽容</li>
                         </ul>
                     </div>
                 </div>
             </div>
 
+            <!-- Nosferatu -->
             <div class="killer-card" id="nosferatu">
                 <div class="killer-header">
                     <h3>Nosferatu - 诺斯费拉图</h3>
-                    <span class="killer-type">吸血鬼杀手</span>
+                    <span class="killer-type">Zoner/Ambusher杀手 | 价格: 1,922$ | 难度: ★★★★☆</span>
                 </div>
                 <div class="killer-body">
-                    <p class="killer-desc">吸血鬼主题的杀手，拥有生命偷取和恐怖能力。</p>
+                    <p class="killer-desc">来自Necrobloxicon的吸血鬼，被Spectre赐予无尽盛宴。通过Blood Hook和Cataclysm不断压迫幸存者，利用Hunter's Feast施加压力，Ascension进行空中打击。基于经典吸血鬼传说和1922年德国默片《Nosferatu》。v3.4.0加入，曾为Robloxia's Masquerade活动专属角色（3,500 Sukkar），活动结束后可用1,922$购买。价格致敬1922年电影发行年份。</p>
+                    <div class="killer-stats">
+                        <table class="data-table">
+                            <tr><td>生命值</td><td>1700</td></tr>
+                            <tr><td>耐力</td><td>110</td></tr>
+                            <tr><td>跑步速度</td><td>27.5</td></tr>
+                            <tr><td>步行速度</td><td>7.5</td></tr>
+                            <tr><td>恐怖范围</td><td>60码</td></tr>
+                        </table>
+                    </div>
+                    <div class="killer-abilities">
+                        <h4>技能详解</h4>
+                        <div class="ability">
+                            <h5>被动：Levitation（悬浮）</h5>
+                            <p>Nosferatu自然悬浮，不发出脚步声。静默接近幸存者，无法通过声音察觉。杀手独有的无声移动被动。</p>
+                        </div>
+                        <div class="ability">
+                            <h5>Lacerate（撕裂）- 冷却1.85秒 / 伤害24HP / 前摇0.3秒 / 范围8码</h5>
+                            <p>用爪子向前撕裂。杀手中较低的伤害输出，但配合其他技能可造成持续压力。</p>
+                        </div>
+                        <div class="ability">
+                            <h5>Blood Hook（血钩）</h5>
+                            <p>核心控制技能。抛出钩子命中幸存者触发QTE（快速反应事件），胜利者将幸存者拉近。命中冷却30秒，未命中冷却20秒。v3.6.3增加15%拉力。成就"GET OVER HERE!"：90码外命中并拉入幸存者。v3.4.1修复QTE spam保证胜利的bug。可非QWERTY键盘布局使用。</p>
+                        </div>
+                        <div class="ability">
+                            <h5>Cataclysm（灾变）- 冷却22秒</h5>
+                            <p>核心区域控制技能。在地面生成灾变 puddle，持续12秒。踩上 puddle的幸存者获得Bleeding II效果并被高亮5秒。 puddle略高于地面以正确显示在道路/路径上。成就"Bloodbath"：一次Cataclysm命中3+幸存者。v3.4.1后冷却从25秒降至22秒，Bleeding从III降至II。</p>
+                        </div>
+                        <div class="ability">
+                            <h5>Hunter's Feast（猎人盛宴）- 冷却16秒</h5>
+                            <p>投掷Hunter's Feast，命中后获得Invisibility V（v4.0.0从IV提升至V）。使用其他能力后立即移除Invisibility效果。v3.6.3冷却从20秒降至16秒。</p>
+                        </div>
+                        <div class="ability">
+                            <h5>Ascension（飞升）- 冷却32秒</h5>
+                            <p>变身蝙蝠形态飞行。俯冲伤害从10到35HP在0.55秒内递增。v3.6.0增加俯冲着陆指示器，完整转向控制。v3.6.2增加俯冲眩晕免疫持续时间，移除俯冲聚光灯。v3.4.1冷却从35秒降至32秒。v3.5.5退出飞行不再消耗25%耐力。声音提示非全局（v3.6.3修改）。v3.5.3更新后退出飞行不再消耗25%耐力。成就"Well... This sucks..."：达到100级。</p>
+                        </div>
+                    </div>
                     <div class="killer-tips">
-                        <h4>💡 杀手实战技巧</h4>
+                        <h4>💡 实战技巧</h4>
                         <ul>
-                            <li>利用生命偷取保持自身状态</li>
-                            <li>在持久战中占据优势</li>
-                            <li>利用恐怖能力压制幸存者</li>
-                            <li>适合对抗哨兵类高血量角色</li>
+                            <li><strong>马拉松策略：</strong>利用Levitation无声接近，Blood Hook远距离（90码+）拉入逃跑幸存者。Cataclysm封锁逃生路线+施加Bleeding</li>
+                            <li><strong>分割战场：</strong>Cataclysm puddle封锁窗户/通道，幸存者踩上被高亮5秒。配合Blood Hook拉入孤立目标</li>
+                            <li><strong>反打团：</strong>Ascension俯冲可同时命中多个幸存者（10-35HP递增伤害）。Cataclysm大范围 puddle影响多个幸存者</li>
+                            <li><strong>反马拉松：</strong>Blood Hook超远射程+QTE机制，幸存者即使跑远也能拉回。Levitation无声接近无法通过声音预警</li>
+                            <li><strong>Hunter's Feast隐身：</strong>命中后获得Invisibility V，可重新定位或逃脱Sentinel技能。使用其他能力后立即移除隐身</li>
+                            <li><strong>耐力优势：</strong>Ascension俯冲不消耗耐力，可长时间追击。退出飞行不再消耗25%耐力（v3.5.3修复）</li>
+                            <li>Nosferatu是首个也是唯一通过活动引入的杀手（非商店直接发布）</li>
+                            <li>首个使用游戏新混淆系统进行公开测试的杀手（防止泄露）</li>
+                            <li>与Shedletsky有特殊关系：Shedletsky曾说"its sword skills are formidable"评价1x1x1x1</li>
+                            <li>与Dracula对立（背叛传统，随意杀戮），被Necrobloxicon诅咒必须吸取Robloxian精华</li>
+                            <li>与Azure和Phosphorous有相同磷符号（衣服/庄园彩窗）</li>
                         </ul>
                     </div>
                 </div>
             </div>
 
+            <!-- Guest 666 -->
+            <div class="killer-card" id="guest-666">
+                <div class="killer-header">
+                    <h3>Guest 666 - 游客666</h3>
+                    <span class="killer-type">Rushdown/Snowball杀手 | 价格: 1,666$ | 难度: ★★★☆☆</span>
+                </div>
+                <div class="killer-body">
+                    <p class="killer-desc">从存在之初就被名字诅咒的Guest Robloxian，曾与Noob为友，后因身份认同和自我毁灭走向黑暗。拥有6个主动技能和3个被动技能（游戏中最多）。通过Eviscerate和Demonic Pursuit无情追击，利用Blood Hunt和Infernal Cry施加压力。价格1,666$致敬数字666（启示录中的兽）。基于Roblox都市传说"Guest 666账户"。v3.3.0加入。</p>
+                    <div class="killer-stats">
+                        <table class="data-table">
+                            <tr><td>生命值</td><td>2500（杀手中最高）</td></tr>
+                            <tr><td>耐力</td><td>110</td></tr>
+                            <tr><td>跑步速度</td><td>27</td></tr>
+                            <tr><td>步行速度</td><td>9</td></tr>
+                            <tr><td>恐怖范围</td><td>80码（杀手中最大之一）</td></tr>
+                        </table>
+                    </div>
+                    <div class="killer-abilities">
+                        <h4>技能详解</h4>
+                        <div class="ability">
+                            <h5>被动：Manic Fixation（狂热执着）</h5>
+                            <p>向高亮幸存者奔跑时逐渐获得速度加成，最高10%额外速度。如果幸存者未被Guest 666追击，速度加成更高（最高15%）。30码内高亮幸存者时任何方向都获得速度加成。v3.4.0后30码内不再依赖方向。v3.6.2修复Manic Fixation持续时间被Hellforged Will减少的问题。v4.0.0非追击时速度加成从20%降至15%。仅存1名幸存者时总是可触发。</p>
+                        </div>
+                        <div class="ability">
+                            <h5>被动：Hellforged Will（地狱锻造意志）</h5>
+                            <p>v3.5.3加入。减少负面状态效果持续时间。v3.6.2更新：Blood Hunt时效果增强（25% → 50%状态减少）。</p>
+                        </div>
+                        <div class="ability">
+                            <h5>被动：Bloodhound（嗅血者）</h5>
+                            <p>感知附近受伤幸存者位置。核心追踪被动，配合出血效果滚雪球。</p>
+                        </div>
+                        <div class="ability">
+                            <h5>Slash（挥砍）- 伤害20HP / 前摇0.3秒 / 范围7.25码</h5>
+                            <p>基础爪击。按住0.65秒且拥有10+ Blood时自动接续Eviscerate。命中获得10 Blood。</p>
+                        </div>
+                        <div class="ability">
+                            <h5>Eviscerate（剖腹）</h5>
+                            <p>强力近战咬击，Slash持有触发。造成大量伤害。未命中时施加Slowness I持续2秒（v3.3.2更新）。命中施加Slowness I持续2秒。</p>
+                        </div>
+                        <div class="ability">
+                            <h5>Demonic Pursuit（恶魔追击）</h5>
+                            <p>核心追击技能。向前滑行或跳跃突袭。命中造成大量伤害。成就"Jumpscare"：在幸存者修理发电机时命中完全充能的Demonic Pursuit。撞墙减少end lag。</p>
+                        </div>
+                        <div class="ability">
+                            <h5>Infernal Cry（地狱 cry）- 冷却25秒</h5>
+                            <p>投掷冲击波，命中造成区域伤害。v3.3.2后hitbox减少25%，hitbox惩罚从20%降至10%。命中后暂时透明。可配合Blood Hunt完成击杀（成就"Unrelenting Force"）。</p>
+                        </div>
+                        <div class="ability">
+                            <h5>Blood Rush（血液奔涌）</h5>
+                            <p>追踪技能，可感知幸存者位置并快速接近。回声定位激活。用于远距离突袭和定位。</p>
+                        </div>
+                        <div class="ability">
+                            <h5>Blood Hunt（血腥狩猎）</h5>
+                            <p>消耗Blood激活追踪模式，感知附近幸存者。v3.3.1修复LMS时不减少至6秒的bug。v3.6.2不再提供完整眩晕免疫。v4.0.0初始Blood消耗从150增至200。成就"nuh uh"：6秒或更少剩余时使用Blood Hunt。</p>
+                        </div>
+                    </div>
+                    <div class="killer-tips">
+                        <h4>💡 实战技巧</h4>
+                        <ul>
+                            <li><strong>马拉松策略：</strong>Manic Fixation被动追击时获得速度加成（15%），持续追击越来越快。Demonic Pursuit用于滑行/跳跃突袭打断耐力恢复</li>
+                            <li><strong>滚雪球战术：</strong>优先打伤一个幸存者，用Bloodhound被动追踪滚雪球。Hemorrhage（出血）持续120秒，持久伤害</li>
+                            <li><strong>反打团：</strong>Infernal Cry大范围冲击波同时命中多个幸存者+透明效果。Manic Fixation 30码内任何方向都有速度加成</li>
+                            <li><strong>反马拉松：</strong>Manic Fixation非追击时15%速度加成，Guest 666比幸存者跑得更快。Blood Rush远距离突袭，幸存者无法预警</li>
+                            <li><strong>耐力消耗：</strong>Guest 666拥有2500HP（杀手中最高），可承受更多伤害进行持久战。80码恐怖范围给幸存者持续压力</li>
+                            <li><strong>Blood Hunt战术：</strong>LMS时6秒冷却，可用于快速定位最后幸存者。Hellforged Will在Blood Hunt时50%状态减少</li>
+                            <li>与Noob有LMS特殊剧情"DEAD RINGER"（曾是好朋友，后背叛分离）</li>
+                            <li>2017年10月1日与Noob在海滩分离，后被Haunted Mansion重新相遇并一起Forsaken</li>
+                            <li>无法自然说话（Guest 1-999都不能），后来通过脚本获得说话能力</li>
+                            <li>昵称"Sixer"由Noob给予，帮助克服名字负担（灵感来自Gravity Falls）</li>
+                            <li>Slateskin幸存者不受Hemorrhage影响，Guest 666无法从他们获得Blood（v3.3.2）</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 1x1x1x1 -->
             <div class="killer-card" id="1x1x1x1">
                 <div class="killer-header">
                     <h3>1x1x1x1 - 坐标杀手</h3>
-                    <span class="killer-type">数字杀手</span>
+                    <span class="killer-type">Ranged/Ambusher杀手 | 价格: 1,250$ | 难度: ★★★★☆</span>
                 </div>
                 <div class="killer-body">
-                    <p class="killer-desc">神秘的数字杀手，拥有独特的技能机制。</p>
+                    <p class="killer-desc">Shedletsky暴露于Necrobloxicon后的纯粹恶意、仇恨和负面的化身。被称为"The Adversary"。拥有Daemonshank双剑，可召唤腐烂生物和远程投掷物。擅长速度型投掷物远距离追击，通过Entanglement拉近幸存者。基于Roblox都市传说"1x1x1x1账户"和Mewsitive于2014年创建的免费模型。v1.0.0加入，v2.0.0重做。与Shedletsky有LMS特殊剧情。</p>
+                    <div class="killer-stats">
+                        <table class="data-table">
+                            <tr><td>生命值</td><td>1100</td></tr>
+                            <tr><td>耐力</td><td>110</td></tr>
+                            <tr><td>跑步速度</td><td>27</td></tr>
+                            <tr><td>步行速度</td><td>8</td></tr>
+                            <tr><td>恐怖范围</td><td>60码</td></tr>
+                        </table>
+                    </div>
+                    <div class="killer-abilities">
+                        <h4>技能详解</h4>
+                        <div class="ability">
+                            <h5>Slash（挥砍）- 冷却1.75秒 / 伤害20HP / 前摇0.4秒 / 范围7.5码</h5>
+                            <p>用Daemonshank剑向前挥砍。命中施加Glitched I持续5秒+Poisoned I持续5秒。Glitched效果干扰幸存者视野。</p>
+                        </div>
+                        <div class="ability">
+                            <h5>Mass Infection（大规模感染）</h5>
+                            <p>核心远程技能。投掷投掷物命中施加Poisoned和Glitched效果。v2.0.0重做后投掷物伤害35HP（从15HP提升）。Slash伤害降至5HP。Poisoned从III降至I，Glitched从III降至II，持续时间7秒降至5秒。end lag减少。v1.2.1更新：Poisoned不再造成致命伤害。</p>
+                        </div>
+                        <div class="ability">
+                            <h5>Entanglement（纠缠）</h5>
+                            <p>投掷纠缠投掷物，命中将幸存者拉近。v2.0.0更新：命中后获得Speed II持续2.5秒。v1.2.0后弹出数量+1，生成位置更靠近屏幕中心25%。v1.2.1.1伤害从5HP增至10HP。v1.0.4后控制台玩家更容易通过跳跃逃脱。命中自动强制退出shiftlock。end lag在v1.2.0减少。成就"For the outcome is already decided."：击杀50名Shedletsky。</p>
+                        </div>
+                        <div class="ability">
+                            <h5>Unstable Eye（不稳定之眼）- 冷却25秒</h5>
+                            <p>感知并锁定幸存者位置。v1.2.0冷却从30秒降至25秒。v2.1.2后Speed和Blindness持续时间从8秒降至6.5秒。声音可在400码半径内听到（v1.2.1）。</p>
+                        </div>
+                        <div class="ability">
+                            <h5>Rejuvenate The Rotten（复苏腐烂）- 冷却200秒</h5>
+                            <p>召唤腐烂僵尸（minion）追踪幸存者。v1.0.2后冷却从80秒增至200秒。僵尸伤害16HP，生命值15HP。僵尸追踪范围30码，丢失焦点范围50码。僵尸漫游速度在v2.0.0减少2。击杀僵尸的1x1x1x1获得Speed I持续7秒（最多Speed III）。僵尸对1x1x1x1高亮显示。v1.0.0后僵尸改进检测和追击。v1.0.6后僵尸伤害从14HP增至16HP，移动速度从17.5降至16。</p>
+                        </div>
+                    </div>
                     <div class="killer-tips">
-                        <h4>💡 杀手实战技巧</h4>
+                        <h4>💡 实战技巧</h4>
                         <ul>
-                            <li>熟悉角色技能连招</li>
-                            <li>利用独特机制打乱幸存者节奏</li>
-                            <li>在合适的时机使用关键技能</li>
-                            <li>注意与幸存者角色的技能互动</li>
+                            <li><strong>马拉松策略：</strong>Mass Infection远程投掷物追击逃跑幸存者，施加Poisoned+Glitched。Entanglement命中后获得Speed II 2.5秒快速接近</li>
+                            <li><strong>区域控制：</strong>Mass Infection投掷物施加Glitched I干扰幸存者视野。Poisoned持续伤害迫使幸存者寻找治疗</li>
+                            <li><strong>分割战场：</strong>Entanglement将幸存者拉近，封锁逃生路线。配合Unstable Eye感知位置发动突袭</li>
+                            <li><strong>反打团：</strong>Rejuvenate The Rotten僵尸可同时追踪多个幸存者，迫使分散。击杀僵尸获得Speed I持续7秒（最多III）</li>
+                            <li><strong>反马拉松：</strong>Mass Infection远程追击，幸存者即使跑远也能命中。Entanglement拉近逃跑目标+Speed II追击窗口</li>
+                            <li><strong>投掷物技巧：</strong>Mass Infection投掷物速度快，可预判幸存者走位命中。Slash命中施加Glitched I+Poisoned I持续5秒</li>
+                            <li><strong>僵尸管理：</strong>Rejuvenate The Rotten 200秒冷却，需 strategic 使用。僵尸对1x1x1x1高亮，可追踪其位置</li>
+                            <li>1x1x1x1的远程攻击反映其对三维空间的厌恶（平坦投掷物）</li>
+                            <li>所有幸存者和杀手都不理解1x1x1x1是什么，只有Noli知道一些线索</li>
+                            <li>每次与Shedletsky对峙时，他们的"心脏"同步跳动</li>
+                            <li>曾计划投掷物可自由空中/地面发射，但社区拒绝被废弃</li>
+                            <li>与Shedletsky有LMS特殊剧情（从Shedletsky的仇恨中诞生）</li>
+                            <li>基于Necrobloxicon帽子描述（2007年）：嫉妒Robloxia的3D特性，誓言毁灭它</li>
                         </ul>
                     </div>
                 </div>
@@ -263,12 +525,21 @@
                 </ul>
             </div>
             <div class="tips-card">
-                <h3>心理博弈</h3>
+                <h3>击杀优先级</h3>
+                <ol>
+                    <li>正在做目标的幸存者（阻止减少时间）</li>
+                    <li>辅助角色（Elliot/Builderman/Dusekkar/Taph）</li>
+                    <li>哨兵角色（Shedletsky/Guest 1337/Jane Doe/Two Time）</li>
+                    <li>生存专家（Noob/007n7/Veeronica - 难追但威胁较低）</li>
+                </ol>
+            </div>
+            <div class="tips-card">
+                <h3>Malice系统</h3>
                 <ul>
-                    <li>假装离开然后突然返回可以抓到松懈的幸存者</li>
-                    <li>利用恐怖范围给幸存者施加压力</li>
-                    <li>在幸存者以为安全时发动突袭</li>
-                    <li>最后幸存者模式时要更加谨慎，幸存者会强化</li>
+                    <li>Malice最高的玩家会被选为杀手</li>
+                    <li>完成目标获得0.5 Malice</li>
+                    <li>使用技能成功获得Malice</li>
+                    <li>想当杀手需要积累Malice</li>
                 </ul>
             </div>
         </section>
