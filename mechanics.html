@@ -52,13 +52,24 @@
                 </ul>
             </div>
             <div class="mechanic-card">
-                <h3>最后幸存者（Last Man Standing - LMS）</h3>
-                <p>当仅剩最后一名幸存者时：</p>
+                <h3>回合时间</h3>
                 <ul>
-                    <li>最后幸存者将获得<strong>强化效果</strong></li>
-                    <li>生命值提升至 110（部分角色有特殊数值）</li>
-                    <li>获得速度加成</li>
-                    <li>这是幸存者翻盘的关键时刻</li>
+                    <li>≤4人：3分钟</li>
+                    <li>5人：3分30秒</li>
+                    <li>≥6人：4分钟</li>
+                </ul>
+            </div>
+            <div class="mechanic-card">
+                <h3>最后一人（Last Man Standing - LMS）</h3>
+                <p>当仅剩最后一名幸存者时自动触发，这不是独立模式而是标准模式的阶段：</p>
+                <ul>
+                    <li>倒计时自动改为1分14秒</li>
+                    <li>播放LMS专属音乐</li>
+                    <li>最后幸存者和杀手互相高亮6秒（无视Undetectable隐身效果）</li>
+                    <li>完成目标不再减少倒计时</li>
+                    <li><strong>不会增加任何血量上限</strong>，幸存者保持原有生命值</li>
+                    <li>如果幸存者与杀手有特殊关系（如007n7 vs c00lkidd、Jane Doe vs John Doe等），倒计时为1分30秒（Jane Doe vs John Doe为1分40秒）并播放特殊主题音乐</li>
+                    <li>部分杀手皮肤可自定义LMS主题，略微改变计时器时间</li>
                 </ul>
             </div>
         </section>
@@ -101,14 +112,11 @@
             <h2>🎯 目标系统（Objectives）</h2>
             <div class="mechanic-card">
                 <h3>目标类型</h3>
-                <p>每张地图都有独特的目标需要完成，常见的目标类型包括：</p>
+                <p>当前游戏中只有1种主要目标：</p>
                 <ul>
-                    <li><strong>修复发电机</strong>：启动并修复地图上的发电机</li>
-                    <li><strong>收集物品</strong>：寻找并收集散落在地图上的物品</li>
-                    <li><strong>激活机关</strong>：操作地图上的各种机关设备</li>
-                    <li><strong>解谜任务</strong>：完成特定的解谜挑战</li>
+                    <li><strong>发电机（Generators）</strong>：每张地图5台。幸存者需要完成4个小游戏（连接相同颜色/数字的节点）。完成1个小游戏减少3秒倒计时，4个共减少12秒。完成1台发电机获得5$、15EXP、0.5 Malice</li>
                 </ul>
-                <p>完成所有目标可以打开逃生门或加速比赛结束。</p>
+                <p>完成全部5台发电机共减少60秒倒计时。</p>
             </div>
             <div class="mechanic-card">
                 <h3>目标完成策略</h3>
@@ -183,14 +191,52 @@
         </section>
 
         <section class="mechanic-section">
+            <h2>🩸 恶意值系统（Malice）</h2>
+            <div class="mechanic-card">
+                <h3>获取与机制</h3>
+                <ul>
+                    <li><strong>Malice最高的玩家会被选为杀手</strong></li>
+                    <li>完成1台发电机获得0.5 Malice</li>
+                    <li>击杀幸存者获得Malice</li>
+                    <li>使用技能成功对抗对手获得Malice</li>
+                    <li>想当杀手需要积累Malice</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="mechanic-section">
             <h2>🎮 游戏模式</h2>
             <div class="mechanic-card">
-                <h3>Double Trouble（双重麻烦）</h3>
-                <p>两名杀手同时在场追击幸存者，难度大幅提升。幸存者需要更加谨慎地管理耐力和规划路线。</p>
+                <h3>Standard（标准模式）</h3>
+                <p>默认且唯一公开服务器可玩的游戏模式。</p>
+                <ul>
+                    <li>1名杀手对抗多名幸存者</li>
+                    <li>杀手目标：在倒计时结束前击杀所有幸存者</li>
+                    <li>幸存者目标：存活至倒计时归零或完成所有目标</li>
+                    <li>击杀幸存者+40秒回合时间</li>
+                    <li>完成一个目标（发电机）减少12秒，全部5个完成共减少60秒</li>
+                    <li>仅剩1人时进入Last Man Standing阶段</li>
+                </ul>
             </div>
             <div class="mechanic-card">
                 <h3>Extermination（灭绝模式）</h3>
-                <p>杀手必须消灭所有幸存者才能获胜，没有倒计时限制。这是最激烈的游戏模式。</p>
+                <p>仅限私服的专属模式，需要通过指令面板选择。<strong>当前已损坏，无法游玩。</strong></p>
+                <ul>
+                    <li>所有幸存者变为SWAT Officer，持枪对抗杀手</li>
+                    <li>Type 1：150HP，闪光弹，突击步枪+医疗包</li>
+                    <li>Type 2：100HP，闪光弹，突击步枪+医疗包</li>
+                    <li>Type 3：100HP，闪光弹，突击步枪</li>
+                    <li>Type 4：75HP，闪光弹，格洛克+医疗包</li>
+                    <li>幸存者有额外任务击杀杀手，但不是获胜必要条件</li>
+                </ul>
+            </div>
+            <div class="mechanic-card">
+                <h3>Double Trouble（双重麻烦）</h3>
+                <p><strong>即将推出，尚未实装。</strong>预计两名杀手同时对抗幸存者，目标与标准模式相同，但双杀手大幅改变玩法。</p>
+            </div>
+            <div class="mechanic-card">
+                <h3>Baby Gamemode（婴儿模式）</h3>
+                <p><strong>即将推出，尚未实装。</strong>预计为私服专属模式，所有角色变为婴儿形态，属性被削弱（Chance始终携带已装弹的枪，c00lkidd为缩小版模型）。</p>
             </div>
         </section>
 

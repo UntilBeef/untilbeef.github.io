@@ -37,7 +37,7 @@
             <h2>杀手核心机制</h2>
             <div class="tips-card">
                 <h3>基本目标</h3>
-                <p>杀手的目标是在回合时间结束前击杀所有幸存者。击杀一名幸存者增加40秒回合时间。幸存者完成所有目标减少60秒。</p>
+                <p>杀手的目标是在回合时间结束前击杀所有幸存者。击杀一名幸存者增加40秒回合时间。幸存者完成所有5台发电机减少60秒（每台-12秒）。</p>
                 <h3>耐力优势</h3>
                 <ul>
                     <li>杀手冲刺消耗9.5/秒（幸存者10/秒）</li>
@@ -47,7 +47,7 @@
                 <h3>回合时间</h3>
                 <ul>
                     <li>≤4人：3分钟 | 5人：3分30秒 | ≥6人：4分钟</li>
-                    <li>Last Man Standing：最后幸存者自动触发，1分14秒（有关系角色1分30秒/1分40秒）</li>
+                    <li>Last Man Standing：最后幸存者自动触发，倒计时改为1分14秒（有关系角色1分30秒/1分40秒），双方互相高亮6秒（无视Undetectable），完成目标不再减少时间。<strong>不会增加血量上限</strong></li>
                 </ul>
             </div>
         </section>
@@ -59,75 +59,55 @@
             <div class="killer-card" id="slasher">
                 <div class="killer-header">
                     <h3>Slasher - 砍杀者</h3>
-                    <span class="killer-type">基础杀手 | 难度: ★★☆☆☆</span>
+                    <span class="killer-type">Ambusher/Bruteforce杀手 | 价格: Free | 难度: ★★☆☆☆</span>
                 </div>
                 <div class="killer-body">
-                    <p class="killer-desc">初始杀手，近战为基础，拥有流血、斩首和狂暴步伐等技能。适合新手学习杀手基础玩法。</p>
+                    <p class="killer-desc">初始免费杀手，代号"Project 13"。基于《Friday the 13th》系列的Jason Voorhees。通过Behead和Gashing Wound伏击幸存者，利用Raging Pace获得追击优势。Necrobloxicon刺入右肩，以母亲声音引导。v3.1.0加入。</p>
+                    <div class="killer-stats">
+                        <table class="data-table">
+                            <tr><td>生命值</td><td>1250</td></tr>
+                            <tr><td>耐力</td><td>110</td></tr>
+                            <tr><td>跑步速度</td><td>28</td></tr>
+                            <tr><td>步行速度</td><td>9</td></tr>
+                            <tr><td>恐怖范围</td><td>45码（杀手中最小）</td></tr>
+                        </table>
+                    </div>
                     <div class="killer-abilities">
                         <h4>技能详解</h4>
                         <div class="ability">
                             <h5>被动：流血效果（Bleeding）</h5>
-                            <p>被击中后持续流血留下血迹。流血效果可叠加，等待叠加后再追击可最大化追踪效果。较小的恐怖范围可隐蔽接近。</p>
+                            <p>被Slash命中后施加Bleeding I持续5秒。幸存者持续流血留下血迹，方便追踪。小恐怖范围（45码）可隐蔽接近幸存者。成就"Brutality"：用Behead击杀幸存者。</p>
+                        </div>
+                        <div class="ability">
+                            <h5>Slash（挥砍）- 冷却1.9秒（ENRAGED时0.8秒）/ 伤害20HP（ENRAGED时25HP）/ 前摇0.2秒 / 范围7.5码</h5>
+                            <p>用砍刀向前挥砍。命中施加Bleeding I持续5秒。可一次命中多个幸存者。ENRAGED状态下攻击附带突进动作。</p>
                         </div>
                         <div class="ability">
                             <h5>Behead（斩首）</h5>
-                            <p>强力斩击，可穿透007n7的克隆体。可锁定幸存者技能动作（如Noob喝可乐、Veeronica滑板）造成Gashing Wound。确认击杀时使用最高效（绕过击杀动画）。</p>
+                            <p>强力斩击。穿透007n7的克隆体。可锁定幸存者技能动作（如Noob喝可乐、Veeronica滑板）造成Gashing Wound。确认击杀时使用最高效（绕过击杀动画）。不要spam额外大斩，反效果且有害。Raging Behead比普通Behead更有用（有耐力优势+更高伤害）。</p>
                         </div>
                         <div class="ability">
-                            <h5>Gashing Wound（裂伤）</h5>
-                            <p>惩罚性技能，针对幸存者失误（如技能落空、耐力耗尽）造成大量伤害。可利用小恐怖范围突袭做目标的幸存者。</p>
+                            <h5>Gashing Wound（裂伤）- 冷却32秒（ENRAGED时24秒）</h5>
+                            <p>惩罚性技能，针对幸存者失误（如技能落空、耐力耗尽）造成大量伤害。v3.3.2更新：命中后获得1.5秒眩晕免疫。v3.1.4后冷却从40秒降至32秒。成就"What a Shame."：在Taph的Subspace Tripmine附近用Gashing Wound第一击击杀幸存者。初始攻击后的后续Slash不能再被Guest 1337格挡（v4.0.0）。</p>
                         </div>
                         <div class="ability">
                             <h5>Raging Pace（狂暴步伐）</h5>
-                            <p>核心追击技能，获得耐力优势。在74耐力时使用Slash取消可保留比90耐力取消多16耐力。可无效化：Dusekkar的Plasma Beam、Taph的绊线/地雷、Guest 1337的Charge、Veeronica的Bumper。</p>
+                            <p>核心追击技能，获得耐力优势。v3.1.4不再立即停止在原地。v3.3.2速度从19.5降至19。v3.6.4（Friday the 13th活动）期间：速度提升至32，获得完全隐身，高亮所有幸存者而非最近的一个，幸存者视野进一步降低，屏幕变红，幸存者获得永久手电筒。活动后已回退。v4.1.2修复回合结束使用Raging Pace下回合耐力锁定70的bug。</p>
                         </div>
                     </div>
                     <div class="killer-tips">
                         <h4>💡 实战技巧</h4>
                         <ul>
-                            <li>不要滥用Behead， spam额外大斩是反效果且有害的</li>
-                            <li>Raging Parry：预判/反应Sentinel眩晕技能使用Raging Pace，可选择任意方式惩罚</li>
-                            <li>Raging Behead比普通Behead更有用（有耐力优势+更高伤害）</li>
-                            <li>Raging Pace的Slash冲刺撞墙可滑行更远</li>
-                            <li>利用Raging Pace的Slash在74耐力取消，避免90耐力后的耐力抽取</li>
-                            <li>不要用Raging Pace定位幸存者，用耐力条距离提示更好</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Guest 666 -->
-            <div class="killer-card" id="guest-666">
-                <div class="killer-header">
-                    <h3>Guest 666 - 游客666</h3>
-                    <span class="killer-type">恶魔杀手</span>
-                </div>
-                <div class="killer-body">
-                    <p class="killer-desc">强大的恶魔杀手，通过出血效果滚雪球式扩大优势，擅长追踪和持久战。</p>
-                    <div class="killer-abilities">
-                        <h4>技能详解</h4>
-                        <div class="ability">
-                            <h5>Eviscerate（剖腹）</h5>
-                            <p>强力近战攻击，造成大量伤害和出血效果。</p>
-                        </div>
-                        <div class="ability">
-                            <h5>Blood Rush（血液奔涌）</h5>
-                            <p>快速冲向目标，用于远距离突袭和追踪定位。</p>
-                        </div>
-                        <div class="ability">
-                            <h5>Blood Hunt（血腥狩猎）</h5>
-                            <p>追踪技能，可感知附近受伤的幸存者位置。</p>
-                        </div>
-                    </div>
-                    <div class="killer-tips">
-                        <h4>💡 实战技巧</h4>
-                        <ul>
-                            <li>第一人称视角使用体验更佳</li>
-                            <li>优先打伤一个幸存者，然后用被动追踪滚雪球</li>
-                            <li>Blood Rush用于追踪和定位</li>
-                            <li>Blood Hunt可找出隐藏的幸存者</li>
-                            <li>出血效果是核心，确保持续造成伤害</li>
-                            <li>与Noob有LMS特殊剧情（曾经是好朋友）</li>
+                            <li><strong>马拉松策略：</strong>利用小恐怖范围（45码）隐蔽接近。Raging Pace获得耐力优势追击。74耐力时用Slash取消比90耐力取消多保留16耐力</li>
+                            <li><strong>Raging Parry：</strong>预判或反应Sentinel的眩晕技能使用Raging Pace，可选择任意方式惩罚</li>
+                            <li><strong>Raging Pace无效化：</strong>可无效化Dusekkar的Plasma Beam、Taph的绊线/地雷Helpless、Guest 1337的Charge、Veeronica的Bumper</li>
+                            <li><strong>Behead技巧：</strong>可穿透007n7克隆体。锁定技能动作（Noob喝可乐、Veeronica滑板）造成Gashing Wound。不要spam</li>
+                            <li><strong>Raging Pace撞墙：</strong>Slash冲刺撞墙可滑行更远，用于定位</li>
+                            <li><strong>不要用Raging Pace定位幸存者：</strong>用耐力条距离提示更好</li>
+                            <li><strong>Slash命中多人：</strong>可一次命中多个幸存者，利用群体机会</li>
+                            <li>与Guest 1337有特殊击杀动画（Guest试图反击）</li>
+                            <li>曾是Area 51的Project 13，与Operator和Jeff the Killer是朋友</li>
+                            <li>Friday the 13th（3/13/26）活动有特殊皮肤和机制变化</li>
                         </ul>
                     </div>
                 </div>
@@ -136,7 +116,7 @@
             <!-- C00lkidd -->
             <div class="killer-card" id="c00lkidd">
                 <div class="killer-header">
-                    <h3>c00lkidd - 冷酷小子</h3>
+                    <h3>c00lkidd - 酷小孩</h3>
                     <span class="killer-type">Rushdown杀手 | 价格: 900$ | 难度: ★★★☆☆</span>
                 </div>
                 <div class="killer-body">
@@ -444,7 +424,7 @@
             <!-- 1x1x1x1 -->
             <div class="killer-card" id="1x1x1x1">
                 <div class="killer-header">
-                    <h3>1x1x1x1 - 坐标杀手</h3>
+                    <h3>1x1x1x1（简称1x4，外号one egg）</h3>
                     <span class="killer-type">Ranged/Ambusher杀手 | 价格: 1,250$ | 难度: ★★★★☆</span>
                 </div>
                 <div class="killer-body">
