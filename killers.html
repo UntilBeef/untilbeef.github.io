@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>杀手攻略 - Forsaken 教程</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">Forsaken 教程</a>
+            <button class="nav-toggle" id="navToggle">
+                <span></span><span></span><span></span>
+            </button>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html">首页</a></li>
+                <li><a href="mechanics.html">游戏机制</a></li>
+                <li><a href="survivors.html">幸存者攻略</a></li>
+                <li><a href="killers.html" class="active">杀手攻略</a></li>
+                <li><a href="advanced-guide.html">进阶教程</a></li>
+            </ul>
+        </div>
+    </nav>
+    <main class="main-content page-killers">
+        <section class="page-header">
+            <h1>杀手攻略大全</h1>
+            <p>掌握每个杀手的技能与猎杀策略</p>
+        </section>
+
+        <section class="killer-intro">
+            <h2>杀手基础玩法</h2>
+            <div class="tips-card">
+                <h3>杀手核心目标</h3>
+                <p>作为杀手，你的目标是猎杀所有幸存者。需要掌握：</p>
+                <ul>
+                    <li>追踪技巧：利用血迹、声音和视野线索找到幸存者</li>
+                    <li>追击策略：合理使用技能和耐力追捕目标</li>
+                    <li>心理博弈：预测幸存者的逃跑路线</li>
+                    <li>目标控制：在幸存者完成地图目标前拦截他们</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="killer-section">
+            <h2>🔪 杀手角色详解</h2>
+
+            <div class="killer-card" id="slasher">
+                <div class="killer-header">
+                    <h3>Slasher - 砍杀者</h3>
+                    <span class="killer-type">基础杀手</span>
+                </div>
+                <div class="killer-body">
+                    <p class="killer-desc">经典的近战杀手，拥有强大的追击能力和流血效果。</p>
+                    <div class="killer-abilities">
+                        <h4>技能详解</h4>
+                        <div class="ability">
+                            <h5>被动：流血效果（Bleeding）</h5>
+                            <p>被Slasher击中的幸存者会持续流血，留下血迹供追踪。同时Slasher拥有较小的恐怖范围，更容易隐蔽接近。</p>
+                        </div>
+                        <div class="ability">
+                            <h5>Behead（斩首）</h5>
+                            <p>强力的近战攻击技能，可以对幸存者造成大量伤害。</p>
+                        </div>
+                        <div class="ability">
+                            <h5>Gashing Wound（裂伤）</h5>
+                            <p>造成深度伤口，使幸存者持续受到伤害并降低移动速度。</p>
+                        </div>
+                        <div class="ability">
+                            <h5>Raging Pace（狂暴步伐）</h5>
+                            <p>提升移动速度，快速追击逃跑的幸存者。</p>
+                        </div>
+                    </div>
+                    <div class="killer-tips">
+                        <h4>💡 杀手实战技巧</h4>
+                        <ul>
+                            <li>利用血迹追踪逃跑的幸存者</li>
+                            <li>较小的恐怖范围是优势，可以更接近目标而不被发现</li>
+                            <li>穿透克隆体等技能可以处理群体幸存者</li>
+                            <li>注意耐力管理，不要在一次追击中耗尽所有耐力</li>
+                            <li>利用裂伤效果迫使幸存者停下来治疗</li>
+                            <li>狂暴步伐用于关键追击，不要随意使用</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="killer-card" id="guest-666">
+                <div class="killer-header">
+                    <h3>Guest 666 - 游客666</h3>
+                    <span class="killer-type">恶魔杀手</span>
+                </div>
+                <div class="killer-body">
+                    <p class="killer-desc">强大的恶魔杀手，擅长通过出血效果滚雪球式扩大优势。</p>
+                    <div class="killer-abilities">
+                        <h4>技能详解</h4>
+                        <div class="ability">
+                            <h5>被动：Manic Fixation（狂热专注）</h5>
+                            <p>对受伤的幸存者有特殊的追踪能力，更容易锁定目标。</p>
+                        </div>
+                        <div class="ability">
+                            <h5>被动：Hellforged Will（地狱意志）</h5>
+                            <p>强大的意志力，在某些条件下获得强化效果。</p>
+                        </div>
+                        <div class="ability">
+                            <h5>Eviscerate（剖腹）</h5>
+                            <p>强力的近战攻击，造成大量伤害和出血效果。</p>
+                        </div>
+                        <div class="ability">
+                            <h5>Demonic Pursuit（恶魔追击）</h5>
+                            <p>提升追击能力，快速接近目标。</p>
+                        </div>
+                        <div class="ability">
+                            <h5>Infernal Cry（地狱之吼）</h5>
+                            <p>范围效果技能，影响附近的幸存者。</p>
+                        </div>
+                        <div class="ability">
+                            <h5>Blood Rush（血液奔涌）</h5>
+                            <p>快速冲向目标，用于远距离突袭。</p>
+                        </div>
+                        <div class="ability">
+                            <h5>Blood Hunt（血腥狩猎）</h5>
+                            <p>追踪技能，可以感知附近受伤的幸存者位置。</p>
+                        </div>
+                    </div>
+                    <div class="killer-tips">
+                        <h4>💡 杀手实战技巧</h4>
+                        <ul>
+                            <li>第一人称视角使用体验更佳，更容易瞄准</li>
+                            <li>利用Blood Rush进行追踪和定位</li>
+                            <li>优先打伤一个幸存者，然后用被动追踪滚雪球</li>
+                            <li>Blood Hunt可以找出隐藏的幸存者</li>
+                            <li>出血效果是核心，确保持续造成伤害</li>
+                            <li>利用恶魔追击快速接近逃跑的目标</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="killer-card" id="c00lkidd-killer">
+                <div class="killer-header">
+                    <h3>C00lkidd - 冷酷小子</h3>
+                    <span class="killer-type">黑客杀手</span>
+                </div>
+                <div class="killer-body">
+                    <p class="killer-desc">拥有黑客能力的杀手，可以操控地图和干扰幸存者。</p>
+                    <div class="killer-tips">
+                        <h4>💡 杀手实战技巧</h4>
+                        <ul>
+                            <li>利用黑客技能干扰幸存者做目标</li>
+                            <li>封锁逃生路线迫使幸存者走入陷阱</li>
+                            <li>利用隐身或传送技能突袭幸存者</li>
+                            <li>控制地图关键位置</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="killer-card" id="john-doe">
+                <div class="killer-header">
+                    <h3>John Doe - 约翰·多</h3>
+                    <span class="killer-type">黑暗杀手</span>
+                </div>
+                <div class="killer-body">
+                    <p class="killer-desc">神秘的黑暗杀手，拥有腐蚀能量和尖刺陷阱。</p>
+                    <div class="killer-abilities">
+                        <h4>技能特点</h4>
+                        <ul>
+                            <li>可以放置腐蚀能量尖刺作为陷阱</li>
+                            <li>尖刺可以阻挡幸存者逃跑路线</li>
+                            <li>强大的范围控制能力</li>
+                        </ul>
+                    </div>
+                    <div class="killer-tips">
+                        <h4>💡 杀手实战技巧</h4>
+                        <ul>
+                            <li>在狭窄通道放置尖刺限制幸存者移动</li>
+                            <li>利用尖刺封锁窗户和门</li>
+                            <li>结合追击技能将幸存者逼入尖刺陷阱</li>
+                            <li>注意Two Time曾可以利用尖刺空隙逃脱（已被修复）</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="killer-card" id="noli">
+                <div class="killer-header">
+                    <h3>Noli - 诺利</h3>
+                    <span class="killer-type">暗影杀手</span>
+                </div>
+                <div class="killer-body">
+                    <p class="killer-desc">暗影中的杀手，擅长潜行和突袭。</p>
+                    <div class="killer-tips">
+                        <h4>💡 杀手实战技巧</h4>
+                        <ul>
+                            <li>利用潜行能力接近幸存者而不被发现</li>
+                            <li>在幸存者做目标时发动突袭</li>
+                            <li>利用黑暗区域隐藏自己的位置</li>
+                            <li>突然出现在幸存者面前造成心理恐惧</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="killer-card" id="nosferatu">
+                <div class="killer-header">
+                    <h3>Nosferatu - 诺斯费拉图</h3>
+                    <span class="killer-type">吸血鬼杀手</span>
+                </div>
+                <div class="killer-body">
+                    <p class="killer-desc">吸血鬼主题的杀手，拥有生命偷取和恐怖能力。</p>
+                    <div class="killer-tips">
+                        <h4>💡 杀手实战技巧</h4>
+                        <ul>
+                            <li>利用生命偷取保持自身状态</li>
+                            <li>在持久战中占据优势</li>
+                            <li>利用恐怖能力压制幸存者</li>
+                            <li>适合对抗哨兵类高血量角色</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="killer-card" id="1x1x1x1">
+                <div class="killer-header">
+                    <h3>1x1x1x1 - 坐标杀手</h3>
+                    <span class="killer-type">数字杀手</span>
+                </div>
+                <div class="killer-body">
+                    <p class="killer-desc">神秘的数字杀手，拥有独特的技能机制。</p>
+                    <div class="killer-tips">
+                        <h4>💡 杀手实战技巧</h4>
+                        <ul>
+                            <li>熟悉角色技能连招</li>
+                            <li>利用独特机制打乱幸存者节奏</li>
+                            <li>在合适的时机使用关键技能</li>
+                            <li>注意与幸存者角色的技能互动</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="killer-general-tips">
+            <h2>📋 杀手通用技巧</h2>
+            <div class="tips-card">
+                <h3>追击策略</h3>
+                <ul>
+                    <li>不要只追一个幸存者太久，注意其他幸存者在做目标</li>
+                    <li>利用地图知识预测幸存者的逃跑路线</li>
+                    <li>在追逐中注意耐力管理</li>
+                    <li>利用技能打断幸存者的逃跑节奏</li>
+                    <li>将幸存者逼入死路或狭窄区域</li>
+                </ul>
+            </div>
+            <div class="tips-card">
+                <h3>目标控制</h3>
+                <ul>
+                    <li>巡逻地图上的目标点位，而不是盲目追逐</li>
+                    <li>在幸存者做目标时发动攻击最为有效</li>
+                    <li>如果幸存者分散，优先攻击正在做目标的</li>
+                    <li>利用声音线索判断幸存者位置</li>
+                </ul>
+            </div>
+            <div class="tips-card">
+                <h3>心理博弈</h3>
+                <ul>
+                    <li>假装离开然后突然返回可以抓到松懈的幸存者</li>
+                    <li>利用恐怖范围给幸存者施加压力</li>
+                    <li>在幸存者以为安全时发动突袭</li>
+                    <li>最后幸存者模式时要更加谨慎，幸存者会强化</li>
+                </ul>
+            </div>
+        </section>
+    </main>
+    <footer class="footer">
+        <p>Forsaken 教程指南 - 非官方粉丝网站 | 游戏版权归 Forsaken 开发团队所有</p>
+    </footer>
+    <script src="js/main.js"></script>
+</body>
+</html>

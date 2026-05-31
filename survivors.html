@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>幸存者攻略 - Forsaken 教程</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">Forsaken 教程</a>
+            <button class="nav-toggle" id="navToggle">
+                <span></span><span></span><span></span>
+            </button>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html">首页</a></li>
+                <li><a href="mechanics.html">游戏机制</a></li>
+                <li><a href="survivors.html" class="active">幸存者攻略</a></li>
+                <li><a href="killers.html">杀手攻略</a></li>
+                <li><a href="advanced-guide.html">进阶教程</a></li>
+            </ul>
+        </div>
+    </nav>
+    <main class="main-content page-survivors">
+        <section class="page-header">
+            <h1>幸存者攻略大全</h1>
+            <p>掌握每个角色的技能与玩法技巧</p>
+        </section>
+
+        <section class="class-intro">
+            <h2>幸存者职业分类</h2>
+            <div class="class-grid">
+                <div class="class-card sentinel">
+                    <h3>🛡️ 哨兵（Sentinels）</h3>
+                    <p>坦克型角色，擅长正面与杀手对抗，具有较高的生存能力。适合新手玩家。</p>
+                </div>
+                <div class="class-card support">
+                    <h3>💚 辅助（Supports）</h3>
+                    <p>为团队提供治疗和增益效果，是团队存活的核心。需要良好的位置感。</p>
+                </div>
+                <div class="class-card survivalist">
+                    <h3>🏃 生存专家（Survivalists）</h3>
+                    <p>擅长逃跑和规避，拥有出色的机动性技能。适合有经验的玩家。</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="character-section">
+            <h2>🛡️ 哨兵角色</h2>
+
+            <div class="character-card" id="two-time">
+                <div class="char-header">
+                    <h3>Two Time - 双生</h3>
+                    <span class="char-cost">500$</span>
+                    <span class="char-difficulty">难度: ★★★★☆</span>
+                </div>
+                <div class="char-body">
+                    <p class="char-desc">一个脆弱的狂热信徒，拥有可怕的秘密。通过风险和牺牲可以获得第二次生命。</p>
+                    <div class="char-stats">
+                        <table class="data-table">
+                            <tr><td>生命值</td><td>80（第一生命）/ 40（第二生命）/ 110（LMS满祭）</td></tr>
+                            <tr><td>耐力</td><td>100</td></tr>
+                            <tr><td>行走速度</td><td>12</td></tr>
+                            <tr><td>跑步速度</td><td>26</td></tr>
+                        </table>
+                    </div>
+                    <div class="char-abilities">
+                        <h4>技能详解</h4>
+                        <div class="ability">
+                            <h5>被动：Oblation（献祭）</h5>
+                            <p>屏幕右侧有一个祭献条，充满后获得第二次生命。只能通过伤害杀手来填充：</p>
+                            <ul>
+                                <li>正面刺击：填充 37%</li>
+                                <li>背面刺击：填充 56%</li>
+                            </ul>
+                            <p>进入第二生命时：恢复40%耐力、清除所有状态效果、2秒无敌、6秒加速II、12秒虚弱V</p>
+                        </div>
+                        <div class="ability">
+                            <h5>主动：Sacrificial Dagger（祭献匕首）</h5>
+                            <p>冷却时间：30秒。0.3秒前摇后向前刺击，获得0.7秒抗性I。</p>
+                            <ul>
+                                <li>正面命中：10伤害，治疗10HP，杀手减速II+无助I（1秒）</li>
+                                <li>背面命中：20伤害，眩晕杀手3.5秒，治疗20HP</li>
+                                <li>蹲伏使用：快速突刺，前摇减少但后摇增加</li>
+                            </ul>
+                        </div>
+                        <div class="ability">
+                            <h5>Crouch（蹲伏）</h5>
+                            <p>进入蹲伏状态，移动更隐蔽。</p>
+                        </div>
+                        <div class="ability">
+                            <h5>Ritual（仪式）</h5>
+                            <p>在地图上标记重生点，第二生命时在此重生。</p>
+                        </div>
+                    </div>
+                    <div class="char-tips">
+                        <h4>💡 实战技巧</h4>
+                        <ul>
+                            <li>优先尝试背面刺击，收益是正面的1.5倍</li>
+                            <li>利用蹲伏状态接近杀手背后</li>
+                            <li>仪式点放在安全且容易到达的位置</li>
+                            <li>第二生命时血量减半，需要更加谨慎</li>
+                            <li>利用正面刺击的减速效果为队友创造机会</li>
+                            <li>不要贪刀，命中后立刻逃跑</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="character-card" id="shedletsky">
+                <div class="char-header">
+                    <h3>Shedletsky - 鸡王</h3>
+                    <span class="char-type">哨兵</span>
+                </div>
+                <div class="char-body">
+                    <p class="char-desc">强大的哨兵角色，擅长与杀手正面交锋，拥有出色的防御能力。</p>
+                    <div class="char-abilities">
+                        <h4>技能特点</h4>
+                        <ul>
+                            <li>拥有较高的基础生命值</li>
+                            <li>技能偏向控制和防御</li>
+                            <li>适合保护队友和牵制杀手</li>
+                        </ul>
+                    </div>
+                    <div class="char-tips">
+                        <h4>💡 实战技巧</h4>
+                        <ul>
+                            <li>利用高生命值优势与杀手周旋</li>
+                            <li>在队友被追击时主动吸引杀手注意力</li>
+                            <li>合理使用防御技能减少伤害</li>
+                            <li>不要单独行动太远离队友</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="character-card" id="c00lkidd-survivor">
+                <div class="char-header">
+                    <h3>C00lkidd - 冷酷小子</h3>
+                    <span class="char-type">哨兵</span>
+                </div>
+                <div class="char-body">
+                    <p class="char-desc">神秘的幸存者角色，拥有独特的技能组合。</p>
+                    <div class="char-tips">
+                        <h4>💡 实战技巧</h4>
+                        <ul>
+                            <li>熟悉角色技能冷却时间</li>
+                            <li>利用技能创造逃跑机会</li>
+                            <li>与队友配合最大化技能效果</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="character-section">
+            <h2>💚 辅助角色</h2>
+
+            <div class="character-card" id="developer">
+                <div class="char-header">
+                    <h3>Developer - 开发者</h3>
+                    <span class="char-type">辅助</span>
+                </div>
+                <div class="char-body">
+                    <p class="char-desc">为团队提供治疗和支援的辅助角色。</p>
+                    <div class="char-tips">
+                        <h4>💡 实战技巧</h4>
+                        <ul>
+                            <li>优先保证自身安全再进行救援</li>
+                            <li>时刻关注队友的生命状态</li>
+                            <li>治疗技能不要浪费，选择合适的时机</li>
+                            <li>避免被杀手单独发现</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="character-card" id="dusekkar">
+                <div class="char-header">
+                    <h3>Dusekkar - 杜塞卡尔</h3>
+                    <span class="char-type">辅助</span>
+                </div>
+                <div class="char-body">
+                    <p class="char-desc">强大的辅助角色，可以为队友提供护盾和保护。</p>
+                    <div class="char-tips">
+                        <h4>💡 实战技巧</h4>
+                        <ul>
+                            <li>护盾技能可以保护正在做目标的队友</li>
+                            <li>在杀手追击时及时为队友提供保护</li>
+                            <li>合理利用隐身效果转移位置</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="character-section">
+            <h2>🏃 生存专家角色</h2>
+
+            <div class="character-card" id="guest1337">
+                <div class="char-header">
+                    <h3>Guest 1337 - 游客1337</h3>
+                    <span class="char-type">生存专家</span>
+                </div>
+                <div class="char-body">
+                    <p class="char-desc">经典的生存专家，拥有出色的机动性和逃跑能力。</p>
+                    <div class="char-tips">
+                        <h4>💡 实战技巧</h4>
+                        <ul>
+                            <li>利用高机动性快速完成地图目标</li>
+                            <li>保持移动，不要在一个地方停留太久</li>
+                            <li>利用地形优势进行追逐</li>
+                            <li>在耐力耗尽前找到安全区域</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="general-tips">
+            <h2>📋 幸存者通用技巧</h2>
+            <div class="tips-card">
+                <h3>基础生存技巧</h3>
+                <ul>
+                    <li>始终注意杀手的位置，学会听心跳声判断距离</li>
+                    <li>不要贪做目标，杀手靠近时立刻逃跑</li>
+                    <li>利用地图上的障碍物和复杂地形摆脱追击</li>
+                    <li>与队友保持适当距离，分散行动降低被团灭风险</li>
+                    <li>合理利用蹲伏降低被发现的概率</li>
+                </ul>
+            </div>
+            <div class="tips-card">
+                <h3>团队合作技巧</h3>
+                <ul>
+                    <li>与队友沟通杀手位置和行动</li>
+                    <li>分工完成不同的地图目标</li>
+                    <li>队友被追击时，可以做目标或干扰杀手来分散注意力</li>
+                    <li>辅助角色优先保护做目标的队友</li>
+                    <li>不要扎堆，避免被杀手一网打尽</li>
+                </ul>
+            </div>
+            <div class="tips-card">
+                <h3>耐力管理进阶</h3>
+                <ul>
+                    <li>转弯后短暂停顿恢复耐力</li>
+                    <li>利用掩体阻断杀手视线后恢复耐力</li>
+                    <li>不要等到耐力耗尽才停下，保持至少20%的储备</li>
+                    <li>熟悉地图，规划最短逃跑路线</li>
+                    <li>在安全区域使用步行保存耐力</li>
+                </ul>
+            </div>
+        </section>
+    </main>
+    <footer class="footer">
+        <p>Forsaken 教程指南 - 非官方粉丝网站 | 游戏版权归 Forsaken 开发团队所有</p>
+    </footer>
+    <script src="js/main.js"></script>
+</body>
+</html>

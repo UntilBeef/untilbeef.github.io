@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>游戏机制 - Forsaken 教程</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">Forsaken 教程</a>
+            <button class="nav-toggle" id="navToggle">
+                <span></span><span></span><span></span>
+            </button>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html">首页</a></li>
+                <li><a href="mechanics.html" class="active">游戏机制</a></li>
+                <li><a href="survivors.html">幸存者攻略</a></li>
+                <li><a href="killers.html">杀手攻略</a></li>
+                <li><a href="advanced-guide.html">进阶教程</a></li>
+            </ul>
+        </div>
+    </nav>
+    <main class="main-content page-mechanics">
+        <section class="page-header">
+            <h1>游戏机制详解</h1>
+            <p>全面掌握 Forsaken 的核心游戏系统</p>
+        </section>
+
+        <section class="mechanic-section">
+            <h2>🕐 比赛流程</h2>
+            <div class="mechanic-card">
+                <h3>准备阶段（Intermission）</h3>
+                <p>每局比赛开始前，玩家会进入准备阶段。在此期间：</p>
+                <ul>
+                    <li>玩家可以自由探索准备区域</li>
+                    <li>随机选择本局比赛的杀手和幸存者</li>
+                    <li>随机选择比赛地图</li>
+                    <li>玩家可以购买游戏通行证（Gamepasses）</li>
+                </ul>
+            </div>
+            <div class="mechanic-card">
+                <h3>标准回合（Standard Round）</h3>
+                <p>比赛正式开始后：</p>
+                <ul>
+                    <li>幸存者需要在倒计时结束前完成地图目标或存活下来</li>
+                    <li>杀手需要猎杀所有幸存者</li>
+                    <li>如果所有幸存者被消灭，杀手获胜</li>
+                    <li>如果倒计时结束仍有幸存者存活，幸存者获胜</li>
+                    <li>完成所有地图目标可以加速倒计时</li>
+                </ul>
+            </div>
+            <div class="mechanic-card">
+                <h3>最后幸存者（Last Man Standing - LMS）</h3>
+                <p>当仅剩最后一名幸存者时：</p>
+                <ul>
+                    <li>最后幸存者将获得<strong>强化效果</strong></li>
+                    <li>生命值提升至 110（部分角色有特殊数值）</li>
+                    <li>获得速度加成</li>
+                    <li>这是幸存者翻盘的关键时刻</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="mechanic-section">
+            <h2>⚡ 耐力系统（Stamina）</h2>
+            <div class="mechanic-card highlight">
+                <p class="mechanic-tip">💡 <strong>耐力管理是游戏的核心！</strong>合理使用耐力是在追杀中存活的关键。</p>
+            </div>
+            <div class="mechanic-card">
+                <h3>基础数值</h3>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>属性</th>
+                            <th>数值</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>最大耐力</td><td>100</td></tr>
+                        <tr><td>每秒恢复</td><td>20</td></tr>
+                        <tr><td>跑步消耗</td><td>10/秒</td></tr>
+                        <tr><td>耐力耗尽</td><td>无法跑步</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="mechanic-card">
+                <h3>耐力管理技巧</h3>
+                <ul>
+                    <li>不要一直按住跑步键，在安全区域步行保存耐力</li>
+                    <li>在转弯或障碍物后短暂停顿恢复耐力</li>
+                    <li>预判杀手位置，提前规划逃跑路线</li>
+                    <li>利用地形和障碍物减少需要的跑步距离</li>
+                    <li>注意耐力条，保持至少 30% 的耐力储备</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="mechanic-section">
+            <h2>🎯 目标系统（Objectives）</h2>
+            <div class="mechanic-card">
+                <h3>目标类型</h3>
+                <p>每张地图都有独特的目标需要完成，常见的目标类型包括：</p>
+                <ul>
+                    <li><strong>修复发电机</strong>：启动并修复地图上的发电机</li>
+                    <li><strong>收集物品</strong>：寻找并收集散落在地图上的物品</li>
+                    <li><strong>激活机关</strong>：操作地图上的各种机关设备</li>
+                    <li><strong>解谜任务</strong>：完成特定的解谜挑战</li>
+                </ul>
+                <p>完成所有目标可以打开逃生门或加速比赛结束。</p>
+            </div>
+            <div class="mechanic-card">
+                <h3>目标完成策略</h3>
+                <ul>
+                    <li>优先完成远离杀手的目标</li>
+                    <li>与队友分工合作，不要扎堆做同一个目标</li>
+                    <li>做目标时保持警觉，注意杀手的声音和恐怖范围</li>
+                    <li>如果杀手靠近，果断放弃目标逃跑</li>
+                    <li>利用做目标的时间观察周围地形</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="mechanic-section">
+            <h2>🔄 状态效果（Status Effects）</h2>
+            <div class="mechanic-card">
+                <h3>负面效果（Debuffs）</h3>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>效果</th>
+                            <th>说明</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>流血（Bleeding）</td><td>持续损失生命值，会留下血迹让杀手追踪</td></tr>
+                        <tr><td>减速（Slowness）</td><td>降低移动速度，更容易被追上</td></tr>
+                        <tr><td>虚弱（Weakness）</td><td>降低伤害输出或治疗效果</td></tr>
+                        <tr><td>无助（Helpless）</td><td>无法使用技能或特殊能力</td></tr>
+                        <tr><td>恐惧（Fear）</td><td>影响视野或产生幻觉效果</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="mechanic-card">
+                <h3>正面效果（Buffs）</h3>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>效果</th>
+                            <th>说明</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>加速（Speed）</td><td>提高移动速度，等级越高效果越强</td></tr>
+                        <tr><td>抗性（Resistance）</td><td>减少受到的伤害或控制时间</td></tr>
+                        <tr><td>隐身（Invisible）</td><td>使杀手难以发现你</td></tr>
+                        <tr><td>治疗（Healing）</td><td>持续恢复生命值</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section class="mechanic-section">
+            <h2>🏆 玩家等级与经验</h2>
+            <div class="mechanic-card">
+                <h3>经验值（EXP）获取</h3>
+                <ul>
+                    <li>存活时间越长，获得的经验越多</li>
+                    <li>完成地图目标获得经验奖励</li>
+                    <li>使用角色技能成功对抗杀手获得经验</li>
+                    <li>每局比赛结束后根据表现结算经验</li>
+                </ul>
+            </div>
+            <div class="mechanic-card">
+                <h3>等级奖励</h3>
+                <ul>
+                    <li>提升等级解锁新的角色</li>
+                    <li>获得角色专属皮肤</li>
+                    <li>解锁成就和里程碑奖励</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="mechanic-section">
+            <h2>🎮 游戏模式</h2>
+            <div class="mechanic-card">
+                <h3>Double Trouble（双重麻烦）</h3>
+                <p>两名杀手同时在场追击幸存者，难度大幅提升。幸存者需要更加谨慎地管理耐力和规划路线。</p>
+            </div>
+            <div class="mechanic-card">
+                <h3>Extermination（灭绝模式）</h3>
+                <p>杀手必须消灭所有幸存者才能获胜，没有倒计时限制。这是最激烈的游戏模式。</p>
+            </div>
+        </section>
+
+        <section class="mechanic-section">
+            <h2>🎫 游戏通行证（Gamepasses）</h2>
+            <div class="mechanic-card">
+                <p>游戏内可以购买各种通行证来增强体验：</p>
+                <ul>
+                    <li><strong>额外生命</strong>：获得额外的复活机会</li>
+                    <li><strong>经验加成</strong>：提升获得的经验值</li>
+                    <li><strong>专属角色</strong>：解锁特殊角色</li>
+                    <li><strong>皮肤包</strong>：获取角色专属外观</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="mechanic-section">
+            <h2>👻 恐怖范围（Terror Radius）</h2>
+            <div class="mechanic-card">
+                <p>每个杀手都有一个恐怖范围，当幸存者进入这个范围时：</p>
+                <ul>
+                    <li>会听到心跳声，距离越近声音越大</li>
+                    <li>屏幕可能出现视觉效果提示</li>
+                    <li>某些杀手有更大的恐怖范围，更难察觉</li>
+                    <li>部分杀手技能可以缩小或隐藏恐怖范围</li>
+                </ul>
+                <p class="mechanic-tip">💡 <strong>技巧：</strong>学会听心跳声判断杀手距离和方向，这是躲避杀手的关键技能。</p>
+            </div>
+        </section>
+
+        <section class="mechanic-section">
+            <h2>💰 游戏内货币</h2>
+            <div class="mechanic-card">
+                <p>通过游戏可以获得游戏内货币（$）：</p>
+                <ul>
+                    <li>完成目标获得货币奖励</li>
+                    <li>对杀手造成伤害或控制获得货币</li>
+                    <li>存活到比赛结束获得结算货币</li>
+                    <li>货币可用于购买角色和皮肤</li>
+                </ul>
+            </div>
+        </section>
+    </main>
+    <footer class="footer">
+        <p>Forsaken 教程指南 - 非官方粉丝网站 | 游戏版权归 Forsaken 开发团队所有</p>
+    </footer>
+    <script src="js/main.js"></script>
+</body>
+</html>
