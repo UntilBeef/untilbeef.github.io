@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UntilBeef - INeedToBeef</title>
+    <title>UntilBeef - Blog</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
@@ -16,46 +16,41 @@
 
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            background-color: #0a0a0c;
+            background-color: #0f0f11;
             color: #e4e4e7;
-            line-height: 1.6;
             min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
         }
 
         /* 顶部导航栏 */
         .navbar {
-            background-color: rgba(20, 20, 22, 0.85);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border-bottom: 1px solid #27272a;
             position: sticky;
             top: 0;
             z-index: 100;
-            transition: box-shadow 0.3s ease;
-        }
-
-        .navbar.scrolled {
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+            background-color: rgba(15, 15, 17, 0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid #27272a;
         }
 
         .navbar-inner {
-            max-width: 1200px;
+            max-width: 800px;
             margin: 0 auto;
-            padding: 0 24px;
-            height: 56px;
+            padding: 16px 24px;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            gap: 16px;
         }
 
         .nav-brand {
             font-size: 18px;
             font-weight: 600;
             color: #fafafa;
-            text-decoration: none;
             letter-spacing: -0.3px;
-            flex-shrink: 0;
         }
 
         .nav-links {
@@ -65,10 +60,8 @@
         }
 
         .nav-links a {
-            color: #a1a1aa;
-            text-decoration: none;
             font-size: 14px;
-            font-weight: 500;
+            color: #a1a1aa;
             transition: color 0.2s ease;
         }
 
@@ -76,212 +69,96 @@
             color: #fafafa;
         }
 
-        /* 搜索框 */
-        .search-box {
-            position: relative;
-            width: 220px;
-            flex-shrink: 0;
-        }
-
-        .search-box input {
-            width: 100%;
-            background-color: #27272a;
-            border: 1px solid #3f3f46;
-            border-radius: 10px;
-            padding: 8px 12px 8px 32px;
-            color: #e4e4e7;
-            font-size: 13px;
-            font-family: inherit;
-            outline: none;
-            transition: border-color 0.2s ease, background-color 0.2s ease;
-        }
-
-        .search-box input::placeholder {
-            color: #71717a;
-        }
-
-        .search-box input:focus {
-            border-color: #52525b;
-            background-color: #2e2e32;
-        }
-
-        .search-box svg {
-            position: absolute;
-            left: 10px;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 14px;
-            height: 14px;
-            color: #71717a;
-            pointer-events: none;
-        }
-
-        /* 主容器 */
-        .container {
-            max-width: 1200px;
+        /* 头部个人信息区域 */
+        .header {
+            max-width: 800px;
             margin: 0 auto;
-            padding: 24px;
+            padding: 48px 24px 32px;
             display: flex;
-            gap: 24px;
+            align-items: center;
+            gap: 20px;
         }
 
-        /* 左侧边栏 */
-        .sidebar {
-            width: 280px;
-            flex-shrink: 0;
-            position: sticky;
-            top: 80px;
-            align-self: flex-start;
-        }
-
-        .profile-card {
-            background-color: #18181b;
-            border: 1px solid #27272a;
-            border-radius: 16px;
-            padding: 28px;
-            text-align: center;
-            margin-bottom: 16px;
-        }
-
-        .avatar-wrapper {
-            position: relative;
-            display: inline-block;
-            margin-bottom: 16px;
-        }
-
-        .avatar {
-            width: 96px;
-            height: 96px;
+        .header-avatar {
+            width: 72px;
+            height: 72px;
             border-radius: 50%;
             object-fit: cover;
-            border: 3px solid #27272a;
+            border: 2px solid #27272a;
+            flex-shrink: 0;
         }
 
-        .status-dot {
-            position: absolute;
-            bottom: 6px;
-            right: 6px;
-            width: 16px;
-            height: 16px;
-            background-color: #22c55e;
-            border: 3px solid #18181b;
-            border-radius: 50%;
-        }
-
-        .name {
-            font-size: 20px;
+        .header-info h1 {
+            font-size: 22px;
             font-weight: 600;
             color: #fafafa;
             margin-bottom: 4px;
+            letter-spacing: -0.3px;
         }
 
-        .alias {
-            font-size: 13px;
-            color: #a1a1aa;
-            margin-bottom: 12px;
-        }
-
-        .bio {
+        .header-info .alias {
             font-size: 14px;
-            color: #d4d4d8;
-            margin-bottom: 16px;
-            line-height: 1.5;
-        }
-
-        .social-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            background-color: #27272a;
-            color: #e4e4e7;
-            text-decoration: none;
-            padding: 10px 18px;
-            border-radius: 10px;
-            font-size: 13px;
-            font-weight: 500;
-            transition: background-color 0.2s ease;
-        }
-
-        .social-link:hover {
-            background-color: #3f3f46;
-        }
-
-        .social-link svg {
-            width: 16px;
-            height: 16px;
-            fill: currentColor;
-        }
-
-        /* 统计面板 */
-        .stats-card {
-            background-color: #18181b;
-            border: 1px solid #27272a;
-            border-radius: 16px;
-            padding: 20px;
-        }
-
-        .stats-title {
-            font-size: 13px;
-            font-weight: 600;
-            color: #a1a1aa;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-bottom: 12px;
-        }
-
-        .stats-row {
-            display: flex;
-            justify-content: space-between;
-            padding: 8px 0;
-            border-bottom: 1px solid #27272a;
-            font-size: 14px;
-        }
-
-        .stats-row:last-child {
-            border-bottom: none;
-        }
-
-        .stats-label {
             color: #71717a;
+            margin-bottom: 8px;
         }
 
-        .stats-value {
-            color: #fafafa;
-            font-weight: 500;
+        .header-info .desc {
+            font-size: 14px;
+            color: #a1a1aa;
         }
 
-        /* 主内容区 */
-        .main-content {
-            flex: 1;
-            min-width: 0;
+        .header-info .desc a {
+            color: #60a5fa;
+            transition: opacity 0.2s ease;
         }
 
-        .section-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 16px;
+        .header-info .desc a:hover {
+            opacity: 0.8;
+            text-decoration: underline;
+        }
+
+        /* 分隔线 */
+        .section-divider {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .section-divider .line {
+            height: 1px;
+            background-color: #27272a;
+        }
+
+        /* 文章列表区域 */
+        .content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 32px 24px 64px;
         }
 
         .section-title {
-            font-size: 18px;
-            font-weight: 600;
-            color: #fafafa;
-        }
-
-        .section-filter {
             font-size: 13px;
-            color: #a1a1aa;
+            font-weight: 500;
+            color: #71717a;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
         }
 
-        /* 帖子卡片 */
+        /* 文章卡片 */
+        .post-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
         .post-card {
             background-color: #18181b;
             border: 1px solid #27272a;
-            border-radius: 16px;
+            border-radius: 14px;
             padding: 24px;
-            margin-bottom: 16px;
-            transition: border-color 0.2s ease, transform 0.2s ease;
+            transition: border-color 0.25s ease, transform 0.25s ease;
+            cursor: pointer;
         }
 
         .post-card:hover {
@@ -289,59 +166,8 @@
             transform: translateY(-2px);
         }
 
-        .post-card.pinned {
-            border-left: 3px solid #22c55e;
-        }
-
-        .post-header {
-            display: flex;
-            align-items: flex-start;
-            justify-content: space-between;
-            margin-bottom: 10px;
-            gap: 12px;
-        }
-
-        .post-title {
-            font-size: 16px;
-            font-weight: 600;
-            color: #fafafa;
-            line-height: 1.4;
-            text-decoration: none;
-            display: block;
-            transition: color 0.2s ease;
-        }
-
-        .post-title:hover {
-            color: #22c55e;
-        }
-
-        .post-pill {
-            font-size: 11px;
-            font-weight: 600;
-            padding: 3px 8px;
-            border-radius: 6px;
-            white-space: nowrap;
-            flex-shrink: 0;
-        }
-
-        .pill-pinned {
-            background-color: #22c55e20;
-            color: #22c55e;
-        }
-
-        .pill-tool {
-            background-color: #3b82f620;
+        .post-card:hover .post-title {
             color: #60a5fa;
-        }
-
-        .pill-game {
-            background-color: #a855f720;
-            color: #c084fc;
-        }
-
-        .pill-dev {
-            background-color: #f59e0b20;
-            color: #fbbf24;
         }
 
         .post-meta {
@@ -349,567 +175,251 @@
             align-items: center;
             gap: 12px;
             margin-bottom: 10px;
-            font-size: 13px;
-            color: #71717a;
-        }
-
-        .post-meta span {
-            display: flex;
-            align-items: center;
-            gap: 4px;
-        }
-
-        .post-body {
-            font-size: 14px;
-            color: #d4d4d8;
-            line-height: 1.6;
-            margin-bottom: 14px;
-        }
-
-        .post-footer {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            padding-top: 12px;
-            border-top: 1px solid #27272a;
-        }
-
-        .post-action {
-            display: flex;
-            align-items: center;
-            gap: 4px;
-            font-size: 13px;
-            color: #71717a;
-            cursor: pointer;
-            transition: color 0.2s ease;
-            user-select: none;
-        }
-
-        .post-action:hover {
-            color: #a1a1aa;
-        }
-
-        .post-action svg {
-            width: 16px;
-            height: 16px;
-        }
-
-        /* 工具图标行（帖子内） */
-        .tool-row {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-top: 10px;
-            padding: 10px 12px;
-            background-color: #1f1f23;
-            border-radius: 10px;
-        }
-
-        .tool-row img {
-            width: 28px;
-            height: 28px;
-            border-radius: 6px;
-            object-fit: cover;
-        }
-
-        .tool-row span {
-            font-size: 13px;
-            color: #d4d4d8;
-        }
-
-        /* 分类标签栏 */
-        .tag-bar {
-            display: flex;
             flex-wrap: wrap;
-            gap: 8px;
-            margin-bottom: 20px;
         }
 
-        .tag-btn {
-            background-color: #18181b;
-            border: 1px solid #27272a;
-            color: #a1a1aa;
-            padding: 6px 14px;
-            border-radius: 20px;
-            font-size: 13px;
-            font-family: inherit;
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-
-        .tag-btn:hover {
-            border-color: #3f3f46;
-            color: #e4e4e7;
-        }
-
-        .tag-btn.active {
-            background-color: #27272a;
-            border-color: #52525b;
-            color: #fafafa;
-        }
-
-        /* 浏览量 */
-        .view-count {
-            display: flex;
-            align-items: center;
-            gap: 4px;
+        .post-date {
             font-size: 13px;
             color: #71717a;
         }
 
-        .view-count svg {
-            width: 14px;
-            height: 14px;
-        }
-
-        /* 加载更多按钮 */
-        .load-more {
-            display: block;
-            width: 100%;
-            background-color: #18181b;
-            border: 1px solid #27272a;
-            color: #a1a1aa;
-            padding: 14px;
-            border-radius: 12px;
-            font-size: 14px;
-            font-family: inherit;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            margin-top: 4px;
-        }
-
-        .load-more:hover {
-            background-color: #1f1f23;
-            border-color: #3f3f46;
-            color: #e4e4e7;
-        }
-
-        /* 回到顶部按钮 */
-        .back-to-top {
-            position: fixed;
-            bottom: 24px;
-            right: 24px;
-            width: 40px;
-            height: 40px;
-            background-color: #27272a;
-            border: 1px solid #3f3f46;
-            border-radius: 10px;
-            color: #e4e4e7;
+        .post-tags {
             display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(10px);
-            transition: all 0.3s ease;
-            z-index: 90;
+            gap: 8px;
+            flex-wrap: wrap;
         }
 
-        .back-to-top.visible {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
+        .post-tag {
+            font-size: 12px;
+            color: #a1a1aa;
+            background-color: #27272a;
+            padding: 2px 10px;
+            border-radius: 999px;
+            transition: background-color 0.2s ease;
         }
 
-        .back-to-top:hover {
+        .post-card:hover .post-tag {
             background-color: #3f3f46;
         }
 
-        .back-to-top svg {
-            width: 18px;
-            height: 18px;
+        .post-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #fafafa;
+            margin-bottom: 8px;
+            transition: color 0.2s ease;
+            letter-spacing: -0.2px;
         }
 
-        /* 热门标签卡片 */
-        .tags-card {
+        .post-excerpt {
+            font-size: 14px;
+            color: #a1a1aa;
+            line-height: 1.6;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        /* 关于我 板块（侧边内容） */
+        .about-section {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 24px 48px;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 12px;
+        }
+
+        .about-card {
             background-color: #18181b;
             border: 1px solid #27272a;
-            border-radius: 16px;
-            padding: 20px;
-            margin-top: 16px;
+            border-radius: 12px;
+            padding: 16px;
+            transition: border-color 0.2s ease;
         }
 
-        .tags-list {
+        .about-card:hover {
+            border-color: #3f3f46;
+        }
+
+        .about-card-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: #fafafa;
+            margin-bottom: 6px;
             display: flex;
-            flex-wrap: wrap;
+            align-items: center;
             gap: 8px;
         }
 
-        .tag-link {
-            background-color: #1f1f23;
-            border: 1px solid #27272a;
-            color: #a1a1aa;
-            padding: 5px 10px;
-            border-radius: 6px;
-            font-size: 12px;
-            text-decoration: none;
-            transition: all 0.2s ease;
+        .about-card-title img {
+            width: 20px;
+            height: 20px;
+            border-radius: 4px;
+            object-fit: cover;
         }
 
-        .tag-link:hover {
-            border-color: #3f3f46;
-            color: #e4e4e7;
-            background-color: #27272a;
+        .about-card-text {
+            font-size: 13px;
+            color: #a1a1aa;
+            line-height: 1.5;
+        }
+
+        .about-highlight {
+            color: #22c55e;
+            font-weight: 600;
+            font-size: 14px;
+            margin-top: 4px;
         }
 
         /* 页脚 */
         .footer {
-            max-width: 1200px;
+            max-width: 800px;
             margin: 0 auto;
             padding: 24px;
             text-align: center;
             font-size: 12px;
             color: #52525b;
             border-top: 1px solid #27272a;
-            margin-top: 8px;
         }
 
         /* 响应式 */
-        @media (max-width: 860px) {
-            .container {
-                flex-direction: column;
-            }
-
-            .sidebar {
-                width: 100%;
-                position: static;
-            }
-
-            .profile-card {
-                display: flex;
-                align-items: center;
-                text-align: left;
-                gap: 20px;
-            }
-
-            .avatar-wrapper {
-                margin-bottom: 0;
-            }
-
-            .profile-info {
-                flex: 1;
-            }
-
-            .stats-card {
-                display: none;
-            }
-        }
-
         @media (max-width: 640px) {
-            .search-box {
-                display: none;
+            .header {
+                flex-direction: column;
+                text-align: center;
+                padding-top: 32px;
             }
-        }
 
-        @media (max-width: 480px) {
             .navbar-inner {
-                padding: 0 16px;
+                padding: 14px 20px;
             }
 
             .nav-links {
-                gap: 14px;
-            }
-
-            .nav-links a {
-                font-size: 13px;
-            }
-
-            .container {
-                padding: 16px;
+                gap: 16px;
             }
 
             .post-card {
-                padding: 18px;
-            }
-
-            .profile-card {
-                flex-direction: column;
-                text-align: center;
-            }
-
-            .tag-bar {
-                gap: 6px;
-            }
-
-            .tag-btn {
-                padding: 5px 12px;
-                font-size: 12px;
+                padding: 20px;
             }
         }
     </style>
 </head>
 <body>
     <!-- 顶部导航 -->
-    <nav class="navbar" id="navbar">
+    <nav class="navbar">
         <div class="navbar-inner">
             <a href="#" class="nav-brand">UntilBeef</a>
             <ul class="nav-links">
-                <li><a href="#">首页</a></li>
-                <li><a href="#">文章</a></li>
-                <li><a href="#">工具</a></li>
-                <li><a href="#">关于</a></li>
+                <li><a href="#posts">文章</a></li>
+                <li><a href="#about">关于</a></li>
             </ul>
-            <div class="search-box">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
-                <input type="text" placeholder="搜索帖子...">
-            </div>
         </div>
     </nav>
 
-    <!-- 主容器 -->
-    <div class="container">
-        <!-- 左侧边栏 -->
-        <aside class="sidebar">
-            <div class="profile-card">
-                <div class="avatar-wrapper">
-                    <img src="UntilBeef.jpg" alt="UntilBeef 头像" class="avatar">
-                    <span class="status-dot" title="Online"></span>
-                </div>
-                <div class="profile-info">
-                    <h1 class="name">INeedToBeef</h1>
-                    <p class="alias">别名 UntilBeef</p>
-                    <p class="bio">Roblox 开发者 & 玩家<br>大卫你牛大了 我恨你</p>
-                    <a class="social-link" href="https://space.bilibili.com/3546854264408363" target="_blank" rel="noopener noreferrer">
-                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M17.813 4.653h.854c1.51.054 2.769.578 3.773 1.574 1.004.995 1.524 2.249 1.56 3.76v7.36c-.036 1.51-.556 2.769-1.56 3.773s-2.262 1.524-3.773 1.56H5.333c-1.51-.036-2.769-.556-3.773-1.56S.036 18.858 0 17.347v-7.36c.036-1.511.556-2.765 1.56-3.76 1.004-.996 2.262-1.52 3.773-1.574h.774l-1.174-1.12a1.234 1.234 0 0 1-.373-.906c0-.356.124-.658.373-.907l.027-.027c.267-.249.573-.373.92-.373.347 0 .653.124.92.373L9.653 4.44c.071.071.134.142.187.213h4.267a.836.836 0 0 1 .16-.213l2.853-2.747c.267-.249.573-.373.92-.373.347 0 .662.151.929.4.267.249.391.551.391.907 0 .355-.124.657-.373.906zM5.333 7.24c-.746.018-1.373.276-1.88.773-.506.498-.769 1.13-.786 1.894v7.52c.017.764.28 1.395.786 1.893.507.498 1.134.756 1.88.773h13.334c.746-.017 1.373-.275 1.88-.773.506-.498.769-1.129.786-1.893v-7.52c-.017-.765-.28-1.396-.786-1.894-.507-.497-1.134-.755-1.88-.773zM8 11.107c.373 0 .684.124.933.373.25.249.383.569.4.96v1.173c-.017.391-.15.711-.4.96-.249.25-.56.374-.933.374s-.684-.125-.933-.374c-.25-.249-.383-.569-.4-.96V12.44c0-.373.129-.689.386-.947.258-.257.574-.386.947-.386zm8 0c.373 0 .684.124.933.373.25.249.383.569.4.96v1.173c-.017.391-.15.711-.4.96-.249.25-.56.374-.933.374s-.684-.125-.933-.374c-.25-.249-.383-.569-.4-.96V12.44c.017-.391.15-.711.4-.96.249-.249.56-.373.933-.373z"/>
-                        </svg>
-                        Bilibili 主页
-                    </a>
-                </div>
-            </div>
+    <!-- 头部个人信息 -->
+    <header class="header">
+        <img src="UntilBeef.jpg" alt="UntilBeef 头像" class="header-avatar">
+        <div class="header-info">
+            <h1>INeedToBeef</h1>
+            <p class="alias">别名 UntilBeef</p>
+            <p class="desc">
+                Roblox 开发者 & 玩家 ·
+                <a href="https://space.bilibili.com/3546854264408363" target="_blank" rel="noopener noreferrer">Bilibili</a>
+            </p>
+        </div>
+    </header>
 
-            <div class="stats-card">
-                <div class="stats-title">论坛数据</div>
-                <div class="stats-row">
-                    <span class="stats-label">帖子</span>
-                    <span class="stats-value">4</span>
-                </div>
-                <div class="stats-row">
-                    <span class="stats-label">点赞</span>
-                    <span class="stats-value">1.2k</span>
-                </div>
-                <div class="stats-row">
-                    <span class="stats-label">注册</span>
-                    <span class="stats-value">2023</span>
-                </div>
-            </div>
+    <div class="section-divider"><div class="line"></div></div>
 
-            <div class="tags-card">
-                <div class="stats-title">热门标签</div>
-                <div class="tags-list">
-                    <a href="#" class="tag-link">Roblox</a>
-                    <a href="#" class="tag-link">Froststrap</a>
-                    <a href="#" class="tag-link">Studio</a>
-                    <a href="#" class="tag-link">Lua</a>
-                    <a href="#" class="tag-link">工具</a>
-                    <a href="#" class="tag-link">开发日志</a>
-                    <a href="#" class="tag-link">游戏推荐</a>
-                </div>
-            </div>
-        </aside>
-
-        <!-- 主内容区 -->
-        <main class="main-content">
-            <div class="section-header">
-                <h2 class="section-title">最新帖子</h2>
-                <span class="section-filter">按时间排序</span>
-            </div>
-
-            <div class="tag-bar">
-                <button class="tag-btn active">全部</button>
-                <button class="tag-btn">置顶</button>
-                <button class="tag-btn">工具</button>
-                <button class="tag-btn">游戏</button>
-                <button class="tag-btn">开发</button>
-            </div>
-
-            <!-- 置顶帖：自我介绍 -->
-            <article class="post-card pinned">
-                <div class="post-header">
-                    <a href="#" class="post-title">👋 大家好，我是 INeedToBeef</a>
-                    <span class="post-pill pill-pinned">置顶</span>
-                </div>
-                <div class="post-meta">
-                    <span>📅 2023-01-15</span>
-                    <span>🏷️ 自我介绍</span>
-                    <span class="view-count">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
-                        8.2k
-                    </span>
-                </div>
-                <div class="post-body">
-                    别名 UntilBeef，是一名 Roblox 开发者 & 玩家。主要使用 Roblox Studio 进行游戏开发，也关注各种 Roblox 相关工具和客户端。欢迎交流！
-                </div>
-                <div class="post-footer">
-                    <span class="post-action">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 10v12"/><path d="M15 5.88 14 10h5.83a2 2 0 0 1 1.92 2.56l-2.33 8A2 2 0 0 1 17.5 22H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h2.76a2 2 0 0 0 1.79-1.11L12 2h0a3.13 3.13 0 0 1 3 3.88Z"/></svg>
-                        342
-                    </span>
-                    <span class="post-action">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-                        56
-                    </span>
-                    <span class="post-action">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg>
-                        分享
-                    </span>
-                </div>
-            </article>
-
-            <!-- 帖子1：Froststrap -->
+    <!-- 文章列表 -->
+    <main class="content" id="posts">
+        <h2 class="section-title">最新文章</h2>
+        <div class="post-list">
+            <!-- 文章 1 -->
             <article class="post-card">
-                <div class="post-header">
-                    <a href="#" class="post-title">Froststrap 有很多原版没有的功能</a>
-                    <span class="post-pill pill-tool">工具</span>
-                </div>
                 <div class="post-meta">
-                    <span>📅 2024-06-18</span>
-                    <span>🏷️ Froststrap</span>
-                    <span class="view-count">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
-                        5.6k
-                    </span>
-                </div>
-                <div class="post-body">
-                    所以 Froststrap 牛逼。对比原版 Roblox 客户端，Froststrap 提供了大量额外的功能和自定义选项，极大提升了使用体验。
-                    <div class="tool-row">
-                        <img src="froststrap.png" alt="Froststrap">
-                        <span>Froststrap</span>
+                    <span class="post-date">2026-06-18</span>
+                    <div class="post-tags">
+                        <span class="post-tag">Roblox</span>
+                        <span class="post-tag">Studio</span>
                     </div>
                 </div>
-                <div class="post-footer">
-                    <span class="post-action">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 10v12"/><path d="M15 5.88 14 10h5.83a2 2 0 0 1 1.92 2.56l-2.33 8A2 2 0 0 1 17.5 22H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h2.76a2 2 0 0 0 1.79-1.11L12 2h0a3.13 3.13 0 0 1 3 3.88Z"/></svg>
-                        521
-                    </span>
-                    <span class="post-action">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-                        89
-                    </span>
-                    <span class="post-action">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg>
-                        分享
-                    </span>
-                </div>
+                <h3 class="post-title">使用 Roblox Studio 开发游戏的入门经验</h3>
+                <p class="post-excerpt">
+                    从搭建第一个场景到编写 Lua 脚本，分享我在 Roblox Studio 中开发游戏的一些基础经验和踩过的坑。
+                </p>
             </article>
 
-            <!-- 帖子2：Roblox Player -->
+            <!-- 文章 2 -->
             <article class="post-card">
-                <div class="post-header">
-                    <a href="#" class="post-title">Roblox Player 乐乐</a>
-                    <span class="post-pill pill-game">游戏</span>
-                </div>
                 <div class="post-meta">
-                    <span>📅 2024-05-22</span>
-                    <span>🏷️ Roblox</span>
-                    <span class="view-count">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
-                        3.1k
-                    </span>
-                </div>
-                <div class="post-body">
-                    在 Roblox Player 上体验各种有趣的游戏，从生存到模拟经营，玩法丰富。偶尔也会记录一些有趣的游戏瞬间。
-                    <div class="tool-row">
-                        <img src="RobloxPlayer.ico" alt="Roblox Player">
-                        <span>Roblox Player</span>
+                    <span class="post-date">2026-06-15</span>
+                    <div class="post-tags">
+                        <span class="post-tag">Froststrap</span>
+                        <span class="post-tag">工具</span>
                     </div>
                 </div>
-                <div class="post-footer">
-                    <span class="post-action">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 10v12"/><path d="M15 5.88 14 10h5.83a2 2 0 0 1 1.92 2.56l-2.33 8A2 2 0 0 1 17.5 22H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h2.76a2 2 0 0 0 1.79-1.11L12 2h0a3.13 3.13 0 0 1 3 3.88Z"/></svg>
-                        198
-                    </span>
-                    <span class="post-action">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-                        34
-                    </span>
-                    <span class="post-action">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg>
-                        分享
-                    </span>
-                </div>
+                <h3 class="post-title">为什么我选择 Froststrap 而不是原版客户端</h3>
+                <p class="post-excerpt">
+                    Froststrap 提供了很多原版 Roblox 客户端没有的功能，从自定义主题到高级调试工具，让开发体验提升了一个档次。
+                </p>
             </article>
 
-            <!-- 帖子3：Roblox Studio -->
+            <!-- 文章 3 -->
             <article class="post-card">
-                <div class="post-header">
-                    <a href="#" class="post-title">Roblox Studio 开发日志</a>
-                    <span class="post-pill pill-dev">开发</span>
-                </div>
                 <div class="post-meta">
-                    <span>📅 2024-03-10</span>
-                    <span>🏷️ Roblox Studio</span>
-                    <span class="view-count">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
-                        4.8k
-                    </span>
+                    <span class="post-date">2026-06-10</span>
+                    <div class="post-tags">
+                        <span class="post-tag">Lua</span>
+                        <span class="post-tag">脚本</span>
+                    </div>
                 </div>
-                <div class="post-body">
-                    使用 Roblox Studio 进行游戏开发与创作，编写 Lua 脚本、搭建场景、设计玩法机制。记录一些开发过程中的踩坑与心得，希望能帮到其他 Roblox 开发者。
-                </div>
-                <div class="post-footer">
-                    <span class="post-action">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 10v12"/><path d="M15 5.88 14 10h5.83a2 2 0 0 1 1.92 2.56l-2.33 8A2 2 0 0 1 17.5 22H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h2.76a2 2 0 0 0 1.79-1.11L12 2h0a3.13 3.13 0 0 1 3 3.88Z"/></svg>
-                        415
-                    </span>
-                    <span class="post-action">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-                        72
-                    </span>
-                    <span class="post-action">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg>
-                        分享
-                    </span>
-                </div>
+                <h3 class="post-title">Roblox Lua 脚本优化小技巧</h3>
+                <p class="post-excerpt">
+                    几个简单但有效的 Lua 性能优化方法，包括事件管理、循环优化和内存泄漏排查，让你的游戏运行更流畅。
+                </p>
             </article>
+        </div>
+    </main>
 
-            <button class="load-more">加载更多</button>
-        </main>
-    </div>
+    <div class="section-divider"><div class="line"></div></div>
+
+    <!-- 关于 / 工具展示 -->
+    <section class="about-section" id="about">
+        <h2 class="section-title">关于 & 工具</h2>
+        <div class="about-grid">
+            <div class="about-card">
+                <div class="about-card-title">
+                    <img src="froststrap.png" alt="Froststrap">
+                    Froststrap
+                </div>
+                <p class="about-card-text">有很多原版没有的功能</p>
+            </div>
+            <div class="about-card">
+                <div class="about-card-title">
+                    <img src="RobloxPlayer.ico" alt="Roblox Player">
+                    Roblox Player
+                </div>
+                <p class="about-card-text">乐乐。</p>
+            </div>
+            <div class="about-card">
+                <div class="about-card-title">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fafafa" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+                    Roblox Studio
+                </div>
+                <p class="about-card-text">使用 Roblox Studio 进行游戏开发与创作，编写 Lua 脚本、搭建场景、设计玩法机制。</p>
+            </div>
+        </div>
+        <p class="about-highlight" style="text-align:center; margin-top:16px;">所以 Froststrap 牛逼</p>
+    </section>
 
     <footer class="footer">
-        © UntilBeef · 论坛 + 博客
+        © 2026 UntilBeef. All rights reserved.
     </footer>
-
-    <!-- 回到顶部按钮 -->
-    <button class="back-to-top" id="backToTop" aria-label="回到顶部">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m18 15-6-6-6 6"/></svg>
-    </button>
-
-    <script>
-        // 导航栏滚动阴影效果
-        const navbar = document.getElementById('navbar');
-        window.addEventListener('scroll', function() {
-            if (window.scrollY > 10) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
-        });
-
-        // 回到顶部按钮显隐
-        const backToTop = document.getElementById('backToTop');
-        window.addEventListener('scroll', function() {
-            if (window.scrollY > 300) {
-                backToTop.classList.add('visible');
-            } else {
-                backToTop.classList.remove('visible');
-            }
-        });
-
-        backToTop.addEventListener('click', function() {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
-
-        // 分类标签切换
-        const tagBtns = document.querySelectorAll('.tag-btn');
-        tagBtns.forEach(function(btn) {
-            btn.addEventListener('click', function() {
-                tagBtns.forEach(function(b) { b.classList.remove('active'); });
-                btn.classList.add('active');
-            });
-        });
-    </script>
 </body>
 </html>
