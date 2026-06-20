@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roblox Studio / Luau 入门 - UntilBeef</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: #0f0f11;
+            color: #e4e4e7;
+            line-height: 1.7;
+            padding: 24px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* 头部导航 */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #27272a;
+        }
+
+        .back-link {
+            color: #a1a1aa;
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.2s ease;
+        }
+
+        .back-link:hover { color: #fafafa; }
+
+        .header-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #fafafa;
+        }
+
+        /* 主标题 */
+        .hero {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+
+        .hero h1 {
+            font-size: 32px;
+            font-weight: 700;
+            color: #fafafa;
+            margin-bottom: 10px;
+        }
+
+        .hero p {
+            font-size: 15px;
+            color: #a1a1aa;
+        }
+
+        /* 章节卡片 */
+        .section {
+            background-color: #18181b;
+            border: 1px solid #27272a;
+            border-radius: 16px;
+            padding: 28px;
+            margin-bottom: 24px;
+            transition: border-color 0.2s ease;
+        }
+
+        .section:hover { border-color: #3f3f46; }
+
+        .section h2 {
+            font-size: 20px;
+            font-weight: 600;
+            color: #fafafa;
+            margin-bottom: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .section p {
+            font-size: 15px;
+            color: #d4d4d8;
+            margin-bottom: 14px;
+        }
+
+        .section p:last-child { margin-bottom: 0; }
+
+        /* 代码块 */
+        .code-block {
+            background-color: #1f1f23;
+            border: 1px solid #27272a;
+            border-radius: 10px;
+            padding: 16px 20px;
+            margin: 16px 0;
+            overflow-x: auto;
+        }
+
+        .code-block pre {
+            font-family: "JetBrains Mono", "Fira Code", Consolas, monospace;
+            font-size: 14px;
+            line-height: 1.6;
+            color: #e4e4e7;
+        }
+
+        .code-block .comment { color: #71717a; }
+        .code-block .keyword { color: #c084fc; }
+        .code-block .string { color: #4ade80; }
+        .code-block .number { color: #fbbf24; }
+        .code-block .function { color: #60a5fa; }
+
+        /* 小贴士 */
+        .tip {
+            background-color: #1f1f23;
+            border-left: 3px solid #22c55e;
+            border-radius: 0 10px 10px 0;
+            padding: 14px 18px;
+            margin: 16px 0;
+            font-size: 14px;
+            color: #d4d4d8;
+        }
+
+        .tip strong { color: #22c55e; }
+
+        /* 警告 */
+        .warning {
+            background-color: #1f1f23;
+            border-left: 3px solid #fbbf24;
+            border-radius: 0 10px 10px 0;
+            padding: 14px 18px;
+            margin: 16px 0;
+            font-size: 14px;
+            color: #d4d4d8;
+        }
+
+        .warning strong { color: #fbbf24; }
+
+        /* 列表 */
+        .section ul {
+            margin-left: 20px;
+            margin-bottom: 14px;
+        }
+
+        .section ul li {
+            font-size: 15px;
+            color: #d4d4d8;
+            margin-bottom: 6px;
+        }
+
+        /* 页脚 */
+        .footer {
+            text-align: center;
+            margin-top: 48px;
+            padding-top: 24px;
+            border-top: 1px solid #27272a;
+            font-size: 13px;
+            color: #52525b;
+        }
+
+        .footer a {
+            color: #a1a1aa;
+            text-decoration: none;
+        }
+
+        .footer a:hover { color: #fafafa; }
+
+        @media (max-width: 600px) {
+            .hero h1 { font-size: 26px; }
+            .section { padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 头部 -->
+        <div class="header">
+            <a href="index.html" class="back-link">← 返回主页</a>
+            <span class="header-title">UntilBeef</span>
+        </div>
+
+        <!-- 主标题 -->
+        <div class="hero">
+            <h1>🎮 Roblox Studio / Luau 入门</h1>
+            <p>写给自己，也写给刚入坑的你。没废话，能跑就行。</p>
+        </div>
+
+        <!-- 变量与数据类型 -->
+        <div class="section">
+            <h2>1. 变量与数据类型</h2>
+            <p>Luau 是 Lua 的亲戚，变量不用声明类型，直接<code>local</code>一下就能用。别用全局变量，容易出幺蛾子。</p>
+            <div class="code-block">
+<pre><span class="comment">-- 基础数据类型，很直观</span>
+<span class="keyword">local</span> playerName = <span class="string">"UntilBeef"</span>   <span class="comment">-- 字符串</span>
+<span class="keyword">local</span> health = <span class="number">100</span>            <span class="comment">-- 数字</span>
+<span class="keyword">local</span> isAlive = <span class="keyword">true</span>          <span class="comment">-- 布尔值</span>
+<span class="keyword">local</span> inventory = {<span class="string">"Sword"</span>, <span class="string">"Shield"</span>}  <span class="comment">-- 表（后面细讲）</span>
+
+<span class="comment">-- 输出到控制台看看</span>
+<span class="function">print</span>(<span class="string">"玩家名字是:"</span>, playerName)</pre>
+            </div>
+            <div class="tip">
+                <strong>小贴士：</strong> 在 Roblox Studio 里按 F9 或 View -> Output 可以打开输出窗口，print 的内容都在那里看。
+            </div>
+        </div>
+
+        <!-- 函数 -->
+        <div class="section">
+            <h2>2. 函数</h2>
+            <p>函数就是把一堆代码打包起来，以后想复用直接调用。Luau 里函数也是一等公民，可以赋值给变量。</p>
+            <div class="code-block">
+<pre><span class="comment">-- 定义一个普通函数</span>
+<span class="keyword">local</span> <span class="keyword">function</span> <span class="function">greetPlayer</span>(name)
+    <span class="function">print</span>(<span class="string">"你好，"</span> .. name .. <span class="string">"! 欢迎来到我的游戏。"</span>)
+<span class="keyword">end</span>
+
+<span class="comment">-- 调用它</span>
+<span class="function">greetPlayer</span>(<span class="string">"UntilBeef"</span>)
+
+<span class="comment">-- 带返回值的函数</span>
+<span class="keyword">local</span> <span class="keyword">function</span> <span class="function">calculateDamage</span>(base, multiplier)
+    <span class="keyword">return</span> base * multiplier
+<span class="keyword">end</span>
+
+<span class="keyword">local</span> damage = <span class="function">calculateDamage</span>(<span class="number">10</span>, <span class="number">2.5</span>)
+<span class="function">print</span>(<span class="string">"造成的伤害:"</span>, damage)  <span class="comment">-- 输出 25</span></pre>
+            </div>
+            <div class="warning">
+                <strong>注意：</strong> 字符串拼接用 <code>..</code> 而不是 <code>+</code>。用 <code>+</code> 会报错，别问我怎么知道的。
+            </div>
+        </div>
+
+        <!-- 条件判断 -->
+        <div class="section">
+            <h2>3. 条件判断</h2>
+            <p>if-else 这一套到哪都差不多，Luau 里 <code>~=</code> 表示不等于（别写成 !=，那是别的语言）。</p>
+            <div class="code-block">
+<pre><span class="keyword">local</span> score = <span class="number">85</span>
+
+<span class="keyword">if</span> score >= <span class="number">90</span> <span class="keyword">then</span>
+    <span class="function">print</span>(<span class="string">"优秀！"</span>)
+<span class="keyword">elseif</span> score >= <span class="number">60</span> <span class="keyword">then</span>
+    <span class="function">print</span>(<span class="string">"及格了，还行。"</span>)
+<span class="keyword">else</span>
+    <span class="function">print</span>(<span class="string">"再接再厉吧..."</span>)
+<span class="keyword">end</span>
+
+<span class="comment">-- 检查布尔值</span>
+<span class="keyword">local</span> hasKey = <span class="keyword">false</span>
+<span class="keyword">if</span> <span class="keyword">not</span> hasKey <span class="keyword">then</span>
+    <span class="function">print</span>(<span class="string">"你没有钥匙，门打不开。"</span>)
+<span class="keyword">end</span></pre>
+            </div>
+        </div>
+
+        <!-- 循环 -->
+        <div class="section">
+            <h2>4. 循环</h2>
+            <p>循环有三种常用写法，for 循环最常用，while 次之。repeat 我基本不用，但你知道有这回事就行。</p>
+            <div class="code-block">
+<pre><span class="comment">-- for 循环，从 1 到 5</span>
+<span class="keyword">for</span> i = <span class="number">1</span>, <span class="number">5</span> <span class="keyword">do</span>
+    <span class="function">print</span>(<span class="string">"当前数字:"</span>, i)
+<span class="keyword">end</span>
+
+<span class="comment">-- 遍历数组（ ipairs 按顺序）</span>
+<span class="keyword">local</span> weapons = {<span class="string">"剑"</span>, <span class="string">"弓"</span>, <span class="string">"法杖"</span>}
+<span class="keyword">for</span> index, value <span class="keyword">in</span> <span class="function">ipairs</span>(weapons) <span class="keyword">do</span>
+    <span class="function">print</span>(index, <span class="string">":"</span>, value)
+<span class="keyword">end</span>
+
+<span class="comment">-- while 循环，记得别把条件写死，不然就无限循环了</span>
+<span class="keyword">local</span> count = <span class="number">3</span>
+<span class="keyword">while</span> count > <span class="number">0</span> <span class="keyword">do</span>
+    <span class="function">print</span>(<span class="string">"倒计时:"</span>, count)
+    count = count - <span class="number">1</span>
+<span class="keyword">end</span></pre>
+            </div>
+            <div class="tip">
+                <strong>小贴士：</strong> 遍历字典（键值对）用 <code>pairs</code>，遍历数组用 <code>ipairs</code>。用错了顺序可能会乱，别问我怎么知道的。
+            </div>
+        </div>
+
+        <!-- 表（Table） -->
+        <div class="section">
+            <h2>5. 表（Table）—— Luau 的核心</h2>
+            <p>表在 Luau 里就是万能容器，数组、字典、对象，全是它。理解表，基本就理解了一半 Luau。</p>
+            <div class="code-block">
+<pre><span class="comment">-- 数组</span>
+<span class="keyword">local</span> fruits = {<span class="string">"苹果"</span>, <span class="string">"香蕉"</span>, <span class="string">"橙子"</span>}
+<span class="function">print</span>(fruits[<span class="number">1</span>])  <span class="comment">-- 注意：Luau 索引从 1 开始，不是 0！</span>
+
+<span class="comment">-- 字典（键值对）</span>
+<span class="keyword">local</span> playerData = {
+    name = <span class="string">"UntilBeef"</span>,
+    level = <span class="number">42</span>,
+    coins = <span class="number">999</span>
+}
+<span class="function">print</span>(playerData.name)  <span class="comment">-- 用点号访问</span>
+<span class="function">print</span>(playerData[<span class="string">"level"</span>])  <span class="comment">-- 或者中括号，键是字符串时两种都行</span>
+
+<span class="comment">-- 混合使用（这就是 Roblox 里常见的配置表写法）</span>
+<span class="keyword">local</span> config = {
+    maxPlayers = <span class="number">10</span>,
+    gameModes = {<span class="string">"生存"</span>, <span class="string">"竞技"</span>, <span class="string">"合作"</span>},
+    enablePVP = <span class="keyword">true</span>
+}</pre>
+            </div>
+            <div class="warning">
+                <strong>重要：</strong> Luau 的数组索引从 <strong>1</strong> 开始！从 1 开始！从 1 开始！习惯了其他语言从 0 开始的朋友，这里会狠狠坑你一次。
+            </div>
+        </div>
+
+        <!-- Roblox 特有：事件与连接 -->
+        <div class="section">
+            <h2>6. 事件与连接（Events）</h2>
+            <p>Roblox 开发里到处都是事件，玩家点击、角色死亡、属性变化，全要靠事件监听。Connect 就是你的好朋友。</p>
+            <div class="code-block">
+<pre><span class="comment">-- 获取一个部件（Part）</span>
+<span class="keyword">local</span> part = workspace:FindFirstChild(<span class="string">"MyPart"</span>)
+
+<span class="comment">-- 监听点击事件（需要 ClickDetector）</span>
+<span class="keyword">local</span> clickDetector = part:FindFirstChildOfClass(<span class="string">"ClickDetector"</span>)
+<span class="keyword">if</span> clickDetector <span class="keyword">then</span>
+    clickDetector.MouseClick:<span class="function">Connect</span>(<span class="keyword">function</span>(player)
+        <span class="function">print</span>(player.Name .. <span class="string">" 点击了部件！"</span>)
+    <span class="keyword">end</span>)
+<span class="keyword">end</span>
+
+<span class="comment">-- 监听属性变化</span>
+part:GetPropertyChangedSignal(<span class="string">"Position"</span>):<span class="function">Connect</span>(<span class="keyword">function</span>()
+    <span class="function">print</span>(<span class="string">"部件位置变了"</span>)
+<span class="keyword">end</span>)</pre>
+            </div>
+            <div class="tip">
+                <strong>小贴士：</strong> 事件连接后会一直存在，如果你不需要了记得用变量存起来然后 Disconnect，不然内存泄漏找起来很头疼。
+            </div>
+        </div>
+
+        <!-- 实例操作 -->
+        <div class="section">
+            <h2>7. 创建和操控实例</h2>
+            <p>用 Instance.new 可以代码里创建部件，不用每次都手动拖。配合循环可以快速生成一堆东西。</p>
+            <div class="code-block">
+<pre><span class="comment">-- 创建一个新的 Part</span>
+<span class="keyword">local</span> part = Instance.<span class="function">new</span>(<span class="string">"Part"</span>)
+part.Size = Vector3.<span class="function">new</span>(<span class="number">4</span>, <span class="number">1</span>, <span class="number">2</span>)
+part.Position = Vector3.<span class="function">new</span>(<span class="number">0</span>, <span class="number">10</span>, <span class="number">0</span>)
+part.Anchored = <span class="keyword">true</span>  <span class="comment">-- 锚定住，不然会掉下来</span>
+part.BrickColor = BrickColor.<span class="function">new</span>(<span class="string">"Bright red"</span>)
+part.Parent = workspace  <span class="comment">-- 放进工作区才能看到</span>
+
+<span class="comment">-- 批量创建（比如生成一排方块）</span>
+<span class="keyword">for</span> i = <span class="number">1</span>, <span class="number">5</span> <span class="keyword">do</span>
+    <span class="keyword">local</span> block = Instance.<span class="function">new</span>(<span class="string">"Part"</span>)
+    block.Size = Vector3.<span class="function">new</span>(<span class="number">2</span>, <span class="number">2</span>, <span class="number">2</span>)
+    block.Position = Vector3.<span class="function">new</span>(i * <span class="number">3</span>, <span class="number">5</span>, <span class="number">0</span>)
+    block.Anchored = <span class="keyword">true</span>
+    block.Parent = workspace
+<span class="keyword">end</span></pre>
+            </div>
+            <div class="warning">
+                <strong>注意：</strong> 设置 Parent 一定要放在最后，因为 Parent 改变时会触发很多内部事件，先设置属性再设 Parent 性能更好。
+            </div>
+        </div>
+
+        <!-- 常用服务 -->
+        <div class="section">
+            <h2>8. 常用服务（Services）</h2>
+            <p>Roblox 有很多内置服务，用 game:GetService 获取，这是标准写法，别直接 game.Players 那种写法，不规范。</p>
+            <div class="code-block">
+<pre><span class="keyword">local</span> Players = game:<span class="function">GetService</span>(<span class="string">"Players"</span>)
+<span class="keyword">local</span> ReplicatedStorage = game:<span class="function">GetService</span>(<span class="string">"ReplicatedStorage"</span>)
+<span class="keyword">local</span> TweenService = game:<span class="function">GetService</span>(<span class="string">"TweenService"</span>)
+<span class="keyword">local</span> RunService = game:<span class="function">GetService</span>(<span class="string">"RunService"</span>)
+
+<span class="comment">-- 玩家加入事件</span>
+Players.PlayerAdded:<span class="function">Connect</span>(<span class="keyword">function</span>(player)
+    <span class="function">print</span>(player.Name .. <span class="string">" 加入了游戏！"</span>)
+<span class="keyword">end</span>)
+
+<span class="comment">-- 每帧运行（用于平滑动画或物理）</span>
+RunService.Heartbeat:<span class="function">Connect</span>(<span class="keyword">function</span>(dt)
+    <span class="comment">-- dt 是上一帧到现在的时间差（秒）</span>
+<span class="keyword">end</span>)</pre>
+            </div>
+        </div>
+
+        <!-- 一点碎碎念 -->
+        <div class="section">
+            <h2>9. 最后说两句</h2>
+            <p>Luau 其实不难，难的是 Roblox 的 API 生态太庞大，很多时候你不知道哪个服务该干嘛。我的经验是：</p>
+            <ul>
+                <li>遇到不会的，先去 Roblox Creator Hub 搜，官方文档虽然有时候解释得不太人话，但示例代码很有用。</li>
+                <li>print 调试大法永远不过时，哪里不对先 print 出来看看。</li>
+                <li>别在客户端信任任何数据，外挂想改本地脚本太容易了，重要逻辑放 ServerScript。</li>
+                <li>善用 ModuleScript，把公共函数抽出来，别每个脚本都复制粘贴一堆重复代码。</li>
+            </ul>
+            <p>写游戏就是不断试错，报错信息仔细看，大部分时候谷歌一下或者去 DevForum 都能找到答案。加油。</p>
+        </div>
+
+        <!-- 页脚 -->
+        <div class="footer">
+            <p>Written by <a href="index.html">UntilBeef</a> · 用 💢 和 🎮 发电</p>
+        </div>
+    </div>
+</body>
+</html>
