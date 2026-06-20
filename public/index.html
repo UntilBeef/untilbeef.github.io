@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UntilBeef - 论坛 + 博客</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: #0a0a0c; color: #e4e4e7; line-height: 1.6; min-height: 100vh;
+        }
+        .navbar {
+            background-color: rgba(20,20,22,0.85); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid #27272a; position: sticky; top: 0; z-index: 100; transition: box-shadow 0.3s ease;
+        }
+        .navbar.scrolled { box-shadow: 0 4px 20px rgba(0,0,0,0.4); }
+        .navbar-inner {
+            max-width: 1200px; margin: 0 auto; padding: 0 24px; height: 56px;
+            display: flex; align-items: center; justify-content: space-between; gap: 16px;
+        }
+        .nav-brand { font-size: 18px; font-weight: 600; color: #fafafa; text-decoration: none; letter-spacing: -0.3px; flex-shrink: 0; }
+        .nav-links { display: flex; gap: 24px; list-style: none; }
+        .nav-links a { color: #a1a1aa; text-decoration: none; font-size: 14px; font-weight: 500; transition: color 0.2s ease; }
+        .nav-links a:hover { color: #fafafa; }
+        .nav-right { display: flex; align-items: center; gap: 12px; }
+        .search-box { position: relative; width: 220px; flex-shrink: 0; }
+        .search-box input {
+            width: 100%; background-color: #27272a; border: 1px solid #3f3f46; border-radius: 10px;
+            padding: 8px 12px 8px 32px; color: #e4e4e7; font-size: 13px; font-family: inherit; outline: none;
+            transition: border-color 0.2s ease, background-color 0.2s ease;
+        }
+        .search-box input::placeholder { color: #71717a; }
+        .search-box input:focus { border-color: #52525b; background-color: #2e2e32; }
+        .search-box svg { position: absolute; left: 10px; top: 50%; transform: translateY(-50%); width: 14px; height: 14px; color: #71717a; pointer-events: none; }
+        .btn { display: inline-flex; align-items: center; gap: 6px; background-color: #27272a; color: #e4e4e7; border: 1px solid #3f3f46; padding: 8px 16px; border-radius: 10px; font-size: 13px; font-weight: 500; cursor: pointer; transition: all 0.2s ease; text-decoration: none; font-family: inherit; }
+        .btn:hover { background-color: #3f3f46; }
+        .btn-primary { background-color: #22c55e; border-color: #22c55e; color: #0f0f11; }
+        .btn-primary:hover { background-color: #16a34a; border-color: #16a34a; }
+        .btn-sm { padding: 6px 12px; font-size: 12px; }
+        .user-menu { display: flex; align-items: center; gap: 10px; }
+        .user-avatar { width: 32px; height: 32px; border-radius: 50%; object-fit: cover; border: 2px solid #3f3f46; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 24px; display: flex; gap: 24px; }
+        .sidebar { width: 280px; flex-shrink: 0; position: sticky; top: 80px; align-self: flex-start; }
+        .card {
+            background-color: #18181b; border: 1px solid #27272a; border-radius: 16px;
+            padding: 24px; margin-bottom: 16px;
+        }
+        .profile-card { text-align: center; }
+        .avatar-wrapper { position: relative; display: inline-block; margin-bottom: 16px; }
+        .avatar { width: 96px; height: 96px; border-radius: 50%; object-fit: cover; border: 3px solid #27272a; }
+        .status-dot { position: absolute; bottom: 6px; right: 6px; width: 16px; height: 16px; background-color: #22c55e; border: 3px solid #18181b; border-radius: 50%; }
+        .name { font-size: 20px; font-weight: 600; color: #fafafa; margin-bottom: 4px; }
+        .alias { font-size: 13px; color: #a1a1aa; margin-bottom: 12px; }
+        .bio { font-size: 14px; color: #d4d4d8; margin-bottom: 16px; line-height: 1.5; }
+        .stats-title { font-size: 13px; font-weight: 600; color: #a1a1aa; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 12px; }
+        .stats-row { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid #27272a; font-size: 14px; }
+        .stats-row:last-child { border-bottom: none; }
+        .stats-label { color: #71717a; }
+        .stats-value { color: #fafafa; font-weight: 500; }
+        .tags-list { display: flex; flex-wrap: wrap; gap: 8px; }
+        .tag-link { background-color: #1f1f23; border: 1px solid #27272a; color: #a1a1aa; padding: 5px 10px; border-radius: 6px; font-size: 12px; text-decoration: none; transition: all 0.2s ease; cursor: pointer; }
+        .tag-link:hover { border-color: #3f3f46; color: #e4e4e7; background-color: #27272a; }
+        .main-content { flex: 1; min-width: 0; }
+        .section-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
+        .section-title { font-size: 18px; font-weight: 600; color: #fafafa; }
+        .section-filter { font-size: 13px; color: #a1a1aa; }
+        .tag-bar { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; }
+        .tag-btn { background-color: #18181b; border: 1px solid #27272a; color: #a1a1aa; padding: 6px 14px; border-radius: 20px; font-size: 13px; font-family: inherit; cursor: pointer; transition: all 0.2s ease; }
+        .tag-btn:hover { border-color: #3f3f46; color: #e4e4e7; }
+        .tag-btn.active { background-color: #27272a; border-color: #52525b; color: #fafafa; }
+        .post-card { background-color: #18181b; border: 1px solid #27272a; border-radius: 16px; padding: 24px; margin-bottom: 16px; transition: border-color 0.2s ease, transform 0.2s ease; }
+        .post-card:hover { border-color: #3f3f46; transform: translateY(-2px); }
+        .post-card.pinned { border-left: 3px solid #22c55e; }
+        .post-header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 10px; gap: 12px; }
+        .post-title { font-size: 16px; font-weight: 600; color: #fafafa; line-height: 1.4; text-decoration: none; display: block; transition: color 0.2s ease; }
+        .post-title:hover { color: #22c55e; }
+        .post-pill { font-size: 11px; font-weight: 600; padding: 3px 8px; border-radius: 6px; white-space: nowrap; flex-shrink: 0; }
+        .pill-pinned { background-color: #22c55e20; color: #22c55e; }
+        .pill-tool { background-color: #3b82f620; color: #60a5fa; }
+        .pill-game { background-color: #a855f720; color: #c084fc; }
+        .pill-dev { background-color: #f59e0b20; color: #fbbf24; }
+        .post-meta { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; font-size: 13px; color: #71717a; flex-wrap: wrap; }
+        .post-meta span { display: flex; align-items: center; gap: 4px; }
+        .post-body { font-size: 14px; color: #d4d4d8; line-height: 1.6; margin-bottom: 14px; white-space: pre-wrap; }
+        .tool-row { display: flex; align-items: center; gap: 10px; margin-top: 10px; padding: 10px 12px; background-color: #1f1f23; border-radius: 10px; }
+        .tool-row img { width: 28px; height: 28px; border-radius: 6px; object-fit: cover; }
+        .tool-row span { font-size: 13px; color: #d4d4d8; }
+        .post-footer { display: flex; align-items: center; gap: 16px; padding-top: 12px; border-top: 1px solid #27272a; }
+        .post-action { display: flex; align-items: center; gap: 4px; font-size: 13px; color: #71717a; cursor: pointer; transition: color 0.2s ease; user-select: none; background: none; border: none; font-family: inherit; }
+        .post-action:hover { color: #a1a1aa; }
+        .post-action.liked { color: #22c55e; }
+        .post-action svg { width: 16px; height: 16px; }
+        .load-more { display: block; width: 100%; background-color: #18181b; border: 1px solid #27272a; color: #a1a1aa; padding: 14px; border-radius: 12px; font-size: 14px; font-family: inherit; cursor: pointer; transition: all 0.2s ease; margin-top: 4px; }
+        .load-more:hover { background-color: #1f1f23; border-color: #3f3f46; color: #e4e4e7; }
+        .load-more:disabled { opacity: 0.5; cursor: not-allowed; }
+        .footer { max-width: 1200px; margin: 0 auto; padding: 24px; text-align: center; font-size: 12px; color: #52525b; border-top: 1px solid #27272a; margin-top: 8px; }
+        .back-to-top { position: fixed; bottom: 24px; right: 24px; width: 40px; height: 40px; background-color: #27272a; border: 1px solid #3f3f46; border-radius: 10px; color: #e4e4e7; display: flex; align-items: center; justify-content: center; cursor: pointer; opacity: 0; visibility: hidden; transform: translateY(10px); transition: all 0.3s ease; z-index: 90; }
+        .back-to-top.visible { opacity: 1; visibility: visible; transform: translateY(0); }
+        .back-to-top:hover { background-color: #3f3f46; }
+        .back-to-top svg { width: 18px; height: 18px; }
+
+        /* Modal */
+        .modal-overlay { position: fixed; inset: 0; background-color: rgba(0,0,0,0.6); display: flex; align-items: center; justify-content: center; z-index: 200; opacity: 0; visibility: hidden; transition: all 0.2s ease; padding: 16px; }
+        .modal-overlay.active { opacity: 1; visibility: visible; }
+        .modal { background-color: #18181b; border: 1px solid #27272a; border-radius: 16px; padding: 28px; width: 100%; max-width: 400px; transform: scale(0.96); transition: transform 0.2s ease; }
+        .modal-overlay.active .modal { transform: scale(1); }
+        .modal-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; }
+        .modal-title { font-size: 18px; font-weight: 600; color: #fafafa; }
+        .modal-close { background: none; border: none; color: #71717a; cursor: pointer; padding: 4px; }
+        .modal-close:hover { color: #fafafa; }
+        .form-group { margin-bottom: 16px; }
+        .form-label { display: block; font-size: 13px; color: #a1a1aa; margin-bottom: 6px; }
+        .form-input {
+            width: 100%; background-color: #27272a; border: 1px solid #3f3f46; border-radius: 10px;
+            padding: 10px 14px; color: #e4e4e7; font-size: 14px; font-family: inherit; outline: none;
+            transition: border-color 0.2s ease;
+        }
+        .form-input:focus { border-color: #52525b; }
+        .form-textarea { min-height: 120px; resize: vertical; }
+        .form-hint { font-size: 12px; color: #ef4444; margin-top: 4px; display: none; }
+        .form-hint.show { display: block; }
+        .modal-footer { display: flex; gap: 10px; margin-top: 20px; }
+        .modal-footer .btn { flex: 1; justify-content: center; }
+        .tabs { display: flex; gap: 8px; margin-bottom: 20px; }
+        .tab { flex: 1; padding: 10px; background: none; border: 1px solid #27272a; border-radius: 10px; color: #a1a1aa; font-family: inherit; cursor: pointer; transition: all 0.2s ease; }
+        .tab.active { background-color: #27272a; color: #fafafa; border-color: #52525b; }
+        .toast { position: fixed; top: 72px; right: 24px; background-color: #18181b; border: 1px solid #27272a; border-radius: 12px; padding: 14px 20px; font-size: 14px; color: #e4e4e7; z-index: 250; transform: translateX(120%); transition: transform 0.3s ease; box-shadow: 0 10px 40px rgba(0,0,0,0.4); }
+        .toast.show { transform: translateX(0); }
+        .toast.error { border-color: #ef444440; color: #fca5a5; }
+        .toast.success { border-color: #22c55e40; color: #86efac; }
+
+        @media (max-width: 860px) {
+            .container { flex-direction: column; }
+            .sidebar { width: 100%; position: static; }
+            .profile-card { display: flex; align-items: center; text-align: left; gap: 20px; }
+            .avatar-wrapper { margin-bottom: 0; }
+            .profile-info { flex: 1; }
+        }
+        @media (max-width: 640px) {
+            .search-box { display: none; }
+        }
+        @media (max-width: 480px) {
+            .navbar-inner { padding: 0 16px; }
+            .nav-links { gap: 14px; }
+            .nav-links a { font-size: 13px; }
+            .container { padding: 16px; }
+            .post-card { padding: 18px; }
+            .profile-card { flex-direction: column; text-align: center; }
+            .tag-bar { gap: 6px; }
+            .tag-btn { padding: 5px 12px; font-size: 12px; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar" id="navbar">
+        <div class="navbar-inner">
+            <a href="/" class="nav-brand">UntilBeef</a>
+            <ul class="nav-links">
+                <li><a href="/">首页</a></li>
+                <li><a href="#" onclick="showToast('功能开发中','error');return false;">文章</a></li>
+                <li><a href="#" onclick="showToast('功能开发中','error');return false;">工具</a></li>
+            </ul>
+            <div class="nav-right">
+                <div class="search-box">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                    <input type="text" id="searchInput" placeholder="搜索帖子...">
+                </div>
+                <div id="authArea">
+                    <button class="btn btn-sm" onclick="openModal('login')">登录</button>
+                    <button class="btn btn-sm btn-primary" onclick="openModal('register')">注册</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <aside class="sidebar">
+            <div class="card profile-card">
+                <div class="avatar-wrapper">
+                    <img src="/UntilBeef.jpg" alt="UntilBeef" class="avatar" id="profileAvatar">
+                    <span class="status-dot"></span>
+                </div>
+                <div class="profile-info">
+                    <h1 class="name">INeedToBeef</h1>
+                    <p class="alias">别名 UntilBeef</p>
+                    <p class="bio">Roblox 开发者 & 玩家<br>大卫你牛大了 我恨你</p>
+                    <a class="btn" href="https://space.bilibili.com/3546854264408363" target="_blank" rel="noopener noreferrer">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.813 4.653h.854c1.51.054 2.769.578 3.773 1.574 1.004.995 1.524 2.249 1.56 3.76v7.36c-.036 1.51-.556 2.769-1.56 3.773s-2.262 1.524-3.773 1.56H5.333c-1.51-.036-2.769-.556-3.773-1.56S.036 18.858 0 17.347v-7.36c.036-1.511.556-2.765 1.56-3.76 1.004-.996 2.262-1.52 3.773-1.574h.774l-1.174-1.12a1.234 1.234 0 0 1-.373-.906c0-.356.124-.658.373-.907l.027-.027c.267-.249.573-.373.92-.373.347 0 .653.124.92.373L9.653 4.44c.071.071.134.142.187.213h4.267a.836.836 0 0 1 .16-.213l2.853-2.747c.267-.249.573-.373.92-.373.347 0 .662.151.929.4.267.249.391.551.391.907 0 .355-.124.657-.373.906zM5.333 7.24c-.746.018-1.373.276-1.88.773-.506.498-.769 1.13-.786 1.894v7.52c.017.764.28 1.395.786 1.893.507.498 1.134.756 1.88.773h13.334c.746-.017 1.373-.275 1.88-.773.506-.498.769-1.129.786-1.893v-7.52c-.017-.765-.28-1.396-.786-1.894-.507-.497-1.134-.755-1.88-.773zM8 11.107c.373 0 .684.124.933.373.25.249.383.569.4.96v1.173c-.017.391-.15.711-.4.96-.249.25-.56.374-.933.374s-.684-.125-.933-.374c-.25-.249-.383-.569-.4-.96V12.44c0-.373.129-.689.386-.947.258-.257.574-.386.947-.386zm8 0c.373 0 .684.124.933.373.25.249.383.569.4.96v1.173c-.017.391-.15.711-.4.96-.249.25-.56.374-.933.374s-.684-.125-.933-.374c-.25-.249-.383-.569-.4-.96V12.44c.017-.391.15-.711.4-.96.249-.249.56-.373.933-.373z"/></svg>
+                        Bilibili 主页
+                    </a>
+                </div>
+            </div>
+            <div class="card">
+                <div class="stats-title">论坛数据</div>
+                <div class="stats-row"><span class="stats-label">帖子</span><span class="stats-value" id="statPosts">0</span></div>
+                <div class="stats-row"><span class="stats-label">用户</span><span class="stats-value" id="statUsers">0</span></div>
+                <div class="stats-row"><span class="stats-label">评论</span><span class="stats-value" id="statComments">0</span></div>
+            </div>
+            <div class="card">
+                <div class="stats-title">热门标签</div>
+                <div class="tags-list" id="tagsList"></div>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <div class="section-header">
+                <h2 class="section-title">最新帖子</h2>
+                <span class="section-filter" id="postCount">按时间排序</span>
+            </div>
+            <div class="tag-bar">
+                <button class="tag-btn active" data-category="">全部</button>
+                <button class="tag-btn" data-category="pinned">置顶</button>
+                <button class="tag-btn" data-category="tool">工具</button>
+                <button class="tag-btn" data-category="game">游戏</button>
+                <button class="tag-btn" data-category="dev">开发</button>
+            </div>
+            <div id="postsContainer"></div>
+            <button class="load-more" id="loadMoreBtn" onclick="loadMore()">加载更多</button>
+        </main>
+    </div>
+
+    <footer class="footer">&copy; UntilBeef &middot; 论坛 + 博客</footer>
+
+    <button class="back-to-top" id="backToTop" aria-label="回到顶部">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m18 15-6-6-6 6"/></svg>
+    </button>
+
+    <div class="toast" id="toast"></div>
+
+    <!-- Auth Modal -->
+    <div class="modal-overlay" id="authModal">
+        <div class="modal">
+            <div class="modal-header">
+                <span class="modal-title" id="modalTitle">登录</span>
+                <button class="modal-close" onclick="closeModal()">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+                </button>
+            </div>
+            <div class="tabs">
+                <button class="tab active" onclick="switchTab('login')" id="tabLogin">登录</button>
+                <button class="tab" onclick="switchTab('register')" id="tabRegister">注册</button>
+            </div>
+            <form id="authForm" onsubmit="handleAuth(event)">
+                <div class="form-group">
+                    <label class="form-label">用户名</label>
+                    <input type="text" class="form-input" id="authUsername" required minlength="3" maxlength="20">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">密码</label>
+                    <input type="password" class="form-input" id="authPassword" required minlength="6">
+                    <div class="form-hint" id="authError"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn" onclick="closeModal()">取消</button>
+                    <button type="submit" class="btn btn-primary" id="authSubmitBtn">登录</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- New Post Modal -->
+    <div class="modal-overlay" id="postModal">
+        <div class="modal" style="max-width: 560px;">
+            <div class="modal-header">
+                <span class="modal-title">发布新帖</span>
+                <button class="modal-close" onclick="closePostModal()">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+                </button>
+            </div>
+            <form id="newPostForm" onsubmit="handleNewPost(event)">
+                <div class="form-group">
+                    <label class="form-label">标题</label>
+                    <input type="text" class="form-input" id="postTitle" required maxlength="100">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">分类</label>
+                    <select class="form-input" id="postCategory" style="cursor: pointer;">
+                        <option value="general">综合</option>
+                        <option value="tool">工具</option>
+                        <option value="game">游戏</option>
+                        <option value="dev">开发</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">内容</label>
+                    <textarea class="form-input form-textarea" id="postContent" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">标签（用逗号分隔）</label>
+                    <input type="text" class="form-input" id="postTags" placeholder="例如: Roblox, Lua">
+                </div>
+                <div class="form-hint" id="postError"></div>
+                <div class="modal-footer">
+                    <button type="button" class="btn" onclick="closePostModal()">取消</button>
+                    <button type="submit" class="btn btn-primary">发布</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        const API = '';
+        let currentPage = 1;
+        let currentCategory = '';
+        let currentSearch = '';
+        let isLoading = false;
+        let hasMore = true;
+
+        // ==================== Auth ====================
+        function getToken() { return localStorage.getItem('token'); }
+        function getUser() {
+            try { return JSON.parse(localStorage.getItem('user')); } catch { return null; }
+        }
+        function setAuth(token, user) {
+            localStorage.setItem('token', token);
+            localStorage.setItem('user', JSON.stringify(user));
+            renderAuth();
+        }
+        function clearAuth() {
+            localStorage.removeItem('token');
+            localStorage.removeItem('user');
+            renderAuth();
+        }
+
+        function renderAuth() {
+            const user = getUser();
+            const area = document.getElementById('authArea');
+            if (user) {
+                area.innerHTML = `
+                    <button class="btn btn-sm btn-primary" onclick="openPostModal()">+ 发帖</button>
+                    <div class="user-menu">
+                        <img src="${user.avatar || '/UntilBeef.jpg'}" class="user-avatar" alt="${user.username}">
+                        <span style="font-size:13px;color:#e4e4e7;">${user.username}</span>
+                        <button class="btn btn-sm" onclick="logout()">退出</button>
+                    </div>
+                `;
+            } else {
+                area.innerHTML = `
+                    <button class="btn btn-sm" onclick="openModal('login')">登录</button>
+                    <button class="btn btn-sm btn-primary" onclick="openModal('register')">注册</button>
+                `;
+            }
+        }
+
+        async function logout() {
+            clearAuth();
+            showToast('已退出登录', 'success');
+            loadPosts(true);
+        }
+
+        // ==================== Modal ====================
+        function openModal(type) {
+            document.getElementById('authModal').classList.add('active');
+            switchTab(type);
+        }
+        function closeModal() { document.getElementById('authModal').classList.remove('active'); document.getElementById('authError').classList.remove('show'); }
+        function switchTab(type) {
+            document.getElementById('tabLogin').classList.toggle('active', type === 'login');
+            document.getElementById('tabRegister').classList.toggle('active', type === 'register');
+            document.getElementById('modalTitle').textContent = type === 'login' ? '登录' : '注册';
+            document.getElementById('authSubmitBtn').textContent = type === 'login' ? '登录' : '注册';
+            document.getElementById('authForm').dataset.mode = type;
+            document.getElementById('authError').classList.remove('show');
+        }
+        async function handleAuth(e) {
+            e.preventDefault();
+            const mode = document.getElementById('authForm').dataset.mode || 'login';
+            const username = document.getElementById('authUsername').value.trim();
+            const password = document.getElementById('authPassword').value;
+            const errEl = document.getElementById('authError');
+            try {
+                const res = await fetch(`${API}/api/auth/${mode}`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ username, password })
+                });
+                const data = await res.json();
+                if (!res.ok) { errEl.textContent = data.error || '请求失败'; errEl.classList.add('show'); return; }
+                setAuth(data.token, data.user);
+                closeModal();
+                showToast(mode === 'login' ? '登录成功' : '注册成功', 'success');
+                loadPosts(true);
+            } catch {
+                errEl.textContent = '网络错误'; errEl.classList.add('show');
+            }
+        }
+
+        // ==================== New Post Modal ====================
+        function openPostModal() {
+            if (!getToken()) { showToast('请先登录', 'error'); openModal('login'); return; }
+            document.getElementById('postModal').classList.add('active');
+        }
+        function closePostModal() { document.getElementById('postModal').classList.remove('active'); document.getElementById('postError').classList.remove('show'); }
+        async function handleNewPost(e) {
+            e.preventDefault();
+            const title = document.getElementById('postTitle').value.trim();
+            const content = document.getElementById('postContent').value.trim();
+            const category = document.getElementById('postCategory').value;
+            const tagsStr = document.getElementById('postTags').value;
+            const tags = tagsStr.split(',').map(t => t.trim()).filter(Boolean);
+            const errEl = document.getElementById('postError');
+            try {
+                const res = await fetch(`${API}/api/posts`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + getToken() },
+                    body: JSON.stringify({ title, content, category, tags })
+                });
+                const data = await res.json();
+                if (!res.ok) { errEl.textContent = data.error || '发布失败'; errEl.classList.add('show'); return; }
+                closePostModal();
+                showToast('发布成功', 'success');
+                document.getElementById('newPostForm').reset();
+                loadPosts(true);
+            } catch {
+                errEl.textContent = '网络错误'; errEl.classList.add('show');
+            }
+        }
+
+        // ==================== Posts ====================
+        async function loadPosts(reset = false) {
+            if (isLoading) return;
+            isLoading = true;
+            if (reset) { currentPage = 1; hasMore = true; document.getElementById('postsContainer').innerHTML = ''; }
+            const btn = document.getElementById('loadMoreBtn');
+            btn.textContent = '加载中...'; btn.disabled = true;
+
+            try {
+                const params = new URLSearchParams({ page: currentPage, limit: 10 });
+                if (currentCategory) params.append('category', currentCategory);
+                if (currentSearch) params.append('search', currentSearch);
+                const res = await fetch(`${API}/api/posts?${params}`);
+                const data = await res.json();
+                if (!res.ok) throw new Error(data.error);
+
+                if (data.posts.length === 0 && currentPage === 1) {
+                    document.getElementById('postsContainer').innerHTML = '<p style="color:#71717a;text-align:center;padding:40px;">暂无帖子</p>';
+                } else {
+                    data.posts.forEach(post => appendPost(post));
+                }
+
+                hasMore = data.posts.length === 10 && currentPage < data.totalPages;
+                document.getElementById('postCount').textContent = `共 ${data.total} 篇`;
+            } catch (err) {
+                showToast(err.message || '加载失败', 'error');
+            } finally {
+                isLoading = false;
+                btn.textContent = '加载更多'; btn.disabled = false;
+                if (!hasMore) { btn.textContent = '没有更多了'; btn.disabled = true; }
+            }
+        }
+
+        function loadMore() { if (!hasMore || isLoading) return; currentPage++; loadPosts(); }
+
+        function appendPost(post) {
+            const container = document.getElementById('postsContainer');
+            const pillClass = post.category === 'pinned' ? 'pill-pinned' : post.category === 'tool' ? 'pill-tool' : post.category === 'game' ? 'pill-game' : post.category === 'dev' ? 'pill-dev' : '';
+            const pillText = post.category === 'pinned' ? '置顶' : post.category === 'tool' ? '工具' : post.category === 'game' ? '游戏' : post.category === 'dev' ? '开发' : '综合';
+            const user = getUser();
+            const liked = user && post.likedBy && post.likedBy.includes(user.id);
+            const likeClass = liked ? 'liked' : '';
+            const likeText = liked ? '已赞' : '点赞';
+
+            const dateStr = new Date(post.createdAt).toLocaleDateString('zh-CN');
+            const tagsStr = (post.tags || []).map(t => `<span style="color:#71717a;">#${t}</span>`).join(' ');
+
+            // 处理内容中的工具图标标记
+            let contentHtml = escapeHtml(post.content).replace(/\n/g, '<br>');
+            contentHtml = contentHtml.replace(/\[\s*(froststrap\.png|RobloxPlayer\.ico)\s*\]\s*(.+?)(?=<br>|$)/gi, (match, img, text) => {
+                const src = img.toLowerCase().includes('froststrap') ? '/assets/froststrap.png' : '/assets/RobloxPlayer.ico';
+                return `<div class="tool-row"><img src="${src}" alt="${text.trim()}"><span>${text.trim()}</span></div>`;
+            });
+
+            const el = document.createElement('article');
+            el.className = `post-card ${post.category === 'pinned' ? 'pinned' : ''}`;
+            el.innerHTML = `
+                <div class="post-header">
+                    <a href="/post.html?id=${post.id}" class="post-title">${escapeHtml(post.title)}</a>
+                    <span class="post-pill ${pillClass}">${pillText}</span>
+                </div>
+                <div class="post-meta">
+                    <span>📅 ${dateStr}</span>
+                    <span>${tagsStr}</span>
+                    <span class="view-count">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+                        ${formatNum(post.views || 0)}
+                    </span>
+                </div>
+                <div class="post-body">${contentHtml}</div>
+                <div class="post-footer">
+                    <button class="post-action ${likeClass}" onclick="toggleLike(${post.id}, this)">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 10v12"/><path d="M15 5.88 14 10h5.83a2 2 0 0 1 1.92 2.56l-2.33 8A2 2 0 0 1 17.5 22H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h2.76a2 2 0 0 0 1.79-1.11L12 2h0a3.13 3.13 0 0 1 3 3.88Z"/></svg>
+                        <span class="like-count">${post.likes || 0}</span>
+                    </button>
+                    <a href="/post.html?id=${post.id}" class="post-action" style="text-decoration:none;">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                        评论
+                    </a>
+                    <span class="post-action" onclick="showToast('分享链接已复制','success');navigator.clipboard?.writeText(location.origin+'/post.html?id=${post.id}');">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg>
+                        分享
+                    </span>
+                </div>
+            `;
+            container.appendChild(el);
+        }
+
+        async function toggleLike(postId, btn) {
+            if (!getToken()) { showToast('请先登录', 'error'); openModal('login'); return; }
+            try {
+                const res = await fetch(`${API}/api/posts/${postId}/like`, {
+                    method: 'POST',
+                    headers: { 'Authorization': 'Bearer ' + getToken() }
+                });
+                const data = await res.json();
+                if (!res.ok) throw new Error(data.error);
+                btn.classList.toggle('liked', data.liked);
+                btn.querySelector('.like-count').textContent = data.likes;
+                showToast(data.liked ? '点赞成功' : '取消点赞', 'success');
+            } catch (err) { showToast(err.message, 'error'); }
+        }
+
+        // ==================== Tags & Stats ====================
+        async function loadTags() {
+            try {
+                const res = await fetch(`${API}/api/tags`);
+                const tags = await res.json();
+                const el = document.getElementById('tagsList');
+                el.innerHTML = tags.map(t => `<button class="tag-link" onclick="filterByTag('${escapeHtml(t.name)}')">${escapeHtml(t.name)} (${t.count})</button>`).join('');
+            } catch {}
+        }
+        async function loadStats() {
+            try {
+                const res = await fetch(`${API}/api/stats`);
+                const s = await res.json();
+                document.getElementById('statPosts').textContent = s.posts;
+                document.getElementById('statUsers').textContent = s.users;
+                document.getElementById('statComments').textContent = s.comments;
+            } catch {}
+        }
+
+        function filterByTag(tag) {
+            currentSearch = tag;
+            document.getElementById('searchInput').value = tag;
+            loadPosts(true);
+        }
+
+        // ==================== Search & Category ====================
+        document.getElementById('searchInput').addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') { currentSearch = this.value.trim(); loadPosts(true); }
+        });
+        document.querySelectorAll('.tag-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.tag-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                currentCategory = this.dataset.category;
+                loadPosts(true);
+            });
+        });
+
+        // ==================== UI Helpers ====================
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+        function formatNum(n) { return n >= 1000 ? (n/1000).toFixed(1)+'k' : n; }
+        function showToast(msg, type='success') {
+            const t = document.getElementById('toast');
+            t.textContent = msg;
+            t.className = 'toast ' + type + ' show';
+            setTimeout(() => t.classList.remove('show'), 3000);
+        }
+
+        // ==================== Scroll Effects ====================
+        const navbar = document.getElementById('navbar');
+        const backToTop = document.getElementById('backToTop');
+        window.addEventListener('scroll', () => {
+            navbar.classList.toggle('scrolled', window.scrollY > 10);
+            backToTop.classList.toggle('visible', window.scrollY > 300);
+        });
+        backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+        // ==================== Init ====================
+        renderAuth();
+        loadPosts(true);
+        loadTags();
+        loadStats();
+    </script>
+</body>
+</html>
