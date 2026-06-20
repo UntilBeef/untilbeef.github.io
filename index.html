@@ -186,6 +186,35 @@
             text-align: center;
         }
 
+        /* Roblox Studio 板块 */
+        .studio-block {
+            margin-bottom: 28px;
+            background-color: #1f1f23;
+            border: 1px solid #27272a;
+            border-radius: 12px;
+            padding: 18px 16px;
+            text-align: left;
+            transition: background-color 0.2s ease, border-color 0.2s ease;
+        }
+
+        .studio-block:hover {
+            background-color: #27272a;
+            border-color: #3f3f46;
+        }
+
+        .studio-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #fafafa;
+            margin-bottom: 6px;
+        }
+
+        .studio-desc {
+            font-size: 14px;
+            color: #a1a1aa;
+            line-height: 1.5;
+        }
+
         /* 响应式微调 */
         @media (max-width: 480px) {
             .card {
@@ -229,6 +258,12 @@
                 <span class="tool-text">Roblox Player 乐乐。</span>
             </div>
             <p class="tool-summary">所以 Froststrap 牛逼</p>
+        </div>
+
+        <!-- Roblox Studio 板块 -->
+        <div class="studio-block">
+            <h2 class="studio-title">Roblox Studio</h2>
+            <p class="studio-desc">使用 Roblox Studio 进行游戏开发与创作，编写 Lua 脚本、搭建场景、设计玩法机制。</p>
         </div>
 
         <!-- Bilibili 链接 -->
