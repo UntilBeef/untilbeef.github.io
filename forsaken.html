@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>作弊者 - Forsaken - UntilBeef</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: #0f0f11;
+            color: #e4e4e7;
+            line-height: 1.7;
+            padding: 24px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* 头部导航 */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #27272a;
+        }
+
+        .back-link {
+            color: #a1a1aa;
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.2s ease;
+        }
+
+        .back-link:hover { color: #fafafa; }
+
+        .header-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #fafafa;
+        }
+
+        /* 主标题 */
+        .hero {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+
+        .hero h1 {
+            font-size: 28px;
+            font-weight: 700;
+            color: #fafafa;
+            margin-bottom: 10px;
+        }
+
+        .hero p {
+            font-size: 15px;
+            color: #a1a1aa;
+        }
+
+        /* 条目 */
+        .entry {
+            background-color: #18181b;
+            border: 1px solid #27272a;
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 24px;
+            transition: border-color 0.2s ease;
+        }
+
+        .entry:hover { border-color: #3f3f46; }
+
+        .entry-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #fafafa;
+            margin-bottom: 14px;
+        }
+
+        .entry-desc {
+            font-size: 14px;
+            color: #a1a1aa;
+            margin-bottom: 16px;
+        }
+
+        .entry-video {
+            width: 100%;
+            border-radius: 10px;
+            border: 1px solid #27272a;
+            background-color: #1f1f23;
+        }
+
+        /* 页脚 */
+        .footer {
+            text-align: center;
+            margin-top: 48px;
+            padding-top: 24px;
+            border-top: 1px solid #27272a;
+            font-size: 13px;
+            color: #52525b;
+        }
+
+        .footer a {
+            color: #a1a1aa;
+            text-decoration: none;
+        }
+
+        .footer a:hover { color: #fafafa; }
+
+        @media (max-width: 600px) {
+            .hero h1 { font-size: 24px; }
+            .entry { padding: 18px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 头部 -->
+        <div class="header">
+            <a href="index.html" class="back-link">← 返回主页</a>
+            <span class="header-title">UntilBeef</span>
+        </div>
+
+        <!-- 主标题 -->
+        <div class="hero">
+            <h1>作弊者 - Forsaken</h1>
+            <p>记录在 Forsaken 中遇到的作弊者</p>
+        </div>
+
+        <!-- 条目 #1 -->
+        <div class="entry">
+            <h2 class="entry-title">作弊者 - Forsaken #1</h2>
+            <p class="entry-desc">玩被扔了遇到的，追不上人，站着不动一会就开始了，还是个国人，我去 DC 举报说我证据无效。不管是不是真的无效，我以后也不会举报了——环境都这样了，不如让它更烂一些，赶紧凉吧。这样我们死了又死就能一家独大了，呦吼吼吼吼吼吼吼吼吼。</p>
+            <video src="Forsaken作弊者/作弊者-Forsaken.mp4" controls class="entry-video"></video>
+        </div>
+
+        <!-- 条目 #2 -->
+        <div class="entry">
+            <h2 class="entry-title">作弊者 - Forsaken #2</h2>
+            <p class="entry-desc">一开始还没看出来，之后经过队友提醒才看出来是个无限体力。</p>
+            <video src="Forsaken作弊者/作弊者-Forsaken2.mp4" controls class="entry-video"></video>
+        </div>
+
+        <!-- 页脚 -->
+        <div class="footer">
+            <p>Made by <a href="index.html">UntilBeef</a></p>
+        </div>
+    </div>
+</body>
+</html>
