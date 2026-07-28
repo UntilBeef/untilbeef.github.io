@@ -1,1 +1,3 @@
 - BlockTalesFansGameDevLog/4.mp4 描述：对话框改为原版纹理，文字开头增加特殊字符来还原原版BlockTales，修复对话框倒三角位置总是偏一点的问题，增加点击提示，对话输出更像原版，说一句停一下，等待点击
+- --global
+- BlockTalesFansGameDevLog/5.mp4 描述：修复影子系统对透明物有反应的问题，增加对话中的选项，增加收集系统
