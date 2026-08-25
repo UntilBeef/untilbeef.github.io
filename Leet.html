@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Leet 双向转换器</title>
+    <style>
+        /* ---------- 重置 & 基础 ---------- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background: #f5f3f7;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+            padding: 20px;
+        }
+
+        /* ---------- 卡片 ---------- */
+        .card {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 32px 28px 28px;
+            max-width: 640px;
+            width: 100%;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
+            transition: 0.2s;
+        }
+        .card h1 {
+            font-size: 24px;
+            font-weight: 600;
+            color: #1e1a2b;
+            letter-spacing: -0.3px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .card h1 small {
+            font-size: 14px;
+            font-weight: 400;
+            color: #8a839e;
+            margin-left: 4px;
+        }
+        .card .desc {
+            color: #7b738e;
+            font-size: 14px;
+            margin: 2px 0 18px 0;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 14px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px 12px;
+        }
+        .card .desc span {
+            background: #f0eef5;
+            padding: 0 10px;
+            border-radius: 30px;
+            font-family: monospace;
+            font-size: 12px;
+            color: #4a4460;
+        }
+
+        /* ---------- 输入行 ---------- */
+        .input-row {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 12px;
+        }
+        .input-row input {
+            flex: 1;
+            padding: 12px 16px;
+            border: 1.5px solid #e2dcec;
+            border-radius: 12px;
+            font-size: 16px;
+            background: #faf9fc;
+            color: #1e1a2b;
+            outline: none;
+            transition: 0.15s;
+            min-width: 150px;
+        }
+        .input-row input:focus {
+            border-color: #8f7fc7;
+            background: #fff;
+            box-shadow: 0 0 0 3px rgba(143, 127, 199, 0.15);
+        }
+        .input-row input::placeholder {
+            color: #b3abc9;
+        }
+        .input-row .actions {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 30px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.15s;
+            background: #eeeaf5;
+            color: #3d3657;
+            white-space: nowrap;
+        }
+        .btn:hover {
+            background: #e2dcec;
+            transform: translateY(-1px);
+        }
+        .btn:active {
+            transform: translateY(0);
+        }
+        .btn-primary {
+            background: #7c6bb8;
+            color: #fff;
+        }
+        .btn-primary:hover {
+            background: #6e5ca8;
+        }
+        .btn-copy {
+            background: #d4e6e2;
+            color: #1f5a4f;
+        }
+        .btn-copy:hover {
+            background: #c0dbd6;
+        }
+
+        /* ---------- 模式切换 ---------- */
+        .tabs {
+            display: flex;
+            gap: 4px;
+            background: #f0eef5;
+            border-radius: 40px;
+            padding: 4px;
+            margin-bottom: 14px;
+        }
+        .tabs button {
+            flex: 1;
+            padding: 8px 12px;
+            border: none;
+            border-radius: 32px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            background: transparent;
+            color: #7b738e;
+            transition: 0.2s;
+            text-align: center;
+        }
+        .tabs button:hover {
+            color: #3d3657;
+        }
+        .tabs button.active {
+            background: #fff;
+            color: #4a3d74;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+            font-weight: 600;
+        }
+
+        /* ---------- 输出 ---------- */
+        .output {
+            background: #faf9fc;
+            border-radius: 14px;
+            padding: 14px 18px;
+            min-height: 64px;
+            border: 1.5px solid #eae6f2;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-top: 2px;
+        }
+        .output .label {
+            font-size: 11px;
+            font-weight: 600;
+            color: #9a92b3;
+            background: #edeaf3;
+            padding: 2px 12px;
+            border-radius: 30px;
+            letter-spacing: 0.2px;
+            text-transform: uppercase;
+        }
+        .output .text {
+            flex: 1;
+            font-family: 'SF Mono', 'Courier New', monospace;
+            font-size: 20px;
+            font-weight: 500;
+            color: #1e1a2b;
+            word-break: break-word;
+            line-height: 1.4;
+            min-height: 28px;
+        }
+        .output .text.placeholder {
+            color: #bcb4d2;
+            font-weight: 400;
+            font-size: 16px;
+        }
+
+        /* ---------- 示例 ---------- */
+        .examples {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-top: 14px;
+            align-items: center;
+        }
+        .examples .label {
+            font-size: 12px;
+            color: #9a92b3;
+            font-weight: 500;
+            margin-right: 2px;
+        }
+        .examples .pill {
+            background: #f0eef5;
+            border: 1px solid #e2dcec;
+            border-radius: 30px;
+            padding: 4px 14px;
+            font-size: 12px;
+            color: #4a4460;
+            cursor: pointer;
+            transition: 0.15s;
+        }
+        .examples .pill:hover {
+            background: #e2dcec;
+            border-color: #c8bedf;
+        }
+        .examples .pill.leet {
+            border-color: #cdc0e8;
+            background: #f4f0fb;
+        }
+        .examples .pill.leet:hover {
+            background: #e8e0f5;
+        }
+
+        /* ---------- 脚注 ---------- */
+        .foot {
+            margin-top: 18px;
+            font-size: 12px;
+            color: #b3abc9;
+            text-align: center;
+        }
+        .foot kbd {
+            background: #f0eef5;
+            padding: 1px 8px;
+            border-radius: 4px;
+            color: #5f587a;
+            font-size: 11px;
+        }
+
+        /* ---------- 自适应 ---------- */
+        @media (max-width: 500px) {
+            .card {
+                padding: 20px 16px;
+            }
+            .card h1 {
+                font-size: 20px;
+                flex-wrap: wrap;
+            }
+            .input-row input {
+                font-size: 15px;
+                padding: 10px 14px;
+            }
+            .btn {
+                padding: 8px 14px;
+                font-size: 13px;
+            }
+            .output .text {
+                font-size: 17px;
+            }
+            .tabs button {
+                font-size: 12px;
+                padding: 6px 8px;
+            }
+            .examples .pill {
+                font-size: 11px;
+                padding: 3px 10px;
+            }
+        }
+        @media (max-width: 400px) {
+            .input-row {
+                flex-direction: column;
+            }
+            .input-row .actions {
+                justify-content: stretch;
+            }
+            .input-row .actions .btn {
+                flex: 1;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <!-- 标题 -->
+        <h1>
+            ⌨️ Leet
+            <small>双向转换</small>
+        </h1>
+        <div class="desc">
+            <span>A→4</span> <span>E→3</span> <span>S→5</span> <span>O→0</span>
+            <span>I→1</span> <span>T→7</span> <span>B→8</span> <span>G→6</span> <span>Z→2</span>
+        </div>
+
+        <!-- 输入 -->
+        <div class="input-row">
+            <input type="text" id="inputText" placeholder="输入文本…" spellcheck="false" />
+            <div class="actions">
+                <button class="btn btn-primary" id="convertBtn">转换</button>
+                <button class="btn btn-copy" id="copyBtn">📋 复制</button>
+            </div>
+        </div>
+
+        <!-- 模式 -->
+        <div class="tabs" id="modeTabs">
+            <button class="active" data-mode="forward">英文 → L33T</button>
+            <button data-mode="reverse">L33T → 英文</button>
+        </div>
+
+        <!-- 输出 -->
+        <div class="output">
+            <span class="label" id="outputLabel">正向</span>
+            <div class="text placeholder" id="outputText">等待输入…</div>
+        </div>
+
+        <!-- 示例 -->
+        <div class="examples">
+            <span class="label">试试：</span>
+            <button class="pill" data-example="Hello World">Hello World</button>
+            <button class="pill" data-example="I love you too.">I love you too.</button>
+            <button class="pill" data-example="How did you understand that?!">How did you…</button>
+            <button class="pill leet" data-example="H3LL0 W0RLD">🔁 H3LL0 W0RLD</button>
+        </div>
+
+        <div class="foot">
+            <kbd>Enter</kbd> 快速转换 · 点击模式自动切换
+        </div>
+    </div>
+
+    <script>
+        // ============================================================
+        //  映射表
+        // ============================================================
+        const leetMap = { A: '4', E: '3', S: '5', O: '0', I: '1', T: '7', B: '8', G: '6', Z: '2' };
+        const reverseLeetMap = {};
+        for (const [k, v] of Object.entries(leetMap)) reverseLeetMap[v] = k;
+
+        // ============================================================
+        //  转换函数
+        // ============================================================
+        function toLeet(text) {
+            let out = '';
+            for (const ch of text) {
+                const u = ch.toUpperCase();
+                out += leetMap[u] || ch;
+            }
+            return out;
+        }
+
+        function fromLeet(text) {
+            let out = '';
+            for (const ch of text) {
+                out += reverseLeetMap[ch] || ch;
+            }
+            return out;
+        }
+
+        // ============================================================
+        //  DOM 引用
+        // ============================================================
+        const inputEl = document.getElementById('inputText');
+        const outputEl = document.getElementById('outputText');
+        const outputLabel = document.getElementById('outputLabel');
+        const convertBtn = document.getElementById('convertBtn');
+        const copyBtn = document.getElementById('copyBtn');
+        const modeTabs = document.querySelectorAll('.mode-tabs button');
+
+        let currentMode = 'forward'; // 'forward' | 'reverse'
+
+        // ============================================================
+        //  核心
+        // ============================================================
+        function convertAndDisplay() {
+            const raw = inputEl.value;
+            let result = '';
+            let label = '';
+
+            if (currentMode === 'forward') {
+                result = toLeet(raw);
+                label = '正向';
+            } else {
+                result = fromLeet(raw);
+                label = '反向';
+            }
+
+            outputLabel.textContent = label;
+
+            if (result === '') {
+                outputEl.textContent = '等待输入…';
+                outputEl.classList.add('placeholder');
+            } else {
+                outputEl.textContent = result;
+                outputEl.classList.remove('placeholder');
+            }
+        }
+
+        function setMode(mode) {
+            if (mode === currentMode) return;
+            currentMode = mode;
+
+            modeTabs.forEach(tab => {
+                tab.classList.toggle('active', tab.dataset.mode === mode);
+            });
+
+            inputEl.placeholder = mode === 'forward' ? '输入英文句子…' : '输入 L33T 文本…';
+
+            if (inputEl.value.trim() !== '') {
+                convertAndDisplay();
+            } else {
+                outputEl.textContent = '等待输入…';
+                outputEl.classList.add('placeholder');
+                outputLabel.textContent = mode === 'forward' ? '正向' : '反向';
+            }
+        }
+
+        // ============================================================
+        //  事件绑定
+        // ============================================================
+
+        // 转换
+        convertBtn.addEventListener('click', convertAndDisplay);
+
+        // 回车
+        inputEl.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                convertAndDisplay();
+            }
+        });
+
+        // 模式切换
+        modeTabs.forEach(tab => {
+            tab.addEventListener('click', () => setMode(tab.dataset.mode));
+        });
+
+        // 复制
+        copyBtn.addEventListener('click', async () => {
+            const text = outputEl.textContent;
+            if (!text || text === '等待输入…') {
+                alert('没有内容可复制，请先转换！');
+                return;
+            }
+            try {
+                await navigator.clipboard.writeText(text);
+                const orig = copyBtn.textContent;
+                copyBtn.textContent = '✅ 已复制';
+                setTimeout(() => { copyBtn.textContent = orig; }, 1200);
+            } catch (_) {
+                const ta = document.createElement('textarea');
+                ta.value = text;
+                document.body.appendChild(ta);
+                ta.select();
+                document.execCommand('copy');
+                document.body.removeChild(ta);
+                alert('复制成功');
+            }
+        });
+
+        // 示例
+        document.querySelectorAll('.examples .pill').forEach(btn => {
+            btn.addEventListener('click', () => {
+                inputEl.value = btn.dataset.example;
+                convertAndDisplay();
+                inputEl.focus();
+                inputEl.select();
+            });
+        });
+
+        // 输入为空时重置占位
+        inputEl.addEventListener('input', () => {
+            if (inputEl.value === '') {
+                outputEl.textContent = '等待输入…';
+                outputEl.classList.add('placeholder');
+                outputLabel.textContent = currentMode === 'forward' ? '正向' : '反向';
+            }
+        });
+
+        // ============================================================
+        //  初始化
+        // ============================================================
+        setMode('forward');
+    </script>
+
+</body>
+</html>
