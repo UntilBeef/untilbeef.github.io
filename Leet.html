@@ -311,7 +311,7 @@
 
         <!-- 输入 -->
         <div class="input-row">
-            <input type="text" id="inputText" placeholder="输入文本…" spellcheck="false" />
+            <input type="text" id="inputText" placeholder="输入英文句子…" spellcheck="false" />
             <div class="actions">
                 <button class="btn btn-primary" id="convertBtn">转换</button>
                 <button class="btn btn-copy" id="copyBtn">📋 复制</button>
@@ -380,7 +380,8 @@
         const outputLabel = document.getElementById('outputLabel');
         const convertBtn = document.getElementById('convertBtn');
         const copyBtn = document.getElementById('copyBtn');
-        const modeTabs = document.querySelectorAll('.mode-tabs button');
+        // ✅ 修复：使用正确的选择器（id 选择器）
+        const modeTabs = document.querySelectorAll('#modeTabs button');
 
         let currentMode = 'forward'; // 'forward' | 'reverse'
 
@@ -415,12 +416,15 @@
             if (mode === currentMode) return;
             currentMode = mode;
 
+            // ✅ 更新标签页 active 状态
             modeTabs.forEach(tab => {
                 tab.classList.toggle('active', tab.dataset.mode === mode);
             });
 
+            // 更新 placeholder
             inputEl.placeholder = mode === 'forward' ? '输入英文句子…' : '输入 L33T 文本…';
 
+            // 如果有内容则自动转换，否则重置占位
             if (inputEl.value.trim() !== '') {
                 convertAndDisplay();
             } else {
@@ -445,9 +449,11 @@
             }
         });
 
-        // 模式切换
+        // ✅ 模式切换（修复后正常工作）
         modeTabs.forEach(tab => {
-            tab.addEventListener('click', () => setMode(tab.dataset.mode));
+            tab.addEventListener('click', () => {
+                setMode(tab.dataset.mode);
+            });
         });
 
         // 复制
@@ -495,7 +501,14 @@
         // ============================================================
         //  初始化
         // ============================================================
-        setMode('forward');
+        // 确保初始 active 状态与 currentMode 一致
+        // 但 HTML 中已经有一个 active，我们直接以 currentMode 为准
+        // 强制同步一次，避免 HTML 标记与 JS 状态不一致
+        modeTabs.forEach(tab => {
+            tab.classList.toggle('active', tab.dataset.mode === currentMode);
+        });
+        inputEl.placeholder = '输入英文句子…';
+        outputLabel.textContent = '正向';
     </script>
 
 </body>
