@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Leet 双向转换器</title>
+    <title>Leetspeak</title>
     <style>
         /* ---------- 重置 & 基础 ---------- */
         * {
@@ -301,12 +301,13 @@
     <div class="card">
         <!-- 标题 -->
         <h1>
-            ⌨️ Leet
+            Leet
             <small>双向转换</small>
         </h1>
         <div class="desc">
             <span>A→4</span> <span>E→3</span> <span>S→5</span> <span>O→0</span>
             <span>I→1</span> <span>T→7</span> <span>B→8</span> <span>G→6</span> <span>Z→2</span>
+            <span>C→(</span> <span>K→|<</span> <span>H→#</span> <span>P→9</span> <span>R→|2</span> <span>U→|_|</span>
         </div>
 
         <!-- 输入 -->
@@ -314,7 +315,7 @@
             <input type="text" id="inputText" placeholder="输入英文句子…" spellcheck="false" />
             <div class="actions">
                 <button class="btn btn-primary" id="convertBtn">转换</button>
-                <button class="btn btn-copy" id="copyBtn">📋 复制</button>
+                <button class="btn btn-copy" id="copyBtn">复制</button>
             </div>
         </div>
 
@@ -334,9 +335,6 @@
         <div class="examples">
             <span class="label">试试：</span>
             <button class="pill" data-example="Hello World">Hello World</button>
-            <button class="pill" data-example="I love you too.">I love you too.</button>
-            <button class="pill" data-example="How did you understand that?!">How did you…</button>
-            <button class="pill leet" data-example="H3LL0 W0RLD">🔁 H3LL0 W0RLD</button>
         </div>
 
         <div class="foot">
@@ -346,11 +344,24 @@
 
     <script>
         // ============================================================
-        //  映射表
+        //  映射表（扩展版，支持多字符）
         // ============================================================
-        const leetMap = { A: '4', E: '3', S: '5', O: '0', I: '1', T: '7', B: '8', G: '6', Z: '2' };
+        const leetMap = {
+            A: '4', E: '3', S: '5', O: '0', I: '1', T: '7', B: '8', G: '6', Z: '2',
+            C: '(', K: '|<', H: '#', P: '9', R: '|2', U: '|_|'
+        };
+
+        // 构建反向映射（键为 Leet 表示，值为大写字母）
         const reverseLeetMap = {};
-        for (const [k, v] of Object.entries(leetMap)) reverseLeetMap[v] = k;
+        for (const [k, v] of Object.entries(leetMap)) {
+            // 如果同一个 Leet 表示对应多个字母，则保留第一个（此处不会冲突）
+            if (!(v in reverseLeetMap)) {
+                reverseLeetMap[v] = k;
+            }
+        }
+
+        // 将反向键按长度降序排序，用于最长匹配
+        const sortedReverseKeys = Object.keys(reverseLeetMap).sort((a, b) => b.length - a.length);
 
         // ============================================================
         //  转换函数
@@ -366,8 +377,22 @@
 
         function fromLeet(text) {
             let out = '';
-            for (const ch of text) {
-                out += reverseLeetMap[ch] || ch;
+            let i = 0;
+            while (i < text.length) {
+                let matched = false;
+                // 尝试匹配最长的键
+                for (const key of sortedReverseKeys) {
+                    if (text.startsWith(key, i)) {
+                        out += reverseLeetMap[key];
+                        i += key.length;
+                        matched = true;
+                        break;
+                    }
+                }
+                if (!matched) {
+                    out += text[i];
+                    i++;
+                }
             }
             return out;
         }
@@ -380,7 +405,6 @@
         const outputLabel = document.getElementById('outputLabel');
         const convertBtn = document.getElementById('convertBtn');
         const copyBtn = document.getElementById('copyBtn');
-        // ✅ 修复：使用正确的选择器（id 选择器）
         const modeTabs = document.querySelectorAll('#modeTabs button');
 
         let currentMode = 'forward'; // 'forward' | 'reverse'
@@ -416,15 +440,12 @@
             if (mode === currentMode) return;
             currentMode = mode;
 
-            // ✅ 更新标签页 active 状态
             modeTabs.forEach(tab => {
                 tab.classList.toggle('active', tab.dataset.mode === mode);
             });
 
-            // 更新 placeholder
             inputEl.placeholder = mode === 'forward' ? '输入英文句子…' : '输入 L33T 文本…';
 
-            // 如果有内容则自动转换，否则重置占位
             if (inputEl.value.trim() !== '') {
                 convertAndDisplay();
             } else {
@@ -438,10 +459,8 @@
         //  事件绑定
         // ============================================================
 
-        // 转换
         convertBtn.addEventListener('click', convertAndDisplay);
 
-        // 回车
         inputEl.addEventListener('keydown', (e) => {
             if (e.key === 'Enter') {
                 e.preventDefault();
@@ -449,14 +468,12 @@
             }
         });
 
-        // ✅ 模式切换（修复后正常工作）
         modeTabs.forEach(tab => {
             tab.addEventListener('click', () => {
                 setMode(tab.dataset.mode);
             });
         });
 
-        // 复制
         copyBtn.addEventListener('click', async () => {
             const text = outputEl.textContent;
             if (!text || text === '等待输入…') {
@@ -479,7 +496,6 @@
             }
         });
 
-        // 示例
         document.querySelectorAll('.examples .pill').forEach(btn => {
             btn.addEventListener('click', () => {
                 inputEl.value = btn.dataset.example;
@@ -489,7 +505,6 @@
             });
         });
 
-        // 输入为空时重置占位
         inputEl.addEventListener('input', () => {
             if (inputEl.value === '') {
                 outputEl.textContent = '等待输入…';
@@ -501,9 +516,6 @@
         // ============================================================
         //  初始化
         // ============================================================
-        // 确保初始 active 状态与 currentMode 一致
-        // 但 HTML 中已经有一个 active，我们直接以 currentMode 为准
-        // 强制同步一次，避免 HTML 标记与 JS 状态不一致
         modeTabs.forEach(tab => {
             tab.classList.toggle('active', tab.dataset.mode === currentMode);
         });
